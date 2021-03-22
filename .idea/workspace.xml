@@ -11,9 +11,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74b01e53-4e00-4ffd-8385-a580d1fad77c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/AppUser.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/AppUser1.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/users/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/users/show.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Unit/UserTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/functional/UserTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/rockclub.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rockclub.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.styleci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.styleci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/functional.suite.yml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,6 +161,9 @@
       <path value="$PROJECT_DIR$/vendor/codeception/module-asserts" />
       <path value="$PROJECT_DIR$/vendor/codeception/lib-innerbrowser" />
       <path value="$PROJECT_DIR$/vendor/codeception/module-phpbrowser" />
+      <path value="$PROJECT_DIR$/vendor/codeception/module-db" />
+      <path value="$PROJECT_DIR$/vendor/codeception/module-laravel5" />
+      <path value="$PROJECT_DIR$/vendor/codeception/module-laravel" />
     </include_path>
   </component>
   <component name="ProjectId" id="1pnvCltAfMcEeDrMPXSpFtqtlEg" />
@@ -156,15 +174,37 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/users" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\PhpProjects\rockclub\resources\views\users" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\PhpProjects\rockclub\resources\views\users" />
+      <recent name="C:\PhpProjects\rockclub\resources\views" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Codeception.UnitTests">
+    <configuration name="UnitTests" type="CodeceptionConfigurationType" factoryName="Codeception">
+      <PhpTestRunnerSettings directory="$PROJECT_DIR$/tests/Unit" method="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="CodeceptionConfigurationType" factoryName="Codeception">
+      <PhpTestRunnerSettings directory="$PROJECT_DIR$/tests" method="" />
+      <method v="2" />
+    </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Codeception.UnitTests" />
+      <item itemvalue="PHPUnit.phpunit.xml" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -176,7 +216,8 @@
       <updated>1615831543728</updated>
       <workItem from="1615831544827" duration="997000" />
       <workItem from="1615832582408" duration="1077000" />
-      <workItem from="1615833683919" duration="9657000" />
+      <workItem from="1615833683919" duration="16254000" />
+      <workItem from="1616163845127" duration="22014000" />
     </task>
     <servers />
   </component>
@@ -198,14 +239,34 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="263" y="18" key="#CLI_Interpreters" timestamp="1616076874921">
+    <state x="263" y="18" key="#CLI_Interpreters" timestamp="1616219359063">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="263" y="18" key="#CLI_Interpreters/0.0.1366.728@0.0.1366.728" timestamp="1616076874921" />
-    <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1615832710289">
+    <state x="263" y="18" key="#CLI_Interpreters/0.0.1366.728@0.0.1366.728" timestamp="1616219359063" />
+    <state x="397" y="6" key="#PHP" timestamp="1616219361152">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1615832710289" />
+    <state x="397" y="6" key="#PHP/0.0.1366.728@0.0.1366.728" timestamp="1616219361152" />
+    <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616219363516">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1616219363516" />
+    <state x="508" y="47" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1616338446347">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="508" y="47" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728@0.0.1366.728" timestamp="1616338446347" />
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1616219280995">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1616219280995" />
+    <state x="493" y="86" key="NewPhpClassDialog" timestamp="1616390014791">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="493" y="86" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1616390014791" />
+    <state x="518" y="287" key="NewPhpFileDialog" timestamp="1616390035511">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="518" y="287" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1616390035511" />
     <state x="184" y="8" key="SettingsEditor" timestamp="1616076886025">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

@@ -16,6 +16,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/lib-asserts" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/lib-innerbrowser" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/module-asserts" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/module-db" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/module-laravel" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/module-laravel5" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/module-phpbrowser" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/phpunit-wrapper" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/stub" />

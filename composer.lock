@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7614ba5c58a1e30ab6eac930a0dee92a",
+    "content-hash": "8f6b290ec05b5bf932f560ebc0abef10",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5195,6 +5195,170 @@
                 "source": "https://github.com/Codeception/module-asserts/tree/1.3.1"
             },
             "time": "2020-10-21T16:48:15+00:00"
+        },
+        {
+            "name": "codeception/module-db",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Codeception/module-db.git",
+                "reference": "8c8076cd05d4db95798acd7dba2a56578210982c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Codeception/module-db/zipball/8c8076cd05d4db95798acd7dba2a56578210982c",
+                "reference": "8c8076cd05d4db95798acd7dba2a56578210982c",
+                "shasum": ""
+            },
+            "require": {
+                "codeception/codeception": "*@dev",
+                "php": ">=5.6.0 <9.0"
+            },
+            "conflict": {
+                "codeception/codeception": "<4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Bodnarchuk"
+                },
+                {
+                    "name": "Gintautas Miselis"
+                }
+            ],
+            "description": "DB module for Codeception",
+            "homepage": "http://codeception.com/",
+            "keywords": [
+                "codeception",
+                "database-testing",
+                "db-testing"
+            ],
+            "support": {
+                "issues": "https://github.com/Codeception/module-db/issues",
+                "source": "https://github.com/Codeception/module-db/tree/1.1.0"
+            },
+            "time": "2020-12-20T13:37:07+00:00"
+        },
+        {
+            "name": "codeception/module-laravel",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Codeception/module-laravel.git",
+                "reference": "f32a941a06e57bb06d2e485da11b191f38bec659"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Codeception/module-laravel/zipball/f32a941a06e57bb06d2e485da11b191f38bec659",
+                "reference": "f32a941a06e57bb06d2e485da11b191f38bec659",
+                "shasum": ""
+            },
+            "require": {
+                "codeception/codeception": "^4.0",
+                "codeception/lib-innerbrowser": "^1.3",
+                "ext-json": "*",
+                "php": "^7.3 | ^8.0"
+            },
+            "require-dev": {
+                "codeception/module-asserts": "^1.3",
+                "codeception/module-rest": "^1.2",
+                "vlucas/phpdotenv": "^3.6 | ^4.1 | ^5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan-Henk Gerritsen"
+                },
+                {
+                    "name": "Michael Bodnarchuk"
+                },
+                {
+                    "name": "Gustavo Nieves",
+                    "homepage": "https://medium.com/@ganieves"
+                }
+            ],
+            "description": "Codeception module for Laravel framework",
+            "homepage": "https://codeception.com/",
+            "keywords": [
+                "codeception",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/Codeception/module-laravel/issues",
+                "source": "https://github.com/Codeception/module-laravel/tree/2.0.0"
+            },
+            "time": "2020-12-29T20:23:12+00:00"
+        },
+        {
+            "name": "codeception/module-laravel5",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Codeception/module-laravel5.git",
+                "reference": "1d8a82f78a6e8c26f49af65d9001fa311785d54b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Codeception/module-laravel5/zipball/1d8a82f78a6e8c26f49af65d9001fa311785d54b",
+                "reference": "1d8a82f78a6e8c26f49af65d9001fa311785d54b",
+                "shasum": ""
+            },
+            "require": {
+                "codeception/codeception": "^4.0",
+                "codeception/lib-innerbrowser": "^1.0",
+                "php": ">=5.6.0 <9.0"
+            },
+            "require-dev": {
+                "codeception/module-asserts": "^1.0",
+                "codeception/module-rest": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan-Henk Gerritsen"
+                },
+                {
+                    "name": "Michael Bodnarchuk"
+                }
+            ],
+            "description": "Codeception module for Laravel 5 framework",
+            "homepage": "http://codeception.com/",
+            "keywords": [
+                "codeception",
+                "laravel5"
+            ],
+            "support": {
+                "issues": "https://github.com/Codeception/module-laravel5/issues",
+                "source": "https://github.com/Codeception/module-laravel5/tree/1.1.1"
+            },
+            "time": "2020-10-28T07:00:17+00:00"
         },
         {
             "name": "codeception/module-phpbrowser",

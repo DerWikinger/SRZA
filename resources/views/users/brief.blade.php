@@ -1,11 +1,4 @@
-@extends('layouts.master')
-
-@section('title', 'User info')
-
-@section('subheader', 'Here is a full information about user')
-
-@section('content')
-
+{{--@component('users.index')--}}
     <div>
         Id: {{ $user['id'] }}
     </div>
@@ -18,5 +11,4 @@
     <div>
         Email: {{ $user['email'] }}
     </div>
-
-@endsection
+{{--@endcomponent--}}

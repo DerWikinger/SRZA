@@ -6,9 +6,11 @@
 
 @foreach($users as $user)
 
-@include('users.show', ['user' => $user])
+    <h3>User '{{ $user['name'] }}' info:</h3>
 
-<br>
+    @include('users.brief', ['user' => $user])
+
+    <br>
 
 @endforeach
 

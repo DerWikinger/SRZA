@@ -8,7 +8,7 @@
     <title> @yield('title', 'Home page') </title>
 </head>
 <body>
-    <h1>My application</h1>
+    @include('layouts.header')
     <div class="container">
         @yield('content')
     </div>

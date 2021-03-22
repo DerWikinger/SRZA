@@ -11,24 +11,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74b01e53-4e00-4ffd-8385-a580d1fad77c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/AppUser.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/AppUser1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/users/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/users/show.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/UserTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/functional/UserTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/users/brief.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/rockclub.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rockclub.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.styleci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.styleci.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/functional.suite.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/functional/UserCest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/functional/UserCest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +207,7 @@
       <workItem from="1615831544827" duration="997000" />
       <workItem from="1615832582408" duration="1077000" />
       <workItem from="1615833683919" duration="16254000" />
-      <workItem from="1616163845127" duration="22014000" />
+      <workItem from="1616163845127" duration="30608000" />
     </task>
     <servers />
   </component>
@@ -263,10 +253,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="493" y="86" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1616390014791" />
-    <state x="518" y="287" key="NewPhpFileDialog" timestamp="1616390035511">
+    <state x="518" y="287" key="NewPhpFileDialog" timestamp="1616443233228">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="518" y="287" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1616390035511" />
+    <state x="518" y="287" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1616443233228" />
     <state x="184" y="8" key="SettingsEditor" timestamp="1616076886025">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

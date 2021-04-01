@@ -1,6 +1,9 @@
-<h2>My Application</h2>
-<h3>
-    @yield('subheader')
-</h3>
+<header>
+    <h2>My Application</h2>
+    <h3>
+        @yield('subheader')
+    </h3>
+</header>
+
 
 

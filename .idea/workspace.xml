@@ -11,14 +11,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74b01e53-4e00-4ffd-8385-a580d1fad77c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/users/brief.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Feature/DatabaseTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Unit/AppUserTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php-test-framework.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php-test-framework.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/AppUser1.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/phpunit.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/functional/UserCest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/functional/UserCest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/ExampleTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/ExampleTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/ExampleTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/UserTest.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +43,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.3">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/dragonmantank/cron-expression" />
       <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
@@ -162,39 +173,65 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/users" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/Feature" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\PhpProjects\rockclub\resources\views\users" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\PhpProjects\rockclub\vendor" />
+      <recent name="C:\PhpProjects\rockclub\tests\Unit" />
+      <recent name="C:\PhpProjects\rockclub\public\css" />
       <recent name="C:\PhpProjects\rockclub\resources\views\users" />
       <recent name="C:\PhpProjects\rockclub\resources\views" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\PhpProjects\rockclub" />
+      <recent name="C:\PhpProjects\rockclub\resources\views\users" />
+    </key>
   </component>
-  <component name="RunManager" selected="Codeception.UnitTests">
-    <configuration name="UnitTests" type="CodeceptionConfigurationType" factoryName="Codeception">
-      <PhpTestRunnerSettings directory="$PROJECT_DIR$/tests/Unit" method="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="PHPUnit.FeatureTests">
     <configuration default="true" type="CodeceptionConfigurationType" factoryName="Codeception">
       <PhpTestRunnerSettings directory="$PROJECT_DIR$/tests" method="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="FeatureTests" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" directory="$PROJECT_DIR$/tests/Feature" />
+      <method v="2" />
+    </configuration>
+    <configuration name="UnitTests" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner class="App\Models\AppUser" configuration_file="$PROJECT_DIR$/phpunit.xml" directory="$PROJECT_DIR$/tests/Unit" />
       <method v="2" />
     </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
+    <configuration name="watch" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="watch" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Codeception.UnitTests" />
+      <item itemvalue="npm.watch" />
       <item itemvalue="PHPUnit.phpunit.xml" />
+      <item itemvalue="PHPUnit.FeatureTests" />
+      <item itemvalue="PHPUnit.UnitTests" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.watch" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -208,6 +245,9 @@
       <workItem from="1615832582408" duration="1077000" />
       <workItem from="1615833683919" duration="16254000" />
       <workItem from="1616163845127" duration="30608000" />
+      <workItem from="1616948519081" duration="576000" />
+      <workItem from="1616959401915" duration="12575000" />
+      <workItem from="1617130287036" duration="8134000" />
     </task>
     <servers />
   </component>
@@ -233,33 +273,82 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="263" y="18" key="#CLI_Interpreters/0.0.1366.728@0.0.1366.728" timestamp="1616219359063" />
-    <state x="397" y="6" key="#PHP" timestamp="1616219361152">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="397" y="6" key="#PHP" timestamp="1616961924925">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="397" y="6" key="#PHP/0.0.1366.728@0.0.1366.728" timestamp="1616219361152" />
-    <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616219363516">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="397" y="6" key="#PHP/0.0.1366.738@0.0.1366.738" timestamp="1616961924925" />
+    <state x="137" y="0" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616999491309">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1616219363516" />
-    <state x="508" y="47" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1616338446347">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="137" y="0" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1616999491309" />
+    <state x="413" y="170" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1616996647728">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="413" y="170" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.738@0.0.1366.738" timestamp="1616996647728" />
+    <state x="508" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1617002430701">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="508" y="47" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728@0.0.1366.728" timestamp="1616338446347" />
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1616219280995">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="508" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.738@0.0.1366.738" timestamp="1617002430701" />
+    <state x="463" y="120" key="FileChooserDialogImpl" timestamp="1616999488806">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1616219280995" />
+    <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1616999488806" />
+    <state width="1323" height="226" key="GridCell.Tab.0.bottom" timestamp="1617132224757">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="226" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1617132224757" />
+    <state width="1323" height="226" key="GridCell.Tab.0.center" timestamp="1617132224757">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="226" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1617132224757" />
+    <state width="1323" height="226" key="GridCell.Tab.0.left" timestamp="1617132224756">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="226" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1617132224756" />
+    <state width="1323" height="226" key="GridCell.Tab.0.right" timestamp="1617132224757">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="226" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1617132224757" />
+    <state width="1323" height="226" key="GridCell.Tab.1.bottom" timestamp="1617132224757">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="226" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1617132224757" />
+    <state width="1323" height="226" key="GridCell.Tab.1.center" timestamp="1617132224757">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="226" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1617132224757" />
+    <state width="1323" height="226" key="GridCell.Tab.1.left" timestamp="1617132224757">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="226" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1617132224757" />
+    <state width="1323" height="226" key="GridCell.Tab.1.right" timestamp="1617132224757">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="226" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1617132224757" />
     <state x="493" y="86" key="NewPhpClassDialog" timestamp="1616390014791">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="493" y="86" key="NewPhpClassDialog/0.0.1366.728@0.0.1366.728" timestamp="1616390014791" />
-    <state x="518" y="287" key="NewPhpFileDialog" timestamp="1616443233228">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="518" y="291" key="NewPhpFileDialog" timestamp="1616960012502">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="518" y="287" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1616443233228" />
+    <state x="518" y="291" key="NewPhpFileDialog/0.0.1366.738@0.0.1366.738" timestamp="1616960012502" />
     <state x="184" y="8" key="SettingsEditor" timestamp="1616076886025">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1616076886025" />
+    <state x="526" y="71" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1617001737230">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="526" y="71" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1366.738@0.0.1366.738" timestamp="1617001737230" />
+    <state x="0" y="0" key="com.jetbrains.php.config.phpInfo.PhpInfo.PhpInfoDialog" timestamp="1617132160345">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="0" y="0" key="com.jetbrains.php.config.phpInfo.PhpInfo.PhpInfoDialog/0.0.1366.738@0.0.1366.738" timestamp="1617132160345" />
   </component>
 </project>

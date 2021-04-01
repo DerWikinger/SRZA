@@ -10,31 +10,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74b01e53-4e00-4ffd-8385-a580d1fad77c" name="Default Changelist" comment="Added node.js modules, configured webpack.mix.js, configured phpUnitTest">
-      <change afterPath="$PROJECT_DIR$/.idea/commandlinetools/Laravel_27_03_2021__17_17.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/e2065b98-795f-4358-95bc-e915f06254b9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/e2065b98-795f-4358-95bc-e915f06254b9/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/AppUserFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/lang/en/users.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/lang/ru.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/lang/ru/users.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/users/errors.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/functional/MyModelCest.php" afterDir="false" />
+    <list default="true" id="74b01e53-4e00-4ffd-8385-a580d1fad77c" name="Default Changelist" comment="Added ru\users.php locale">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/rockclub.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rockclub.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/resources/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/UserTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/AppUserTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,6 +158,7 @@
       <path value="$PROJECT_DIR$/vendor/codeception/module-db" />
       <path value="$PROJECT_DIR$/vendor/codeception/module-laravel5" />
       <path value="$PROJECT_DIR$/vendor/codeception/module-laravel" />
+      <path value="$PROJECT_DIR$/vendor/laravel/ui" />
     </include_path>
   </component>
   <component name="ProjectId" id="1pnvCltAfMcEeDrMPXSpFtqtlEg" />
@@ -255,7 +244,7 @@
       <workItem from="1616163845127" duration="30608000" />
       <workItem from="1616948519081" duration="576000" />
       <workItem from="1616959401915" duration="12575000" />
-      <workItem from="1617130287036" duration="15551000" />
+      <workItem from="1617130287036" duration="17245000" />
     </task>
     <task id="LOCAL-00001" summary="Added node.js modules, configured webpack.mix.js, configured phpUnitTest">
       <created>1617264526642</created>
@@ -264,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617264526642</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added ru\users.php locale">
+      <created>1617284338688</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1617284338688</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,7 +282,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added node.js modules, configured webpack.mix.js, configured phpUnitTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added node.js modules, configured webpack.mix.js, configured phpUnitTest" />
+    <MESSAGE value="Added ru\users.php locale" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ru\users.php locale" />
   </component>
   <component name="WindowStateProjectService">
     <state x="263" y="18" key="#CLI_Interpreters" timestamp="1616219359063">

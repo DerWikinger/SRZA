@@ -122,6 +122,7 @@
       <path value="$PROJECT_DIR$/vendor/codeception/module-db" />
       <path value="$PROJECT_DIR$/vendor/codeception/module-laravel5" />
       <path value="$PROJECT_DIR$/vendor/codeception/module-laravel" />
+      <path value="$PROJECT_DIR$/vendor/laravel/ui" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />

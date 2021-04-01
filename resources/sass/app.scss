@@ -6,3 +6,26 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+section.container {
+    padding: 10px;
+}
+
+header {
+    height: 100px;
+    background-color: #2d3748;
+    color: #cbd5e0;
+    text-align: center;
+    padding: 20px 10px;
+    box-sizing: border-box;
+}
+
+header h2 {
+    margin: 0;
+}
+

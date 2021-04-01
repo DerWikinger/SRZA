@@ -10,19 +10,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74b01e53-4e00-4ffd-8385-a580d1fad77c" name="Default Changelist" comment="Added ru\users.php locale">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/rockclub.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rockclub.iml" afterDir="false" />
+    <list default="true" id="74b01e53-4e00-4ffd-8385-a580d1fad77c" name="Default Changelist" comment="Executed command: php artisan ui vue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +25,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.3">
     <include_path>
@@ -244,7 +235,10 @@
       <workItem from="1616163845127" duration="30608000" />
       <workItem from="1616948519081" duration="576000" />
       <workItem from="1616959401915" duration="12575000" />
-      <workItem from="1617130287036" duration="17245000" />
+      <workItem from="1617130287036" duration="22850000" />
+      <workItem from="1617729995824" duration="92000" />
+      <workItem from="1617730122931" duration="106000" />
+      <workItem from="1617730408575" duration="6987000" />
     </task>
     <task id="LOCAL-00001" summary="Added node.js modules, configured webpack.mix.js, configured phpUnitTest">
       <created>1617264526642</created>
@@ -260,7 +254,28 @@
       <option name="project" value="LOCAL" />
       <updated>1617284338688</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Executed command: composer require laravel/ui&#10;php artisan ui vue --auth">
+      <created>1617293931913</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1617293931913</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Executed command: php artisan ui bootstrap &amp;&amp; npm install&#10;Modified \views\auth\*">
+      <created>1617295600793</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1617295600793</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Executed command: php artisan ui vue">
+      <created>1617297027046</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1617297027046</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,7 +298,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added node.js modules, configured webpack.mix.js, configured phpUnitTest" />
     <MESSAGE value="Added ru\users.php locale" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added ru\users.php locale" />
+    <MESSAGE value="Executed command: composer require laravel/ui&#10;php artisan ui vue --auth" />
+    <MESSAGE value="Executed command: php artisan ui bootstrap &amp;&amp; npm install&#10;Modified \views\auth\*" />
+    <MESSAGE value="Executed command: php artisan ui vue" />
+    <option name="LAST_COMMIT_MESSAGE" value="Executed command: php artisan ui vue" />
   </component>
   <component name="WindowStateProjectService">
     <state x="263" y="18" key="#CLI_Interpreters" timestamp="1616219359063">
@@ -314,38 +332,38 @@
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1616219280995" />
     <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1616999488806" />
-    <state width="1323" height="226" key="GridCell.Tab.0.bottom" timestamp="1617132224757">
+    <state width="1323" height="226" key="GridCell.Tab.0.bottom" timestamp="1617713062896">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="226" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1617132224757" />
-    <state width="1323" height="226" key="GridCell.Tab.0.center" timestamp="1617132224757">
+    <state width="1323" height="226" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1617713062896" />
+    <state width="1323" height="226" key="GridCell.Tab.0.center" timestamp="1617713062896">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="226" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1617132224757" />
-    <state width="1323" height="226" key="GridCell.Tab.0.left" timestamp="1617132224756">
+    <state width="1323" height="226" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1617713062896" />
+    <state width="1323" height="226" key="GridCell.Tab.0.left" timestamp="1617713062894">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="226" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1617132224756" />
-    <state width="1323" height="226" key="GridCell.Tab.0.right" timestamp="1617132224757">
+    <state width="1323" height="226" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1617713062894" />
+    <state width="1323" height="226" key="GridCell.Tab.0.right" timestamp="1617713062896">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="226" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1617132224757" />
-    <state width="1323" height="226" key="GridCell.Tab.1.bottom" timestamp="1617132224757">
+    <state width="1323" height="226" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1617713062896" />
+    <state width="1323" height="226" key="GridCell.Tab.1.bottom" timestamp="1617713062897">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="226" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1617132224757" />
-    <state width="1323" height="226" key="GridCell.Tab.1.center" timestamp="1617132224757">
+    <state width="1323" height="226" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1617713062897" />
+    <state width="1323" height="226" key="GridCell.Tab.1.center" timestamp="1617713062896">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="226" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1617132224757" />
-    <state width="1323" height="226" key="GridCell.Tab.1.left" timestamp="1617132224757">
+    <state width="1323" height="226" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1617713062896" />
+    <state width="1323" height="226" key="GridCell.Tab.1.left" timestamp="1617713062896">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="226" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1617132224757" />
-    <state width="1323" height="226" key="GridCell.Tab.1.right" timestamp="1617132224757">
+    <state width="1323" height="226" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1617713062896" />
+    <state width="1323" height="226" key="GridCell.Tab.1.right" timestamp="1617713062897">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="226" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1617132224757" />
+    <state width="1323" height="226" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1617713062897" />
     <state x="493" y="86" key="NewPhpClassDialog" timestamp="1616390014791">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -363,10 +381,18 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="526" y="71" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1366.738@0.0.1366.738" timestamp="1617001737230" />
+    <state x="500" y="282" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617294591528">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="500" y="282" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738@0.0.1366.738" timestamp="1617294591528" />
     <state x="0" y="0" key="com.jetbrains.php.config.phpInfo.PhpInfo.PhpInfoDialog" timestamp="1617132160345">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="0" y="0" key="com.jetbrains.php.config.phpInfo.PhpInfo.PhpInfoDialog/0.0.1366.738@0.0.1366.738" timestamp="1617132160345" />
+    <state x="0" y="0" width="747" height="738" key="find.popup" timestamp="1617294596143">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="0" y="0" width="747" height="738" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1617294596143" />
     <state x="339" y="165" key="run.anything.popup" timestamp="1617280224331">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

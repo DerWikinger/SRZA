@@ -1,24 +1,20 @@
 <?php
 
-class UserTest extends \Codeception\Test\Unit
+namespace Tests\Unit;
+
+use PHPUnit\Framework\TestCase;
+use App\Models\AppUser;
+
+class AppUserTest extends TestCase
 {
     /**
-     * @var \UnitTester
+     * A basic test example.
+     *
+     * @return void
      */
-    protected $tester;
-
-    protected function _before()
+    public function testBasicTest()
     {
-    }
-
-    protected function _after()
-    {
-    }
-
-    // tests
-    public function testUser()
-    {
-        $user = new App\Models\AppUser;
+        $user = new AppUser;
         $this->assertNotNull($user);
 
         $id = 1;
@@ -40,6 +36,6 @@ class UserTest extends \Codeception\Test\Unit
         $password = '123';
         $user->password = $password;  //set
         $this->assertEquals($password, $user->password);  //get
-
     }
+
 }

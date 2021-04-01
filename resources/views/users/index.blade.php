@@ -4,6 +4,8 @@
 
 @section('content')
 
+{{--    {{ $undefined_variable }}--}}
+
 @foreach($users as $user)
 
     <h3>User '{{ $user['name'] }}' info:</h3>
@@ -13,5 +15,8 @@
     <br>
 
 @endforeach
+
+{{--{{ __('users.list') }}--}}
+{{--    {{ $users->links() }}--}}
 
 @endsection

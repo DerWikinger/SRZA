@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -10,9 +10,9 @@
 </head>
 <body>
     @include('layouts.header')
-    <div class="container">
+    <section class="container">
         @yield('content')
-    </div>
+    </section>
     @section('footerScripts')
         <script src="app.js"></script>
     @show

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AppUser;
+use Illuminate\Support\Facades\App;
 
 class UsersController extends Controller
 {
@@ -14,6 +15,9 @@ class UsersController extends Controller
      */
     public function index()
     {
+        //Позволяет поменять local
+//        App::setLocale('ru');
+
         return view('users.index')->with('users', AppUser::all());
 
         //Data 'users' are defined in method boot() in App\Providers\AppServiceProvider.php

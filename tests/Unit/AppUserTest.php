@@ -2,6 +2,8 @@
 
 namespace Tests\Unit;
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Hash;
 use PHPUnit\Framework\TestCase;
 use App\Models\AppUser;
 

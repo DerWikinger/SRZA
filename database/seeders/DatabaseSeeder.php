@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\AppUser;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+//        $id = 3;
+//        $value = '123';
+//        $user = AppUser::find($id);
+//        $user['password'] = Hash::make($value);
+//        $user->save();
     }
 }

@@ -9,18 +9,17 @@ class AppUser extends Model
 {
     use HasFactory;
 
-    public $id;
+    protected $table = 'users';
 
-    public $login;
+    protected $fillable = [
+      'name',
+      'email',
+      'login',
+      'password'
+    ];
 
-    public $password;
-
-    public $name;
-
-    public $email;
-
-    public function getTable()
-    {
-        return 'users';
-    }
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 }

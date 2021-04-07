@@ -11,14 +11,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
     <link rel="stylesheet" href="{{ mix("css/app.css") }}">
 
 </head>
@@ -26,7 +25,7 @@
     <div id="app">
 
         @include('layouts.header')
-        <section class="container">
+        <section class="main">
 
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
@@ -85,7 +84,6 @@
             @yield('content')
         </section>
         @section('footerScripts')
-            <script src="{{ mix('js/app.js') }}"></script>
         @show
     </div>
 </body>

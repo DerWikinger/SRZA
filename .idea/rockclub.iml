@@ -11,6 +11,7 @@
       <sourceFolder url="file://$MODULE_DIR$/tests/Feature" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/asm89/stack-cors" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/behat/gherkin" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/beyondcode/laravel-dump-server" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/codeception" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/codeception/lib-asserts" />

@@ -13,7 +13,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        @if (is_null(auth()->user()))
+                        @if (auth()->guest())
                             {{ __('You are not logged in!') }}
                         @else
                             {{ __('You are logged in!') }}

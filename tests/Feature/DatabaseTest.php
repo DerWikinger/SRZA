@@ -14,17 +14,10 @@ class DatabaseTest extends TestCase
     use DatabaseTransactions;
 
     /**
-     * A basic test example.
+     * A test of creating new User via factory.
      *
      * @return void
      */
-//    public function testBasicTest()
-//    {
-//        $response = $this->get('/');
-//
-//        $response->assertStatus(200);
-//    }
-
     public function testCreateAppUserViaFactory()
     {
         $user = User::factory()->create([

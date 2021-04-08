@@ -7,6 +7,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
+                <h2>Users list</h2>
                 @foreach($users as $user)
 
                     <div class="card">

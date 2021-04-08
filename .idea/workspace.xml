@@ -17,18 +17,9 @@
   <component name="ChangeListManager">
     <list default="true" id="74b01e53-4e00-4ffd-8385-a580d1fad77c" name="Default Changelist" comment="Executed command: php artisan ui vue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/UsersAll.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/UsersAll.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/AppUser.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/AppUserFactory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/DatabaseTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/DatabaseTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/UsersCommandTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/UsersCommandTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/AppUserTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/UserTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +190,7 @@
       <recent name="C:\PhpProjects\rockclub\resources\views\users" />
     </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.FeatureTests">
+  <component name="RunManager" selected="PHPUnit.UnitTests">
     <configuration default="true" type="CodeceptionConfigurationType" factoryName="Codeception">
       <PhpTestRunnerSettings directory="$PROJECT_DIR$/tests" method="" />
       <method v="2" />
@@ -364,22 +355,22 @@
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1616219280995" />
     <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1616999488806" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1617870930689">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1617877419488">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1617870930689" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1617870930689">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1617877419488" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1617877419487">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1617870930689" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1617870930688">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1617877419487" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1617877419487">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1617870930688" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1617870930689">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1617877419487" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1617877419487">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1617870930689" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1617877419487" />
     <state width="1323" height="226" key="GridCell.Tab.1.bottom" timestamp="1617713062897">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

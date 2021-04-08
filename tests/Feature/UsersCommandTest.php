@@ -17,7 +17,7 @@ class UsersCommandTest extends TestCase
      */
     public function testUsersAll()
     {
-        $rows = User::all(['name', 'login', 'email'])->toArray();
-        $this->artisan('users:all')->expectsTable(['Name', 'Login', 'Email'], $rows);
+        $rows = User::all(['name', 'nickname', 'email'])->toArray();
+        $this->artisan('users:all')->expectsTable(['Name', 'Nickname', 'Email'], $rows);
     }
 }

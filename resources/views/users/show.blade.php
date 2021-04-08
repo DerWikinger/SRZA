@@ -13,7 +13,7 @@
         Name: {{ $user['name'] }}
     </div>
     <div>
-        Login: {{ $user['login'] }}
+        Login: {{ $user['nickname'] }}
     </div>
     <div>
         Email: {{ $user['email'] }}

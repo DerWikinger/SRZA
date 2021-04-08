@@ -31,9 +31,9 @@ class UserTest extends TestCase
         $user->email = $email;  //set
         $this->assertEquals($email, $user->email);  //get
 
-        $login = 'johnV';
-        $user->login = $login;  //set
-        $this->assertEquals($login, $user->login);  //get
+        $nickname = 'johnV';
+        $user->nickname = $nickname;  //set
+        $this->assertEquals($nickname, $user->nickname);  //get
 
         $password = '123';
         $user->password = $password;  //set

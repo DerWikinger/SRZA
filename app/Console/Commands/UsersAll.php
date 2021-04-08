@@ -38,8 +38,8 @@ class UsersAll extends Command
      */
     public function handle()
     {
-        $users = User::all(['name', 'login', 'email'])->toArray();
-        $headers = ['Name', 'Login', 'Email'];
+        $users = User::all(['name', 'nickname', 'email'])->toArray();
+        $headers = ['Name', 'Nickname', 'Email'];
 
         $this->table($headers, $users);
         return 0;

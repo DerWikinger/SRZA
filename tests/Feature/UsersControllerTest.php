@@ -23,7 +23,7 @@ class UsersControllerTest extends TestCase
 
         $response->assertRedirect('/login');
 
-        $admin = User::all()->where('login', 'like', 'admin')->first();
+        $admin = User::all()->where('email', 'like', 'admin@gmail.com')->first();
 
         Auth::loginUsingId($admin->id);
         $this->assertTrue(Auth::check());

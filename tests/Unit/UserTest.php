@@ -5,18 +5,18 @@ namespace Tests\Unit;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use PHPUnit\Framework\TestCase;
-use App\Models\AppUser;
+use App\Models\User;
 
-class AppUserTest extends TestCase
+class UserTest extends TestCase
 {
     /**
      * A basic test example.
      *
      * @return void
      */
-    public function testBasicTest()
+    public function testUserConstructor()
     {
-        $user = new AppUser;
+        $user = new User;
         $this->assertNotNull($user);
 
         $id = 1;
@@ -39,5 +39,4 @@ class AppUserTest extends TestCase
         $user->password = $password;  //set
         $this->assertEquals($password, $user->password);  //get
     }
-
 }

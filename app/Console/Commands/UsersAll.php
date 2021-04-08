@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\AppUser;
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class UsersAll extends Command
@@ -38,7 +38,7 @@ class UsersAll extends Command
      */
     public function handle()
     {
-        $users = AppUser::all(['name', 'login', 'email'])->toArray();
+        $users = User::all(['name', 'login', 'email'])->toArray();
         $headers = ['Name', 'Login', 'Email'];
 
         $this->table($headers, $users);

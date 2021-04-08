@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\AppUser;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +17,7 @@ class UsersCommandTest extends TestCase
      */
     public function testUsersAll()
     {
-        $rows = AppUser::all(['name', 'login', 'email'])->toArray();
+        $rows = User::all(['name', 'login', 'email'])->toArray();
         $this->artisan('users:all')->expectsTable(['Name', 'Login', 'Email'], $rows);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\AppUser;
+use App\Models\User;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,11 +25,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //variant 1
-//        view()->share('users', AppUser::all());
+//        view()->share('users', User::all());
 
         //variant 2
 //        view()->composer(['users.index'], function ($view) {
-//           $view->with('users', AppUser::all());
+//           $view->with('users', User::all());
 //        });
     }
 }

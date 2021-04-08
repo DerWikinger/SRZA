@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\AppUser;
+use App\Models\User;
 use Illuminate\Support\Facades\App;
 
 class UsersController extends Controller
@@ -18,7 +18,7 @@ class UsersController extends Controller
         //Позволяет поменять local
 //        App::setLocale('ru');
 
-        return view('users.index')->with('users', AppUser::all());
+        return view('users.index')->with('users', User::all());
 
         //Data 'users' are defined in method boot() in App\Providers\AppServiceProvider.php
 //        return view('users.index');
@@ -53,7 +53,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        return view('users.show')->with('user', AppUser::find($id));
+        return view('users.show')->with('user', User::find($id));
     }
 
     /**

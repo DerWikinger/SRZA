@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\AppUser;
+use App\Models\User;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithDatabase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -27,7 +27,7 @@ class DatabaseTest extends TestCase
 
     public function testCreateAppUserViaFactory()
     {
-        $user = AppUser::factory()->create([
+        $user = User::factory()->create([
             'name' => 'user',
             'email' => 'user@mail.com',
             'login' => 'guest',
@@ -40,7 +40,7 @@ class DatabaseTest extends TestCase
 
     public function testCreateAppUserViaFactoryWithFake()
     {
-        $user = AppUser::factory()->create();
+        $user = User::factory()->create();
 
         $this->assertNotEmpty($user->name);
         $this->assertNotEmpty($user->login);
@@ -53,7 +53,7 @@ class DatabaseTest extends TestCase
 
     public function testCreateAppUserViaConstuctor()
     {
-        $user = new AppUser();
+        $user = new User();
         $user['name'] = 'newUser';
         $user['login'] = 'junior';
         $user['password'] = 'qwerty';
@@ -63,4 +63,5 @@ class DatabaseTest extends TestCase
 
         $this->assertDatabaseHas('users', ['login' => $user->login], 'mysql');
     }
+
 }

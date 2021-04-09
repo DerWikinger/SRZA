@@ -15,10 +15,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74b01e53-4e00-4ffd-8385-a580d1fad77c" name="Default Changelist" comment="Executed command: php artisan ui vue">
+    <list default="true" id="74b01e53-4e00-4ffd-8385-a580d1fad77c" name="Default Changelist" comment="LoginController.php uses ThrottlesLogins trait, UsersController.php changed namaspace 'App\Http\Controllers\Users'">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Users/UsersController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -284,7 +282,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617297027046</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="LoginController.php uses ThrottlesLogins trait, UsersController.php changed namaspace 'App\Http\Controllers\Users'">
+      <created>1617946188321</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1617946188321</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -325,7 +330,8 @@
     <MESSAGE value="Executed command: composer require laravel/ui&#10;php artisan ui vue --auth" />
     <MESSAGE value="Executed command: php artisan ui bootstrap &amp;&amp; npm install&#10;Modified \views\auth\*" />
     <MESSAGE value="Executed command: php artisan ui vue" />
-    <option name="LAST_COMMIT_MESSAGE" value="Executed command: php artisan ui vue" />
+    <MESSAGE value="LoginController.php uses ThrottlesLogins trait, UsersController.php changed namaspace 'App\Http\Controllers\Users'" />
+    <option name="LAST_COMMIT_MESSAGE" value="LoginController.php uses ThrottlesLogins trait, UsersController.php changed namaspace 'App\Http\Controllers\Users'" />
   </component>
   <component name="WindowStateProjectService">
     <state x="263" y="18" key="#CLI_Interpreters" timestamp="1616219359063">
@@ -356,22 +362,22 @@
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1616219280995" />
     <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1616999488806" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1617945072125">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1617968737681">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1617945072125" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1617945072125">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1617968737681" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1617968737681">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1617945072125" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1617945072125">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1617968737681" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1617968737681">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1617945072125" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1617945072125">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1617968737681" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1617968737681">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1617945072125" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1617968737681" />
     <state width="1323" height="226" key="GridCell.Tab.1.bottom" timestamp="1617713062897">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

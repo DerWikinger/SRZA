@@ -17,12 +17,7 @@ Route::redirect('/','/home');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('login', function () {
-    return 'Login';
-});
-
 Route::resource('users', 'App\Http\Controllers\Users\UsersController');
-//Route::get('users', 'App\Http\Controllers\UsersController@index');
 
 Route::middleware('auth')->group(function () {
     Route::get('admin', function () {

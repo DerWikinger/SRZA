@@ -1,5 +1,6 @@
 <?php
 
 return [
-    "list" => "View users list"
+    "list" => "View users list",
+    "usersNavbarIcon" => "Users"
 ];

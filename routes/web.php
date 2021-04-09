@@ -21,7 +21,7 @@ Route::get('login', function () {
     return 'Login';
 });
 
-Route::resource('users', 'App\Http\Controllers\UsersController');
+Route::resource('users', 'App\Http\Controllers\Users\UsersController');
 //Route::get('users', 'App\Http\Controllers\UsersController@index');
 
 Route::middleware('auth')->group(function () {

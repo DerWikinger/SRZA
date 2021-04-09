@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Users;
 
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\App;
 
-class UsersController extends Controller
+class UsersController extends \App\Http\Controllers\Controller
 {
     /**
      * Create a new controller instance.

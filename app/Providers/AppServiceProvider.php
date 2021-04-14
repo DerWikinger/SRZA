@@ -14,7 +14,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(\App\Models\User::class, function ($app) {
+           return new User([
+               'name' => 'New User',
+               'login' => 'newuser',
+               'password' => '',
+               'email' => 'new@user.com'
+           ]);
+        });
+
+        $this->app->bind('User', \App\Models\User::class);
+        $this->app->bind('user', \App\Models\User::class);
     }
 
     /**

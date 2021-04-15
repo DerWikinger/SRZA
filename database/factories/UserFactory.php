@@ -33,6 +33,20 @@ class UserFactory extends Factory
     }
 
     /**
+     * Indicate that the user is suspended.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function suspended()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'role_id' => 1,
+            ];
+        });
+    }
+
+    /**
      * Indicate that the model's email address should be unverified.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory

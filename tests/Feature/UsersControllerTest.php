@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Artisan;
@@ -11,6 +12,7 @@ use App\Models\User;
 
 class UsersControllerTest extends TestCase
 {
+    use DatabaseTransactions;
     /**
      * A basic feature test example.
      *
@@ -21,14 +23,10 @@ class UsersControllerTest extends TestCase
         Artisan::call('key:generate');
         $response = $this->get('/users');
 
-        $response->assertRedirect('/login');
+        $this->assertTrue('401' == $response->getStatusCode());
 
-        $admin = User::all()->where('email', 'like', 'admin@gmail.com')->first();
-
-        Auth::loginUsingId($admin->id);
-        $this->assertTrue(Auth::check());
-
-        $response = $this->get('/users');
-        $response->assertSee('Users list');
+        $user = User::factory()->suspended()->create();
+        $response = $this->actingAs($user)->get('/users');
+        $response->assertOk();
     }
 }

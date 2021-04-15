@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Users;
 
+use App\Http\Middleware\RoleMiddleware;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\App;
@@ -15,7 +16,7 @@ class UsersController extends \App\Http\Controllers\Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('role:admin');
     }
 
     /**

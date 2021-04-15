@@ -21,7 +21,8 @@ Route::redirect('/','/home');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('users', 'App\Http\Controllers\Users\UsersController')->middleware('verified');
+Route::resource('users', 'App\Http\Controllers\Users\UsersController');
+//Route::resource('users', 'App\Http\Controllers\Users\UsersController')->middleware('verified')->middleware('role:admin');
 
 Route::middleware('auth')->group(function () {
     Route::get('admin', function () {

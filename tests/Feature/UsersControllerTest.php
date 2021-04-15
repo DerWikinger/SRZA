@@ -13,6 +13,14 @@ use App\Models\User;
 class UsersControllerTest extends TestCase
 {
     use DatabaseTransactions;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        Artisan::call('key:generate');
+        $this->seed('DatabaseSeeder');
+    }
+
     /**
      * A basic feature test example.
      *
@@ -20,7 +28,8 @@ class UsersControllerTest extends TestCase
      */
     public function testIndexView()
     {
-        Artisan::call('key:generate');
+        $this->assertTrue(User::all()->count() >= 10);
+
         $response = $this->get('/users');
 
         $this->assertTrue('401' == $response->getStatusCode());

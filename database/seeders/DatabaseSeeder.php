@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        User::factory(10)->create();
 //        $id = 3;
 //        $value = '123';
 //        $user = User::find($id);

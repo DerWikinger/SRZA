@@ -22,10 +22,12 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $role = \App\Models\Role::where('name', 'like', 'member')->first();
         return [
             'name' => $this->faker->name,
             'email' => $this->faker->unique()->safeEmail,
             'nickname' => $this->faker->firstName,
+            'role_id' => $role ? $role->id : 0,
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),

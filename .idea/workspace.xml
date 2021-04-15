@@ -16,16 +16,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="74b01e53-4e00-4ffd-8385-a580d1fad77c" name="Default Changelist" comment="LoginController.php uses ThrottlesLogins trait, UsersController.php changed namaspace 'App\Http\Controllers\Users'">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e2065b98-795f-4358-95bc-e915f06254b9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e2065b98-795f-4358-95bc-e915f06254b9.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/UsersAll.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/UsersAll.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Users/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Users/UsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RoleMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RoleMiddleware.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/mail.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/mail.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/UsersCommandTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/UsersCommandTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/UsersControllerTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/UsersControllerTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/DatabaseTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/DatabaseTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,7 +251,7 @@
       <workItem from="1617729995824" duration="92000" />
       <workItem from="1617730122931" duration="106000" />
       <workItem from="1617730408575" duration="8199000" />
-      <workItem from="1618169645061" duration="20995000" />
+      <workItem from="1618169645061" duration="36108000" />
     </task>
     <task id="LOCAL-00001" summary="Added node.js modules, configured webpack.mix.js, configured phpUnitTest">
       <created>1617264526642</created>
@@ -357,36 +354,40 @@
     </state>
     <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1616219363516" />
     <state x="137" y="0" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1617987415159" />
-    <state x="413" y="170" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1616996647728">
+    <state x="413" y="170" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1618511733738">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="413" y="170" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.738@0.0.1366.738" timestamp="1616996647728" />
+    <state x="413" y="170" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.738@0.0.1366.738" timestamp="1618511733738" />
     <state x="508" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1617868285026">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="508" y="47" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728@0.0.1366.728" timestamp="1616338446347" />
     <state x="508" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.738@0.0.1366.738" timestamp="1617868285026" />
+    <state x="413" y="123" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1618498911157">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="413" y="123" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.738@0.0.1366.738" timestamp="1618498911157" />
     <state x="463" y="120" key="FileChooserDialogImpl" timestamp="1617987044324">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1616219280995" />
     <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1617987044324" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1618468620763">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1618662980320">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1618468620763" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1618468620763">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1618662980320" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1618662980320">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1618468620763" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1618468620763">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1618662980320" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1618662980319">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1618468620763" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1618468620763">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1618662980319" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1618662980320">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1618468620763" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1618662980320" />
     <state width="1323" height="226" key="GridCell.Tab.1.bottom" timestamp="1617713062897">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -421,6 +422,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="577" y="256" width="316" height="245" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1366.738@0.0.1366.738" timestamp="1618435443233" />
+    <state x="263" y="23" key="com.intellij.database.dbimport.ImportDialog" timestamp="1618519746144">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="263" y="23" key="com.intellij.database.dbimport.ImportDialog/0.0.1366.738@0.0.1366.738" timestamp="1618519746144" />
     <state x="479" y="189" width="407" height="352" key="com.intellij.database.psi.DbRenamePsiElementProcessor.DbRenameDialog" timestamp="1618438011716">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

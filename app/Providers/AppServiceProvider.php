@@ -25,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind('User', \App\Models\User::class);
         $this->app->bind('user', \App\Models\User::class);
+        $this->app->bind('Role', \App\Models\Role::class);
+        $this->app->bind('role', \App\Models\Role::class);
     }
 
     /**

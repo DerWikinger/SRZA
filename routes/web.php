@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/','/home');
+Route::redirect('/', '/home');
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -22,7 +22,6 @@ Route::redirect('/','/home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('users', 'App\Http\Controllers\Users\UsersController');
-//Route::resource('users', 'App\Http\Controllers\Users\UsersController')->middleware('verified')->middleware('role:admin');
 
 Route::middleware('auth')->group(function () {
     Route::get('admin', function () {
@@ -31,3 +30,11 @@ Route::middleware('auth')->group(function () {
 });
 
 Auth::routes(['verify' => true]);
+
+//Route::middleware('verified')->group( function() {
+//    Route::resource('users', 'App\Http\Controllers\Users\UsersController');
+//});
+//
+//Route::middleware('role:admin')->group( function() {
+//    Route::resource('users', 'App\Http\Controllers\Users\UsersController');
+//});

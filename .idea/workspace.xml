@@ -15,10 +15,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74b01e53-4e00-4ffd-8385-a580d1fad77c" name="Default Changelist" comment="LoginController.php uses ThrottlesLogins trait, UsersController.php changed namaspace 'App\Http\Controllers\Users'">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/authorize.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/authorize.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="74b01e53-4e00-4ffd-8385-a580d1fad77c" name="Default Changelist" comment="Refactored 'RoleMiddleware', 'web.php'. Created view 'users.authorize'" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -156,6 +153,8 @@
       <path value="$PROJECT_DIR$/vendor/codeception/module-laravel" />
       <path value="$PROJECT_DIR$/vendor/laravel/ui" />
       <path value="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server" />
+      <path value="$PROJECT_DIR$/vendor/php-webdriver/webdriver" />
+      <path value="$PROJECT_DIR$/vendor/laravel/dusk" />
     </include_path>
   </component>
   <component name="ProjectId" id="1pnvCltAfMcEeDrMPXSpFtqtlEg" />
@@ -246,7 +245,7 @@
       <workItem from="1617729995824" duration="92000" />
       <workItem from="1617730122931" duration="106000" />
       <workItem from="1617730408575" duration="8199000" />
-      <workItem from="1618169645061" duration="41477000" />
+      <workItem from="1618169645061" duration="41967000" />
     </task>
     <task id="LOCAL-00001" summary="Added node.js modules, configured webpack.mix.js, configured phpUnitTest">
       <created>1617264526642</created>
@@ -290,7 +289,21 @@
       <option name="project" value="LOCAL" />
       <updated>1617946188321</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Refactored 'RoleMiddleware', 'web.php'. Created view 'users.authorize'">
+      <created>1618673373599</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1618673373599</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Refactored 'RoleMiddleware', 'web.php'. Created view 'users.authorize'">
+      <created>1618673390099</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1618673390099</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -332,7 +345,8 @@
     <MESSAGE value="Executed command: php artisan ui bootstrap &amp;&amp; npm install&#10;Modified \views\auth\*" />
     <MESSAGE value="Executed command: php artisan ui vue" />
     <MESSAGE value="LoginController.php uses ThrottlesLogins trait, UsersController.php changed namaspace 'App\Http\Controllers\Users'" />
-    <option name="LAST_COMMIT_MESSAGE" value="LoginController.php uses ThrottlesLogins trait, UsersController.php changed namaspace 'App\Http\Controllers\Users'" />
+    <MESSAGE value="Refactored 'RoleMiddleware', 'web.php'. Created view 'users.authorize'" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored 'RoleMiddleware', 'web.php'. Created view 'users.authorize'" />
   </component>
   <component name="WindowStateProjectService">
     <state x="263" y="18" key="#CLI_Interpreters" timestamp="1616219359063">
@@ -367,22 +381,22 @@
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1616219280995" />
     <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1617987044324" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1618673251046">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1618673431616">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1618673251046" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1618673251046">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1618673431616" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1618673431616">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1618673251046" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1618673251046">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1618673431616" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1618673431616">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1618673251046" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1618673251046">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1618673431616" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1618673431616">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1618673251046" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1618673431616" />
     <state width="1323" height="226" key="GridCell.Tab.1.bottom" timestamp="1617713062897">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

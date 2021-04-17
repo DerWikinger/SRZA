@@ -30,11 +30,3 @@ Route::middleware('auth')->group(function () {
 });
 
 Auth::routes(['verify' => true]);
-
-//Route::middleware('verified')->group( function() {
-//    Route::resource('users', 'App\Http\Controllers\Users\UsersController');
-//});
-//
-//Route::middleware('role:admin')->group( function() {
-//    Route::resource('users', 'App\Http\Controllers\Users\UsersController');
-//});

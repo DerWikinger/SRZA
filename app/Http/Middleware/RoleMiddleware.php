@@ -27,6 +27,6 @@ class RoleMiddleware
             }
         }
 
-        return response()->view('home', ['error' => 'Unauthorized'], 401);
+        return response()->view('users.authorize', ['error' => 'Unauthorized'], 401);
     }
 }

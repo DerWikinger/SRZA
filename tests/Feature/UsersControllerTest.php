@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 use App\Models\User;
 
@@ -17,7 +18,8 @@ class UsersControllerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        Artisan::call('key:generate');
+//        Artisan::call('key:generate');
+//        Http::fake();
         $this->seed('DatabaseSeeder');
     }
 
@@ -29,7 +31,6 @@ class UsersControllerTest extends TestCase
     public function testIndexView()
     {
         $this->assertTrue(User::all()->count() >= 10);
-
         $response = $this->get('/users');
 
         $this->assertTrue('401' == $response->getStatusCode());

@@ -17,12 +17,7 @@
   <component name="ChangeListManager">
     <list default="true" id="74b01e53-4e00-4ffd-8385-a580d1fad77c" name="Default Changelist" comment="LoginController.php uses ThrottlesLogins trait, UsersController.php changed namaspace 'App\Http\Controllers\Users'">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Users/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Users/UsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RoleMiddleware.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RoleMiddleware.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/mail.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/mail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/DatabaseTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/DatabaseTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/authorize.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/authorize.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,23 +170,23 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../studio29" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/users" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\PhpProjects\rockclub\resources\lang\en" />
-      <recent name="C:\PhpProjects\rockclub\vendor" />
-      <recent name="C:\PhpProjects\rockclub\tests\Unit" />
-      <recent name="C:\PhpProjects\rockclub\public\css" />
-      <recent name="C:\PhpProjects\rockclub\resources\views\users" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\PhpProjects\rockclub\app\Http\Controllers\Users" />
       <recent name="C:\PhpProjects\rockclub" />
       <recent name="C:\PhpProjects\rockclub\resources\views\users" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\PhpProjects\rockclub\resources\views\users" />
+      <recent name="C:\PhpProjects\rockclub\resources\lang\en" />
+      <recent name="C:\PhpProjects\rockclub\vendor" />
+      <recent name="C:\PhpProjects\rockclub\tests\Unit" />
+      <recent name="C:\PhpProjects\rockclub\public\css" />
     </key>
   </component>
   <component name="RunManager" selected="PHPUnit.FeatureTests">
@@ -251,7 +246,7 @@
       <workItem from="1617729995824" duration="92000" />
       <workItem from="1617730122931" duration="106000" />
       <workItem from="1617730408575" duration="8199000" />
-      <workItem from="1618169645061" duration="36108000" />
+      <workItem from="1618169645061" duration="41477000" />
     </task>
     <task id="LOCAL-00001" summary="Added node.js modules, configured webpack.mix.js, configured phpUnitTest">
       <created>1617264526642</created>
@@ -372,22 +367,22 @@
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1616219280995" />
     <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1617987044324" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1618662980320">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1618673251046">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1618662980320" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1618662980320">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1618673251046" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1618673251046">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1618662980320" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1618662980319">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1618673251046" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1618673251046">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1618662980319" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1618662980320">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1618673251046" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1618673251046">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1618662980320" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1618673251046" />
     <state width="1323" height="226" key="GridCell.Tab.1.bottom" timestamp="1617713062897">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -454,5 +449,9 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="339" y="165" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1617870347769" />
+    <state x="475" y="227" key="scopes" timestamp="1618663945826">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="475" y="227" key="scopes/0.0.1366.738@0.0.1366.738" timestamp="1618663945826" />
   </component>
 </project>

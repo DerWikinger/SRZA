@@ -15,7 +15,12 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="74b01e53-4e00-4ffd-8385-a580d1fad77c" name="Default Changelist" comment="Refactored 'RoleMiddleware', 'web.php'. Created view 'users.authorize'" />
+    <list default="true" id="74b01e53-4e00-4ffd-8385-a580d1fad77c" name="Default Changelist" comment="Refactored 'RoleMiddleware', 'web.php'. Created view 'users.authorize'">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/rockclub.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rockclub.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -169,28 +174,33 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/users" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/vendor" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\PhpProjects\rockclub\app\Http\Controllers\Users" />
-      <recent name="C:\PhpProjects\rockclub" />
-      <recent name="C:\PhpProjects\rockclub\resources\views\users" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\PhpProjects\rockclub\vendor" />
       <recent name="C:\PhpProjects\rockclub\resources\views\users" />
       <recent name="C:\PhpProjects\rockclub\resources\lang\en" />
-      <recent name="C:\PhpProjects\rockclub\vendor" />
       <recent name="C:\PhpProjects\rockclub\tests\Unit" />
       <recent name="C:\PhpProjects\rockclub\public\css" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\PhpProjects\rockclub" />
+      <recent name="C:\PhpProjects\rockclub\app" />
+      <recent name="C:\PhpProjects\rockclub\app\Http\Controllers\Users" />
+      <recent name="C:\PhpProjects\rockclub\resources\views\users" />
+    </key>
   </component>
-  <component name="RunManager" selected="PHPUnit.FeatureTests">
+  <component name="RunManager" selected="PHPUnit.BrowserTests">
     <configuration default="true" type="CodeceptionConfigurationType" factoryName="Codeception">
       <PhpTestRunnerSettings directory="$PROJECT_DIR$/tests" method="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="BrowserTests" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" directory="$PROJECT_DIR$/tests/Browser" />
       <method v="2" />
     </configuration>
     <configuration name="FeatureTests" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -217,6 +227,7 @@
     </configuration>
     <list>
       <item itemvalue="npm.watch" />
+      <item itemvalue="PHPUnit.BrowserTests" />
       <item itemvalue="PHPUnit.phpunit.xml" />
       <item itemvalue="PHPUnit.FeatureTests" />
       <item itemvalue="PHPUnit.UnitTests" />
@@ -245,7 +256,8 @@
       <workItem from="1617729995824" duration="92000" />
       <workItem from="1617730122931" duration="106000" />
       <workItem from="1617730408575" duration="8199000" />
-      <workItem from="1618169645061" duration="41967000" />
+      <workItem from="1618169645061" duration="44953000" />
+      <workItem from="1618694993168" duration="691000" />
     </task>
     <task id="LOCAL-00001" summary="Added node.js modules, configured webpack.mix.js, configured phpUnitTest">
       <created>1617264526642</created>
@@ -358,15 +370,15 @@
     </state>
     <state x="397" y="6" key="#PHP/0.0.1366.728@0.0.1366.728" timestamp="1616219361152" />
     <state x="397" y="6" key="#PHP/0.0.1366.738@0.0.1366.738" timestamp="1616961924925" />
-    <state x="137" y="0" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1617987415160">
+    <state x="137" y="0" width="1092" height="738" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1618686443375">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="137" y="0" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1616219363516" />
-    <state x="137" y="0" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1617987415159" />
-    <state x="413" y="170" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1618511733738">
+    <state x="137" y="0" width="1092" height="738" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1618686443375" />
+    <state x="413" y="170" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1618695460034">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="413" y="170" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.738@0.0.1366.738" timestamp="1618511733738" />
+    <state x="413" y="170" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.738@0.0.1366.738" timestamp="1618695460034" />
     <state x="508" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1617868285026">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -376,27 +388,27 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="413" y="123" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.738@0.0.1366.738" timestamp="1618498911157" />
-    <state x="463" y="120" key="FileChooserDialogImpl" timestamp="1617987044324">
+    <state x="463" y="120" key="FileChooserDialogImpl" timestamp="1618686413752">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1616219280995" />
-    <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1617987044324" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1618673431616">
+    <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1618686413752" />
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1618695145962">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1618673431616" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1618673431616">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1618695145962" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1618695145962">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1618673431616" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1618673431616">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1618695145962" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1618695145961">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1618673431616" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1618673431616">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1618695145961" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1618695145962">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1618673431616" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1618695145962" />
     <state width="1323" height="226" key="GridCell.Tab.1.bottom" timestamp="1617713062897">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

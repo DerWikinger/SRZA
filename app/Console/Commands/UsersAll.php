@@ -42,12 +42,12 @@ class UsersAll extends Command
         $data = [];
         foreach ($users as $user)
         {
-            array_push($data, [
+            $data[] = [
                 'name' => $user->name,
                 'nickname' => $user->nickname,
                 'role' => $user->role ? $user->role->name : 'No role',
                 'email' => $user->email
-            ]);
+            ];
         }
         $headers = ['Name', 'Nickname', 'Role', 'Email'];
 

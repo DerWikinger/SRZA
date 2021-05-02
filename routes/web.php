@@ -21,18 +21,21 @@ Route::redirect('/', '/home');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('users', 'App\Http\Controllers\Users\UsersController');
+//Route::resource('users', 'App\Http\Controllers\Users\UsersController');
 
-Route::middleware('auth')->middleware('role:admin')->group(function () {
-        Route::get('admin', function () {
-            return view('admin');
-        })->name('admin');
+Route::prefix('users')->name('users')->group(function() {
+    Route::get('/', 'App\Http\Controllers\Users\UsersController@index');
 });
 
-Route::middleware('auth')->prefix('profile')->name('profile')->group(function () {
-    Route::get('/{id}', function ($id) {
-        return view('users.profile')->with(['user' => \App\Models\User::find($id)]);
-    });
+Route::middleware('auth')->middleware('role:admin')->group(function () {
+    Route::get('admin', function () {
+        return view('admin');
+    })->name('admin');
+});
+
+Route::prefix('profile')->name('profile')->group(function () {
+    Route::get('/{id}', 'App\Http\Controllers\Users\ProfileController@show');
+    Route::post('/edit', 'App\Http\Controllers\Users\ProfileController@edit')->name('.edit');
 });
 
 Auth::routes(['verify' => true]);

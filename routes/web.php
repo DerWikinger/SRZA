@@ -35,7 +35,7 @@ Route::middleware('auth')->middleware('role:admin')->group(function () {
 
 Route::prefix('profile')->name('profile')->group(function () {
     Route::get('/{id}', 'App\Http\Controllers\Users\ProfileController@show');
-    Route::post('/edit', 'App\Http\Controllers\Users\ProfileController@edit')->name('.edit');
+    Route::put('/update', 'App\Http\Controllers\Users\ProfileController@update')->name('.update');
 });
 
 Auth::routes(['verify' => true]);

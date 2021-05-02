@@ -54,7 +54,7 @@ class ProfileTest extends TestCase
             'email' => $this->user->email,
             'nickname' => $nickname,
         ];
-        $response = $this->actingAs($this->user)->post('/profile/edit', $data);
+        $response = $this->actingAs($this->user)->put('/profile/update', $data);
         $response->assertRedirect('/profile/' . $this->user->id . '?saved=1');
         $this->assertDatabaseHas('users', ['id' => $this->user->id, 'nickname' => $nickname]);
     }

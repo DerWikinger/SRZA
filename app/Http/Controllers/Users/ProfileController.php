@@ -29,7 +29,7 @@ class ProfileController extends Controller
         return response()->view('users.authorize', ['error' => 'Unauthorized'], 401);
     }
 
-    public function edit(Request $request)
+    public function update(Request $request)
     {
         $user = User::find(auth()->id());
         $user->name = $request->input('name');

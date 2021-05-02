@@ -29,8 +29,9 @@
                             </div>
                             @endif
                         @endif
-                        <form method="POST" action="{{ route('profile.edit') }}">
+                        <form method="POST" action="{{ route('profile.update') }}">
                             @csrf
+                            @method('PUT')
                             <div class="form-group row">
                                 <label for="id"
                                        class="col-md-4 col-form-label text-md-right">{{ __('users.id') }}</label>

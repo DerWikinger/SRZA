@@ -9,6 +9,10 @@
         </button>
 
         @auth
+            <a class="navbar-brand" href="{{ url('/profile', ['$id' => auth()->user()->id]) }}">
+                {{ __('users.profileNavbarIcon') }}
+            </a>
+
             <a class="navbar-brand" href="{{ url('/users') }}">
                 {{ __('users.usersNavbarIcon') }}
             </a>

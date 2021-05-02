@@ -29,4 +29,10 @@ Route::middleware('auth')->middleware('role:admin')->group(function () {
         })->name('admin');
 });
 
+Route::middleware('auth')->prefix('profile')->name('profile')->group(function () {
+    Route::get('/{id}', function ($id) {
+        return view('users.profile')->with(['user' => \App\Models\User::find($id)]);
+    });
+});
+
 Auth::routes(['verify' => true]);

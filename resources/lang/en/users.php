@@ -2,5 +2,6 @@
 
 return [
     "list" => "View users list",
-    "usersNavbarIcon" => "Users"
+    "usersNavbarIcon" => "Users",
+    "profileNavbarIcon" => "Profile"
 ];

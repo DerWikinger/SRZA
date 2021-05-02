@@ -23,10 +23,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('users', 'App\Http\Controllers\Users\UsersController');
 
-Route::middleware('auth')->group(function () {
-    Route::get('admin', function () {
-        return view('admin');
-    });
+Route::middleware('auth')->middleware('role:admin')->group(function () {
+        Route::get('admin', function () {
+            return view('admin');
+        })->name('admin');
 });
 
 Auth::routes(['verify' => true]);

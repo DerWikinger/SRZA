@@ -7,28 +7,27 @@
                 <div class="card">
                     <div class="card-header">{{ __('users.profileCardHeader') }}</div>
                     <div class="card-body">
-                    @if(!(@is_null($saved)))
-                        @if(($saved))
-                            <div class="">
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ __('users.dataSaved') }}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                        @unless(@is_null($saved))
+                            @if(($saved))
+                                <div class="">
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        {{ __('users.dataSaved') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-
                             @else
-                            <div class="">
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {{ __('users.dataNotSaved') }}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                <div class="">
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{ __('users.dataNotSaved') }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
                             @endif
-                        @endif
+                        @endunless
                         <form method="POST" action="{{ route('profile.update') }}">
                             @csrf
                             @method('PUT')

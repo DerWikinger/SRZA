@@ -46,10 +46,11 @@ class UsersAll extends Command
                 'name' => $user->name,
                 'nickname' => $user->nickname,
                 'role' => $user->role ? $user->role->name : 'No role',
-                'email' => $user->email
+                'email' => $user->email,
+                'verified' => $user->hasVerifiedEmail() ? 'Yes' : 'No',
             ];
         }
-        $headers = ['Name', 'Nickname', 'Role', 'Email'];
+        $headers = ['Name', 'Nickname', 'Role', 'Email', 'Verified'];
 
         $this->table($headers, $data);
         return 0;

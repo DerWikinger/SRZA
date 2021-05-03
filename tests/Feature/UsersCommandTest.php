@@ -23,11 +23,12 @@ class UsersCommandTest extends TestCase
         {
             $rows[] = [
                 'name' => $user->name,
-                'Nickname' => $user->nickname,
-                'Role' => $user->role ? $user->role->name : 'No role',
+                'nickname' => $user->nickname,
+                'role' => $user->role ? $user->role->name : 'No role',
                 'email' => $user->email,
+                'verified'=>$user->hasVerifiedEmail() ? 'Yes' : 'No',
             ];
         }
-        $this->artisan('users:all')->expectsTable(['Name', 'Nickname', 'Role', 'Email'], $rows);
+        $this->artisan('users:all')->expectsTable(['Name', 'Nickname', 'Role', 'Email', 'Verified'], $rows);
     }
 }

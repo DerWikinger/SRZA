@@ -22,10 +22,11 @@ class RoleFactory extends Factory
      */
     public function definition()
     {
-        $roles = \App\Models\Role::all('name');
+        $roles = \App\Models\Role::all();
         $role = $roles[random_int(0, $roles->count()-1)];
         return [
             'name' => $role->name,
+            'access_level' => $role->access_level,
         ];
     }
 }

@@ -38,4 +38,4 @@ Route::prefix('profile')->name('profile')->group(function () {
     Route::put('/update', 'App\Http\Controllers\Users\ProfileController@update')->name('.update');
 });
 
-Auth::routes(['verify' => true]);
+Auth::routes(['verify' => env('VERIFY_EMAIL')]);

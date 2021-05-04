@@ -11,7 +11,10 @@ class ProfileController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified']);
+        $this->middleware('auth');
+        if(env('VERIFY_EMAIL')) {
+            $this->middleware('verified');
+        }
     }
 
     public function show(Request $request, $id)

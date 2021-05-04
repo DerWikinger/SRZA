@@ -43,7 +43,6 @@ class DatabaseTest extends TestCase
         $this->assertNotEmpty($user->email);
         $this->assertNotEmpty($user->password);
 
-        var_dump($user);
         $this->assertDatabaseHas('users', ['email' => $user->email], 'mysql');
     }
 

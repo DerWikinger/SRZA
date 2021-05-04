@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand" href="{{ route('home') }}">
             {{ config('app.name', 'Laravel') }}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -8,7 +8,11 @@
         </button>
 
         @auth
-            <a class="navbar-brand" href="{{ url('/users') }}">
+            <a class="navbar-brand" href="{{ route('profile', ['id' => auth()->user()->id]) }}">
+                {{ __('users.profileNavbarIcon') }}
+            </a>
+
+            <a class="navbar-brand" href="{{ route('users') }}">
                 {{ __('users.usersNavbarIcon') }}
             </a>
         @endauth

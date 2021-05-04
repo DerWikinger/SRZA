@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Role;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -36,6 +37,7 @@ class UsersControllerTest extends TestCase
         $this->assertTrue('401' == $response->getStatusCode());
 
         $user = User::factory()->suspended()->create();
+        $this->assertEquals(Role::admin(), $user->role);
         $response = $this->actingAs($user)->get('/users');
         $response->assertOk();
     }

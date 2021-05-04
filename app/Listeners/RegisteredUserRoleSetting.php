@@ -28,7 +28,8 @@ class RegisteredUserRoleSetting
     public function handle(Registered $event)
     {
         $user = $event->user;
-        $user->role = Role::member();
+        dump($user);
+        $user->role_id = Role::member()->id;
         $user->save();
     }
 }

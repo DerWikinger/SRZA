@@ -10011,6 +10011,10 @@ section.container {
   padding: 10px;
 }
 
+section.main {
+  padding: 10px;
+}
+
 header {
   height: 100px;
   background-color: #2d3748;

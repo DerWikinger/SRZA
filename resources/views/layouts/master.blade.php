@@ -24,9 +24,8 @@
 <body>
     <div id="app">
         @include('layouts.header')
+        @include('layouts.navbar')
         <section class="main">
-            @include('layouts.navbar')
-
             @yield('content')
         </section>
         @section('footerScripts')

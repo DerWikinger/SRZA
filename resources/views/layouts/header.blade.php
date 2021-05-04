@@ -3,7 +3,7 @@
         <div class="row">
             @component('layouts.logo')
                 @slot('title')
-                    This is a discription of Logo
+                    This is a description of Logo
                 @endslot
             @endcomponent
             <div class="col-md-6">

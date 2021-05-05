@@ -19,10 +19,10 @@ class RoleMiddleware
     public function handle($request, Closure $next, $role)
     {
         if (auth()->check() && auth()->user()->role) {
-            if ($role == 'admin' && auth()->user()->role->id === 1) {
+            if ($role == 'admin' && auth()->user()->role->access_level <= 100) {
                 return $next($request);
             }
-            if ($role == 'member' && auth()->user()->role->name == 'member') {
+            if ($role == 'member' && auth()->user()->role->access_level <= 500) {
                 return $next($request);
             }
         }

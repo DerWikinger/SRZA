@@ -32,6 +32,26 @@
                             @csrf
                             @method('PUT')
                             <div class="form-group row">
+                                <div class="col-md-12 text-center">
+                                    <div class="d-inline-block">
+                                        <input class="position-absolute
+                                                      custom-file-input
+                                                      w-rem-10
+                                                      h-rem-10
+                                                      cursor-pointer"
+{{--                                               accept="image/gif,image/x-png,image/jpeg"--}}
+                                               accept="image/*"
+                                               type="file">
+                                        <img id="avatar" class="img-thumbnail
+                                                                w-rem-10
+                                                                h-rem-10"
+                                             src="{{ '/storage/images/avatars/' . ($user->avatar ? $user->id . '_' . $user->avatar : 'default_avatar.jpg') }}"
+                                             alt="{{ $user->avatar }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="id"
                                        class="col-md-4 col-form-label text-md-right">{{ __('users.id') }}</label>
 

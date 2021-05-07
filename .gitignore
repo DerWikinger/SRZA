@@ -6,6 +6,7 @@
 .idea/*
 .env
 .env.*
+*.jpg
 .phpunit.result.cache
 docker-compose.override.yml
 Homestead.json

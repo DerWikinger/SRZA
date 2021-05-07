@@ -10,7 +10,5 @@ class UserCest
     public function tryToTest(FunctionalTester $I)
     {
         $I->amOnPage('/users');
-        $I->see('User');
-        $I->see('info:');
     }
 }

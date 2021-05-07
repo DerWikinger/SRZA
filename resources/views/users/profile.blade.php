@@ -28,7 +28,7 @@
                                 </div>
                             @endif
                         @endunless
-                        <form method="POST" action="{{ route('profile.update') }}">
+                        <form method="POST" action="{{ route('profile.update') }}" name="profile" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-group row">
@@ -39,14 +39,23 @@
                                                       w-rem-10
                                                       h-rem-10
                                                       cursor-pointer"
-{{--                                               accept="image/gif,image/x-png,image/jpeg"--}}
+                                               value="{{ $user->avatar ? $user->avatar : 'default_avatar.jpg'  }}"
                                                accept="image/*"
+                                               name="avatar_image"
+                                               dir=""
                                                type="file">
                                         <img id="avatar" class="img-thumbnail
                                                                 w-rem-10
                                                                 h-rem-10"
-                                             src="{{ '/storage/images/avatars/' . ($user->avatar ? $user->id . '_' . $user->avatar : 'default_avatar.jpg') }}"
-                                             alt="{{ $user->avatar }}">
+                                        @if( ($user->avatar ?? '' ) != '' && (\Illuminate\Support\Facades\Storage::exists('/public/images/avatars/' . $user->id . '_' . $user->avatar)))
+                                             src="{{ '/storage/images/avatars/' . ($user->id . '_' . $user->avatar ) }}"
+                                             alt="{{ $user->avatar }}"
+                                        @else
+                                             src= "/storage/images/avatars/default_avatar.jpg"
+                                             alt= "default_avatar.jpg"
+                                        @endif
+
+                                        >
                                     </div>
                                 </div>
                             </div>

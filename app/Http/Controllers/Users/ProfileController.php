@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
 
 class ProfileController extends Controller
 {
@@ -17,13 +20,11 @@ class ProfileController extends Controller
 
     public function show(Request $request, $id)
     {
-        dump($id);
         $saved = null;
-        if($request->has('saved')) {
+        if ($request->has('saved')) {
             $saved = $request->only('saved')['saved'];
         }
 
-        dump($saved);
         if (auth()->id() == $id) {
             return view('users.profile')->with(['user' => User::find($id), 'saved' => $saved]);
         }
@@ -36,7 +37,34 @@ class ProfileController extends Controller
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->nickname = $request->input('nickname');
+        if($request->hasFile('avatar_image') && $request->file('avatar_image')->isValid()) {
+            $this->updateAvatar($request->file('avatar_image'), $user);
+        }
         $saved = $user->save();
+        dump($user->avatar);
         return response()->redirectToRoute('profile', ['id' => $user->id, 'saved' => $saved]);
+    }
+
+    protected function updateAvatar(UploadedFile $file, User $user)
+    {
+        $path = '/public/images/avatars';
+        $count = 1;
+        // Get next number of picture by client uploaded
+        if (($user->avatar) && preg_match('/^.*_(\d+).[a-z]{3,4}$/', $user->avatar, $data)) {
+            $count = is_numeric($data[1]) ? (int)$data[1] + 1 : 1;
+        }
+        $fileName = 'avatar_' . $count . '.' . $file->extension();
+        // Delete previuos avatar of client
+//        if (Storage::exists($path . '/' . $user->id . '_' . $user->avatar ?? '')) {
+//            Storage::delete($path . '/' . $user->id . '_' . $user->avatar);
+//        }
+        // Delete same file if exists from storage
+        if (Storage::exists($path . '/' . $user->id . '_' . $fileName)) {
+            Storage::delete($path . '/' . $user->id . '_' . $fileName);
+        }
+        Storage::putFileAs($path, new File($file), $user->id . '_' . $fileName);
+        dump($fileName);
+        $user->avatar = $fileName;
+        return;
     }
 }

@@ -47,8 +47,8 @@
                                         <img id="avatar" class="img-thumbnail
                                                                 w-rem-10
                                                                 h-rem-10"
-                                        @if( ($user->avatar ?? '' ) != '' && (\Illuminate\Support\Facades\Storage::exists('/public/images/avatars/' . $user->id . '_' . $user->avatar)))
-                                             src="{{ '/storage/images/avatars/' . ($user->id . '_' . $user->avatar ) }}"
+                                        @if( ($user->avatar ?? '' ) != '' && (\Illuminate\Support\Facades\Storage::exists('/public/images/avatars/' . $user->id . '/' . $user->avatar)))
+                                             src="{{ '/storage/images/avatars/' . $user->id . '/' . $user->avatar }}"
                                              alt="{{ $user->avatar }}"
                                         @else
                                              src= "/storage/images/avatars/default_avatar.jpg"

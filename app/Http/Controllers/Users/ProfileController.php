@@ -33,6 +33,7 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
+
         $user = User::find(auth()->id());
         $user->name = $request->input('name');
         $user->email = $request->input('email');
@@ -47,22 +48,25 @@ class ProfileController extends Controller
 
     protected function updateAvatar(UploadedFile $file, User $user)
     {
-        $path = '/public/images/avatars';
+        $path = '/public/images/avatars/' . $user->id;
         $count = 1;
         // Get next number of picture by client uploaded
         if (($user->avatar) && preg_match('/^.*_(\d+).[a-z]{3,4}$/', $user->avatar, $data)) {
             $count = is_numeric($data[1]) ? (int)$data[1] + 1 : 1;
         }
+        if(! Storage::exists($path)) {
+            Storage::makeDirectory($path);
+        }
         $fileName = 'avatar_' . $count . '.' . $file->extension();
         // Delete previuos avatar of client
-//        if (Storage::exists($path . '/' . $user->id . '_' . $user->avatar ?? '')) {
-//            Storage::delete($path . '/' . $user->id . '_' . $user->avatar);
+//        if (Storage::exists($path . '/' . $user->avatar ?? '')) {
+//            Storage::delete($path . '/' . $user->avatar);
 //        }
         // Delete same file if exists from storage
-        if (Storage::exists($path . '/' . $user->id . '_' . $fileName)) {
-            Storage::delete($path . '/' . $user->id . '_' . $fileName);
+        if (Storage::exists($path . '/' . $fileName)) {
+            Storage::delete($path . '/' . $fileName);
         }
-        Storage::putFileAs($path, new File($file), $user->id . '_' . $fileName);
+        Storage::putFileAs($path, new File($file), $fileName);
         dump($fileName);
         $user->avatar = $fileName;
         return;

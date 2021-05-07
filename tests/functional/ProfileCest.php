@@ -83,6 +83,6 @@ class ProfileCest
         $I->expect('Number of my avatar image was increased by one');
         Test\assertEquals($count + 1, $new_count);
         $I->comment('I need to delete new test image from storage');
-        \Illuminate\Support\Facades\Storage::delete('/public/images/avatars/' . $this->user->id . '_' . $fileName);
+        \Illuminate\Support\Facades\Storage::delete('/public/images/avatars/' . $this->user->id . '/' . $fileName);
     }
 }

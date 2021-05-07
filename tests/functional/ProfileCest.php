@@ -64,6 +64,7 @@ class ProfileCest
         $I->seeElement('input[type=file]');
         $I->seeElement('#avatar');
         $fileName = $I->grabAttributeFrom('#avatar', 'alt');
+        $I->comment('Here i define the current number of avatar image');
         $count = 0;
         if (!str_contains($fileName ?? '', 'default')
             && preg_match('/^.*_(\d+).[a-z]{3,4}$/', $fileName, $data)) {

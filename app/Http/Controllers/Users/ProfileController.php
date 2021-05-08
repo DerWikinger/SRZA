@@ -54,6 +54,7 @@ class ProfileController extends Controller
         if (($user->avatar) && preg_match('/^.*_(\d+).[a-z]{3,4}$/', $user->avatar, $data)) {
             $count = is_numeric($data[1]) ? (int)$data[1] + 1 : 1;
         }
+        $this->deleteTempAvatars($path, '.tmp');
         if (!Storage::exists($path)) {
             Storage::makeDirectory($path);
         }
@@ -78,15 +79,11 @@ class ProfileController extends Controller
         if (!(is_null($user)) && $request->hasFile('avatar') && $request->file('avatar')->isValid()) {
             $file = $request->file('avatar');
             $path = '/public/images/avatars/' . $user->id;
-            foreach (Storage::allFiles($path) as $f) {
-                if(str_contains('temp_avatar', $f)) {
-                    Storage::delete($f);
-                }
-            }
+            $this->deleteTempAvatars($path, '.tmp');
             if (!Storage::exists($path)) {
                 Storage::makeDirectory($path);
             }
-            $fileName = 'temp_avatar_' . Carbon::now() . '.' .'tmp';
+            $fileName = 'temp_avatar_' . Carbon::now() . '.' . 'tmp';
             $fileName = str_replace([':', '\\'], '_', $fileName);
             Storage::putFileAs($path, new File($file), $fileName);
             return response()->json([
@@ -98,4 +95,12 @@ class ProfileController extends Controller
         return response()->json(['error' => 'Avatar image is not uploaded']);
     }
 
+    public function deleteTempAvatars($path, $pattern)
+    {
+        foreach (Storage::allFiles($path) as $f) {
+            if (str_contains($f, $pattern)) {
+                Storage::delete($f);
+            }
+        }
+    }
 }

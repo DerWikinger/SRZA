@@ -28,9 +28,60 @@
                                 </div>
                             @endif
                         @endunless
-                        <form method="POST" action="{{ route('profile.update') }}">
+                        <form method="POST" action="{{ route('profile.update') }}" name="profile"
+                              enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
+                            <div class="form-group row">
+                                <div class="col-md-12 text-center">
+                                    <div class="d-inline-block">
+                                        <input class="position-absolute
+                                                      custom-file-input
+                                                      w-rem-10
+                                                      h-rem-10
+                                                      cursor-pointer"
+                                               value="{{ $user->avatar ? $user->avatar : 'default_avatar.jpg'  }}"
+                                               accept="image/*"
+                                               name="avatar_image"
+                                               onchange="onAvatarChanged()"
+                                               type="file">
+                                        <script>
+                                            function onAvatarChanged(ev) {
+                                                let fd = new FormData();
+                                                fd.append('avatar', $('input[name=avatar_image]')[0].files[0]);
+                                                fd.append('userId', "{{ $user->id }}");
+                                                fd.append('_token', "{{ csrf_token() }}")
+                                                $.ajax({
+                                                    url: "{{ route('profile.upload') }}",
+                                                    data: fd,
+                                                    type: "POST",
+                                                    processData: false,
+                                                    contentType: false,
+                                                    success: function (response) {
+                                                        let path = response.path;
+                                                        let filename = response.filename;
+                                                        $('#avatar').attr('src', path + '/' + filename);
+                                                        $('#avatar').attr('alt', filename);
+                                                    }
+                                                });
+                                            }
+                                        </script>
+                                        <img id="avatar" class="img-thumbnail
+                                                                w-rem-10
+                                                                h-rem-10"
+                                             @if( ($user->avatar ?? '' ) != '' && (\Illuminate\Support\Facades\Storage::exists('/public/images/avatars/' . $user->id . '/' . $user->avatar)))
+                                             src="{{ '/storage/images/avatars/' . $user->id . '/' . $user->avatar }}"
+                                             alt="{{ $user->avatar }}"
+                                             @else
+                                             src="/storage/images/avatars/default_avatar.jpg"
+                                             alt="default_avatar.jpg"
+                                            @endif
+
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-group row">
                                 <label for="id"
                                        class="col-md-4 col-form-label text-md-right">{{ __('users.id') }}</label>

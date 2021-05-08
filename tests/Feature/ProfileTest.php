@@ -58,4 +58,5 @@ class ProfileTest extends TestCase
         $response->assertRedirect('/profile/' . $this->user->id . '?saved=1');
         $this->assertDatabaseHas('users', ['id' => $this->user->id, 'nickname' => $nickname]);
     }
+
 }

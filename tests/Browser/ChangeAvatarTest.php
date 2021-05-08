@@ -26,12 +26,12 @@ class ChangeAvatarTest extends DuskTestCase
                 ->pause(500)
                 ->seeLink(__('users.profileNavbarIcon'));
             $browser->clickLink(__('users.profileNavbarIcon'))
-                ->pause(500)
+                ->pause(1000)
                 ->assertSeeIn('.card-header', __('users.profileCardHeader'));
             $alt = $browser->attribute('#avatar', 'alt');
             self::assertFalse(str_contains($alt, 'temp_avatar'));
             $browser->type('avatar_image', 'C:\PhpProjects\rockclub\tests\_data\test_avatar.jpg')
-                ->pause(500);
+                ->pause(1000);
             $alt = $browser->attribute('#avatar', 'alt');
             var_dump($alt);
             self::assertTrue(str_contains($alt, 'temp_avatar'));

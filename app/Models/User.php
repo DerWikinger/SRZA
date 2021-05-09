@@ -31,12 +31,12 @@ class User extends Model implements
         'name',
         'email',
         'nickname',
-//        'password',
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
+        'role_id',
     ];
 
     protected $dates = [
@@ -46,5 +46,10 @@ class User extends Model implements
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function getUsernameAttribute()
+    {
+        return $this->nickname ? $this->nickname : $this->name;
     }
 }

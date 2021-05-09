@@ -31,4 +31,21 @@ class UsersCommandTest extends TestCase
         }
         $this->artisan('users:all')->expectsTable(['Name', 'Nickname', 'Role', 'Email', 'Verified'], $rows);
     }
+
+    public function testUsersAllWithTrashed()
+    {
+        $users = User::withTrashed()->get();
+        $rows = [];
+        foreach($users as $user)
+        {
+            $rows[] = [
+                'name' => $user->name,
+                'nickname' => $user->nickname,
+                'role' => $user->role ? $user->role->name : 'No role',
+                'email' => $user->email,
+                'verified'=>$user->hasVerifiedEmail() ? 'Yes' : 'No',
+            ];
+        }
+        $this->artisan('users:all --withTrashed')->expectsTable(['Name', 'Nickname', 'Role', 'Email', 'Verified'], $rows);
+    }
 }

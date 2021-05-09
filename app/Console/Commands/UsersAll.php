@@ -12,7 +12,8 @@ class UsersAll extends Command
      *
      * @var string
      */
-    protected $signature = 'users:all';
+    protected $signature = 'users:all
+                            {--withTrashed : Whether to show deleted users}';
 
     /**
      * The console command description.
@@ -38,7 +39,7 @@ class UsersAll extends Command
      */
     public function handle()
     {
-        $users = User::all();
+        $users = ($this->option('withTrashed') ? User::withTrashed()->get() : User::all());
         $data = [];
         foreach ($users as $user)
         {

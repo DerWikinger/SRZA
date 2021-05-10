@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\User;
+use Faker\Provider\Lorem;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -59,4 +60,38 @@ class ProfileTest extends TestCase
         $this->assertDatabaseHas('users', ['id' => $this->user->id, 'nickname' => $nickname]);
     }
 
+    public function testWrongEdit()
+    {
+        $nickname = 'new_nickname';
+
+        #Check wrong name
+        $data = [
+            'id' => $this->user->id,
+            'name' => "",
+            'email' => $this->user->email,
+            'nickname' => $nickname,
+        ];
+        $response = $this->actingAs($this->user)->put('/profile/update', $data);
+        $response->assertSessionHasErrors();
+
+        #Check wrong email
+        $data = [
+            'id' => $this->user->id,
+            'name' => $this->user->name,
+            'email' => 'qwerty.com',
+            'nickname' => $nickname,
+        ];
+        $response = $this->actingAs($this->user)->put('/profile/update', $data);
+        $response->assertSessionHasErrors();
+
+        #Check wrong nickname
+        $data = [
+            'id' => $this->user->id,
+            'name' => $this->user->name,
+            'email' => $this->user->email,
+            'nickname' => Lorem::paragraph(), // > 50 chars
+        ];
+        $response = $this->actingAs($this->user)->put('/profile/update', $data);
+        $response->assertSessionHasErrors();
+    }
 }

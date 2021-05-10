@@ -36,6 +36,12 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $user = User::find(auth()->id());
+        $errors = $request->validate([
+            'name' => ['required', 'max:255'],
+            'email' => ['required', 'email'],
+            'nickname' => ['max:50'],
+        ]);
+        dump($errors);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->nickname = $request->input('nickname');

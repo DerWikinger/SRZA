@@ -23,10 +23,11 @@ class UsersController extends \App\Http\Controllers\Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $page = 1)
+    public function index(Request $request)
     {
         //Позволяет поменять local
 //        App::setLocale('ru');
+        $page = $request->has('page') ? $request->page : 1;
         $perPage = 2;
         $count = User::all('id')->count();
         $totalPages = (int)($count / $perPage);

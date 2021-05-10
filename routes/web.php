@@ -24,7 +24,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Route::resource('users', 'App\Http\Controllers\Users\UsersController');
 
 Route::prefix('users')->name('users')->group(function() {
-    Route::get('/{page?}', 'App\Http\Controllers\Users\UsersController@index');
+    Route::get('/', 'App\Http\Controllers\Users\UsersController@index');
 });
 
 Route::middleware('auth')->middleware('role:admin')->group(function () {

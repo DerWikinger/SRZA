@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends \App\Http\Controllers\Controller
 {
@@ -22,12 +23,19 @@ class UsersController extends \App\Http\Controllers\Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $page = 1)
     {
         //Позволяет поменять local
 //        App::setLocale('ru');
-
-        return view('users.index')->with('users', User::all());
+        $perPage = 2;
+        $count = User::all('id')->count();
+        $totalPages = (int)($count / $perPage);
+        $totalPages = $totalPages + ($count % $perPage == 0 ? 0 : 1);
+        return view('users.index')->with([
+            'users' => User::all()->forPage($page, $perPage),
+            'page' => $page,
+            'totalPages' => $totalPages,
+        ]);
 
         //Data 'users' are defined in method boot() in App\Providers\AppServiceProvider.php
 //        return view('users.index');

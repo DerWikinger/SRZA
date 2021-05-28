@@ -81,6 +81,7 @@ return [
     */
 
     'locale' => 'en',
+//    TODO: refactor all locales in project
 //    'locale' => 'ru',
 
     /*

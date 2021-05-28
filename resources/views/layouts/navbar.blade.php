@@ -3,27 +3,26 @@
         <a class="navbar-brand" href="{{ route('home') }}">
             {{ config('app.name', 'Laravel') }}
         </a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        @auth
-            <a class="navbar-brand" href="{{ route('profile', ['id' => auth()->user()->id]) }}">
-                {{ __('users.profileNavbarIcon') }}
-            </a>
-
-            @can('view-users')
-                <a class="navbar-brand" href="{{ route('users') }}">
-                    {{ __('users.usersNavbarIcon') }}
-                </a>
-            @endcan
-        @endauth
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
+                @auth
+                    <a class="navbar-brand" href="{{ route('profile', ['id' => auth()->user()->id]) }}">
+                        {{ __('users.profileNavbarIcon') }}
+                    </a>
 
+                    @can('view-users')
+                        <a class="navbar-brand" href="{{ route('users') }}">
+                            {{ __('users.usersNavbarIcon') }}
+                        </a>
+                    @endcan
+                @endauth
             </ul>
 
             <!-- Right Side Of Navbar -->

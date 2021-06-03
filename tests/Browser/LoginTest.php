@@ -20,7 +20,7 @@ class LoginTest extends DuskTestCase
             $browser->visit('/login')
                 ->assertSee(__('Login'))
                 ->type('email', 'member@gmail.com')
-                ->type('password', '12345678')
+                ->type('password', 'password')
                 ->press(__('Login'));
             $user = \App\Models\User::all()
                 ->where('email', 'like', 'member@gmail.com')

@@ -25,15 +25,15 @@ class ProfileCest
         $I->fillField('#email', 'member@gmail.com');
         $I->seeInField('#email', 'member@gmail.com');
         $I->comment('I put wrong password to test login failed');
-        $I->fillField('#password', '1234567');
-        $I->seeInField(['name' => 'password'], '1234567');
+        $I->fillField('#password', 'pass');
+        $I->seeInField(['name' => 'password'], 'pass');
         $I->click('button[type=submit]');
         sleep(1);
         $I->expect('Login was failed');
         $I->see('These credentials do not match our records');
 
-        $I->fillField('#password', '12345678');
-        $I->seeInField(['name' => 'password'], '12345678');
+        $I->fillField('#password', 'password');
+        $I->seeInField(['name' => 'password'], 'password');
         $I->seeInField('#email', 'member@gmail.com');
         $I->click('button[type=submit]');
         sleep(3);
@@ -53,7 +53,7 @@ class ProfileCest
         $I->click('Login');
         $I->amOnPage('login');
         $I->fillField('#email', 'member@gmail.com');
-        $I->fillField('#password', '12345678');
+        $I->fillField('#password', 'password');
         $I->click('button[type=submit]');
         sleep(2);
         $I->canSeeAuthentication('web');

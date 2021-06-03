@@ -21,7 +21,7 @@ class ChangeAvatarTest extends DuskTestCase
             $browser->visit('/login')
                 ->assertSee(__('Login'))
                 ->type('email', 'member@gmail.com')
-                ->type('password', '12345678')
+                ->type('password', 'password')
                 ->press(__('Login'))
                 ->pause(500)
                 ->seeLink(__('users.profileNavbarIcon'));

@@ -38,7 +38,7 @@ class Role extends Model
 //        var_dump($method);
 //        if (preg_match('/^([gs]et)([A-Z])(.*)$/', $method, $match)) {
 //            $reflector = new \ReflectionClass(__CLASS__);
-//            $property = strtolower($match[2]) . $match[3];
+//            $property = strtolower($match[1]) . $match[3];
 //            if ($reflector->hasProperty($property)) {
 //                $property = $reflector->getProperty($property);
 //                var_dump($property);

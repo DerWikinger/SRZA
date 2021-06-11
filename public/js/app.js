@@ -157,7 +157,7 @@ module.exports = function xhrAdapter(config) {
       try {
         request.responseType = config.responseType;
       } catch (e) {
-        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 1.
+        // Expected DOMException thrown by browsers not compatible XMLHttpRequest Level 2.
         // But, this can be suppressed for 'json' type as it can be parsed by default 'transformResponse' function.
         if (config.responseType !== 'json') {
           throw e;
@@ -1450,14 +1450,14 @@ module.exports = function parseHeaders(headers) {
  *
  *  ```js
  *  function f(x, y, z) {}
- *  var args = [1, 1, 3];
+ *  var args = [1, 2, 3];
  *  f.apply(null, args);
  *  ```
  *
  * With `spread` this example can be re-written.
  *
  *  ```js
- *  spread(function(x, y, z) {})([1, 1, 3]);
+ *  spread(function(x, y, z) {})([1, 2, 3]);
  *  ```
  *
  * @param {Function} callback
@@ -4177,7 +4177,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
         return $__default['default'](htmlElement).off(EVENT_KEY$5);
       });
       /**
-       * `document` has 1 events `EVENT_FOCUSIN` and `EVENT_CLICK_DATA_API`
+       * `document` has 2 events `EVENT_FOCUSIN` and `EVENT_CLICK_DATA_API`
        * Do not move `document` in `htmlElements` array
        * It will remove `EVENT_CLICK_DATA_API` event that should remain
        */
@@ -6538,7 +6538,7 @@ function toType( obj ) {
 		return obj + "";
 	}
 
-	// Support: Android <=1.3 only (functionish RegExp)
+	// Support: Android <=2.3 only (functionish RegExp)
 	return typeof obj === "object" || typeof obj === "function" ?
 		class2type[ toString.call( obj ) ] || "object" :
 		typeof obj;
@@ -6905,7 +6905,7 @@ jQuery.each( "Boolean Number String Function Array Date RegExp Object Error Symb
 
 function isArrayLike( obj ) {
 
-	// Support: real iOS 8.1 only (not reproducible in simulator)
+	// Support: real iOS 8.2 only (not reproducible in simulator)
 	// `in` check used to prevent JIT error (gh-2145)
 	// hasOwn isn't used here due to false negatives
 	// regarding Nodelist length in IE
@@ -7005,7 +7005,7 @@ var i,
 	// Attribute selectors: http://www.w3.org/TR/selectors/#attribute-selectors
 	attributes = "\\[" + whitespace + "*(" + identifier + ")(?:" + whitespace +
 
-		// Operator (capture 1)
+		// Operator (capture 2)
 		"*([*^$|!~]?=)" + whitespace +
 
 		// "Attribute values must be CSS identifiers [capture 5]
@@ -7019,10 +7019,10 @@ var i,
 		// 1. quoted (capture 3; capture 4 or capture 5)
 		"('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|" +
 
-		// 1. simple (capture 6)
+		// 2. simple (capture 6)
 		"((?:\\\\.|[^\\\\()[\\]]|" + attributes + ")*)|" +
 
-		// 3. anything else (capture 1)
+		// 3. anything else (capture 2)
 		".*" +
 		")\\)|)",
 
@@ -7421,7 +7421,7 @@ function createButtonPseudo( type ) {
  */
 function createDisabledPseudo( disabled ) {
 
-	// Known :disabled false positives: fieldset[disabled] > legend:nth-of-type(n+1) :can-disable
+	// Known :disabled false positives: fieldset[disabled] > legend:nth-of-type(n+2) :can-disable
 	return function( elem ) {
 
 		// Only certain elements can match :enabled or :disabled
@@ -8192,7 +8192,7 @@ Expr = Sizzle.selectors = {
 
 			/* matches from matchExpr["CHILD"]
 				1 type (only|nth|...)
-				1 what (child|of-type)
+				2 what (child|of-type)
 				3 argument (even|odd|\d*|\d*n([+-]\d+)?|...)
 				4 xn-component of xn+y argument ([+-]?\d*n|)
 				5 sign of xn-component
@@ -8609,7 +8609,7 @@ Expr = Sizzle.selectors = {
 			// http://www.w3.org/TR/selectors/#empty-pseudo
 			// :empty is negated by element (1) or content nodes (text: 3; cdata: 4; entity ref: 5),
 			//   but not by others (comment: 8; processing instruction: 7; etc.)
-			// nodeType < 6 works because attributes (1) do not appear as children
+			// nodeType < 6 works because attributes (2) do not appear as children
 			for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
 				if ( elem.nodeType < 6 ) {
 					return false;
@@ -10155,7 +10155,7 @@ jQuery.extend( {
 								mightThrow = function() {
 									var returned, then;
 
-									// Support: Promises/A+ section 1.3.3.3.3
+									// Support: Promises/A+ section 2.3.3.3.3
 									// https://promisesaplus.com/#point-59
 									// Ignore double-resolution attempts
 									if ( depth < maxDepth ) {
@@ -10164,19 +10164,19 @@ jQuery.extend( {
 
 									returned = handler.apply( that, args );
 
-									// Support: Promises/A+ section 1.3.1
+									// Support: Promises/A+ section 2.3.1
 									// https://promisesaplus.com/#point-48
 									if ( returned === deferred.promise() ) {
 										throw new TypeError( "Thenable self-resolution" );
 									}
 
-									// Support: Promises/A+ sections 1.3.3.1, 3.5
+									// Support: Promises/A+ sections 2.3.3.1, 3.5
 									// https://promisesaplus.com/#point-54
 									// https://promisesaplus.com/#point-75
 									// Retrieve `then` only once
 									then = returned &&
 
-										// Support: Promises/A+ section 1.3.4
+										// Support: Promises/A+ section 2.3.4
 										// https://promisesaplus.com/#point-64
 										// Only check objects and functions for thenability
 										( typeof returned === "object" ||
@@ -10238,7 +10238,7 @@ jQuery.extend( {
 													process.stackTrace );
 											}
 
-											// Support: Promises/A+ section 1.3.3.3.4.1
+											// Support: Promises/A+ section 2.3.3.3.4.1
 											// https://promisesaplus.com/#point-61
 											// Ignore post-resolution exceptions
 											if ( depth + 1 >= maxDepth ) {
@@ -10255,7 +10255,7 @@ jQuery.extend( {
 										}
 									};
 
-							// Support: Promises/A+ section 1.3.3.3.1
+							// Support: Promises/A+ section 2.3.3.3.1
 							// https://promisesaplus.com/#point-57
 							// Re-resolve promises immediately to dodge false rejection from
 							// subsequent errors
@@ -10704,13 +10704,13 @@ Data.prototype = {
 		// In cases where either:
 		//
 		//   1. No key was specified
-		//   1. A string key was specified, but no value provided
+		//   2. A string key was specified, but no value provided
 		//
 		// Take the "read" path and allow the get method to determine
 		// which value to return, respectively either:
 		//
 		//   1. The entire cache object
-		//   1. The data stored at the key
+		//   2. The data stored at the key
 		//
 		if ( key === undefined ||
 				( ( key && typeof key === "string" ) && value === undefined ) ) {
@@ -10722,7 +10722,7 @@ Data.prototype = {
 		// are specified, set or extend (existing objects) with either:
 		//
 		//   1. An object of properties
-		//   1. A key and value
+		//   2. A key and value
 		//
 		this.set( owner, key, value );
 
@@ -10791,7 +10791,7 @@ var dataUser = new Data();
 //	Implementation Summary
 //
 //	1. Enforce API surface and semantic compatibility with 1.9.x branch
-//	1. Improve the module's maintainability by reducing the storage
+//	2. Improve the module's maintainability by reducing the storage
 //		paths to a single mechanism.
 //	3. Use the same single mechanism to support "private" and "user" data.
 //	4. _Never_ expose "private" data to user code (TODO: Drop _data, _removeData)
@@ -11106,9 +11106,9 @@ var documentElement = document.documentElement;
 		},
 		composed = { composed: true };
 
-	// Support: IE 9 - 11+, Edge 12 - 18+, iOS 10.0 - 10.1 only
+	// Support: IE 9 - 11+, Edge 12 - 18+, iOS 10.0 - 10.2 only
 	// Check attachment across shadow DOM boundaries when possible (gh-3504)
-	// Support: iOS 10.0-10.1 only
+	// Support: iOS 10.0-10.2 only
 	// Early iOS 10 versions support `attachShadow` but not `getRootNode`,
 	// leading to errors. We need to check for `getRootNode`.
 	if ( documentElement.getRootNode ) {
@@ -12123,7 +12123,7 @@ jQuery.Event = function( src, props ) {
 		this.isDefaultPrevented = src.defaultPrevented ||
 				src.defaultPrevented === undefined &&
 
-				// Support: Android <=1.3 only
+				// Support: Android <=2.3 only
 				src.returnValue === false ?
 			returnTrue :
 			returnFalse;
@@ -12406,7 +12406,7 @@ function cloneCopyEvent( src, dest ) {
 		}
 	}
 
-	// 1. Copy user data
+	// 2. Copy user data
 	if ( dataUser.hasData( src ) ) {
 		udataOld = dataUser.access( src );
 		udataCur = jQuery.extend( {}, udataOld );
@@ -13697,7 +13697,7 @@ function genFx( type, includeWidth ) {
 		attrs = { height: type };
 
 	// If we include width, step value is 1 to do all cssExpand values,
-	// otherwise step value is 1 to skip over Left and Right
+	// otherwise step value is 2 to skip over Left and Right
 	includeWidth = includeWidth ? 1 : 0;
 	for ( ; i < 4; i += 2 - includeWidth ) {
 		which = cssExpand[ i ];
@@ -13951,7 +13951,7 @@ function Animation( elem, properties, options ) {
 			var currentTime = fxNow || createFxNow(),
 				remaining = Math.max( 0, animation.startTime + animation.duration - currentTime ),
 
-				// Support: Android 1.3 only
+				// Support: Android 2.3 only
 				// Archaic crash bug won't allow us to use `1 - ( 0.5 || 0 )` (#12497)
 				temp = remaining / animation.duration || 0,
 				percent = 1 - temp,
@@ -15060,7 +15060,7 @@ jQuery.extend( jQuery.event, {
 			event :
 			new jQuery.Event( type, typeof event === "object" && event );
 
-		// Trigger bitmask: & 1 for native handlers; & 1 for jQuery (always true)
+		// Trigger bitmask: & 1 for native handlers; & 2 for jQuery (always true)
 		event.isTrigger = onlyHandlers ? 2 : 3;
 		event.namespace = namespaces.join( "." );
 		event.rnamespace = event.namespace ?
@@ -15358,7 +15358,7 @@ jQuery.param = function( a, traditional ) {
 
 	} else {
 
-		// If traditional, encode the "old" way (the way 1.3.1 or older
+		// If traditional, encode the "old" way (the way 1.3.2 or older
 		// did it), otherwise encode params recursively.
 		for ( prefix in a ) {
 			buildParams( prefix, a[ prefix ], traditional, add );
@@ -15418,7 +15418,7 @@ var
 
 	/* Prefilters
 	 * 1) They are useful to introduce custom dataTypes (see ajax/jsonp.js for an example)
-	 * 1) These are called:
+	 * 2) These are called:
 	 *    - BEFORE asking for a transport
 	 *    - AFTER param serialization (s.data is a string if s.processData is true)
 	 * 3) key is the dataType
@@ -15429,7 +15429,7 @@ var
 
 	/* Transports bindings
 	 * 1) key is the dataType
-	 * 1) the catchall symbol "*" can be used
+	 * 2) the catchall symbol "*" can be used
 	 * 3) selection will start with transport dataType and THEN go to "*" if needed
 	 */
 	transports = {},
@@ -16967,7 +16967,7 @@ jQuery.fn.extend( {
 	// This method will return documentElement in the following cases:
 	// 1) For the element inside the iframe without offsetParent, this method will return
 	//    documentElement of the parent window
-	// 1) For the hidden or detached element
+	// 2) For the hidden or detached element
 	// 3) For body or html element, i.e. in case of the html node - it will return itself
 	//
 	// but those exceptions were never presented as a real life use-cases
@@ -17535,7 +17535,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
       rsFitz = '\\ud83c[\\udffb-\\udfff]',
       rsModifier = '(?:' + rsCombo + '|' + rsFitz + ')',
       rsNonAstral = '[^' + rsAstralRange + ']',
-      rsRegional = '(?:\\ud83c[\\udde6-\\uddff]){1}',
+      rsRegional = '(?:\\ud83c[\\udde6-\\uddff]){2}',
       rsSurrPair = '[\\ud800-\\udbff][\\udc00-\\udfff]',
       rsUpper = '[' + rsUpperRange + ']',
       rsZWJ = '\\u200d';
@@ -18964,7 +18964,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *   return n * n;
      * }
      *
-     * var wrapped = _([1, 1, 3]);
+     * var wrapped = _([1, 2, 3]);
      *
      * // Returns an unwrapped value.
      * wrapped.reduce(_.add);
@@ -19730,7 +19730,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
                key == 'length' ||
                // Node.js 0.10 has enumerable non-index properties on buffers.
                (isBuff && (key == 'offset' || key == 'parent')) ||
-               // PhantomJS 1 has enumerable non-index properties on typed arrays.
+               // PhantomJS 2 has enumerable non-index properties on typed arrays.
                (isType && (key == 'buffer' || key == 'byteLength' || key == 'byteOffset')) ||
                // Skip index properties.
                isIndex(key, length)
@@ -19943,7 +19943,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @param {*} value The value to clone.
      * @param {boolean} bitmask The bitmask flags.
      *  1 - Deep clone
-     *  1 - Flatten inherited properties
+     *  2 - Flatten inherited properties
      *  4 - Clone symbols
      * @param {Function} [customizer] The function to customize cloning.
      * @param {string} [key] The key of `value`.
@@ -20593,7 +20593,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @param {*} other The other value to compare.
      * @param {boolean} bitmask The bitmask flags.
      *  1 - Unordered comparison
-     *  1 - Partial comparison
+     *  2 - Partial comparison
      * @param {Function} [customizer] The function to customize comparisons.
      * @param {Object} [stack] Tracks traversed `value` and `other` objects.
      * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
@@ -22822,7 +22822,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @param {Function|string} func The function or method name to wrap.
      * @param {number} bitmask The bitmask flags.
      *    1 - `_.bind`
-     *    1 - `_.bindKey`
+     *    2 - `_.bindKey`
      *    4 - `_.curry` or `_.curryRight` of a bound function
      *    8 - `_.curry`
      *   16 - `_.curryRight`
@@ -24186,7 +24186,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new array of chunks.
      * @example
      *
-     * _.chunk(['a', 'b', 'c', 'd'], 1);
+     * _.chunk(['a', 'b', 'c', 'd'], 2);
      * // => [['a', 'b'], ['c', 'd']]
      *
      * _.chunk(['a', 'b', 'c', 'd'], 3);
@@ -24224,8 +24224,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new array of filtered values.
      * @example
      *
-     * _.compact([0, 1, false, 1, '', 3]);
-     * // => [1, 1, 3]
+     * _.compact([0, 1, false, 2, '', 3]);
+     * // => [1, 2, 3]
      */
     function compact(array) {
       var index = -1,
@@ -24256,10 +24256,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @example
      *
      * var array = [1];
-     * var other = _.concat(array, 1, [3], [[4]]);
+     * var other = _.concat(array, 2, [3], [[4]]);
      *
      * console.log(other);
-     * // => [1, 1, 3, [4]]
+     * // => [1, 2, 3, [4]]
      *
      * console.log(array);
      * // => [1]
@@ -24297,7 +24297,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @see _.without, _.xor
      * @example
      *
-     * _.difference([1, 1], [1, 3]);
+     * _.difference([2, 1], [2, 3]);
      * // => [1]
      */
     var difference = baseRest(function(array, values) {
@@ -24325,12 +24325,12 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new array of filtered values.
      * @example
      *
-     * _.differenceBy([1.1, 1.1], [1.3, 3.4], Math.floor);
-     * // => [1.1]
+     * _.differenceBy([2.1, 1.2], [2.3, 3.4], Math.floor);
+     * // => [1.2]
      *
      * // The `_.property` iteratee shorthand.
-     * _.differenceBy([{ 'x': 1 }, { 'x': 1 }], [{ 'x': 1 }], 'x');
-     * // => [{ 'x': 1 }]
+     * _.differenceBy([{ 'x': 2 }, { 'x': 1 }], [{ 'x': 1 }], 'x');
+     * // => [{ 'x': 2 }]
      */
     var differenceBy = baseRest(function(array, values) {
       var iteratee = last(values);
@@ -24360,10 +24360,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new array of filtered values.
      * @example
      *
-     * var objects = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 1 }];
+     * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
      *
-     * _.differenceWith(objects, [{ 'x': 1, 'y': 1 }], _.isEqual);
-     * // => [{ 'x': 1, 'y': 1 }]
+     * _.differenceWith(objects, [{ 'x': 1, 'y': 2 }], _.isEqual);
+     * // => [{ 'x': 2, 'y': 1 }]
      */
     var differenceWith = baseRest(function(array, values) {
       var comparator = last(values);
@@ -24388,17 +24388,17 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the slice of `array`.
      * @example
      *
-     * _.drop([1, 1, 3]);
-     * // => [1, 3]
+     * _.drop([1, 2, 3]);
+     * // => [2, 3]
      *
-     * _.drop([1, 1, 3], 1);
+     * _.drop([1, 2, 3], 2);
      * // => [3]
      *
-     * _.drop([1, 1, 3], 5);
+     * _.drop([1, 2, 3], 5);
      * // => []
      *
-     * _.drop([1, 1, 3], 0);
-     * // => [1, 1, 3]
+     * _.drop([1, 2, 3], 0);
+     * // => [1, 2, 3]
      */
     function drop(array, n, guard) {
       var length = array == null ? 0 : array.length;
@@ -24422,17 +24422,17 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the slice of `array`.
      * @example
      *
-     * _.dropRight([1, 1, 3]);
-     * // => [1, 1]
+     * _.dropRight([1, 2, 3]);
+     * // => [1, 2]
      *
-     * _.dropRight([1, 1, 3], 1);
+     * _.dropRight([1, 2, 3], 2);
      * // => [1]
      *
-     * _.dropRight([1, 1, 3], 5);
+     * _.dropRight([1, 2, 3], 5);
      * // => []
      *
-     * _.dropRight([1, 1, 3], 0);
-     * // => [1, 1, 3]
+     * _.dropRight([1, 2, 3], 0);
+     * // => [1, 2, 3]
      */
     function dropRight(array, n, guard) {
       var length = array == null ? 0 : array.length;
@@ -24534,7 +24534,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 3.1.0
+     * @since 3.2.0
      * @category Array
      * @param {Array} array The array to fill.
      * @param {*} value The value to fill `array` with.
@@ -24543,14 +24543,14 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns `array`.
      * @example
      *
-     * var array = [1, 1, 3];
+     * var array = [1, 2, 3];
      *
      * _.fill(array, 'a');
      * console.log(array);
      * // => ['a', 'a', 'a']
      *
-     * _.fill(Array(3), 1);
-     * // => [1, 1, 1]
+     * _.fill(Array(3), 2);
+     * // => [2, 2, 2]
      *
      * _.fill([4, 6, 8, 10], '*', 1, 3);
      * // => [4, '*', '*', 10]
@@ -24600,7 +24600,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * // The `_.property` iteratee shorthand.
      * _.findIndex(users, 'active');
-     * // => 1
+     * // => 2
      */
     function findIndex(array, predicate, fromIndex) {
       var length = array == null ? 0 : array.length;
@@ -24620,7 +24620,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 1.0.0
+     * @since 2.0.0
      * @category Array
      * @param {Array} array The array to inspect.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
@@ -24635,7 +24635,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * ];
      *
      * _.findLastIndex(users, function(o) { return o.user == 'pebbles'; });
-     * // => 1
+     * // => 2
      *
      * // The `_.matches` iteratee shorthand.
      * _.findLastIndex(users, { 'user': 'barney', 'active': true });
@@ -24643,7 +24643,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * // The `_.matchesProperty` iteratee shorthand.
      * _.findLastIndex(users, ['active', false]);
-     * // => 1
+     * // => 2
      *
      * // The `_.property` iteratee shorthand.
      * _.findLastIndex(users, 'active');
@@ -24675,8 +24675,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new flattened array.
      * @example
      *
-     * _.flatten([1, [1, [3, [4]], 5]]);
-     * // => [1, 1, [3, [4]], 5]
+     * _.flatten([1, [2, [3, [4]], 5]]);
+     * // => [1, 2, [3, [4]], 5]
      */
     function flatten(array) {
       var length = array == null ? 0 : array.length;
@@ -24694,8 +24694,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new flattened array.
      * @example
      *
-     * _.flattenDeep([1, [1, [3, [4]], 5]]);
-     * // => [1, 1, 3, 4, 5]
+     * _.flattenDeep([1, [2, [3, [4]], 5]]);
+     * // => [1, 2, 3, 4, 5]
      */
     function flattenDeep(array) {
       var length = array == null ? 0 : array.length;
@@ -24714,13 +24714,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new flattened array.
      * @example
      *
-     * var array = [1, [1, [3, [4]], 5]];
+     * var array = [1, [2, [3, [4]], 5]];
      *
      * _.flattenDepth(array, 1);
-     * // => [1, 1, [3, [4]], 5]
+     * // => [1, 2, [3, [4]], 5]
      *
-     * _.flattenDepth(array, 1);
-     * // => [1, 1, 3, [4], 5]
+     * _.flattenDepth(array, 2);
+     * // => [1, 2, 3, [4], 5]
      */
     function flattenDepth(array, depth) {
       var length = array == null ? 0 : array.length;
@@ -24743,8 +24743,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Object} Returns the new object.
      * @example
      *
-     * _.fromPairs([['a', 1], ['b', 1]]);
-     * // => { 'a': 1, 'b': 1 }
+     * _.fromPairs([['a', 1], ['b', 2]]);
+     * // => { 'a': 1, 'b': 2 }
      */
     function fromPairs(pairs) {
       var index = -1,
@@ -24770,7 +24770,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {*} Returns the first element of `array`.
      * @example
      *
-     * _.head([1, 1, 3]);
+     * _.head([1, 2, 3]);
      * // => 1
      *
      * _.head([]);
@@ -24796,11 +24796,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {number} Returns the index of the matched value, else `-1`.
      * @example
      *
-     * _.indexOf([1, 1, 1, 1], 1);
+     * _.indexOf([1, 2, 1, 2], 2);
      * // => 1
      *
      * // Search from the `fromIndex`.
-     * _.indexOf([1, 1, 1, 1], 1, 1);
+     * _.indexOf([1, 2, 1, 2], 2, 2);
      * // => 3
      */
     function indexOf(array, value, fromIndex) {
@@ -24826,8 +24826,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the slice of `array`.
      * @example
      *
-     * _.initial([1, 1, 3]);
-     * // => [1, 1]
+     * _.initial([1, 2, 3]);
+     * // => [1, 2]
      */
     function initial(array) {
       var length = array == null ? 0 : array.length;
@@ -24848,8 +24848,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new array of intersecting values.
      * @example
      *
-     * _.intersection([1, 1], [1, 3]);
-     * // => [1]
+     * _.intersection([2, 1], [2, 3]);
+     * // => [2]
      */
     var intersection = baseRest(function(arrays) {
       var mapped = arrayMap(arrays, castArrayLikeObject);
@@ -24874,11 +24874,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new array of intersecting values.
      * @example
      *
-     * _.intersectionBy([1.1, 1.1], [1.3, 3.4], Math.floor);
-     * // => [1.1]
+     * _.intersectionBy([2.1, 1.2], [2.3, 3.4], Math.floor);
+     * // => [2.1]
      *
      * // The `_.property` iteratee shorthand.
-     * _.intersectionBy([{ 'x': 1 }], [{ 'x': 1 }, { 'x': 1 }], 'x');
+     * _.intersectionBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
      * // => [{ 'x': 1 }]
      */
     var intersectionBy = baseRest(function(arrays) {
@@ -24910,11 +24910,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new array of intersecting values.
      * @example
      *
-     * var objects = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 1 }];
-     * var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 1 }];
+     * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+     * var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
      *
      * _.intersectionWith(objects, others, _.isEqual);
-     * // => [{ 'x': 1, 'y': 1 }]
+     * // => [{ 'x': 1, 'y': 2 }]
      */
     var intersectionWith = baseRest(function(arrays) {
       var comparator = last(arrays),
@@ -24959,7 +24959,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {*} Returns the last element of `array`.
      * @example
      *
-     * _.last([1, 1, 3]);
+     * _.last([1, 2, 3]);
      * // => 3
      */
     function last(array) {
@@ -24981,11 +24981,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {number} Returns the index of the matched value, else `-1`.
      * @example
      *
-     * _.lastIndexOf([1, 1, 1, 1], 1);
+     * _.lastIndexOf([1, 2, 1, 2], 2);
      * // => 3
      *
      * // Search from the `fromIndex`.
-     * _.lastIndexOf([1, 1, 1, 1], 1, 1);
+     * _.lastIndexOf([1, 2, 1, 2], 2, 2);
      * // => 1
      */
     function lastIndexOf(array, value, fromIndex) {
@@ -25021,7 +25021,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.nth(array, 1);
      * // => 'b'
      *
-     * _.nth(array, -1);
+     * _.nth(array, -2);
      * // => 'c';
      */
     function nth(array, n) {
@@ -25038,7 +25038,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 1.0.0
+     * @since 2.0.0
      * @category Array
      * @param {Array} array The array to modify.
      * @param {...*} [values] The values to remove.
@@ -25096,11 +25096,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns `array`.
      * @example
      *
-     * var array = [{ 'x': 1 }, { 'x': 1 }, { 'x': 3 }, { 'x': 1 }];
+     * var array = [{ 'x': 1 }, { 'x': 2 }, { 'x': 3 }, { 'x': 1 }];
      *
      * _.pullAllBy(array, [{ 'x': 1 }, { 'x': 3 }], 'x');
      * console.log(array);
-     * // => [{ 'x': 1 }]
+     * // => [{ 'x': 2 }]
      */
     function pullAllBy(array, values, iteratee) {
       return (array && array.length && values && values.length)
@@ -25125,11 +25125,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns `array`.
      * @example
      *
-     * var array = [{ 'x': 1, 'y': 1 }, { 'x': 3, 'y': 4 }, { 'x': 5, 'y': 6 }];
+     * var array = [{ 'x': 1, 'y': 2 }, { 'x': 3, 'y': 4 }, { 'x': 5, 'y': 6 }];
      *
      * _.pullAllWith(array, [{ 'x': 3, 'y': 4 }], _.isEqual);
      * console.log(array);
-     * // => [{ 'x': 1, 'y': 1 }, { 'x': 5, 'y': 6 }]
+     * // => [{ 'x': 1, 'y': 2 }, { 'x': 5, 'y': 6 }]
      */
     function pullAllWith(array, values, comparator) {
       return (array && array.length && values && values.length)
@@ -25182,23 +25182,23 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 1.0.0
+     * @since 2.0.0
      * @category Array
      * @param {Array} array The array to modify.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @returns {Array} Returns the new array of removed elements.
      * @example
      *
-     * var array = [1, 1, 3, 4];
+     * var array = [1, 2, 3, 4];
      * var evens = _.remove(array, function(n) {
-     *   return n % 1 == 0;
+     *   return n % 2 == 0;
      * });
      *
      * console.log(array);
      * // => [1, 3]
      *
      * console.log(evens);
-     * // => [1, 4]
+     * // => [2, 4]
      */
     function remove(array, predicate) {
       var result = [];
@@ -25236,13 +25236,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns `array`.
      * @example
      *
-     * var array = [1, 1, 3];
+     * var array = [1, 2, 3];
      *
      * _.reverse(array);
-     * // => [3, 1, 1]
+     * // => [3, 2, 1]
      *
      * console.log(array);
-     * // => [3, 1, 1]
+     * // => [3, 2, 1]
      */
     function reverse(array) {
       return array == null ? array : nativeReverse.call(array);
@@ -25447,8 +25447,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new duplicate free array.
      * @example
      *
-     * _.sortedUniq([1, 1, 1]);
-     * // => [1, 1]
+     * _.sortedUniq([1, 1, 2]);
+     * // => [1, 2]
      */
     function sortedUniq(array) {
       return (array && array.length)
@@ -25469,8 +25469,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new duplicate free array.
      * @example
      *
-     * _.sortedUniqBy([1.1, 1.1, 1.3, 1.4], Math.floor);
-     * // => [1.1, 1.3]
+     * _.sortedUniqBy([1.1, 1.2, 2.3, 2.4], Math.floor);
+     * // => [1.1, 2.3]
      */
     function sortedUniqBy(array, iteratee) {
       return (array && array.length)
@@ -25489,8 +25489,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the slice of `array`.
      * @example
      *
-     * _.tail([1, 1, 3]);
-     * // => [1, 3]
+     * _.tail([1, 2, 3]);
+     * // => [2, 3]
      */
     function tail(array) {
       var length = array == null ? 0 : array.length;
@@ -25510,16 +25510,16 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the slice of `array`.
      * @example
      *
-     * _.take([1, 1, 3]);
+     * _.take([1, 2, 3]);
      * // => [1]
      *
-     * _.take([1, 1, 3], 1);
-     * // => [1, 1]
+     * _.take([1, 2, 3], 2);
+     * // => [1, 2]
      *
-     * _.take([1, 1, 3], 5);
-     * // => [1, 1, 3]
+     * _.take([1, 2, 3], 5);
+     * // => [1, 2, 3]
      *
-     * _.take([1, 1, 3], 0);
+     * _.take([1, 2, 3], 0);
      * // => []
      */
     function take(array, n, guard) {
@@ -25543,16 +25543,16 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the slice of `array`.
      * @example
      *
-     * _.takeRight([1, 1, 3]);
+     * _.takeRight([1, 2, 3]);
      * // => [3]
      *
-     * _.takeRight([1, 1, 3], 1);
-     * // => [1, 3]
+     * _.takeRight([1, 2, 3], 2);
+     * // => [2, 3]
      *
-     * _.takeRight([1, 1, 3], 5);
-     * // => [1, 1, 3]
+     * _.takeRight([1, 2, 3], 5);
+     * // => [1, 2, 3]
      *
-     * _.takeRight([1, 1, 3], 0);
+     * _.takeRight([1, 2, 3], 0);
      * // => []
      */
     function takeRight(array, n, guard) {
@@ -25660,8 +25660,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new array of combined values.
      * @example
      *
-     * _.union([1], [1, 1]);
-     * // => [1, 1]
+     * _.union([2], [1, 2]);
+     * // => [2, 1]
      */
     var union = baseRest(function(arrays) {
       return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true));
@@ -25683,12 +25683,12 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new array of combined values.
      * @example
      *
-     * _.unionBy([1.1], [1.1, 1.3], Math.floor);
-     * // => [1.1, 1.1]
+     * _.unionBy([2.1], [1.2, 2.3], Math.floor);
+     * // => [2.1, 1.2]
      *
      * // The `_.property` iteratee shorthand.
-     * _.unionBy([{ 'x': 1 }], [{ 'x': 1 }, { 'x': 1 }], 'x');
-     * // => [{ 'x': 1 }, { 'x': 1 }]
+     * _.unionBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
+     * // => [{ 'x': 1 }, { 'x': 2 }]
      */
     var unionBy = baseRest(function(arrays) {
       var iteratee = last(arrays);
@@ -25713,11 +25713,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new array of combined values.
      * @example
      *
-     * var objects = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 1 }];
-     * var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 1 }];
+     * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+     * var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
      *
      * _.unionWith(objects, others, _.isEqual);
-     * // => [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 1 }, { 'x': 1, 'y': 1 }]
+     * // => [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
      */
     var unionWith = baseRest(function(arrays) {
       var comparator = last(arrays);
@@ -25740,8 +25740,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new duplicate free array.
      * @example
      *
-     * _.uniq([1, 1, 1]);
-     * // => [1, 1]
+     * _.uniq([2, 1, 2]);
+     * // => [2, 1]
      */
     function uniq(array) {
       return (array && array.length) ? baseUniq(array) : [];
@@ -25763,12 +25763,12 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new duplicate free array.
      * @example
      *
-     * _.uniqBy([1.1, 1.1, 1.3], Math.floor);
-     * // => [1.1, 1.1]
+     * _.uniqBy([2.1, 1.2, 2.3], Math.floor);
+     * // => [2.1, 1.2]
      *
      * // The `_.property` iteratee shorthand.
-     * _.uniqBy([{ 'x': 1 }, { 'x': 1 }, { 'x': 1 }], 'x');
-     * // => [{ 'x': 1 }, { 'x': 1 }]
+     * _.uniqBy([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x');
+     * // => [{ 'x': 1 }, { 'x': 2 }]
      */
     function uniqBy(array, iteratee) {
       return (array && array.length) ? baseUniq(array, getIteratee(iteratee, 2)) : [];
@@ -25789,10 +25789,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new duplicate free array.
      * @example
      *
-     * var objects = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 1 }, { 'x': 1, 'y': 1 }];
+     * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }, { 'x': 1, 'y': 2 }];
      *
      * _.uniqWith(objects, _.isEqual);
-     * // => [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 1 }]
+     * // => [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }]
      */
     function uniqWith(array, comparator) {
       comparator = typeof comparator == 'function' ? comparator : undefined;
@@ -25806,17 +25806,17 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 1.1.0
+     * @since 1.2.0
      * @category Array
      * @param {Array} array The array of grouped elements to process.
      * @returns {Array} Returns the new array of regrouped elements.
      * @example
      *
-     * var zipped = _.zip(['a', 'b'], [1, 1], [true, false]);
-     * // => [['a', 1, true], ['b', 1, false]]
+     * var zipped = _.zip(['a', 'b'], [1, 2], [true, false]);
+     * // => [['a', 1, true], ['b', 2, false]]
      *
      * _.unzip(zipped);
-     * // => [['a', 'b'], [1, 1], [true, false]]
+     * // => [['a', 'b'], [1, 2], [true, false]]
      */
     function unzip(array) {
       if (!(array && array.length)) {
@@ -25849,8 +25849,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new array of regrouped elements.
      * @example
      *
-     * var zipped = _.zip([1, 1], [10, 20], [100, 200]);
-     * // => [[1, 10, 100], [1, 20, 200]]
+     * var zipped = _.zip([1, 2], [10, 20], [100, 200]);
+     * // => [[1, 10, 100], [2, 20, 200]]
      *
      * _.unzipWith(zipped, _.add);
      * // => [3, 30, 300]
@@ -25885,7 +25885,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @see _.difference, _.xor
      * @example
      *
-     * _.without([1, 1, 1, 3], 1, 1);
+     * _.without([2, 1, 2, 3], 1, 2);
      * // => [3]
      */
     var without = baseRest(function(array, values) {
@@ -25902,14 +25902,14 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 1.4.0
+     * @since 2.4.0
      * @category Array
      * @param {...Array} [arrays] The arrays to inspect.
      * @returns {Array} Returns the new array of filtered values.
      * @see _.difference, _.without
      * @example
      *
-     * _.xor([1, 1], [1, 3]);
+     * _.xor([2, 1], [2, 3]);
      * // => [1, 3]
      */
     var xor = baseRest(function(arrays) {
@@ -25932,12 +25932,12 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new array of filtered values.
      * @example
      *
-     * _.xorBy([1.1, 1.1], [1.3, 3.4], Math.floor);
-     * // => [1.1, 3.4]
+     * _.xorBy([2.1, 1.2], [2.3, 3.4], Math.floor);
+     * // => [1.2, 3.4]
      *
      * // The `_.property` iteratee shorthand.
-     * _.xorBy([{ 'x': 1 }], [{ 'x': 1 }, { 'x': 1 }], 'x');
-     * // => [{ 'x': 1 }]
+     * _.xorBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
+     * // => [{ 'x': 2 }]
      */
     var xorBy = baseRest(function(arrays) {
       var iteratee = last(arrays);
@@ -25962,11 +25962,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new array of filtered values.
      * @example
      *
-     * var objects = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 1 }];
-     * var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 1 }];
+     * var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+     * var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
      *
      * _.xorWith(objects, others, _.isEqual);
-     * // => [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 1 }]
+     * // => [{ 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
      */
     var xorWith = baseRest(function(arrays) {
       var comparator = last(arrays);
@@ -25987,8 +25987,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new array of grouped elements.
      * @example
      *
-     * _.zip(['a', 'b'], [1, 1], [true, false]);
-     * // => [['a', 1, true], ['b', 1, false]]
+     * _.zip(['a', 'b'], [1, 2], [true, false]);
+     * // => [['a', 1, true], ['b', 2, false]]
      */
     var zip = baseRest(unzip);
 
@@ -26005,8 +26005,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Object} Returns the new object.
      * @example
      *
-     * _.zipObject(['a', 'b'], [1, 1]);
-     * // => { 'a': 1, 'b': 1 }
+     * _.zipObject(['a', 'b'], [1, 2]);
+     * // => { 'a': 1, 'b': 2 }
      */
     function zipObject(props, values) {
       return baseZipObject(props || [], values || [], assignValue);
@@ -26024,8 +26024,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Object} Returns the new object.
      * @example
      *
-     * _.zipObjectDeep(['a.b[0].c', 'a.b[1].d'], [1, 1]);
-     * // => { 'a': { 'b': [{ 'c': 1 }, { 'd': 1 }] } }
+     * _.zipObjectDeep(['a.b[0].c', 'a.b[1].d'], [1, 2]);
+     * // => { 'a': { 'b': [{ 'c': 1 }, { 'd': 2 }] } }
      */
     function zipObjectDeep(props, values) {
       return baseZipObject(props || [], values || [], baseSet);
@@ -26046,7 +26046,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new array of grouped elements.
      * @example
      *
-     * _.zipWith([1, 1], [10, 20], [100, 200], function(a, b, c) {
+     * _.zipWith([1, 2], [10, 20], [100, 200], function(a, b, c) {
      *   return a + b + c;
      * });
      * // => [111, 222]
@@ -26110,14 +26110,14 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {*} Returns `value`.
      * @example
      *
-     * _([1, 1, 3])
+     * _([1, 2, 3])
      *  .tap(function(array) {
      *    // Mutate input array.
      *    array.pop();
      *  })
      *  .reverse()
      *  .value();
-     * // => [1, 1]
+     * // => [2, 1]
      */
     function tap(value, interceptor) {
       interceptor(value);
@@ -26227,26 +26227,26 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @name commit
      * @memberOf _
-     * @since 3.1.0
+     * @since 3.2.0
      * @category Seq
      * @returns {Object} Returns the new `lodash` wrapper instance.
      * @example
      *
-     * var array = [1, 1];
+     * var array = [1, 2];
      * var wrapped = _(array).push(3);
      *
      * console.log(array);
-     * // => [1, 1]
+     * // => [1, 2]
      *
      * wrapped = wrapped.commit();
      * console.log(array);
-     * // => [1, 1, 3]
+     * // => [1, 2, 3]
      *
      * wrapped.last();
      * // => 3
      *
      * console.log(array);
-     * // => [1, 1, 3]
+     * // => [1, 2, 3]
      */
     function wrapperCommit() {
       return new LodashWrapper(this.value(), this.__chain__);
@@ -26263,13 +26263,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Object} Returns the next iterator value.
      * @example
      *
-     * var wrapped = _([1, 1]);
+     * var wrapped = _([1, 2]);
      *
      * wrapped.next();
      * // => { 'done': false, 'value': 1 }
      *
      * wrapped.next();
-     * // => { 'done': false, 'value': 1 }
+     * // => { 'done': false, 'value': 2 }
      *
      * wrapped.next();
      * // => { 'done': true, 'value': undefined }
@@ -26294,13 +26294,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Object} Returns the wrapper object.
      * @example
      *
-     * var wrapped = _([1, 1]);
+     * var wrapped = _([1, 2]);
      *
      * wrapped[Symbol.iterator]() === wrapped;
      * // => true
      *
      * Array.from(wrapped);
-     * // => [1, 1]
+     * // => [1, 2]
      */
     function wrapperToIterator() {
       return this;
@@ -26311,7 +26311,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @name plant
      * @memberOf _
-     * @since 3.1.0
+     * @since 3.2.0
      * @category Seq
      * @param {*} value The value to plant.
      * @returns {Object} Returns the new `lodash` wrapper instance.
@@ -26321,7 +26321,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *   return n * n;
      * }
      *
-     * var wrapped = _([1, 1]).map(square);
+     * var wrapped = _([1, 2]).map(square);
      * var other = wrapped.plant([3, 4]);
      *
      * other.value();
@@ -26362,13 +26362,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Object} Returns the new `lodash` wrapper instance.
      * @example
      *
-     * var array = [1, 1, 3];
+     * var array = [1, 2, 3];
      *
      * _(array).reverse().value()
-     * // => [3, 1, 1]
+     * // => [3, 2, 1]
      *
      * console.log(array);
-     * // => [3, 1, 1]
+     * // => [3, 2, 1]
      */
     function wrapperReverse() {
       var value = this.__wrapped__;
@@ -26399,8 +26399,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {*} Returns the resolved unwrapped value.
      * @example
      *
-     * _([1, 1, 3]).value();
-     * // => [1, 1, 3]
+     * _([1, 2, 3]).value();
+     * // => [1, 2, 3]
      */
     function wrapperValue() {
       return baseWrapperValue(this.__wrapped__, this.__actions__);
@@ -26423,12 +26423,12 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Object} Returns the composed aggregate object.
      * @example
      *
-     * _.countBy([6.1, 4.1, 6.3], Math.floor);
-     * // => { '4': 1, '6': 1 }
+     * _.countBy([6.1, 4.2, 6.3], Math.floor);
+     * // => { '4': 1, '6': 2 }
      *
      * // The `_.property` iteratee shorthand.
      * _.countBy(['one', 'two', 'three'], 'length');
-     * // => { '3': 1, '5': 1 }
+     * // => { '3': 2, '5': 1 }
      */
     var countBy = createAggregator(function(result, value, key) {
       if (hasOwnProperty.call(result, key)) {
@@ -26577,7 +26577,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 1.0.0
+     * @since 2.0.0
      * @category Collection
      * @param {Array|Object} collection The collection to inspect.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
@@ -26585,8 +26585,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {*} Returns the matched element, else `undefined`.
      * @example
      *
-     * _.findLast([1, 1, 3, 4], function(n) {
-     *   return n % 1 == 1;
+     * _.findLast([1, 2, 3, 4], function(n) {
+     *   return n % 2 == 1;
      * });
      * // => 3
      */
@@ -26610,8 +26610,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *   return [n, n];
      * }
      *
-     * _.flatMap([1, 1], duplicate);
-     * // => [1, 1, 1, 1]
+     * _.flatMap([1, 2], duplicate);
+     * // => [1, 1, 2, 2]
      */
     function flatMap(collection, iteratee) {
       return baseFlatten(map(collection, iteratee), 1);
@@ -26634,8 +26634,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *   return [[[n, n]]];
      * }
      *
-     * _.flatMapDeep([1, 1], duplicate);
-     * // => [1, 1, 1, 1]
+     * _.flatMapDeep([1, 2], duplicate);
+     * // => [1, 1, 2, 2]
      */
     function flatMapDeep(collection, iteratee) {
       return baseFlatten(map(collection, iteratee), INFINITY);
@@ -26659,8 +26659,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *   return [[[n, n]]];
      * }
      *
-     * _.flatMapDepth([1, 1], duplicate, 1);
-     * // => [[1, 1], [1, 1]]
+     * _.flatMapDepth([1, 2], duplicate, 2);
+     * // => [[1, 1], [2, 2]]
      */
     function flatMapDepth(collection, iteratee, depth) {
       depth = depth === undefined ? 1 : toInteger(depth);
@@ -26687,12 +26687,12 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @see _.forEachRight
      * @example
      *
-     * _.forEach([1, 1], function(value) {
+     * _.forEach([1, 2], function(value) {
      *   console.log(value);
      * });
-     * // => Logs `1` then `1`.
+     * // => Logs `1` then `2`.
      *
-     * _.forEach({ 'a': 1, 'b': 1 }, function(value, key) {
+     * _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
      *   console.log(key);
      * });
      * // => Logs 'a' then 'b' (iteration order is not guaranteed).
@@ -26708,7 +26708,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 1.0.0
+     * @since 2.0.0
      * @alias eachRight
      * @category Collection
      * @param {Array|Object} collection The collection to iterate over.
@@ -26717,10 +26717,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @see _.forEach
      * @example
      *
-     * _.forEachRight([1, 1], function(value) {
+     * _.forEachRight([1, 2], function(value) {
      *   console.log(value);
      * });
-     * // => Logs `1` then `1`.
+     * // => Logs `2` then `1`.
      */
     function forEachRight(collection, iteratee) {
       var func = isArray(collection) ? arrayEachRight : baseEachRight;
@@ -26743,8 +26743,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Object} Returns the composed aggregate object.
      * @example
      *
-     * _.groupBy([6.1, 4.1, 6.3], Math.floor);
-     * // => { '4': [4.1], '6': [6.1, 6.3] }
+     * _.groupBy([6.1, 4.2, 6.3], Math.floor);
+     * // => { '4': [4.2], '6': [6.1, 6.3] }
      *
      * // The `_.property` iteratee shorthand.
      * _.groupBy(['one', 'two', 'three'], 'length');
@@ -26776,13 +26776,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {boolean} Returns `true` if `value` is found, else `false`.
      * @example
      *
-     * _.includes([1, 1, 3], 1);
+     * _.includes([1, 2, 3], 1);
      * // => true
      *
-     * _.includes([1, 1, 3], 1, 1);
+     * _.includes([1, 2, 3], 1, 2);
      * // => false
      *
-     * _.includes({ 'a': 1, 'b': 1 }, 1);
+     * _.includes({ 'a': 1, 'b': 2 }, 1);
      * // => true
      *
      * _.includes('abcd', 'bc');
@@ -26818,11 +26818,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the array of results.
      * @example
      *
-     * _.invokeMap([[5, 1, 7], [3, 1, 1]], 'sort');
-     * // => [[1, 5, 7], [1, 1, 3]]
+     * _.invokeMap([[5, 1, 7], [3, 2, 1]], 'sort');
+     * // => [[1, 5, 7], [1, 2, 3]]
      *
      * _.invokeMap([123, 456], String.prototype.split, '');
-     * // => [['1', '1', '3'], ['4', '5', '6']]
+     * // => [['1', '2', '3'], ['4', '5', '6']]
      */
     var invokeMap = baseRest(function(collection, path, args) {
       var index = -1,
@@ -27023,16 +27023,16 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @see _.reduceRight
      * @example
      *
-     * _.reduce([1, 1], function(sum, n) {
+     * _.reduce([1, 2], function(sum, n) {
      *   return sum + n;
      * }, 0);
      * // => 3
      *
-     * _.reduce({ 'a': 1, 'b': 1, 'c': 1 }, function(result, value, key) {
+     * _.reduce({ 'a': 1, 'b': 2, 'c': 1 }, function(result, value, key) {
      *   (result[value] || (result[value] = [])).push(key);
      *   return result;
      * }, {});
-     * // => { '1': ['a', 'c'], '1': ['b'] } (iteration order is not guaranteed)
+     * // => { '1': ['a', 'c'], '2': ['b'] } (iteration order is not guaranteed)
      */
     function reduce(collection, iteratee, accumulator) {
       var func = isArray(collection) ? arrayReduce : baseReduce,
@@ -27056,12 +27056,12 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @see _.reduce
      * @example
      *
-     * var array = [[0, 1], [1, 3], [4, 5]];
+     * var array = [[0, 1], [2, 3], [4, 5]];
      *
      * _.reduceRight(array, function(flattened, other) {
      *   return flattened.concat(other);
      * }, []);
-     * // => [4, 5, 1, 3, 0, 1]
+     * // => [4, 5, 2, 3, 0, 1]
      */
     function reduceRight(collection, iteratee, accumulator) {
       var func = isArray(collection) ? arrayReduceRight : baseReduce,
@@ -27114,14 +27114,14 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 1.0.0
+     * @since 2.0.0
      * @category Collection
      * @param {Array|Object} collection The collection to sample.
      * @returns {*} Returns the random element.
      * @example
      *
-     * _.sample([1, 1, 3, 4]);
-     * // => 1
+     * _.sample([1, 2, 3, 4]);
+     * // => 2
      */
     function sample(collection) {
       var func = isArray(collection) ? arraySample : baseSample;
@@ -27142,11 +27142,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the random elements.
      * @example
      *
-     * _.sampleSize([1, 1, 3], 1);
+     * _.sampleSize([1, 2, 3], 2);
      * // => [3, 1]
      *
-     * _.sampleSize([1, 1, 3], 4);
-     * // => [1, 3, 1]
+     * _.sampleSize([1, 2, 3], 4);
+     * // => [2, 3, 1]
      */
     function sampleSize(collection, n, guard) {
       if ((guard ? isIterateeCall(collection, n, guard) : n === undefined)) {
@@ -27170,8 +27170,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new shuffled array.
      * @example
      *
-     * _.shuffle([1, 1, 3, 4]);
-     * // => [4, 1, 3, 1]
+     * _.shuffle([1, 2, 3, 4]);
+     * // => [4, 1, 3, 2]
      */
     function shuffle(collection) {
       var func = isArray(collection) ? arrayShuffle : baseShuffle;
@@ -27190,11 +27190,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {number} Returns the collection size.
      * @example
      *
-     * _.size([1, 1, 3]);
+     * _.size([1, 2, 3]);
      * // => 3
      *
-     * _.size({ 'a': 1, 'b': 1 });
-     * // => 1
+     * _.size({ 'a': 1, 'b': 2 });
+     * // => 2
      *
      * _.size('pebbles');
      * // => 7
@@ -27307,7 +27307,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 1.4.0
+     * @since 2.4.0
      * @category Date
      * @returns {number} Returns the timestamp.
      * @example
@@ -27528,7 +27528,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 1.0.0
+     * @since 2.0.0
      * @category Function
      * @param {Function} func The function to curry.
      * @param {number} [arity=func.length] The arity of `func`.
@@ -27542,18 +27542,18 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * var curried = _.curry(abc);
      *
-     * curried(1)(1)(3);
-     * // => [1, 1, 3]
+     * curried(1)(2)(3);
+     * // => [1, 2, 3]
      *
-     * curried(1, 1)(3);
-     * // => [1, 1, 3]
+     * curried(1, 2)(3);
+     * // => [1, 2, 3]
      *
-     * curried(1, 1, 3);
-     * // => [1, 1, 3]
+     * curried(1, 2, 3);
+     * // => [1, 2, 3]
      *
      * // Curried with placeholders.
-     * curried(1)(_, 3)(1);
-     * // => [1, 1, 3]
+     * curried(1)(_, 3)(2);
+     * // => [1, 2, 3]
      */
     function curry(func, arity, guard) {
       arity = guard ? undefined : arity;
@@ -27587,18 +27587,18 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * var curried = _.curryRight(abc);
      *
-     * curried(3)(1)(1);
-     * // => [1, 1, 3]
+     * curried(3)(2)(1);
+     * // => [1, 2, 3]
      *
-     * curried(1, 3)(1);
-     * // => [1, 1, 3]
+     * curried(2, 3)(1);
+     * // => [1, 2, 3]
      *
-     * curried(1, 1, 3);
-     * // => [1, 1, 3]
+     * curried(1, 2, 3);
+     * // => [1, 2, 3]
      *
      * // Curried with placeholders.
-     * curried(3)(1, _)(1);
-     * // => [1, 1, 3]
+     * curried(3)(1, _)(2);
+     * // => [1, 2, 3]
      */
     function curryRight(func, arity, guard) {
       arity = guard ? undefined : arity;
@@ -27875,19 +27875,19 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Function} Returns the new memoized function.
      * @example
      *
-     * var object = { 'a': 1, 'b': 1 };
+     * var object = { 'a': 1, 'b': 2 };
      * var other = { 'c': 3, 'd': 4 };
      *
      * var values = _.memoize(_.values);
      * values(object);
-     * // => [1, 1]
+     * // => [1, 2]
      *
      * values(other);
      * // => [3, 4]
      *
-     * object.a = 1;
+     * object.a = 2;
      * values(object);
-     * // => [1, 1]
+     * // => [1, 2]
      *
      * // Modify the result cache.
      * values.cache.set(object, ['a', 'b']);
@@ -27934,10 +27934,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @example
      *
      * function isEven(n) {
-     *   return n % 1 == 0;
+     *   return n % 2 == 0;
      * }
      *
-     * _.filter([1, 1, 3, 4, 5, 6], _.negate(isEven));
+     * _.filter([1, 2, 3, 4, 5, 6], _.negate(isEven));
      * // => [1, 3, 5]
      */
     function negate(predicate) {
@@ -27992,7 +27992,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @example
      *
      * function doubled(n) {
-     *   return n * 1;
+     *   return n * 2;
      * }
      *
      * function square(n) {
@@ -28039,7 +28039,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 0.1.0
+     * @since 0.2.0
      * @category Function
      * @param {Function} func The function to partially apply arguments to.
      * @param {...*} [partials] The arguments to be partially applied.
@@ -28118,7 +28118,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * var rearged = _.rearg(function(a, b, c) {
      *   return [a, b, c];
-     * }, [1, 0, 1]);
+     * }, [2, 0, 1]);
      *
      * rearged('b', 'c', 'a')
      * // => ['a', 'b', 'c']
@@ -28170,7 +28170,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 3.1.0
+     * @since 3.2.0
      * @category Function
      * @param {Function} func The function to spread arguments over.
      * @param {number} [start=0] The start position of the spread.
@@ -28348,7 +28348,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.castArray();
      * // => []
      *
-     * var array = [1, 1, 3];
+     * var array = [1, 2, 3];
      * console.log(_.castArray(array) === array);
      * // => true
      */
@@ -28380,7 +28380,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @see _.cloneDeep
      * @example
      *
-     * var objects = [{ 'a': 1 }, { 'b': 1 }];
+     * var objects = [{ 'a': 1 }, { 'b': 2 }];
      *
      * var shallow = _.clone(objects);
      * console.log(shallow[0] === objects[0]);
@@ -28438,7 +28438,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @see _.clone
      * @example
      *
-     * var objects = [{ 'a': 1 }, { 'b': 1 }];
+     * var objects = [{ 'a': 1 }, { 'b': 2 }];
      *
      * var deep = _.cloneDeep(objects);
      * console.log(deep[0] === objects[0]);
@@ -28497,12 +28497,12 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {boolean} Returns `true` if `object` conforms, else `false`.
      * @example
      *
-     * var object = { 'a': 1, 'b': 1 };
+     * var object = { 'a': 1, 'b': 2 };
      *
      * _.conformsTo(object, { 'b': function(n) { return n > 1; } });
      * // => true
      *
-     * _.conformsTo(object, { 'b': function(n) { return n > 1; } });
+     * _.conformsTo(object, { 'b': function(n) { return n > 2; } });
      * // => false
      */
     function conformsTo(object, source) {
@@ -28612,7 +28612,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.isArguments(function() { return arguments; }());
      * // => true
      *
-     * _.isArguments([1, 1, 3]);
+     * _.isArguments([1, 2, 3]);
      * // => false
      */
     var isArguments = baseIsArguments(function() { return arguments; }()) ? baseIsArguments : function(value) {
@@ -28631,7 +28631,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {boolean} Returns `true` if `value` is an array, else `false`.
      * @example
      *
-     * _.isArray([1, 1, 3]);
+     * _.isArray([1, 2, 3]);
      * // => true
      *
      * _.isArray(document.body.children);
@@ -28656,10 +28656,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {boolean} Returns `true` if `value` is an array buffer, else `false`.
      * @example
      *
-     * _.isArrayBuffer(new ArrayBuffer(1));
+     * _.isArrayBuffer(new ArrayBuffer(2));
      * // => true
      *
-     * _.isArrayBuffer(new Array(1));
+     * _.isArrayBuffer(new Array(2));
      * // => false
      */
     var isArrayBuffer = nodeIsArrayBuffer ? baseUnary(nodeIsArrayBuffer) : baseIsArrayBuffer;
@@ -28677,7 +28677,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
      * @example
      *
-     * _.isArrayLike([1, 1, 3]);
+     * _.isArrayLike([1, 2, 3]);
      * // => true
      *
      * _.isArrayLike(document.body.children);
@@ -28706,7 +28706,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *  else `false`.
      * @example
      *
-     * _.isArrayLikeObject([1, 1, 3]);
+     * _.isArrayLikeObject([1, 2, 3]);
      * // => true
      *
      * _.isArrayLikeObject(document.body.children);
@@ -28755,10 +28755,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {boolean} Returns `true` if `value` is a buffer, else `false`.
      * @example
      *
-     * _.isBuffer(new Buffer(1));
+     * _.isBuffer(new Buffer(2));
      * // => true
      *
-     * _.isBuffer(new Uint8Array(1));
+     * _.isBuffer(new Uint8Array(2));
      * // => false
      */
     var isBuffer = nativeIsBuffer || stubFalse;
@@ -28830,7 +28830,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.isEmpty(1);
      * // => true
      *
-     * _.isEmpty([1, 1, 3]);
+     * _.isEmpty([1, 2, 3]);
      * // => false
      *
      * _.isEmpty({ 'a': 1 });
@@ -29091,7 +29091,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.isObject({});
      * // => true
      *
-     * _.isObject([1, 1, 3]);
+     * _.isObject([1, 2, 3]);
      * // => true
      *
      * _.isObject(_.noop);
@@ -29120,7 +29120,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.isObjectLike({});
      * // => true
      *
-     * _.isObjectLike([1, 1, 3]);
+     * _.isObjectLike([1, 2, 3]);
      * // => true
      *
      * _.isObjectLike(_.noop);
@@ -29172,9 +29172,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {boolean} Returns `true` if `object` is a match, else `false`.
      * @example
      *
-     * var object = { 'a': 1, 'b': 1 };
+     * var object = { 'a': 1, 'b': 2 };
      *
-     * _.isMatch(object, { 'b': 1 });
+     * _.isMatch(object, { 'b': 2 });
      * // => true
      *
      * _.isMatch(object, { 'b': 1 });
@@ -29384,7 +29384,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.isPlainObject(new Foo);
      * // => false
      *
-     * _.isPlainObject([1, 1, 3]);
+     * _.isPlainObject([1, 2, 3]);
      * // => false
      *
      * _.isPlainObject({ 'x': 0, 'y': 0 });
@@ -29664,8 +29664,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the converted array.
      * @example
      *
-     * _.toArray({ 'a': 1, 'b': 1 });
-     * // => [1, 1]
+     * _.toArray({ 'a': 1, 'b': 2 });
+     * // => [1, 2]
      *
      * _.toArray('abc');
      * // => ['a', 'b', 'c']
@@ -29703,8 +29703,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {number} Returns the converted number.
      * @example
      *
-     * _.toFinite(3.1);
-     * // => 3.1
+     * _.toFinite(3.2);
+     * // => 3.2
      *
      * _.toFinite(Number.MIN_VALUE);
      * // => 5e-324
@@ -29712,8 +29712,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.toFinite(Infinity);
      * // => 1.7976931348623157e+308
      *
-     * _.toFinite('3.1');
-     * // => 3.1
+     * _.toFinite('3.2');
+     * // => 3.2
      */
     function toFinite(value) {
       if (!value) {
@@ -29741,7 +29741,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {number} Returns the converted integer.
      * @example
      *
-     * _.toInteger(3.1);
+     * _.toInteger(3.2);
      * // => 3
      *
      * _.toInteger(Number.MIN_VALUE);
@@ -29750,7 +29750,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.toInteger(Infinity);
      * // => 1.7976931348623157e+308
      *
-     * _.toInteger('3.1');
+     * _.toInteger('3.2');
      * // => 3
      */
     function toInteger(value) {
@@ -29775,7 +29775,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {number} Returns the converted integer.
      * @example
      *
-     * _.toLength(3.1);
+     * _.toLength(3.2);
      * // => 3
      *
      * _.toLength(Number.MIN_VALUE);
@@ -29784,7 +29784,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.toLength(Infinity);
      * // => 4294967295
      *
-     * _.toLength('3.1');
+     * _.toLength('3.2');
      * // => 3
      */
     function toLength(value) {
@@ -29802,8 +29802,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {number} Returns the number.
      * @example
      *
-     * _.toNumber(3.1);
-     * // => 3.1
+     * _.toNumber(3.2);
+     * // => 3.2
      *
      * _.toNumber(Number.MIN_VALUE);
      * // => 5e-324
@@ -29811,8 +29811,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.toNumber(Infinity);
      * // => Infinity
      *
-     * _.toNumber('3.1');
-     * // => 3.1
+     * _.toNumber('3.2');
+     * // => 3.2
      */
     function toNumber(value) {
       if (typeof value == 'number') {
@@ -29848,16 +29848,16 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @example
      *
      * function Foo() {
-     *   this.b = 1;
+     *   this.b = 2;
      * }
      *
      * Foo.prototype.c = 3;
      *
      * _.assign({ 'a': 1 }, new Foo);
-     * // => { 'a': 1, 'b': 1 }
+     * // => { 'a': 1, 'b': 2 }
      *
      * _.assign({ 'a': 1 }, _.toPlainObject(new Foo));
-     * // => { 'a': 1, 'b': 1, 'c': 3 }
+     * // => { 'a': 1, 'b': 2, 'c': 3 }
      */
     function toPlainObject(value) {
       return copyObject(value, keysIn(value));
@@ -29875,7 +29875,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {number} Returns the converted integer.
      * @example
      *
-     * _.toSafeInteger(3.1);
+     * _.toSafeInteger(3.2);
      * // => 3
      *
      * _.toSafeInteger(Number.MIN_VALUE);
@@ -29884,7 +29884,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.toSafeInteger(Infinity);
      * // => 9007199254740991
      *
-     * _.toSafeInteger('3.1');
+     * _.toSafeInteger('3.2');
      * // => 3
      */
     function toSafeInteger(value) {
@@ -29911,8 +29911,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.toString(-0);
      * // => '-0'
      *
-     * _.toString([1, 1, 3]);
-     * // => '1,1,3'
+     * _.toString([1, 2, 3]);
+     * // => '1,2,3'
      */
     function toString(value) {
       return value == null ? '' : baseToString(value);
@@ -29946,7 +29946,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *   this.c = 3;
      * }
      *
-     * Foo.prototype.b = 1;
+     * Foo.prototype.b = 2;
      * Bar.prototype.d = 4;
      *
      * _.assign({ 'a': 0 }, new Foo, new Bar);
@@ -29989,11 +29989,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *   this.c = 3;
      * }
      *
-     * Foo.prototype.b = 1;
+     * Foo.prototype.b = 2;
      * Bar.prototype.d = 4;
      *
      * _.assignIn({ 'a': 0 }, new Foo, new Bar);
-     * // => { 'a': 1, 'b': 1, 'c': 3, 'd': 4 }
+     * // => { 'a': 1, 'b': 2, 'c': 3, 'd': 4 }
      */
     var assignIn = createAssigner(function(object, source) {
       copyObject(source, keysIn(source), object);
@@ -30025,8 +30025,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * var defaults = _.partialRight(_.assignInWith, customizer);
      *
-     * defaults({ 'a': 1 }, { 'b': 1 }, { 'a': 3 });
-     * // => { 'a': 1, 'b': 1 }
+     * defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 });
+     * // => { 'a': 1, 'b': 2 }
      */
     var assignInWith = createAssigner(function(object, source, srcIndex, customizer) {
       copyObject(source, keysIn(source), object, customizer);
@@ -30057,8 +30057,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * var defaults = _.partialRight(_.assignWith, customizer);
      *
-     * defaults({ 'a': 1 }, { 'b': 1 }, { 'a': 3 });
-     * // => { 'a': 1, 'b': 1 }
+     * defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 });
+     * // => { 'a': 1, 'b': 2 }
      */
     var assignWith = createAssigner(function(object, source, srcIndex, customizer) {
       copyObject(source, keys(source), object, customizer);
@@ -30090,7 +30090,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 1.3.0
+     * @since 2.3.0
      * @category Object
      * @param {Object} prototype The object to inherit from.
      * @param {Object} [properties] The properties to assign to the object.
@@ -30140,8 +30140,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @see _.defaultsDeep
      * @example
      *
-     * _.defaults({ 'a': 1 }, { 'b': 1 }, { 'a': 3 });
-     * // => { 'a': 1, 'b': 1 }
+     * _.defaults({ 'a': 1 }, { 'b': 2 }, { 'a': 3 });
+     * // => { 'a': 1, 'b': 2 }
      */
     var defaults = baseRest(function(object, sources) {
       object = Object(object);
@@ -30190,8 +30190,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @see _.defaults
      * @example
      *
-     * _.defaultsDeep({ 'a': { 'b': 1 } }, { 'a': { 'b': 1, 'c': 3 } });
-     * // => { 'a': { 'b': 1, 'c': 3 } }
+     * _.defaultsDeep({ 'a': { 'b': 2 } }, { 'a': { 'b': 1, 'c': 3 } });
+     * // => { 'a': { 'b': 2, 'c': 3 } }
      */
     var defaultsDeep = baseRest(function(args) {
       args.push(undefined, customDefaultsMerge);
@@ -30243,7 +30243,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 1.0.0
+     * @since 2.0.0
      * @category Object
      * @param {Object} object The object to inspect.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
@@ -30294,7 +30294,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * function Foo() {
      *   this.a = 1;
-     *   this.b = 1;
+     *   this.b = 2;
      * }
      *
      * Foo.prototype.c = 3;
@@ -30316,7 +30316,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 1.0.0
+     * @since 2.0.0
      * @category Object
      * @param {Object} object The object to iterate over.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
@@ -30326,7 +30326,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * function Foo() {
      *   this.a = 1;
-     *   this.b = 1;
+     *   this.b = 2;
      * }
      *
      * Foo.prototype.c = 3;
@@ -30360,7 +30360,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * function Foo() {
      *   this.a = 1;
-     *   this.b = 1;
+     *   this.b = 2;
      * }
      *
      * Foo.prototype.c = 3;
@@ -30380,7 +30380,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 1.0.0
+     * @since 2.0.0
      * @category Object
      * @param {Object} object The object to iterate over.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
@@ -30390,7 +30390,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * function Foo() {
      *   this.a = 1;
-     *   this.b = 1;
+     *   this.b = 2;
      * }
      *
      * Foo.prototype.c = 3;
@@ -30500,8 +30500,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {boolean} Returns `true` if `path` exists, else `false`.
      * @example
      *
-     * var object = { 'a': { 'b': 1 } };
-     * var other = _.create({ 'a': _.create({ 'b': 1 }) });
+     * var object = { 'a': { 'b': 2 } };
+     * var other = _.create({ 'a': _.create({ 'b': 2 }) });
      *
      * _.has(object, 'a');
      * // => true
@@ -30531,7 +30531,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {boolean} Returns `true` if `path` exists, else `false`.
      * @example
      *
-     * var object = _.create({ 'a': _.create({ 'b': 1 }) });
+     * var object = _.create({ 'a': _.create({ 'b': 2 }) });
      *
      * _.hasIn(object, 'a');
      * // => true
@@ -30562,10 +30562,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Object} Returns the new inverted object.
      * @example
      *
-     * var object = { 'a': 1, 'b': 1, 'c': 1 };
+     * var object = { 'a': 1, 'b': 2, 'c': 1 };
      *
      * _.invert(object);
-     * // => { '1': 'c', '1': 'b' }
+     * // => { '1': 'c', '2': 'b' }
      */
     var invert = createInverter(function(result, value, key) {
       if (value != null &&
@@ -30592,10 +30592,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Object} Returns the new inverted object.
      * @example
      *
-     * var object = { 'a': 1, 'b': 1, 'c': 1 };
+     * var object = { 'a': 1, 'b': 2, 'c': 1 };
      *
      * _.invertBy(object);
-     * // => { '1': ['a', 'c'], '1': ['b'] }
+     * // => { '1': ['a', 'c'], '2': ['b'] }
      *
      * _.invertBy(object, function(value) {
      *   return 'group' + value;
@@ -30628,10 +30628,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {*} Returns the result of the invoked method.
      * @example
      *
-     * var object = { 'a': [{ 'b': { 'c': [1, 1, 3, 4] } }] };
+     * var object = { 'a': [{ 'b': { 'c': [1, 2, 3, 4] } }] };
      *
      * _.invoke(object, 'a[0].b.c.slice', 1, 3);
-     * // => [1, 3]
+     * // => [2, 3]
      */
     var invoke = baseRest(baseInvoke);
 
@@ -30652,7 +30652,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * function Foo() {
      *   this.a = 1;
-     *   this.b = 1;
+     *   this.b = 2;
      * }
      *
      * Foo.prototype.c = 3;
@@ -30682,7 +30682,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * function Foo() {
      *   this.a = 1;
-     *   this.b = 1;
+     *   this.b = 2;
      * }
      *
      * Foo.prototype.c = 3;
@@ -30710,10 +30710,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @see _.mapValues
      * @example
      *
-     * _.mapKeys({ 'a': 1, 'b': 1 }, function(value, key) {
+     * _.mapKeys({ 'a': 1, 'b': 2 }, function(value, key) {
      *   return key + value;
      * });
-     * // => { 'a1': 1, 'b2': 1 }
+     * // => { 'a1': 1, 'b2': 2 }
      */
     function mapKeys(object, iteratee) {
       var result = {};
@@ -30733,7 +30733,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 1.4.0
+     * @since 2.4.0
      * @category Object
      * @param {Object} object The object to iterate over.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
@@ -30784,7 +30784,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @example
      *
      * var object = {
-     *   'a': [{ 'b': 1 }, { 'd': 4 }]
+     *   'a': [{ 'b': 2 }, { 'd': 4 }]
      * };
      *
      * var other = {
@@ -30792,7 +30792,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * };
      *
      * _.merge(object, other);
-     * // => { 'a': [{ 'b': 1, 'c': 3 }, { 'd': 4, 'e': 5 }] }
+     * // => { 'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }] }
      */
     var merge = createAssigner(function(object, source, srcIndex) {
       baseMerge(object, source, srcIndex);
@@ -30823,11 +30823,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *   }
      * }
      *
-     * var object = { 'a': [1], 'b': [1] };
+     * var object = { 'a': [1], 'b': [2] };
      * var other = { 'a': [3], 'b': [4] };
      *
      * _.mergeWith(object, other, customizer);
-     * // => { 'a': [1, 3], 'b': [1, 4] }
+     * // => { 'a': [1, 3], 'b': [2, 4] }
      */
     var mergeWith = createAssigner(function(object, source, srcIndex, customizer) {
       baseMerge(object, source, srcIndex, customizer);
@@ -30848,10 +30848,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Object} Returns the new object.
      * @example
      *
-     * var object = { 'a': 1, 'b': '1', 'c': 3 };
+     * var object = { 'a': 1, 'b': '2', 'c': 3 };
      *
      * _.omit(object, ['a', 'c']);
-     * // => { 'b': '1' }
+     * // => { 'b': '2' }
      */
     var omit = flatRest(function(object, paths) {
       var result = {};
@@ -30890,10 +30890,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Object} Returns the new object.
      * @example
      *
-     * var object = { 'a': 1, 'b': '1', 'c': 3 };
+     * var object = { 'a': 1, 'b': '2', 'c': 3 };
      *
      * _.omitBy(object, _.isNumber);
-     * // => { 'b': '1' }
+     * // => { 'b': '2' }
      */
     function omitBy(object, predicate) {
       return pickBy(object, negate(getIteratee(predicate)));
@@ -30911,7 +30911,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Object} Returns the new object.
      * @example
      *
-     * var object = { 'a': 1, 'b': '1', 'c': 3 };
+     * var object = { 'a': 1, 'b': '2', 'c': 3 };
      *
      * _.pick(object, ['a', 'c']);
      * // => { 'a': 1, 'c': 3 }
@@ -30933,7 +30933,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Object} Returns the new object.
      * @example
      *
-     * var object = { 'a': 1, 'b': '1', 'c': 3 };
+     * var object = { 'a': 1, 'b': '2', 'c': 3 };
      *
      * _.pickBy(object, _.isNumber);
      * // => { 'a': 1, 'c': 3 }
@@ -31079,13 +31079,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * function Foo() {
      *   this.a = 1;
-     *   this.b = 1;
+     *   this.b = 2;
      * }
      *
      * Foo.prototype.c = 3;
      *
      * _.toPairs(new Foo);
-     * // => [['a', 1], ['b', 1]] (iteration order is not guaranteed)
+     * // => [['a', 1], ['b', 2]] (iteration order is not guaranteed)
      */
     var toPairs = createToPairs(keys);
 
@@ -31105,13 +31105,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * function Foo() {
      *   this.a = 1;
-     *   this.b = 1;
+     *   this.b = 2;
      * }
      *
      * Foo.prototype.c = 3;
      *
      * _.toPairsIn(new Foo);
-     * // => [['a', 1], ['b', 1], ['c', 3]] (iteration order is not guaranteed)
+     * // => [['a', 1], ['b', 2], ['c', 3]] (iteration order is not guaranteed)
      */
     var toPairsIn = createToPairs(keysIn);
 
@@ -31134,16 +31134,16 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {*} Returns the accumulated value.
      * @example
      *
-     * _.transform([1, 3, 4], function(result, n) {
+     * _.transform([2, 3, 4], function(result, n) {
      *   result.push(n *= n);
-     *   return n % 1 == 0;
+     *   return n % 2 == 0;
      * }, []);
      * // => [4, 9]
      *
-     * _.transform({ 'a': 1, 'b': 1, 'c': 1 }, function(result, value, key) {
+     * _.transform({ 'a': 1, 'b': 2, 'c': 1 }, function(result, value, key) {
      *   (result[value] || (result[value] = [])).push(key);
      * }, {});
-     * // => { '1': ['a', 'c'], '1': ['b'] }
+     * // => { '1': ['a', 'c'], '2': ['b'] }
      */
     function transform(object, iteratee, accumulator) {
       var isArr = isArray(object),
@@ -31274,13 +31274,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * function Foo() {
      *   this.a = 1;
-     *   this.b = 1;
+     *   this.b = 2;
      * }
      *
      * Foo.prototype.c = 3;
      *
      * _.values(new Foo);
-     * // => [1, 1] (iteration order is not guaranteed)
+     * // => [1, 2] (iteration order is not guaranteed)
      *
      * _.values('hi');
      * // => ['h', 'i']
@@ -31305,13 +31305,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * function Foo() {
      *   this.a = 1;
-     *   this.b = 1;
+     *   this.b = 2;
      * }
      *
      * Foo.prototype.c = 3;
      *
      * _.valuesIn(new Foo);
-     * // => [1, 1, 3] (iteration order is not guaranteed)
+     * // => [1, 2, 3] (iteration order is not guaranteed)
      */
     function valuesIn(object) {
       return object == null ? [] : baseValues(object, keysIn(object));
@@ -31371,25 +31371,25 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @see _.range, _.rangeRight
      * @example
      *
-     * _.inRange(3, 1, 4);
+     * _.inRange(3, 2, 4);
      * // => true
      *
      * _.inRange(4, 8);
      * // => true
      *
-     * _.inRange(4, 1);
+     * _.inRange(4, 2);
      * // => false
      *
-     * _.inRange(1, 1);
+     * _.inRange(2, 2);
      * // => false
      *
-     * _.inRange(1.1, 1);
+     * _.inRange(1.2, 2);
      * // => true
      *
-     * _.inRange(5.1, 4);
+     * _.inRange(5.2, 4);
      * // => false
      *
-     * _.inRange(-3, -1, -6);
+     * _.inRange(-3, -2, -6);
      * // => true
      */
     function inRange(number, start, end) {
@@ -31432,8 +31432,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.random(5, true);
      * // => a floating-point number between 0 and 5
      *
-     * _.random(1.1, 5.1);
-     * // => a floating-point number between 1.1 and 5.1
+     * _.random(1.2, 5.2);
+     * // => a floating-point number between 1.2 and 5.2
      */
     function random(lower, upper, floating) {
       if (floating && typeof floating != 'boolean' && isIterateeCall(lower, upper, floating)) {
@@ -31563,7 +31563,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.endsWith('abc', 'b');
      * // => false
      *
-     * _.endsWith('abc', 'b', 1);
+     * _.endsWith('abc', 'b', 2);
      * // => true
      */
     function endsWith(string, target, position) {
@@ -31859,7 +31859,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.repeat('*', 3);
      * // => '***'
      *
-     * _.repeat('abc', 1);
+     * _.repeat('abc', 2);
      * // => 'abcabc'
      *
      * _.repeat('abc', 0);
@@ -31941,7 +31941,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the string segments.
      * @example
      *
-     * _.split('a-b-c', '-', 1);
+     * _.split('a-b-c', '-', 2);
      * // => ['a', 'b']
      */
     function split(string, separator, limit) {
@@ -32675,13 +32675,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *   [_.stubTrue,                      _.constant('no match')]
      * ]);
      *
-     * func({ 'a': 1, 'b': 1 });
+     * func({ 'a': 1, 'b': 2 });
      * // => 'matches A'
      *
      * func({ 'a': 0, 'b': 1 });
      * // => 'matches B'
      *
-     * func({ 'a': '1', 'b': '1' });
+     * func({ 'a': '1', 'b': '2' });
      * // => 'no match'
      */
     function cond(pairs) {
@@ -32723,12 +32723,12 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @example
      *
      * var objects = [
-     *   { 'a': 1, 'b': 1 },
-     *   { 'a': 1, 'b': 1 }
+     *   { 'a': 2, 'b': 1 },
+     *   { 'a': 1, 'b': 2 }
      * ];
      *
      * _.filter(objects, _.conforms({ 'b': function(n) { return n > 1; } }));
-     * // => [{ 'a': 1, 'b': 1 }]
+     * // => [{ 'a': 1, 'b': 2 }]
      */
     function conforms(source) {
       return baseConforms(baseClone(source, CLONE_DEEP_FLAG));
@@ -32739,13 +32739,13 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 1.4.0
+     * @since 2.4.0
      * @category Util
      * @param {*} value The value to return from the new function.
      * @returns {Function} Returns the new constant function.
      * @example
      *
-     * var objects = _.times(1, _.constant({ 'a': 1 }));
+     * var objects = _.times(2, _.constant({ 'a': 1 }));
      *
      * console.log(objects);
      * // => [{ 'a': 1 }, { 'a': 1 }]
@@ -32802,7 +32802,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * }
      *
      * var addSquare = _.flow([_.add, square]);
-     * addSquare(1, 1);
+     * addSquare(1, 2);
      * // => 9
      */
     var flow = createFlow();
@@ -32825,7 +32825,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * }
      *
      * var addSquare = _.flowRight([square, _.add]);
-     * addSquare(1, 1);
+     * addSquare(1, 2);
      * // => 9
      */
     var flowRight = createFlow(true);
@@ -32920,7 +32920,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @example
      *
      * var objects = [
-     *   { 'a': 1, 'b': 1, 'c': 3 },
+     *   { 'a': 1, 'b': 2, 'c': 3 },
      *   { 'a': 4, 'b': 5, 'c': 6 }
      * ];
      *
@@ -32929,7 +32929,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * // Checking for several possible values
      * _.filter(objects, _.overSome([_.matches({ 'a': 1 }), _.matches({ 'a': 4 })]));
-     * // => [{ 'a': 1, 'b': 1, 'c': 3 }, { 'a': 4, 'b': 5, 'c': 6 }]
+     * // => [{ 'a': 1, 'b': 2, 'c': 3 }, { 'a': 4, 'b': 5, 'c': 6 }]
      */
     function matches(source) {
       return baseMatches(baseClone(source, CLONE_DEEP_FLAG));
@@ -32949,7 +32949,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 3.1.0
+     * @since 3.2.0
      * @category Util
      * @param {Array|string} path The path of the property to get.
      * @param {*} srcValue The value to match.
@@ -32957,7 +32957,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @example
      *
      * var objects = [
-     *   { 'a': 1, 'b': 1, 'c': 3 },
+     *   { 'a': 1, 'b': 2, 'c': 3 },
      *   { 'a': 4, 'b': 5, 'c': 6 }
      * ];
      *
@@ -32966,7 +32966,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * // Checking for several possible values
      * _.filter(objects, _.overSome([_.matchesProperty('a', 1), _.matchesProperty('a', 4)]));
-     * // => [{ 'a': 1, 'b': 1, 'c': 3 }, { 'a': 4, 'b': 5, 'c': 6 }]
+     * // => [{ 'a': 1, 'b': 2, 'c': 3 }, { 'a': 4, 'b': 5, 'c': 6 }]
      */
     function matchesProperty(path, srcValue) {
       return baseMatchesProperty(path, baseClone(srcValue, CLONE_DEEP_FLAG));
@@ -32986,15 +32986,15 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @example
      *
      * var objects = [
-     *   { 'a': { 'b': _.constant(1) } },
+     *   { 'a': { 'b': _.constant(2) } },
      *   { 'a': { 'b': _.constant(1) } }
      * ];
      *
      * _.map(objects, _.method('a.b'));
-     * // => [1, 1]
+     * // => [2, 1]
      *
      * _.map(objects, _.method(['a', 'b']));
-     * // => [1, 1]
+     * // => [2, 1]
      */
     var method = baseRest(function(path, args) {
       return function(object) {
@@ -33019,11 +33019,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * var array = _.times(3, _.constant),
      *     object = { 'a': array, 'b': array, 'c': array };
      *
-     * _.map(['a[1]', 'c[0]'], _.methodOf(object));
-     * // => [1, 0]
+     * _.map(['a[2]', 'c[0]'], _.methodOf(object));
+     * // => [2, 0]
      *
-     * _.map([['a', '1'], ['c', '0']], _.methodOf(object));
-     * // => [1, 0]
+     * _.map([['a', '2'], ['c', '0']], _.methodOf(object));
+     * // => [2, 0]
      */
     var methodOf = baseRest(function(object, args) {
       return function(path) {
@@ -33128,11 +33128,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 1.3.0
+     * @since 2.3.0
      * @category Util
      * @example
      *
-     * _.times(1, _.noop);
+     * _.times(2, _.noop);
      * // => [undefined, undefined]
      */
     function noop() {
@@ -33155,7 +33155,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * func('a', 'b', 'c', 'd');
      * // => 'b'
      *
-     * var func = _.nthArg(-1);
+     * var func = _.nthArg(-2);
      * func('a', 'b', 'c', 'd');
      * // => 'c'
      */
@@ -33181,7 +33181,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * var func = _.over([Math.max, Math.min]);
      *
-     * func(1, 1, 3, 4);
+     * func(1, 2, 3, 4);
      * // => [4, 1]
      */
     var over = createOver(arrayMap);
@@ -33244,8 +33244,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * func(NaN);
      * // => false
      *
-     * var matchesFunc = _.overSome([{ 'a': 1 }, { 'a': 1 }])
-     * var matchesPropertyFunc = _.overSome([['a', 1], ['a', 1]])
+     * var matchesFunc = _.overSome([{ 'a': 1 }, { 'a': 2 }])
+     * var matchesPropertyFunc = _.overSome([['a', 1], ['a', 2]])
      */
     var overSome = createOver(arraySome);
 
@@ -33254,22 +33254,22 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      *
      * @static
      * @memberOf _
-     * @since 1.4.0
+     * @since 2.4.0
      * @category Util
      * @param {Array|string} path The path of the property to get.
      * @returns {Function} Returns the new accessor function.
      * @example
      *
      * var objects = [
-     *   { 'a': { 'b': 1 } },
+     *   { 'a': { 'b': 2 } },
      *   { 'a': { 'b': 1 } }
      * ];
      *
      * _.map(objects, _.property('a.b'));
-     * // => [1, 1]
+     * // => [2, 1]
      *
      * _.map(_.sortBy(objects, _.property(['a', 'b'])), 'a.b');
-     * // => [1, 1]
+     * // => [1, 2]
      */
     function property(path) {
       return isKey(path) ? baseProperty(toKey(path)) : basePropertyDeep(path);
@@ -33287,14 +33287,14 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Function} Returns the new accessor function.
      * @example
      *
-     * var array = [0, 1, 1],
+     * var array = [0, 1, 2],
      *     object = { 'a': array, 'b': array, 'c': array };
      *
-     * _.map(['a[1]', 'c[0]'], _.propertyOf(object));
-     * // => [1, 0]
+     * _.map(['a[2]', 'c[0]'], _.propertyOf(object));
+     * // => [2, 0]
      *
-     * _.map([['a', '1'], ['c', '0']], _.propertyOf(object));
-     * // => [1, 0]
+     * _.map([['a', '2'], ['c', '0']], _.propertyOf(object));
+     * // => [2, 0]
      */
     function propertyOf(object) {
       return function(path) {
@@ -33323,19 +33323,19 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @example
      *
      * _.range(4);
-     * // => [0, 1, 1, 3]
+     * // => [0, 1, 2, 3]
      *
      * _.range(-4);
-     * // => [0, -1, -1, -3]
+     * // => [0, -1, -2, -3]
      *
      * _.range(1, 5);
-     * // => [1, 1, 3, 4]
+     * // => [1, 2, 3, 4]
      *
      * _.range(0, 20, 5);
      * // => [0, 5, 10, 15]
      *
      * _.range(0, -4, -1);
-     * // => [0, -1, -1, -3]
+     * // => [0, -1, -2, -3]
      *
      * _.range(1, 4, 0);
      * // => [1, 1, 1]
@@ -33361,19 +33361,19 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @example
      *
      * _.rangeRight(4);
-     * // => [3, 1, 1, 0]
+     * // => [3, 2, 1, 0]
      *
      * _.rangeRight(-4);
-     * // => [-3, -1, -1, 0]
+     * // => [-3, -2, -1, 0]
      *
      * _.rangeRight(1, 5);
-     * // => [4, 3, 1, 1]
+     * // => [4, 3, 2, 1]
      *
      * _.rangeRight(0, 20, 5);
      * // => [15, 10, 5, 0]
      *
      * _.rangeRight(0, -4, -1);
-     * // => [-3, -1, -1, 0]
+     * // => [-3, -2, -1, 0]
      *
      * _.rangeRight(1, 4, 0);
      * // => [1, 1, 1]
@@ -33393,7 +33393,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Array} Returns the new empty array.
      * @example
      *
-     * var arrays = _.times(1, _.stubArray);
+     * var arrays = _.times(2, _.stubArray);
      *
      * console.log(arrays);
      * // => [[], []]
@@ -33415,7 +33415,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {boolean} Returns `false`.
      * @example
      *
-     * _.times(1, _.stubFalse);
+     * _.times(2, _.stubFalse);
      * // => [false, false]
      */
     function stubFalse() {
@@ -33432,7 +33432,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {Object} Returns the new empty object.
      * @example
      *
-     * var objects = _.times(1, _.stubObject);
+     * var objects = _.times(2, _.stubObject);
      *
      * console.log(objects);
      * // => [{}, {}]
@@ -33454,7 +33454,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {string} Returns the empty string.
      * @example
      *
-     * _.times(1, _.stubString);
+     * _.times(2, _.stubString);
      * // => ['', '']
      */
     function stubString() {
@@ -33471,7 +33471,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {boolean} Returns `true`.
      * @example
      *
-     * _.times(1, _.stubTrue);
+     * _.times(2, _.stubTrue);
      * // => [true, true]
      */
     function stubTrue() {
@@ -33492,7 +33492,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @example
      *
      * _.times(3, String);
-     * // => ['0', '1', '1']
+     * // => ['0', '1', '2']
      *
      *  _.times(4, _.constant(0));
      * // => [0, 0, 0, 0]
@@ -33597,10 +33597,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.ceil(4.006);
      * // => 5
      *
-     * _.ceil(6.004, 1);
+     * _.ceil(6.004, 2);
      * // => 6.01
      *
-     * _.ceil(6040, -1);
+     * _.ceil(6040, -2);
      * // => 6100
      */
     var ceil = createRound('ceil');
@@ -33639,10 +33639,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.floor(4.006);
      * // => 4
      *
-     * _.floor(0.046, 1);
+     * _.floor(0.046, 2);
      * // => 0.04
      *
-     * _.floor(4060, -1);
+     * _.floor(4060, -2);
      * // => 4000
      */
     var floor = createRound('floor');
@@ -33659,7 +33659,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {*} Returns the maximum value.
      * @example
      *
-     * _.max([4, 1, 8, 6]);
+     * _.max([4, 2, 8, 6]);
      * // => 8
      *
      * _.max([]);
@@ -33685,14 +33685,14 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {*} Returns the maximum value.
      * @example
      *
-     * var objects = [{ 'n': 1 }, { 'n': 1 }];
+     * var objects = [{ 'n': 1 }, { 'n': 2 }];
      *
      * _.maxBy(objects, function(o) { return o.n; });
-     * // => { 'n': 1 }
+     * // => { 'n': 2 }
      *
      * // The `_.property` iteratee shorthand.
      * _.maxBy(objects, 'n');
-     * // => { 'n': 1 }
+     * // => { 'n': 2 }
      */
     function maxBy(array, iteratee) {
       return (array && array.length)
@@ -33711,7 +33711,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {number} Returns the mean.
      * @example
      *
-     * _.mean([4, 1, 8, 6]);
+     * _.mean([4, 2, 8, 6]);
      * // => 5
      */
     function mean(array) {
@@ -33732,7 +33732,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {number} Returns the mean.
      * @example
      *
-     * var objects = [{ 'n': 4 }, { 'n': 1 }, { 'n': 8 }, { 'n': 6 }];
+     * var objects = [{ 'n': 4 }, { 'n': 2 }, { 'n': 8 }, { 'n': 6 }];
      *
      * _.meanBy(objects, function(o) { return o.n; });
      * // => 5
@@ -33757,8 +33757,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {*} Returns the minimum value.
      * @example
      *
-     * _.min([4, 1, 8, 6]);
-     * // => 1
+     * _.min([4, 2, 8, 6]);
+     * // => 2
      *
      * _.min([]);
      * // => undefined
@@ -33783,7 +33783,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {*} Returns the minimum value.
      * @example
      *
-     * var objects = [{ 'n': 1 }, { 'n': 1 }];
+     * var objects = [{ 'n': 1 }, { 'n': 2 }];
      *
      * _.minBy(objects, function(o) { return o.n; });
      * // => { 'n': 1 }
@@ -33832,10 +33832,10 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * _.round(4.006);
      * // => 4
      *
-     * _.round(4.006, 1);
+     * _.round(4.006, 2);
      * // => 4.01
      *
-     * _.round(4060, -1);
+     * _.round(4060, -2);
      * // => 4100
      */
     var round = createRound('round');
@@ -33853,7 +33853,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @example
      *
      * _.subtract(6, 4);
-     * // => 1
+     * // => 2
      */
     var subtract = createMathOperation(function(minuend, subtrahend) {
       return minuend - subtrahend;
@@ -33870,7 +33870,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {number} Returns the sum.
      * @example
      *
-     * _.sum([4, 1, 8, 6]);
+     * _.sum([4, 2, 8, 6]);
      * // => 20
      */
     function sum(array) {
@@ -33893,7 +33893,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
      * @returns {number} Returns the sum.
      * @example
      *
-     * var objects = [{ 'n': 4 }, { 'n': 1 }, { 'n': 8 }, { 'n': 6 }];
+     * var objects = [{ 'n': 4 }, { 'n': 2 }, { 'n': 8 }, { 'n': 6 }];
      *
      * _.sumBy(objects, function(o) { return o.n; });
      * // => 20
@@ -37362,7 +37362,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   null,
   null,
   null
-
+  
 )
 
 /* hot reload */
@@ -37384,7 +37384,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default);
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -37505,12 +37505,12 @@ function normalizeComponent (
   var hook
   if (moduleIdentifier) { // server build
     hook = function (context) {
-      // 1.3 injection
+      // 2.3 injection
       context =
         context || // cached call
         (this.$vnode && this.$vnode.ssrContext) || // stateful
         (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 1.1 with runInNewContext: true
+      // 2.2 with runInNewContext: true
       if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
         context = __VUE_SSR_CONTEXT__
       }
@@ -39494,7 +39494,7 @@ function flushCallbacks () {
 }
 
 // Here we have async deferring wrappers using microtasks.
-// In 1.5 we used (macro) tasks (in combination with microtasks).
+// In 2.5 we used (macro) tasks (in combination with microtasks).
 // However, it has subtle problems when state is changed right before repaint
 // (e.g. #6813, out-in transitions).
 // Also, using (macro) tasks in event handler would cause some weird behaviors
@@ -39934,7 +39934,7 @@ function simpleNormalizeChildren (children) {
   return children
 }
 
-// 1. When the children contains constructs that always generated nested Arrays,
+// 2. When the children contains constructs that always generated nested Arrays,
 // e.g. <template>, <slot>, v-for, or when the children is provided by user
 // with hand-written render functions / JSX. In such cases a full normalization
 // is needed to cater to all possible types of children values.
@@ -40141,7 +40141,7 @@ function normalizeScopedSlots (
     !hasNormalSlots &&
     !prevSlots.$hasNormal
   ) {
-    // fast path 1: stable scoped slots w/ no normal slots to proxy,
+    // fast path 2: stable scoped slots w/ no normal slots to proxy,
     // only need to normalize once
     return prevSlots
   } else {
@@ -40464,7 +40464,7 @@ function bindObjectListeners (data, value) {
 function resolveScopedSlots (
   fns, // see flow/vnode
   res,
-  // the following are added in 1.6
+  // the following are added in 2.6
   hasDynamicKeys,
   contentHashKey
 ) {
@@ -41873,7 +41873,7 @@ function flushSchedulerQueue () {
   // This ensures that:
   // 1. Components are updated from parent to child. (because parent is always
   //    created before the child)
-  // 1. A component's user watchers are run before its render watcher (because
+  // 2. A component's user watchers are run before its render watcher (because
   //    user watchers are created before the render watcher)
   // 3. If a component is destroyed during a parent component's watcher run,
   //    its watchers can be skipped.
@@ -42986,7 +42986,7 @@ function initGlobalAPI (Vue) {
   Vue.delete = del;
   Vue.nextTick = nextTick;
 
-  // 1.6 explicit observable API
+  // 2.6 explicit observable API
   Vue.observable = function (obj) {
     observe(obj);
     return obj
@@ -43027,7 +43027,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '1.6.12';
+Vue.version = '2.6.12';
 
 /*  */
 
@@ -45073,7 +45073,7 @@ function normalizeEvents (on) {
     delete on[RANGE_TOKEN];
   }
   // This was originally intended to fix #4521 but no longer necessary
-  // after 1.5. Keeping it for backwards compat with generated code from < 1.4
+  // after 2.5. Keeping it for backwards compat with generated code from < 2.4
   /* istanbul ignore if */
   if (isDef(on[CHECKBOX_RADIO_TOKEN])) {
     on.change = [].concat(on[CHECKBOX_RADIO_TOKEN], on.change || []);
@@ -46067,7 +46067,7 @@ var directive = {
       if (!binding.modifiers.lazy) {
         el.addEventListener('compositionstart', onCompositionStart);
         el.addEventListener('compositionend', onCompositionEnd);
-        // Safari < 10.1 & UIWebView doesn't fire compositionend when
+        // Safari < 10.2 & UIWebView doesn't fire compositionend when
         // switching focus before confirming composition choice
         // this also fixes the issue where some browsers e.g. iOS Chrome
         // fires "change" instead of "input" on autocomplete.
@@ -47704,7 +47704,7 @@ function processSlotContent (el) {
     if ( true && slotScope) {
       warn$2(
         "the \"scope\" attribute for scoped slots have been deprecated and " +
-        "replaced by \"slot-scope\" since 1.5. The new \"slot-scope\" attribute " +
+        "replaced by \"slot-scope\" since 2.5. The new \"slot-scope\" attribute " +
         "can also be used on plain elements in addition to <template> to " +
         "denote scoped slots.",
         el.rawAttrsMap['scope'],
@@ -47738,7 +47738,7 @@ function processSlotContent (el) {
     }
   }
 
-  // 1.6 v-slot syntax
+  // 2.6 v-slot syntax
   {
     if (el.tag === 'template') {
       // v-slot on <template>
@@ -48109,7 +48109,7 @@ function preTransformNode (el, options) {
         exp: branch0.if,
         block: branch0
       });
-      // 1. add radio else-if condition
+      // 2. add radio else-if condition
       var branch1 = cloneASTElement(el);
       getAndRemoveAttr(branch1, 'v-for', true);
       addRawAttr(branch1, 'type', 'radio');
@@ -48206,7 +48206,7 @@ var genStaticKeysCached = cached(genStaticKeys$1);
  *
  * 1. Hoist them into constants, so that we no longer need to
  *    create fresh nodes for them on each re-render;
- * 1. Completely skip them in the patching process.
+ * 2. Completely skip them in the patching process.
  */
 function optimize (root, options) {
   if (!root) { return }
@@ -48230,7 +48230,7 @@ function markStatic$1 (node) {
   if (node.type === 1) {
     // do not make component slot content static. this avoids
     // 1. components not able to mutate slot nodes
-    // 1. static slot content fails for hot-reloading
+    // 2. static slot content fails for hot-reloading
     if (
       !isPlatformReservedTag(node.tag) &&
       node.tag !== 'slot' &&
@@ -48368,7 +48368,7 @@ var modifierCode = {
   meta: genGuard("!$event.metaKey"),
   left: genGuard("'button' in $event && $event.button !== 0"),
   middle: genGuard("'button' in $event && $event.button !== 1"),
-  right: genGuard("'button' in $event && $event.button !== 1")
+  right: genGuard("'button' in $event && $event.button !== 2")
 };
 
 function genHandlers (
@@ -48945,7 +48945,7 @@ function genChildren (
 // determine the normalization needed for the children array.
 // 0: no normalization needed
 // 1: simple normalization needed (possible 1-level deep nested array)
-// 1: full normalization needed
+// 2: full normalization needed
 function getNormalizationType (
   children,
   maybeComponent
@@ -49565,7 +49565,7 @@ Vue.compile = compileToFunctions;
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -49579,20 +49579,20 @@ Vue.compile = compileToFunctions;
 /******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = __webpack_modules__;
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/chunk loaded */
 /******/ 	(() => {
@@ -49624,7 +49624,7 @@ Vue.compile = compileToFunctions;
 /******/ 			return result;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -49636,7 +49636,7 @@ Vue.compile = compileToFunctions;
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -49648,12 +49648,12 @@ Vue.compile = compileToFunctions;
 /******/ 			}
 /******/ 		})();
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -49664,7 +49664,7 @@ Vue.compile = compileToFunctions;
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nmd = (module) => {
@@ -49673,11 +49673,11 @@ Vue.compile = compileToFunctions;
 /******/ 			return module;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
 /******/ 		// no baseURI
-/******/
+/******/ 		
 /******/ 		// object to store loaded and loading chunks
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
@@ -49685,19 +49685,19 @@ Vue.compile = compileToFunctions;
 /******/ 			"/js/app": 0,
 /******/ 			"css/app": 0
 /******/ 		};
-/******/
+/******/ 		
 /******/ 		// no chunk on demand loading
-/******/
+/******/ 		
 /******/ 		// no prefetching
-/******/
+/******/ 		
 /******/ 		// no preloaded
-/******/
+/******/ 		
 /******/ 		// no HMR
-/******/
+/******/ 		
 /******/ 		// no HMR manifest
-/******/
+/******/ 		
 /******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
-/******/
+/******/ 		
 /******/ 		// install a JSONP callback for chunk loading
 /******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
 /******/ 			var [chunkIds, moreModules, runtime] = data;
@@ -49720,20 +49720,20 @@ Vue.compile = compileToFunctions;
 /******/ 			}
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
-/******/
+/******/ 		
 /******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
-/******/
+/******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
-/******/
+/******/ 	
 /******/ })()
 ;

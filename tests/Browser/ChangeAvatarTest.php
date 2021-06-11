@@ -30,7 +30,7 @@ class ChangeAvatarTest extends DuskTestCase
                 ->assertSeeIn('.card-header', __('users.profileCardHeader'));
             $alt = $browser->attribute('#avatar', 'alt');
             self::assertFalse(str_contains($alt, 'temp_avatar'));
-            $browser->type('avatar_image', 'C:\PhpProjects\rockclub\tests\_data\test_avatar.jpg')
+            $browser->type('avatar_image', __DIR__ . '/test_avatar.jpg')
                 ->pause(1000);
             $alt = $browser->attribute('#avatar', 'alt');
             var_dump($alt);

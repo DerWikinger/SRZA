@@ -9,14 +9,10 @@
             <div class="col-md-12">
                 <h2>Users list</h2>
                 @foreach($users as $user)
-                    <div class="card">
-                        <div class="card-header">
-                            User '{{ $user['name'] }}'
-                        </div>
-                        <div class="card-body">
-                            @include('users.brief', ['user' => $user])
-                        </div>
-                    </div>
+                        <user-info :user="{{ $user }}">
+                            <b slot="header">{{ $user->nickname }}</b>
+                            <div slot="role">Role: {{ $user->role->name }}</div>
+                        </user-info>
                 @endforeach
                 <ul class="pagination">
                     @if($page > 1)
@@ -79,3 +75,10 @@
     {{--    {{ $users->links() }}--}}
 
 @endsection
+<script>
+    // import UserInfo from "../../js/components/UserInfo";
+    //
+    // export default {
+    //     components: {UserInfo}
+    // }
+</script>

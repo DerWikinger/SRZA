@@ -9,8 +9,8 @@
             <div class="col-md-12">
                 <h2>Users list</h2>
                 @foreach($users as $user)
-                        <user-info :user="{{ $user }}">
-                            <b slot="header">{{ $user->nickname }}</b>
+                        <user-info :user="{{ $user }}" v-on:data-changed="dataChanged">
+                            <strong slot="header">{{ $user->nickname }}</strong>
                             <div slot="role">Role: {{ $user->role->name }}</div>
                         </user-info>
                 @endforeach
@@ -81,4 +81,12 @@
     // export default {
     //     components: {UserInfo}
     // }
+    {{--export default {--}}
+    {{--    methods: {--}}
+    {{--            dataChanged(data) {--}}
+    {{--                let user = "{{ $user }}";--}}
+    {{--                console.log('Data changed', data.id, user);--}}
+    {{--            }--}}
+    {{--    }--}}
+    {{--}--}}
 </script>

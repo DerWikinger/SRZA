@@ -30,4 +30,10 @@ Vue.component('user-info', require('./components/UserInfo.vue').default);
 
 const app = new Vue({
     el: '#app',
+    methods: {
+        dataChanged(data) {
+            let user = data;
+            console.log('Data changed', data.id, user);
+        }
+    }
 });

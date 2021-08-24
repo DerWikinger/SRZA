@@ -1900,10 +1900,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     user: {
       type: Object
+    }
+  },
+  methods: {
+    onClick: function onClick(ev) {// console.log(ev);
+      // let oldValue = this.user.name;
+      // this.user.name = 'New name';
+      //console.log(this.user);
+    },
+    onNameChanged: function onNameChanged(ev) {
+      // this.user.save();
+      this.$emit('data-changed', this.user); // console.log(this.user.name);
     }
   }
 });
@@ -1943,7 +1955,13 @@ Vue.component('user-info', __webpack_require__(/*! ./components/UserInfo.vue */ 
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  methods: {
+    dataChanged: function dataChanged(data) {
+      var user = data;
+      console.log('Data changed', data.id, user);
+    }
+  }
 });
 
 /***/ }),
@@ -37590,21 +37608,50 @@ var render = function() {
       "div",
       { staticClass: "card-body" },
       [
-        _c("div", [
-          _vm._v("\n            ID: " + _vm._s(_vm.user.id) + "\n        ")
-        ]),
+        _c("div", [_vm._v("ID: " + _vm._s(_vm.user.id))]),
         _vm._v(" "),
-        _c("div", [
-          _vm._v("\n            Name: " + _vm._s(_vm.user.name) + "\n        ")
-        ]),
+        _c("label", { attrs: { for: "name" } }, [_vm._v("Name: ")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model.trim",
+              value: _vm.user.name,
+              expression: "user.name",
+              modifiers: { trim: true }
+            }
+          ],
+          attrs: { type: "text", id: "name" },
+          domProps: { value: _vm.user.name },
+          on: {
+            change: _vm.onNameChanged,
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.user, "name", $event.target.value.trim())
+            },
+            blur: function($event) {
+              return _vm.$forceUpdate()
+            }
+          }
+        }),
         _vm._v(" "),
         _c("div", [
           _vm._v(
-            "\n            Email: " + _vm._s(_vm.user.email) + "\n        "
+            "\n                Email: " +
+              _vm._s(_vm.user.email) +
+              "\n            "
           )
         ]),
         _vm._v(" "),
-        _vm._t("role")
+        _vm._t("role"),
+        _vm._v(" "),
+        _c("input", {
+          attrs: { type: "button", value: "Click me!" },
+          on: { click: _vm.onClick }
+        })
       ],
       2
     )

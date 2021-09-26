@@ -62,7 +62,7 @@
                                                         let filename = response.filename;
                                                         $('#avatar').attr('src', path + '/' + filename);
                                                         $('#avatar').attr('alt', filename);
-                                                    }
+                                                    },
                                                 });
                                             }
                                         </script>

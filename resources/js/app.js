@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+const {toJSON} = require("lodash/seq");
 
 window.Vue = require('vue').default;
 
@@ -31,9 +32,24 @@ Vue.component('user-info', require('./components/UserInfo.vue').default);
 const app = new Vue({
     el: '#app',
     methods: {
-        dataChanged(data) {
-            let user = data;
-            console.log('Data changed', data.id, user);
+        userDataChanged(user, token) {
+            let fd = new FormData();
+            fd.append('userData', JSON.stringify(user));
+            fd.append('_token', token)
+            $.ajax({
+                url: "users/update",
+                data: fd,
+                type: "POST",
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    console.log(response);
+                },
+                reject: function (response) {
+                    console.log('Failure');
+                }
+            })
+
         }
     }
 });

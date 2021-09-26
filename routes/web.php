@@ -25,12 +25,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('users')->name('users')->group(function() {
     Route::get('/', 'App\Http\Controllers\Users\UsersController@index');
+    Route::post('update', 'App\Http\Controllers\Users\UsersController@update')->name('.update');
 });
 
 Route::middleware('auth')->middleware('role:admin')->group(function () {
     Route::get('admin', function () {
-        return view('admin');
-    })->name('admin');
+        return view('admin.index');
+    })->name('admin.index');
 });
 
 Route::prefix('profile')->name('profile')->group(function () {

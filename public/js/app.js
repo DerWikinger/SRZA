@@ -1907,10 +1907,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     user: {
       type: Object
+    },
+    role: {
+      type: Object
+    },
+    roles: {
+      type: Array
     },
     token: {
       type: String
@@ -1921,7 +1929,10 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit('data-changed', this.user, this.token);
     },
     onNameChanged: function onNameChanged(ev) {},
-    onEmailChanged: function onEmailChanged(ev) {}
+    onEmailChanged: function onEmailChanged(ev) {},
+    onRoleChanged: function onRoleChanged(ev) {
+      console.log('Role changed!', this.user.name, this.role.id);
+    }
   }
 });
 
@@ -42192,20 +42203,55 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "input-group form-group" },
-        [
-          _c(
-            "label",
-            { staticClass: "col-form-label col-2", attrs: { for: "role" } },
-            [_vm._v("Role:")]
-          ),
-          _vm._v(" "),
-          _vm._t("role")
-        ],
-        2
-      ),
+      _c("div", { staticClass: "input-group form-group" }, [
+        _c(
+          "label",
+          { staticClass: "col-form-label col-2", attrs: { for: "role" } },
+          [_vm._v("Role:")]
+        ),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.role.id,
+                expression: "role.id"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { name: "role", id: "role" },
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.role,
+                    "id",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                },
+                _vm.onRoleChanged
+              ]
+            }
+          },
+          _vm._l(_vm.roles, function(role, key) {
+            return _c("option", { domProps: { value: role.id } }, [
+              _vm._v(_vm._s(role.name))
+            ])
+          }),
+          0
+        )
+      ]),
       _vm._v(" "),
       _c("input", {
         staticClass: "form-control col-4",

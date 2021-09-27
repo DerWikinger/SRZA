@@ -18,7 +18,9 @@
             </div>
             <div class="input-group form-group">
                 <label class="col-form-label col-2" for="role">Role:</label>
-                <slot name="role"></slot>
+                <select class="form-control" name="role" id="role" v-model="role.id" @change="onRoleChanged">
+                    <option v-for="(role, key) in roles" v-bind:value="role.id">{{ role.name }}</option>
+                </select>
             </div>
             <input class="form-control col-4" type="button" @click="onClick" value="Save">
         </div>
@@ -29,6 +31,8 @@
 export default {
     props: {
         user: {type: Object},
+        role: {type: Object},
+        roles: {type: Array},
         token: {type: String},
     },
     methods: {
@@ -41,6 +45,9 @@ export default {
         onEmailChanged(ev) {
 
         },
-    }
+        onRoleChanged(ev) {
+            console.log('Role changed!', this.user.name, this.role.id);
+        },
+    },
 }
 </script>

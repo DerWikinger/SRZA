@@ -9,9 +9,13 @@
             <div class="col-md-12">
                 <h2>Users list</h2>
                 @foreach($users as $user)
-                    <user-info :user="{{ $user }}" v-on:data-changed="userDataChanged" token="{{ csrf_token() }}">
+                    <user-info :user="{{ $user }}" :role="{{ collect($user->role)
+                               ->filter( function($value, $key) { if($key == "id") return $value; } ) }}"
+                               :roles="{{ \App\Models\Role::all()
+                                ->map( function($item) { return ["id" => $item->id, "name" =>$item->name ]; } ) }}"
+                               v-on:data-changed="userDataChanged"
+                               token="{{ csrf_token() }}">
                         <strong slot="header">{{ $user->nickname }}</strong>
-                        <input class="form-control " type="text" id="role" slot="role" value="{{ $user->role->name }}">
                     </user-info>
                 @endforeach
                 @if($totalPages > 1)

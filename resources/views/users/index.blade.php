@@ -14,6 +14,7 @@
                                :roles="{{ \App\Models\Role::all()
                                 ->map( function($item) { return ["id" => $item->id, "name" =>$item->name ]; } ) }}"
                                v-on:data-changed="userDataChanged"
+                               :depth="depth"
                                token="{{ csrf_token() }}">
                         <strong slot="header">{{ $user->nickname }}</strong>
                     </user-info>

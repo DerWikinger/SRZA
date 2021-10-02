@@ -112,7 +112,7 @@
 
 @endsection
 <script>
-    import UsersList from "../../js/components/UsersList";
+    import UsersList from "../../js/components/user/UsersList";
     export default {
         components: {UsersList}
     }

@@ -8,17 +8,28 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <h2>Users list</h2>
-                @foreach($users as $user)
-                    <user-info :user="{{ $user }}" :role="{{ collect($user->role)
-                               ->filter( function($value, $key) { if($key == "id") return $value; } ) }}"
-                               :roles="{{ \App\Models\Role::all()
-                                ->map( function($item) { return ["id" => $item->id, "name" =>$item->name ]; } ) }}"
-                               v-on:data-changed="userDataChanged"
-                               :depth="depth"
-                               token="{{ csrf_token() }}">
-                        <strong slot="header">{{ $user->nickname }}</strong>
-                    </user-info>
-                @endforeach
+                <users-list :users="{{ collect($users)->map( function (\App\Models\User $user) {
+                    return [
+                        'id' => $user->id,
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'role' => [ 'id' => $user->role->id, 'name' => $user->role->name ],
+                        'verified' => $user->hasVerifiedEmail(),
+                        'createdAt' => $user->created_at->toString(),
+                        'nickname' => $user->nickname,
+                        ];
+                } ) }}"></users-list>
+{{--                @foreach($users as $user)--}}
+{{--                    <user-info :user="{{ $user }}" :role="{{ collect($user->role)--}}
+{{--                               ->filter( function($value, $key) { if($key == "id") return $value; } ) }}"--}}
+{{--                               :roles="{{ \App\Models\Role::all()--}}
+{{--                                ->map( function($item) { return ["id" => $item->id, "name" =>$item->name ]; } ) }}"--}}
+{{--                               v-on:data-changed="userDataChanged"--}}
+{{--                               :depth="depth"--}}
+{{--                               token="{{ csrf_token() }}">--}}
+{{--                        <strong slot="header">{{ $user->nickname }}</strong>--}}
+{{--                    </user-info>--}}
+{{--                @endforeach--}}
                 @if($totalPages > 1)
                     <ul class="pagination">
                         @if($page > 1)
@@ -101,16 +112,8 @@
 
 @endsection
 <script>
-    // import UserInfo from "../../js/components/UserInfo";
-    //
-    // export default {
-    //     components: {UserInfo}
-    // }
-    // export default {
-    //     methods: {
-    //             dataChanged(data) {
-    //
-    //             }
-    //     }
-    // }
+    import UsersList from "../../js/components/UsersList";
+    export default {
+        components: {UsersList}
+    }
 </script>

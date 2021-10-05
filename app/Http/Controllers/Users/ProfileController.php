@@ -7,8 +7,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
 
@@ -91,7 +89,13 @@ class ProfileController extends Controller
             }
             $fileName = 'temp_avatar_' . Carbon::now() . '.' . 'tmp';
             $fileName = str_replace([':', '\\'], '_', $fileName);
-            Storage::putFileAs($path, new File($file), $fileName);
+            try {
+                Storage::putFileAs($path, new File($file), $fileName);
+            } catch (\Exception $exception) {
+                dump($exception);
+                return response()->json(['error' => 'File is not put on server!']);
+            }
+            dump('A file is created');
             return response()->json([
                 'success' => 'AJAX request success',
                 'path' => '/storage/images/avatars/' . $user->id,

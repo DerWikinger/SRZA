@@ -22,11 +22,12 @@ class DeleteAvatarTest extends \Codeception\Test\Unit
     // tests
     public function testDeleteTempAvatarFunction()
     {
-        $fileName = 'temp_avatar_' . Carbon::now() . '.tmp';
-        $fileName = str_replace([':', '\\'], '_', $fileName);
+        $now  = Carbon::now();
+        $now = str_replace([':', '\\'], '_', $now);
+        $fileName = 'temp_avatar_' . $now . '.tmp';
         $path = 'public/images/avatars';
         Storage::copy($path . '/default_avatar.jpg', $path . '/' . $fileName);
-        $pattern = '.tmp';
+        $pattern = $now . '.tmp';
         $files = collect(Storage::allFiles($path))->filter(function ($f) use ($pattern) {
             return str_contains($f, $pattern);
         });

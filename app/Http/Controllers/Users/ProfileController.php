@@ -64,9 +64,9 @@ class ProfileController extends Controller
         }
         $fileName = 'avatar_' . $count . '.' . $file->extension();
         // Delete previuos avatar of client
-//        if (Storage::exists($path . '/' . $user->avatar ?? '')) {
-//            Storage::delete($path . '/' . $user->avatar);
-//        }
+        if (Storage::exists($path . '/' . $user->avatar ?? '')) {
+            Storage::delete($path . '/' . $user->avatar);
+        }
         // Delete same file if exists from storage
         if (Storage::exists($path . '/' . $fileName)) {
             Storage::delete($path . '/' . $fileName);

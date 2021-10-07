@@ -26,7 +26,7 @@ class ProfileController extends Controller
         }
 
         if (auth()->id() == $id) {
-            return view('users.profile')->with(['user' => User::find($id), 'saved' => $saved]);
+            return view('cabinet.profile')->with(['user' => User::find($id), 'saved' => $saved]);
         }
         return response()->view('users.authorize', ['error' => 'Unauthorized'], 401);
     }

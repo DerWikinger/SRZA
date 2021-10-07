@@ -112,7 +112,7 @@
     </div>
 @endsection
 <script>
-    import UserAvatar from "../../js/components/users/UserAvatar";
+    import UserAvatar from "../../js/components/profile/UserAvatar";
 
     export default {
         components: {UserAvatar}

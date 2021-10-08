@@ -34,6 +34,17 @@ Route::middleware('auth')->middleware('role:admin')->group(function () {
     })->name('admin.index');
 });
 
+Route::prefix('cabinet')->name('cabinet')->group(function () {
+    Route::get('/{id}', function ($id) {
+        $user = App\Models\User::find($id);
+        if($user) {
+            return view('cabinet.cabinet')->with(['user' => $user]);
+        } else {
+            abort('401');
+        }
+    });
+});
+
 Route::prefix('profile')->name('profile')->group(function () {
     Route::get('/{id}', 'App\Http\Controllers\Users\ProfileController@show');
     Route::put('/update', 'App\Http\Controllers\Users\ProfileController@update')->name('.update');

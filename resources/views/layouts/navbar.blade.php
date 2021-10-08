@@ -13,6 +13,10 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 @auth
+                    <a class="navbar-brand" href="{{ route('cabinet', ['id' => auth()->user()->id]) }}">
+                        {{ __('users.cabinetNavbarIcon') }}
+                    </a>
+
                     <a class="navbar-brand" href="{{ route('profile', ['id' => auth()->user()->id]) }}">
                         {{ __('users.profileNavbarIcon') }}
                     </a>

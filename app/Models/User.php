@@ -48,6 +48,11 @@ class User extends Model implements
         return $this->belongsTo(Role::class);
     }
 
+    public function contacts()
+    {
+        return $this->belongsToMany(Contact::class, 'users', 'id', 'id', 'id', 'user_id');
+    }
+
     public function getUsernameAttribute()
     {
         return $this->nickname ? $this->nickname : $this->name;

@@ -8,11 +8,11 @@
                 <ul class="nav nav-tabs" id="cabinetTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                           aria-controls="profile" aria-selected="true">Profile</a>
+                           aria-controls="profile" aria-selected="true">{{__('users.profile')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="seacrh-tab" data-toggle="tab" href="#search" role="tab"
-                           aria-controls="search" aria-selected="false">Search</a>
+                        <a class="nav-link" id="contacts-tab" data-toggle="tab" href="#contacts" role="tab"
+                           aria-controls="contacts" aria-selected="false">{{__('users.contacts')}}</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="cabinetTabContent">

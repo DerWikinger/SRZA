@@ -17,9 +17,9 @@
                         {{ __('users.cabinetNavbarIcon') }}
                     </a>
 
-                    <a class="navbar-brand" href="{{ route('profile', ['id' => auth()->user()->id]) }}">
-                        {{ __('users.profileNavbarIcon') }}
-                    </a>
+{{--                    <a class="navbar-brand" href="{{ route('profile', ['id' => auth()->user()->id]) }}">--}}
+{{--                        {{ __('users.profileNavbarIcon') }}--}}
+{{--                    </a>--}}
 
                     @can('view-users')
                         <a class="navbar-brand" href="{{ route('users') }}">

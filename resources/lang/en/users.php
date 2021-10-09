@@ -13,4 +13,6 @@ return [
     "save" => "Save",
     "dataSaved" => "Data saved",
     "dataNotSaved" => "Data not saved",
+    "profile" => "Profile",
+    "contacts" => "Contacts"
 ];

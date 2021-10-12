@@ -16,13 +16,17 @@
                     </elem-out>
                 </div>
             @else
-                <div class="">
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        {{ __('users.dataNotSaved') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                <div class="message-saved">
+                    <elem-out>
+                        <div slot="element">
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                {{ __('users.dataNotSaved') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </elem-out>
                 </div>
             @endif
         @endunless
@@ -39,14 +43,14 @@
             </div>
 
             @can('view-users')
-            <div class="form-group row">
-                <label for="id"
-                       class="col-md-4 col-form-label text-md-right">{{ __('users.id') }}</label>
-                <div class="col-md-6">
-                    <input id="id" type="text" class="form-control " name="id" value="{{ $user->id }}"
-                           required disabled>
+                <div class="form-group row">
+                    <label for="id"
+                           class="col-md-4 col-form-label text-md-right">{{ __('users.id') }}</label>
+                    <div class="col-md-6">
+                        <input id="id" type="text" class="form-control " name="id" value="{{ $user->id }}"
+                               required disabled>
+                    </div>
                 </div>
-            </div>
             @endcan
             <div class="form-group row">
                 <label for="name"

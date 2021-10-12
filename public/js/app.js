@@ -1954,7 +1954,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _users_UserBrief__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../users/UserBrief */ "./resources/js/components/users/UserBrief.vue");
 //
 //
 //
@@ -1963,21 +1962,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "UserContacts",
-  components: {
-    UserBrief: _users_UserBrief__WEBPACK_IMPORTED_MODULE_0__.default
-  },
   props: {
     contacts: {
       type: Array
     }
   },
-  computed: {// contacts() {
-    //     return this.user.contacts;
-    // }
-  }
+  computed: {}
 });
 
 /***/ }),
@@ -42929,12 +42924,17 @@ var render = function() {
   return _c(
     "div",
     _vm._l(_vm.contacts, function(contact, key) {
-      return _c(
-        "div",
-        { staticClass: "p-1" },
-        [_c("user-brief", { attrs: { user: contact } })],
-        1
-      )
+      return _vm.contacts.length > 0
+        ? _c("div", { staticClass: "p-1" }, [
+            _c("li", [
+              _vm._v(_vm._s(contact.name) + " "),
+              _c("span", [_vm._v(" : ")]),
+              _vm._v(" " + _vm._s(contact.nickname) + " ")
+            ])
+          ])
+        : _c("div", { staticClass: "p-1" }, [
+            _c("li", [_vm._v("You don't have any contacts!")])
+          ])
     }),
     0
   )

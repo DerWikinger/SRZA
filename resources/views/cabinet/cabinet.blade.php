@@ -1,9 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
-
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-md-around">
             <div class="col-md-12">
                 <ul class="nav nav-tabs" id="cabinetTab" role="tablist">
                     <li class="nav-item">

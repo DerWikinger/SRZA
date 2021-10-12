@@ -1,5 +1,5 @@
 <template>
-    <div class="user-avatar">
+    <div class="user-avatar" >
         <input class="input-avatar custom-file-input"
                accept="image/*"
                name="avatar_image"
@@ -23,12 +23,13 @@ export default {
     },
     methods: {
         onAvatarChanged(ev) {
+            console.log('Avatar image is changed');
             let fd = new FormData();
             fd.append('avatar', $('input[name=avatar_image]')[0].files[0]);
             fd.append('userId', this.id);
             fd.append('_token', this.token);
             $.ajax({
-                url: 'upload',
+                url: '/profile/upload',
                 data: fd,
                 type: "POST",
                 processData: false,
@@ -39,8 +40,8 @@ export default {
                     $('#avatar').attr('src', path + '/' + filename);
                     $('#avatar').attr('alt', filename);
                 },
-                error: function (respone) {
-                    console.log('Failure', respone);
+                error: function (response) {
+                    console.log('Failure', response);
                 }
             });
         },
@@ -63,16 +64,16 @@ export default {
 
 .input-avatar {
     position: absolute;
-    width: 10rem;
-    height: 10rem;
+    width: 130px;
+    height: 130px;
     cursor: pointer;
 }
 
 .img-avatar {
-    width: 10rem;
-    height: 10rem;
+    width: 130px;
+    height: 130px;
     border: #ced4da solid 1px;
-    border-radius: 0.25rem;
+    border-radius: 1.25rem;
 }
 
 </style>

@@ -1,19 +1,23 @@
 <div class="card">
-{{--    <div class="card-header">{{ __('users.profileCardHeader') }}</div>--}}
+    {{--    <div class="card-header">{{ __('users.profileCardHeader') }}</div>--}}
     <div class="card-body">
         @unless(@is_null($saved))
             @if(($saved))
-                <div class="">
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ __('users.dataSaved') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                <div class="message-saved">
+                    <elem-out>
+                        <div slot="element">
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                {{ __('users.dataSaved') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </elem-out>
                 </div>
             @else
                 <div class="">
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <div class="alert alert-danger alert-dismissible" role="alert">
                         {{ __('users.dataNotSaved') }}
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -27,12 +31,14 @@
             @csrf
             @method('PUT')
             <div class="form-group row">
-                <div class="col-md-12 text-center">
+                <div class="col-12 text-center">
                     <user-avatar avatar="{{ $user->avatar ? $user->avatar : '' }}" id="{{ $user->id }}"
                                  token="{{ csrf_token() }}">
                     </user-avatar>
                 </div>
             </div>
+
+            @can('view-users')
             <div class="form-group row">
                 <label for="id"
                        class="col-md-4 col-form-label text-md-right">{{ __('users.id') }}</label>
@@ -41,7 +47,7 @@
                            required disabled>
                 </div>
             </div>
-
+            @endcan
             <div class="form-group row">
                 <label for="name"
                        class="col-md-4 col-form-label text-md-right">{{ __('users.name') }}</label>
@@ -104,8 +110,9 @@
 </div>
 <script>
     import UserAvatar from "../../js/components/profile/UserAvatar";
+    import ElemOut from "../../js/components/global/ElemOut";
 
     export default {
-        components: {UserAvatar}
+        components: {ElemOut, UserAvatar}
     }
 </script>

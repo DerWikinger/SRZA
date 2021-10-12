@@ -36,9 +36,17 @@ Route::middleware('auth')->middleware('role:admin')->group(function () {
 
 Route::prefix('cabinet')->name('cabinet')->group(function () {
     Route::get('/{id}', function ($id) {
+        $saved = null;
+        if (\Illuminate\Support\Facades\Request::query('saved')) {
+            $saved = \Illuminate\Support\Facades\Request::query('saved');
+        }
         $user = App\Models\User::find($id);
         if($user) {
-            return view('cabinet.cabinet')->with(['user' => $user]);
+            if(auth()->check()) {
+                return view('cabinet.cabinet')->with(['user' => $user, 'saved' => $saved]);
+            } else {
+                return redirect('login');
+            }
         } else {
             abort('401');
         }

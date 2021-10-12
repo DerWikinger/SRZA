@@ -10053,3 +10053,11 @@ li.active {
 span.rating-active {
   color: #1c7430 !important;
 }
+
+.message-saved .inner-element {
+  position: absolute;
+  height: 3rem;
+  top: calc( -3rem - 2px);
+  left: 33%;
+  width: 33%;
+}

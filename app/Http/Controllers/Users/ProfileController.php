@@ -47,7 +47,8 @@ class ProfileController extends Controller
             $this->updateAvatar($request->file('avatar_image'), $user);
         }
         $saved = $user->save();
-        return response()->redirectToRoute('profile', ['id' => $user->id, 'saved' => $saved]);
+        return response()->redirectToRoute('cabinet', ['id' => $user->id, 'saved' => $saved]);
+//        return redirect()->back(302, ['saved' => $saved]);
     }
 
     protected function updateAvatar(UploadedFile $file, User $user)

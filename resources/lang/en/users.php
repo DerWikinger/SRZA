@@ -5,6 +5,7 @@ return [
     "usersNavbarIcon" => "Users",
     "profileNavbarIcon" => "Profile",
     "cabinetNavbarIcon" => "Cabinet",
+    'chatsNavbarIcon' => 'Chats',
     "profileCardHeader" => "User's data",
     "id" => "ID",
     "name" => "Name",

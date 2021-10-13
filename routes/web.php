@@ -34,6 +34,10 @@ Route::middleware('auth')->middleware('role:admin')->group(function () {
     })->name('admin.index');
 });
 
+Route::prefix('chats')->name('chats')->middleware('auth')->group(function () {
+    Route::get('/{id}', 'App\Http\Controllers\Chats\ChatsController@index');
+});
+
 Route::prefix('cabinet')->name('cabinet')->group(function () {
     Route::get('/{id}', function ($id) {
         $saved = null;

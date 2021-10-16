@@ -7,8 +7,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
 
@@ -28,7 +26,7 @@ class ProfileController extends Controller
         }
 
         if (auth()->id() == $id) {
-            return view('users.profile')->with(['user' => User::find($id), 'saved' => $saved]);
+            return view('cabinet.profile')->with(['user' => User::find($id), 'saved' => $saved]);
         }
         return response()->view('users.authorize', ['error' => 'Unauthorized'], 401);
     }
@@ -49,7 +47,8 @@ class ProfileController extends Controller
             $this->updateAvatar($request->file('avatar_image'), $user);
         }
         $saved = $user->save();
-        return response()->redirectToRoute('profile', ['id' => $user->id, 'saved' => $saved]);
+        return response()->redirectToRoute('cabinet', ['id' => $user->id, 'saved' => $saved]);
+//        return redirect()->back(302, ['saved' => $saved]);
     }
 
     protected function updateAvatar(UploadedFile $file, User $user)
@@ -66,9 +65,9 @@ class ProfileController extends Controller
         }
         $fileName = 'avatar_' . $count . '.' . $file->extension();
         // Delete previuos avatar of client
-//        if (Storage::exists($path . '/' . $user->avatar ?? '')) {
-//            Storage::delete($path . '/' . $user->avatar);
-//        }
+        if (Storage::exists($path . '/' . $user->avatar ?? '')) {
+            Storage::delete($path . '/' . $user->avatar);
+        }
         // Delete same file if exists from storage
         if (Storage::exists($path . '/' . $fileName)) {
             Storage::delete($path . '/' . $fileName);
@@ -91,7 +90,13 @@ class ProfileController extends Controller
             }
             $fileName = 'temp_avatar_' . Carbon::now() . '.' . 'tmp';
             $fileName = str_replace([':', '\\'], '_', $fileName);
-            Storage::putFileAs($path, new File($file), $fileName);
+            try {
+                Storage::putFileAs($path, new File($file), $fileName);
+            } catch (\Exception $exception) {
+                dump($exception);
+                return response()->json(['error' => 'File is not put on server!']);
+            }
+            dump('A file is created');
             return response()->json([
                 'success' => 'AJAX request success',
                 'path' => '/storage/images/avatars/' . $user->id,

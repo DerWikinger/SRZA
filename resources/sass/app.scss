@@ -51,3 +51,20 @@ header h2 {
     box-sizing: border-box;
 }
 
+// Users views
+li.active {
+    background: #eaa5a3 !important;
+}
+
+span.rating-active {
+    color: #1c7430 !important;
+}
+
+// Profile view
+.message-saved {
+    position: absolute;
+    width: 25%;
+    overflow: hidden;
+    left: 1rem;
+}
+

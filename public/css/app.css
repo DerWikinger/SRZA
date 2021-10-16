@@ -10045,3 +10045,18 @@ header h2 {
   border: 1px solid transparent;
   box-sizing: border-box;
 }
+
+li.active {
+  background: #eaa5a3 !important;
+}
+
+span.rating-active {
+  color: #1c7430 !important;
+}
+
+.message-saved {
+  position: absolute;
+  width: 25%;
+  overflow: hidden;
+  left: 1rem;
+}

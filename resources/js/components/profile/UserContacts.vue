@@ -7,8 +7,6 @@
                     <div><span><strong>{{ nickname ? contact.nickname : contact.name }}</strong></span></div>
                     <div><span>{{ email ? contact.email : ''}}</span></div>
                 </div>
-                <!--                <span>{{ nickname ? contact.nickname : contact.name }}</span>-->
-                <!--                <span>{{ email ? ': ' + contact.email : ''}}</span>-->
             </div>
         </div>
         <div v-if="contacts.length == 0">

@@ -61,11 +61,10 @@ span.rating-active {
 }
 
 // Profile view
-.message-saved .inner-element {
+.message-saved {
     position: absolute;
-    height: 3rem;
-    top: calc( -3rem - 2px);
-    left: 33%;
-    width: 33%
+    width: 25%;
+    overflow: hidden;
+    left: 1rem;
 }
 

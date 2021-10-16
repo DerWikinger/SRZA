@@ -2,33 +2,21 @@
     {{--    <div class="card-header">{{ __('users.profileCardHeader') }}</div>--}}
     <div class="card-body">
         @unless(@is_null($saved))
-            @if(($saved))
-                <div class="message-saved">
-                    <elem-out>
-                        <div slot="element">
-                            <div class="alert alert-success alert-dismissible" role="alert">
+            <div class="message-saved">
+                <elem-in-out-left>
+                    <div slot="element">
+                        @if(($saved))
+                            <div class="alert alert-success" role="alert">
                                 {{ __('users.dataSaved') }}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
                             </div>
-                        </div>
-                    </elem-out>
-                </div>
-            @else
-                <div class="message-saved">
-                    <elem-out>
-                        <div slot="element">
-                            <div class="alert alert-danger alert-dismissible" role="alert">
+                        @else
+                            <div class="alert alert-danger" role="alert">
                                 {{ __('users.dataNotSaved') }}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
                             </div>
-                        </div>
-                    </elem-out>
-                </div>
-            @endif
+                        @endif
+                    </div>
+                </elem-in-out-left>
+            </div>
         @endunless
         <form method="POST" action="{{ route('profile.update') }}" name="profile"
               enctype="multipart/form-data">
@@ -37,7 +25,7 @@
             <div class="form-group row">
                 <div class="col-12 text-center">
                     <user-avatar-change avatar="{{ $user->avatar ? $user->avatar : '' }}" id="{{ $user->id }}"
-                                 token="{{ csrf_token() }}">
+                                        token="{{ csrf_token() }}">
                     </user-avatar-change>
                 </div>
             </div>

@@ -8,7 +8,7 @@
 
 <script>
 export default {
-    name: "ElemOut",
+    name: "ElemInOutLeft",
     mounted() {
         this.show = true;
         setTimeout(() => {
@@ -28,18 +28,26 @@ export default {
 <style scoped>
 
 .inner-element {
+    position: relative;
+    left: 0%;
 }
-
 .fade-enter-active {
-    transition: opacity 1000ms ease-out;
+    transition: left 1000ms ease-out;
 }
-
 .fade-leave-active {
-    transition: opacity 2000ms ease;
+    transition: left 1500ms ease-in;
 }
-
-.fade-enter, .fade-leave-to {
-    opacity: 0;
+.fade-enter {
+    left: -100%;
+}
+.fade-enter-to {
+    left: 0%;
+}
+.fade-leave {
+    left: 0%;
+}
+.fade-leave-to {
+    left: -100%;
 }
 
 </style>

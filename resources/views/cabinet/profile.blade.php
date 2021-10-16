@@ -95,6 +95,9 @@
                     <button type="submit" class="btn btn-primary">
                         {{ __('users.save') }}
                     </button>
+                    <button-cancel id="{{ $user->id }}" >
+                        {{ __('users.cancel') }}
+                    </button-cancel>
                 </div>
             </div>
         </form>
@@ -102,9 +105,10 @@
 </div>
 <script>
     import UserAvatarChange from "../../js/components/profile/UserAvatarChange";
-    import ElemOut from "../../js/components/global/ElemOut";
+    import ElemInOutLeft from "../../js/components/global/ElemInOutLeft";
+    import ButtonCancel from "../../js/components/profile/ButtonCancel";
 
     export default {
-        components: {ElemOut, UserAvatarChange}
+        components: {ButtonCancel, ElemInOutLeft, UserAvatarChange},
     }
 </script>

@@ -61,6 +61,7 @@ Route::prefix('profile')->name('profile')->group(function () {
     Route::get('/{id}', 'App\Http\Controllers\Users\ProfileController@show');
     Route::put('/update', 'App\Http\Controllers\Users\ProfileController@update')->name('.update');
     Route::post('/upload', 'App\Http\Controllers\Users\ProfileController@upload')->name('.upload');
+    Route::get('/reset/{id}', 'App\Http\Controllers\Users\ProfileController@reset')->name('.reset');
 });
 
 Auth::routes(['verify' => true]);

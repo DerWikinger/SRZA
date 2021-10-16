@@ -12,6 +12,7 @@ return [
     "email" => "E-Mail Address",
     "nickname" => "Nickname",
     "save" => "Save",
+    "cancel" => "Cancel",
     "dataSaved" => "Data saved",
     "dataNotSaved" => "Data not saved",
     "profile" => "Profile",

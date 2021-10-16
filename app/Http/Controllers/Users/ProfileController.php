@@ -106,6 +106,12 @@ class ProfileController extends Controller
         return response()->json(['error' => 'Avatar image is not uploaded']);
     }
 
+    public function reset($id)
+    {
+        $path = '/public/images/avatars/' . $id;
+        $this->deleteTempAvatars($path, '.tmp');
+    }
+
     public function deleteTempAvatars($path, $pattern)
     {
         foreach (Storage::allFiles($path) as $f) {

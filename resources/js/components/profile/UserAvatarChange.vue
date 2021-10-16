@@ -23,7 +23,7 @@ export default {
     },
     methods: {
         onAvatarChanged(ev) {
-            console.log('Avatar image is changed');
+            console.log('Avatar image is upload');
             let fd = new FormData();
             fd.append('avatar', $('input[name=avatar_image]')[0].files[0]);
             fd.append('userId', this.id);

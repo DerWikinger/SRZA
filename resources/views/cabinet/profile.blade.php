@@ -95,7 +95,7 @@
                     <button type="submit" class="btn btn-primary">
                         {{ __('users.save') }}
                     </button>
-                    <button-cancel id="{{ $user->id }}" >
+                    <button-cancel id="{{ $user->id }}" token="{{ csrf_token() }}">
                         {{ __('users.cancel') }}
                     </button-cancel>
                 </div>

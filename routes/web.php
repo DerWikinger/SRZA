@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,17 +35,18 @@ Route::middleware('auth')->middleware('role:admin')->group(function () {
     })->name('admin.index');
 });
 
-Route::prefix('chats')->name('chats')->middleware('auth')->group(function () {
+Route::prefix('chats')->name('chats')->middleware(['auth', 'owner:chats'])->group(function () {
     Route::get('/{id}', 'App\Http\Controllers\Chats\ChatsController@index');
 });
 
-Route::prefix('cabinet')->name('cabinet')->group(function () {
+Route::prefix('cabinet')->name('cabinet')->middleware('owner:cabinet')->group(function () {
     Route::get('/{id}', function ($id) {
         $saved = null;
         if (\Illuminate\Support\Facades\Request::query('saved')) {
             $saved = \Illuminate\Support\Facades\Request::query('saved');
         }
         $user = App\Models\User::find($id);
+
         if($user) {
             if(auth()->check()) {
                 return view('cabinet.cabinet')->with(['user' => $user, 'saved' => $saved]);
@@ -58,10 +60,10 @@ Route::prefix('cabinet')->name('cabinet')->group(function () {
 });
 
 Route::prefix('profile')->name('profile')->group(function () {
-    Route::get('/{id}', 'App\Http\Controllers\Users\ProfileController@show');
+    Route::get('/{id}', 'App\Http\Controllers\Users\ProfileController@show')->middleware('owner:profile');
+    Route::post('/reset', 'App\Http\Controllers\Users\ProfileController@reset')->name('.reset');
     Route::put('/update', 'App\Http\Controllers\Users\ProfileController@update')->name('.update');
     Route::post('/upload', 'App\Http\Controllers\Users\ProfileController@upload')->name('.upload');
-    Route::get('/reset/{id}', 'App\Http\Controllers\Users\ProfileController@reset')->name('.reset');
 });
 
 Auth::routes(['verify' => true]);

@@ -2017,13 +2017,25 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     id: {
       type: String
+    },
+    token: {
+      type: String
     }
   },
   methods: {
     profileReset: function profileReset() {
       var _this = this;
 
-      $.ajax('/profile/reset/' + this.id).then(function () {
+      var fd = new FormData();
+      fd.append('_token', this.token);
+      $.ajax({
+        url: '/profile/reset',
+        data: fd,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        success: function success() {}
+      }).then(function () {
         location = '/cabinet/' + _this.id;
       });
     }
@@ -2080,7 +2092,7 @@ __webpack_require__.r(__webpack_exports__);
       $.ajax({
         url: '/profile/upload',
         data: fd,
-        type: "POST",
+        type: 'POST',
         processData: false,
         contentType: false,
         success: function success(response) {

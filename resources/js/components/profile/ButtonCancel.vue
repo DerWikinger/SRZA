@@ -8,13 +8,24 @@
 export default {
     name: "ButtonCancel",
     props: {
-      id: { type: String},
+        id: {type: String},
+        token: {type: String},
     },
     methods: {
         profileReset() {
-            $.ajax('/profile/reset/' + this.id).then(() => {
+            let fd = new FormData();
+            fd.append('_token', this.token);
+            $.ajax({
+                url: '/profile/reset',
+                data: fd,
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                success: function () { }
+            }).then(() => {
                 location = '/cabinet/' + this.id;
-            })
+                }
+            );
         }
     }
 }

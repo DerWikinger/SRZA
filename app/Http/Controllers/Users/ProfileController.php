@@ -7,6 +7,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\UploadedFile;
 
@@ -106,10 +107,11 @@ class ProfileController extends Controller
         return response()->json(['error' => 'Avatar image is not uploaded']);
     }
 
-    public function reset($id)
+    public function reset()
     {
-        $path = '/public/images/avatars/' . $id;
+        $path = '/public/images/avatars/' . auth()->id();
         $this->deleteTempAvatars($path, '.tmp');
+        return response('', 200);
     }
 
     public function deleteTempAvatars($path, $pattern)

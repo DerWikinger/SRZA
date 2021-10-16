@@ -31,7 +31,7 @@ export default {
             $.ajax({
                 url: '/profile/upload',
                 data: fd,
-                type: "POST",
+                type: 'POST',
                 processData: false,
                 contentType: false,
                 success: function (response) {

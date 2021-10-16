@@ -15,5 +15,6 @@ return [
     "dataSaved" => "Data saved",
     "dataNotSaved" => "Data not saved",
     "profile" => "Profile",
-    "contacts" => "Contacts"
+    "contacts" => "Contacts",
+    'about' => "About me",
 ];

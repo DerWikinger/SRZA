@@ -1,13 +1,8 @@
 <template>
     <div class="user-avatar" >
-        <input class="input-avatar custom-file-input"
-               accept="image/*"
-               name="avatar_image"
-               @change="onAvatarChanged"
-               type="file">
-        <img id="avatar" class="img-avatar" v-if="avatar != ''"
+        <img class="img-avatar" v-if="avatar != ''"
              :src="srcValue" :alt="avatar">
-        <img id="avatar" class="img-avatar" v-else
+        <img class="img-avatar" v-else
              src="/storage/images/avatars/default_avatar.jpg" alt="default_avatar.jpg">
     </div>
 </template>
@@ -17,37 +12,6 @@ export default {
     props: {
         avatar: {type: String},
         id: {type: String},
-        token: {type: String},
-    },
-    created() {
-    },
-    methods: {
-        onAvatarChanged(ev) {
-            console.log('Avatar image is changed');
-            let fd = new FormData();
-            fd.append('avatar', $('input[name=avatar_image]')[0].files[0]);
-            fd.append('userId', this.id);
-            fd.append('_token', this.token);
-            $.ajax({
-                url: '/profile/upload',
-                data: fd,
-                type: "POST",
-                processData: false,
-                contentType: false,
-                success: function (response) {
-                    let path = response.path;
-                    let filename = response.filename;
-                    $('#avatar').attr('src', path + '/' + filename);
-                    $('#avatar').attr('alt', filename);
-                },
-                error: function (response) {
-                    console.log('Failure', response);
-                }
-            });
-        },
-    },
-    data() {
-        return {}
     },
     computed: {
         srcValue: function () {
@@ -62,18 +26,13 @@ export default {
     display: inline-block;
 }
 
-.input-avatar {
-    position: absolute;
-    width: 130px;
-    height: 130px;
-    cursor: pointer;
-}
-
 .img-avatar {
-    width: 130px;
-    height: 130px;
-    border: #ced4da solid 1px;
-    border-radius: 1.25rem;
+    height: 2.5rem;
+    vertical-align: middle;
+    padding: 0.1rem;
+    border-radius: 0rem 0.75rem 0.75rem 0.75rem;
+    border: 1px solid #ced4da;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 </style>

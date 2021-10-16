@@ -6,11 +6,11 @@
             <div class="col-12">
                 <ul class="nav nav-tabs" id="cabinetTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                        <a class="navbar-brand m-0 nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
                            aria-controls="profile" aria-selected="true">{{__('users.profile')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="contacts-tab" data-toggle="tab" href="#contacts" role="tab"
+                        <a class="navbar-brand m-0 nav-link" id="contacts-tab" data-toggle="tab" href="#contacts" role="tab"
                            aria-controls="contacts" aria-selected="false">{{__('users.contacts')}}</a>
                     </li>
                 </ul>

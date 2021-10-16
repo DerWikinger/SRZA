@@ -36,9 +36,9 @@
             @method('PUT')
             <div class="form-group row">
                 <div class="col-12 text-center">
-                    <user-avatar avatar="{{ $user->avatar ? $user->avatar : '' }}" id="{{ $user->id }}"
+                    <user-avatar-change avatar="{{ $user->avatar ? $user->avatar : '' }}" id="{{ $user->id }}"
                                  token="{{ csrf_token() }}">
-                    </user-avatar>
+                    </user-avatar-change>
                 </div>
             </div>
 
@@ -113,10 +113,10 @@
     </div>
 </div>
 <script>
-    import UserAvatar from "../../js/components/profile/UserAvatar";
+    import UserAvatarChange from "../../js/components/profile/UserAvatarChange";
     import ElemOut from "../../js/components/global/ElemOut";
 
     export default {
-        components: {ElemOut, UserAvatar}
+        components: {ElemOut, UserAvatarChange}
     }
 </script>

@@ -1911,6 +1911,11 @@ __webpack_require__.r(__webpack_exports__);
       type: Object
     }
   },
+  methods: {
+    onClick: function onClick() {
+      location = '/chat/' + this.chat.id;
+    }
+  },
   computed: {
     chatUser: function chatUser() {
       var result = null;
@@ -43577,7 +43582,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "chat-info" },
+    { staticClass: "chat-info", on: { click: _vm.onClick } },
     [
       _c("user-avatar", {
         attrs: { id: this.chatUser.id + "", avatar: this.chatUser.avatar }
@@ -43593,7 +43598,12 @@ var render = function() {
         _c("div", [
           _vm._v(_vm._s(_vm.date) + " : "),
           _c("input", {
-            attrs: { max: _vm.maxLength, readonly: "", type: "text" },
+            attrs: {
+              max: _vm.maxLength,
+              disabled: "",
+              readonly: "",
+              type: "text"
+            },
             domProps: { value: _vm.message }
           })
         ])

@@ -1,9 +1,9 @@
 <template>
-    <div class="chat-info">
+    <div class="chat-info" @click="onClick">
         <user-avatar :id="this.chatUser.id + ''" :avatar="this.chatUser.avatar"></user-avatar>
         <div class="description">
             <div><strong>{{ chat.name ? chat.name : chatUser.name }}</strong></div>
-            <div>{{ date }} : <input :max="maxLength" readonly type="text" :value="message"></div>
+            <div>{{ date }} : <input :max="maxLength" disabled readonly type="text" :value="message"></div>
         </div>
     </div>
 </template>
@@ -19,6 +19,11 @@ export default {
         chat: {type: Object},
         users: {type: Array},
         last: {type: Object}
+    },
+    methods: {
+        onClick() {
+            location = '/chat/' + this.chat.id;
+        }
     },
     computed: {
         chatUser() {

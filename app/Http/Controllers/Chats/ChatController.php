@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Chats;
 
 use App\Http\Controllers\Controller;
+use App\Models\Chat;
 use Illuminate\Http\Request;
-use App\Models\User;
 
-class ChatsController extends Controller
+class ChatController extends Controller
 {
     public function __construct()
     {
@@ -15,6 +15,6 @@ class ChatsController extends Controller
 
     public function index($id)
     {
-        return view('chats.list')->with('user', User::find($id));
+        return view('chats.chat')->with('chat', Chat::find($id));
     }
 }

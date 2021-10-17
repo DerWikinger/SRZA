@@ -1,14 +1,11 @@
-@extends('layouts.master')
+@extends('chats.chats')
 
-@section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <ul class="card-body">
-                        @foreach($user->chats as $chat)
-                            <chat-brief :chat="{{ $chat }}" :last="{{ $chat->lastMessage() }}" :user="{{ $user }}"
-                                        :users="{{ $chat->users->map( function($user) {
+@section('chats')
+    <div class="card">
+        <ul class="card-body">
+            @foreach($user->chats as $chat)
+                <chat-brief :chat="{{ $chat }}" :last="{{ $chat->lastMessage() }}" :user="{{ $user }}"
+                            :users="{{ $chat->users->map( function($user) {
                 return [
                     'name' => $user->name,
                     'id' => $user->id,
@@ -17,12 +14,9 @@
                     'nickname' => $user->nickname,
                 ];
             }) }}">
-                            </chat-brief>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        </div>
+                </chat-brief>
+            @endforeach
+        </ul>
     </div>
 @endsection
 <script>

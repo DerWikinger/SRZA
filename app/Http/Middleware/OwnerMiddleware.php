@@ -20,7 +20,7 @@ class OwnerMiddleware
     {
         $matches = [];
         $id = 0;
-        if(preg_match('/' . $path .'\/{1,1}\d+.*$/', $request->path(), $matches)) {
+        if(preg_match('/^' . $path .'\/{1,1}\d+.*/', $request->path(), $matches)) {
             preg_match('/\d+/', $matches[0], $matches);
             $id = (int)$matches[0];
         }

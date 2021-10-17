@@ -3,7 +3,7 @@
         <user-avatar :id="this.chatUser.id + ''" :avatar="this.chatUser.avatar"></user-avatar>
         <div class="description">
             <div><strong>{{ chat.name ? chat.name : chatUser.name }}</strong></div>
-            <div>{{ date }} : <input :max="maxLength" disabled readonly type="text" :value="message"></div>
+            <div>{{ date }} : <i>{{ message }}</i></div>
         </div>
     </div>
 </template>
@@ -56,7 +56,7 @@ export default {
     },
     data() {
         return {
-            maxLength: 30,
+            maxLength: 50,
         }
     }
 }

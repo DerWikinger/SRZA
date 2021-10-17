@@ -1953,7 +1953,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      maxLength: 30
+      maxLength: 50
     };
   }
 });
@@ -43597,15 +43597,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", [
           _vm._v(_vm._s(_vm.date) + " : "),
-          _c("input", {
-            attrs: {
-              max: _vm.maxLength,
-              disabled: "",
-              readonly: "",
-              type: "text"
-            },
-            domProps: { value: _vm.message }
-          })
+          _c("i", [_vm._v(_vm._s(_vm.message))])
         ])
       ])
     ],

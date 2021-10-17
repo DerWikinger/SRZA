@@ -14,11 +14,22 @@ class CreateMessagesTable extends Migration
     public function up()
     {
         Schema::create('messages', function (Blueprint $table) {
-            $table->bigInteger('id', true);
+            $table->bigIncrements('id');
             $table->timestamps();
-            $table->bigInteger('chat_id')->nullable(false);
-            $table->integer('user_id')->nullable(false);
+            $table->bigInteger('chat_id')->unsigned()->nullable(false);
+            $table->bigInteger('user_id')->unsigned()->nullable(false);
             $table->text('content');
+            $table->foreign('chat_id')
+                ->references('id')
+                ->on('chats')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
         });
     }
 

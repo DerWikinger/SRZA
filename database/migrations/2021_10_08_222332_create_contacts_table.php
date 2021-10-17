@@ -16,11 +16,16 @@ class CreateContactsTable extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('user_id')->index('user_id');
-            $table->integer('contact_id')->index('contact_id');
+            $table->bigInteger('user_id')->index('user_id');
+            $table->bigInteger('contact_id')->index('contact_id');
             $table->foreign('user_id')
                 ->references('id')
-                ->on('user')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->foreign('contact_id')
+                ->references('id')
+                ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });

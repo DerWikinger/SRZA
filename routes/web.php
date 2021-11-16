@@ -43,6 +43,11 @@ Route::prefix('chat')->name('chat')->group(function () {
     Route::get('/{id}', 'App\Http\Controllers\Chats\ChatController@index');
 });
 
+Route::prefix('chat')->name('chat')->group(function () {
+    Route::get('/{id}', 'App\Http\Controllers\Chats\ChatController@index');
+    Route::post('/message', 'App\Http\Controllers\Chats\ChatController@broadcast');
+});
+
 Route::prefix('cabinet')->name('cabinet')->middleware('owner:cabinet')->group(function () {
     Route::get('/{id}', function ($id) {
         $saved = null;

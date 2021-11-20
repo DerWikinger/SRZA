@@ -35,6 +35,6 @@ class NewChatMessage
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('chat_' . $this->user);
+        return new PrivateChannel('chat.' . $this->user);
     }
 }

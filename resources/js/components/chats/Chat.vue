@@ -35,42 +35,58 @@
 <script>
 export default {
     props: {
-      userId: { type: String },
-      token: { type: String }
+        userId: {type: String},
+        token: {type: String}
     },
-    data () {
+    data() {
         return {
             messages: [],
             newMessage: ''
         }
     },
-    mounted () {
-        Echo.channel('chat.' + this.userId )
-            .listen('NewChatMessage', (e) => {
-                if(e.user != this.userId) {
-                    this.messages.push({
-                        text: e.message,
-                        user: e.user
-                    });
-                }
-            });
+    mounted() {
+        let self = this;
+        let channel = Echo.private('chat.' + 1);
+        console.log(channel);
+        console.log(Echo);
+        channel.listen('NewChatMessage', (e) => {
+            if (e.user != self.userId) {
+                self.messages.push({
+                    text: e.message,
+                    user: e.user
+                });
+                console.log('I`ve received new message!');
+            } else {
+                console.log('I`ve received my message!');
+            }
+        });
     },
     methods: {
         submit() {
-            axios.post(`${process.env.MIX_WEBSOCKET_SERVER_BASE_URL}/message`, {
-                user: this.userId,
-                message: this.newMessage
-            }).then((response) => {
-                this.messages.push({
-                    text: this.newMessage,
-                    user: this.userId
-                });
-
-                this.newMessage = '';
-            }, (error) => {
-                console.log(error);
+            let fd = new FormData();
+            let self = this;
+            fd.append('user', this.userId);
+            fd.append('message', this.newMessage);
+            fd.append('_token', this.token);
+            $.ajax({
+                url: '/chat/message',
+                data: fd,
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    self.messages.push({
+                        text: self.newMessage,
+                        user: self.userId
+                    });
+                    self.newMessage = '';
+                    console.log('Message has been sent');
+                    console.log(self.token);
+                },
+                error: function (response) {
+                    console.log('Failure: ', response.statusText);
+                },
             });
-
         }
     }
 }

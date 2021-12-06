@@ -6,3 +6,66 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+section.container {
+    padding: 10px;
+}
+
+section.main {
+    padding: 10px;
+}
+
+header {
+    height: 100px;
+    background-color: #2d3748;
+    color: #cbd5e0;
+    text-align: center;
+    padding: 20px 10px;
+    box-sizing: border-box;
+}
+
+header h2 {
+    margin: 0;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.w-rem-10 {
+    width: 10rem !important;
+}
+
+.h-rem-10 {
+    height: 10rem !important;
+}
+
+.input-over-image {
+    margin: 0.25rem;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+}
+
+// Users views
+li.active {
+    background: #eaa5a3 !important;
+}
+
+span.rating-active {
+    color: #1c7430 !important;
+    overflow: hidden;
+    left: 1rem;
+}
+
+// Profile view
+.message-saved {
+    position: absolute;
+    width: 25%;
+    overflow: hidden;
+    left: 1rem;
+}

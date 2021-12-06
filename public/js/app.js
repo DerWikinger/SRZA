@@ -2150,33 +2150,47 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    var _this = this;
-
-    Echo.channel('chat.' + this.userId).listen('NewChatMessage', function (e) {
-      if (e.user != _this.userId) {
-        _this.messages.push({
+    var self = this;
+    var channel = Echo["private"]('chat.' + 1);
+    console.log(channel);
+    console.log(Echo);
+    channel.listen('NewChatMessage', function (e) {
+      if (e.user != self.userId) {
+        self.messages.push({
           text: e.message,
           user: e.user
         });
+        console.log('I`ve received new message!');
+      } else {
+        console.log('I`ve received my message!');
       }
     });
   },
   methods: {
     submit: function submit() {
-      var _this2 = this;
-
-      axios.post("".concat("http://rockclub.test", "/message"), {
-        user: this.userId,
-        message: this.newMessage
-      }).then(function (response) {
-        _this2.messages.push({
-          text: _this2.newMessage,
-          user: _this2.userId
-        });
-
-        _this2.newMessage = '';
-      }, function (error) {
-        console.log(error);
+      var fd = new FormData();
+      var self = this;
+      fd.append('user', this.userId);
+      fd.append('message', this.newMessage);
+      fd.append('_token', this.token);
+      $.ajax({
+        url: '/chat/message',
+        data: fd,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        success: function success(response) {
+          self.messages.push({
+            text: self.newMessage,
+            user: self.userId
+          });
+          self.newMessage = '';
+          console.log('Message has been sent');
+          console.log(self.token);
+        },
+        error: function error(response) {
+          console.log('Failure: ', response.statusText);
+        }
       });
     }
   }
@@ -2931,12 +2945,21 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  */
 
 
-window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
+window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js"); // Enable pusher logging - don't include this in production
+
+window.Pusher.logToConsole = true;
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "my_app_key",
-  cluster: "mt1",
-  forceTLS: true
+  key: '41f6c459d78622ba303a',
+  cluster: 'eu',
+  encrypted: false,
+  wsHost: window.location.hostname,
+  wssHost: window.location.hostname,
+  wsPort: 6001,
+  wssPort: 6001,
+  enableStats: true,
+  forceTLS: false,
+  authEndpoint: '/pusher/auth'
 });
 
 /***/ }),

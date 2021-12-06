@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Pusher\Pusher;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,14 +40,17 @@ Route::prefix('chats')->name('chats')->middleware(['auth', 'owner:chats'])->grou
     Route::get('/{id}', 'App\Http\Controllers\Chats\ChatsController@index');
 });
 
-Route::prefix('chat')->name('chat')->group(function () {
-    Route::get('/{id}', 'App\Http\Controllers\Chats\ChatController@index');
-});
+//Route::prefix('chat')->name('chat')->group(function () {
+//    Route::get('/{id}', 'App\Http\Controllers\Chats\ChatController@index');
+//});
 
 Route::prefix('chat')->name('chat')->group(function () {
     Route::get('/{id}', 'App\Http\Controllers\Chats\ChatController@index');
-    Route::post('/message', 'App\Http\Controllers\Chats\ChatController@broadcast');
+    Route::post('/message', 'App\Http\Controllers\Chats\ChatController@broadcast')->name('.message');
 });
+
+Route::post('/pusher/auth', 'App\Http\Controllers\Auth\PusherController@pusherAuth')
+    ->middleware('auth');
 
 Route::prefix('cabinet')->name('cabinet')->middleware('owner:cabinet')->group(function () {
     Route::get('/{id}', function ($id) {

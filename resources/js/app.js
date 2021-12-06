@@ -16,8 +16,9 @@ window.Vue = require('vue').default;
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
+
 const counter = { counter: 1 };
-var APP_LOG_LIFECYCLE_EVENTS = true;
+let APP_LOG_LIFECYCLE_EVENTS = true;
 
 const files = require.context('./', true, /\.vue$/i)
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))

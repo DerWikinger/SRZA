@@ -14,6 +14,7 @@ use App\Models\User;
 |
 */
 
-Broadcast::channel('chat.{userId}', function ($user, $userId) {
-    return $user->id === User::findOrNew($userId)->id;
-});
+//Broadcast::channel('App.Models.User.*', function ($user, $id) {
+//    return true;
+//});
+

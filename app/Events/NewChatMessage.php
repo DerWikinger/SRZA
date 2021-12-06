@@ -9,8 +9,9 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Event;
 
-class NewChatMessage
+class NewChatMessage extends Event implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -35,6 +36,13 @@ class NewChatMessage
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('chat.' . $this->user);
+//        return new Channel('chat.' . 1);
+        return new PrivateChannel('chat.' . 1);
+//        return ['chat.'. $this->user];
     }
+
+//    public function broadcastAs()
+//    {
+//        return 'new-chat-message';
+//    }
 }

@@ -2141,6 +2141,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     token: {
       type: String
+    },
+    chatId: {
+      type: String
     }
   },
   data: function data() {
@@ -2151,9 +2154,27 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     var self = this;
-    var channel = Echo["private"]('chat.' + 1);
-    console.log(channel);
-    console.log(Echo);
+    $.ajax({
+      url: '/chats/' + _.trim(self.chatId) + '/messages',
+      type: 'GET',
+      processData: false,
+      contentType: false,
+      async: false,
+      success: function success(data) {
+        for (var i = 0; i < data.length; i++) {
+          var message = data[i];
+          self.messages.push({
+            text: message.text,
+            user: message.userId
+          });
+        }
+      },
+      error: function error(response) {
+        console.log('Failure: ', response.statusText);
+      }
+    });
+    var channel = Echo["private"]('chat.' + this.chatId); // console.log(channel);
+
     channel.listen('NewChatMessage', function (e) {
       if (e.user != self.userId) {
         self.messages.push({
@@ -2171,10 +2192,11 @@ __webpack_require__.r(__webpack_exports__);
       var fd = new FormData();
       var self = this;
       fd.append('user', this.userId);
+      fd.append('chat', this.chatId);
       fd.append('message', this.newMessage);
       fd.append('_token', this.token);
       $.ajax({
-        url: '/chat/message',
+        url: '/chats/' + _.trim(self.chatId) + '/message',
         data: fd,
         type: 'POST',
         processData: false,
@@ -2242,7 +2264,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     onClick: function onClick() {
-      location = '/chat/' + this.chat.id;
+      var path = '/chats/' + this.chat.id;
+      location = path;
     }
   },
   computed: {
@@ -2916,6 +2939,7 @@ var app = new Vue({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -2950,13 +2974,13 @@ window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/d
 window.Pusher.logToConsole = true;
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: '41f6c459d78622ba303a',
-  cluster: 'eu',
-  encrypted: false,
+  key: "41f6c459d78622ba303a",
+  cluster: "eu",
+  encrypted: process.env.MIX_PUSHER_APP_ENCRYPTED,
   wsHost: window.location.hostname,
   wssHost: window.location.hostname,
-  wsPort: 6001,
-  wssPort: 6001,
+  wsPort: "6001",
+  wssPort: "6001",
   enableStats: true,
   forceTLS: false,
   authEndpoint: '/pusher/auth'

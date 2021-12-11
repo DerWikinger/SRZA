@@ -36,17 +36,11 @@ Route::middleware('auth')->middleware('role:admin')->group(function () {
     })->name('admin.index');
 });
 
-Route::prefix('chats')->name('chats')->middleware(['auth', 'owner:chats'])->group(function () {
-    Route::get('/{id}', 'App\Http\Controllers\Chats\ChatsController@index');
-});
-
-//Route::prefix('chat')->name('chat')->group(function () {
-//    Route::get('/{id}', 'App\Http\Controllers\Chats\ChatController@index');
-//});
-
-Route::prefix('chat')->name('chat')->group(function () {
-    Route::get('/{id}', 'App\Http\Controllers\Chats\ChatController@index');
-    Route::post('/message', 'App\Http\Controllers\Chats\ChatController@broadcast')->name('.message');
+Route::prefix('chats')->name('chats')->group(function () {
+//    Route::get('/0?', 'App\Http\Controllers\Chats\ChatsController@index')->middleware(['auth', 'member']);
+    Route::get('/{id?}', 'App\Http\Controllers\Chats\ChatsController@index')->middleware(['member']);
+    Route::post('/{chatId}/message', 'App\Http\Controllers\Chats\ChatsController@broadcast')->name('.{chatId}.message');
+    Route::get('/{chatId}/messages', 'App\Http\Controllers\Chats\ChatsController@all')->middleware(['member'])->name('.messages');
 });
 
 Route::post('/pusher/auth', 'App\Http\Controllers\Auth\PusherController@pusherAuth')

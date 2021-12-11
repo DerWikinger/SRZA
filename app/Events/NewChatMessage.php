@@ -17,15 +17,17 @@ class NewChatMessage extends Event implements ShouldBroadcast
 
     public $message;
     public $user;
+    public $chat;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($message, $user)
+    public function __construct($message, $chat, $user)
     {
         $this->message = $message;
+        $this->chat = $chat;
         $this->user = $user;
     }
 
@@ -36,13 +38,7 @@ class NewChatMessage extends Event implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-//        return new Channel('chat.' . 1);
-        return new PrivateChannel('chat.' . 1);
-//        return ['chat.'. $this->user];
+//        return new PrivateChannel('chat.' . $this->chat);
+        return ['private-chat.'. $this->chat];
     }
-
-//    public function broadcastAs()
-//    {
-//        return 'new-chat-message';
-//    }
 }

@@ -2,12 +2,7 @@
 
 @section('chats')
     <div class="card">
-        <chat user-id="{{ auth()->id() }}" token="{{ csrf_token() }}"></chat>
-{{--        <ul class="card-body">--}}
-{{--            @foreach($chat->messages as $message)--}}
-{{--                <li class="list-group-item">{{ $message->content }}</li>--}}
-{{--            @endforeach--}}
-{{--        </ul>--}}
+        <chat user-id="{{ auth()->id() }}" chat-id="{{ $chat->id }}" token="{{ csrf_token() }}"></chat>
     </div>
 @endsection
 <script>

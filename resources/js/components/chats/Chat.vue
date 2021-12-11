@@ -36,7 +36,8 @@
 export default {
     props: {
         userId: {type: String},
-        token: {type: String}
+        token: {type: String},
+        chatId: {type: String},
     },
     data() {
         return {
@@ -46,9 +47,27 @@ export default {
     },
     mounted() {
         let self = this;
-        let channel = Echo.private('chat.' + 1);
-        console.log(channel);
-        console.log(Echo);
+        $.ajax({
+            url: '/chats/' + _.trim(self.chatId) + '/messages',
+            type: 'GET',
+            processData: false,
+            contentType: false,
+            async: false,
+            success: function (data) {
+                for(let i = 0; i < data.length; i++) {
+                    let message = data[i];
+                    self.messages.push({
+                        text: message.text,
+                        user: message.userId
+                    });
+                }
+            },
+            error: function (response) {
+                console.log('Failure: ', response.statusText);
+            },
+        });
+        let channel = Echo.private('chat.' + this.chatId);
+        // console.log(channel);
         channel.listen('NewChatMessage', (e) => {
             if (e.user != self.userId) {
                 self.messages.push({
@@ -66,10 +85,11 @@ export default {
             let fd = new FormData();
             let self = this;
             fd.append('user', this.userId);
+            fd.append('chat', this.chatId);
             fd.append('message', this.newMessage);
             fd.append('_token', this.token);
             $.ajax({
-                url: '/chat/message',
+                url: '/chats/' + _.trim(self.chatId) + '/message',
                 data: fd,
                 type: 'POST',
                 processData: false,

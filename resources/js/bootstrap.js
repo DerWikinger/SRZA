@@ -38,13 +38,13 @@ window.Pusher.logToConsole = true;
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: '41f6c459d78622ba303a',
-    cluster: 'eu',
-    encrypted: false,
+    key: process.env.MIX_PUSHER_APP_KEY,
+    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    encrypted: process.env.MIX_PUSHER_APP_ENCRYPTED,
     wsHost: window.location.hostname,
     wssHost: window.location.hostname,
-    wsPort: 6001,
-    wssPort: 6001,
+    wsPort: process.env.MIX_WEBSOCKET_PORT,
+    wssPort: process.env.MIX_WEBSOCKET_PORT,
     enableStats: true,
     forceTLS: false,
     authEndpoint: '/pusher/auth',

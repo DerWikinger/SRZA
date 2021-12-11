@@ -22,7 +22,8 @@ export default {
     },
     methods: {
         onClick() {
-            location = '/chat/' + this.chat.id;
+            let path = '/chats/' + this.chat.id;
+            location = path;
         }
     },
     computed: {

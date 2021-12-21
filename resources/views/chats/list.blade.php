@@ -1,7 +1,7 @@
 @extends('chats.chats')
 
 @section('chats')
-    <div class="card">
+    <div class="card col-12">
         <ul class="card-body">
             @foreach($user->chats as $chat)
                 <chat-brief :chat="{{ $chat }}" :last="{{ $chat->lastMessage() }}" :user="{{ $user }}"

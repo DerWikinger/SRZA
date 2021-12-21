@@ -45,7 +45,7 @@ window.Echo = new Echo({
     wssHost: window.location.hostname,
     wsPort: process.env.MIX_WEBSOCKET_PORT,
     wssPort: process.env.MIX_WEBSOCKET_PORT,
-    enableStats: true,
+    disableStats: false,
     forceTLS: false,
     authEndpoint: '/pusher/auth',
 });

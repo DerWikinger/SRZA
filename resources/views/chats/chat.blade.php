@@ -1,9 +1,9 @@
 @extends('chats.chats')
 
 @section('chats')
-    <div class="card">
+{{--    <div class="card">--}}
         <chat user-id="{{ auth()->id() }}" chat-id="{{ $chat->id }}" token="{{ csrf_token() }}"></chat>
-    </div>
+{{--    </div>--}}
 @endsection
 <script>
     import Chat from "../../js/components/chats/Chat";

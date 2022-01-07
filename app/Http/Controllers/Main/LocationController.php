@@ -15,7 +15,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        return view('main.locations')->with([
+        return view('main.locations.list')->with([
             'locations' => Location::all(),
         ]);
     }

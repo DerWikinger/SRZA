@@ -23,7 +23,7 @@ Route::redirect('/', '/home');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//Route::resource('users', 'App\Http\Controllers\Users\UsersController');
+Route::resource('locations', 'App\Http\Controllers\Main\LocationController')->middleware('auth');
 
 Route::prefix('users')->name('users')->group(function() {
     Route::get('/', 'App\Http\Controllers\Users\UsersController@index');

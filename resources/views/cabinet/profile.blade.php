@@ -81,12 +81,6 @@
                 <div class="col-md-6">
                     <input id="nickname" type="text" class="form-control " name="nickname"
                            value="{{ $user->nickname }}" autofocus>
-
-                    {{--                                    @error('name')--}}
-                    {{--                                    <span class="invalid-feedback" role="alert">--}}
-                    {{--                                        <strong>{{ $message }}</strong>--}}
-                    {{--                                    </span>--}}
-                    {{--                                    @enderror--}}
                 </div>
             </div>
 

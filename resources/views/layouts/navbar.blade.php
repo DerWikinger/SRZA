@@ -16,9 +16,9 @@
                     <a class="navbar-brand" href="{{ route('cabinet', ['id' => auth()->user()->id]) }}">
                         {{ __('users.cabinetNavbarIcon') }}
                     </a>
-                    <a class="navbar-brand" href="{{ route('chats') }}">
-                        {{ __('users.chatsNavbarIcon') }}
-                    </a>
+{{--                    <a class="navbar-brand" href="{{ route('chats') }}">--}}
+{{--                        {{ __('users.chatsNavbarIcon') }}--}}
+{{--                    </a>--}}
 {{--                    <a class="navbar-brand" href="{{ route('profile', ['id' => auth()->user()->id]) }}">--}}
 {{--                        {{ __('users.profileNavbarIcon') }}--}}
 {{--                    </a>--}}

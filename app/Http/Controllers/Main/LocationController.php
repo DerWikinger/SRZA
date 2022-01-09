@@ -4,10 +4,15 @@ namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
 use App\Models\Location;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use mysql_xdevapi\Exception;
 
 class LocationController extends Controller
 {
+    protected $location;
+
     /**
      * Display a listing of the resource.
      *
@@ -27,24 +32,42 @@ class LocationController extends Controller
      */
     public function create()
     {
-        //
+        $location = Location::make(['name' => '']); // new Location([ 'name' => '' ]);
+        return view('main.locations.create')->with([
+            'location' => $location,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $location = Location::make(['name' => '']);
+        $data = json_decode($request->data);
+
+        if ($data) {
+            $location->name = $data->name ?? '';
+        } else {
+            abort(500);
+        }
+
+        try {
+            $location->save();
+            return response('Data is saved!', 200);
+        } catch (Exception $exception) {
+            dump('Error: ' . $exception->getMessage());
+            abort(500);
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -55,7 +78,7 @@ class LocationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -66,8 +89,8 @@ class LocationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -78,7 +101,7 @@ class LocationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

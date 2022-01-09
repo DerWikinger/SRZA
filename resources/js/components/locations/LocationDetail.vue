@@ -1,18 +1,20 @@
 <template>
     <div class="card form-group">
-        <div class="card-header">
-            <slot name="header"></slot>
-        </div>
+<!--        <div class="card-header">-->
+<!--            <slot name="header"></slot>-->
+<!--        </div>-->
         <div class="card-body">
-            <div class="input-group form-group">
-                <label class="col-form-label col-2" for="id">ID:</label>
-                <input class="form-control disabled" id="id" type="text" v-model="location.id" disabled>
-            </div>
-            <div class="input-group form-group">
-                <label class="col-form-label col-2" for="name">Name:</label>
-                <input class="form-control " type="text" id="name" v-model.trim="location.name" @change="onNameChanged">
-            </div>
-            <input class="form-control col-4 disabled" v-bind:id="'btnSave_' + location.id" type="button" @click="onClick" value="Save">
+            <form action="/store" method="POST">
+                <div class="input-group form-group">
+                    <label class="col-form-label col-2" for="id">ID:</label>
+                    <input class="form-control disabled" id="id" name="id" type="text" v-model="this.id" disabled>
+                </div>
+                <div class="input-group form-group">
+                    <label class="col-form-label col-2" for="name">Name:</label>
+                    <input class="form-control " type="text" id="name" name="name" v-model.trim="location.name" @input="onNameChanged">
+                </div>
+                <input class="form-control col-4 disabled" v-bind:id="'btnSave_' + this.id" type="button" @click="onClick" value="Save">
+            </form>
         </div>
     </div>
 </template>
@@ -29,7 +31,7 @@ export default {
     },
     methods: {
         onClick(ev) {
-            this.$emit('data-changed', this.location, this.token);
+            this.$emit('data-changed', 'App\\Models\\Location', this.location, this.token, 'store');
         },
         onNameChanged(ev) {
             this.dirty(ev);
@@ -38,7 +40,7 @@ export default {
             return !this.dirty;
         },
         dirty(ev) {
-            let elemId = '#btnSave_' + this.location.id;
+            let elemId = '#btnSave_' + this.id;
             if(this._oldLocation === JSON.stringify(this.location)) {
                 this._dirty = false;
                 $(elemId).removeClass('enabled').addClass('disabled');
@@ -58,7 +60,9 @@ export default {
         }
     },
     computed: {
-
+        id() {
+            return this.location.id ? this.location.id : 'New';
+        }
     }
 }
 </script>

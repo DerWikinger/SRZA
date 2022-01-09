@@ -7,7 +7,6 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <h2>Локации</h2>
                 <locations-list :locations="{{ collect($locations)->map( function (\App\Models\Location $location) {
                     return [
                         'id' => $location->id,
@@ -15,6 +14,9 @@
                         'avatar' => $location->name ?? '',
                         ];
                 } ) }}">
+                    <div>
+                        <h2>Локации: </h2>
+                    </div>
                 </locations-list>
 
                 {{--                @if($totalPages > 1)--}}

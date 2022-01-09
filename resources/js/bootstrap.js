@@ -31,22 +31,22 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 import Echo from 'laravel-echo';
 
-window.Pusher = require('pusher-js');
+// window.Pusher = require('pusher-js');
 
 // Enable pusher logging - don't include this in production
-window.Pusher.logToConsole = true;
-
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: process.env.MIX_PUSHER_APP_KEY,
-    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    encrypted: process.env.MIX_PUSHER_APP_ENCRYPTED,
-    wsHost: window.location.hostname,
-    wssHost: window.location.hostname,
-    wsPort: process.env.MIX_WEBSOCKET_PORT,
-    wssPort: process.env.MIX_WEBSOCKET_PORT,
-    disableStats: false,
-    forceTLS: false,
-    authEndpoint: '/pusher/auth',
-});
+// window.Pusher.logToConsole = true;
+//
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     encrypted: process.env.MIX_PUSHER_APP_ENCRYPTED,
+//     wsHost: window.location.hostname,
+//     wssHost: window.location.hostname,
+//     wsPort: process.env.MIX_WEBSOCKET_PORT,
+//     wssPort: process.env.MIX_WEBSOCKET_PORT,
+//     disableStats: false,
+//     forceTLS: false,
+//     authEndpoint: '/pusher/auth',
+// });
 

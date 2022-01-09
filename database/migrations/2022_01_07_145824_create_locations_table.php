@@ -17,6 +17,7 @@ class CreateLocationsTable extends Migration
             $table->id();
             $table->string('name')->nullable(false);
             $table->string('avatar')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

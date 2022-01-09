@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ route('home') }}">
-            {{ config('app.name', 'Laravel') }}
+            {{ __('menu.home') }}
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -13,6 +13,9 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 @auth
+                    <a class="navbar-brand" href="{{ route('locations.list') }}">
+                        {{ __('menu.locations') }}
+                    </a>
                     <a class="navbar-brand" href="{{ route('cabinet', ['id' => auth()->user()->id]) }}">
                         {{ __('users.cabinetNavbarIcon') }}
                     </a>

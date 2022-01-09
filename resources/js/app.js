@@ -17,14 +17,13 @@ window.Vue = require('vue').default;
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-const counter = { counter: 1 };
+const counter = {counter: 1};
 let APP_LOG_LIFECYCLE_EVENTS = true;
 
 const files = require.context('./', true, /\.vue$/i)
 files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-//Vue.component('user-info', require('./components/UserInfo.vue').default);
+// Vue.component('locations-list', require('./components/locations/LocationsList').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -51,6 +50,30 @@ const app = new Vue({
                 },
                 error: function (response) {
                     console.log('Failure');
+                }
+            })
+        },
+        onDataChanged(type, data, token, url, method = 'post') {
+            console.log("Event 'DataChanged' is called!");
+            console.log("Type: ", type);
+            console.log("Data: ", data);
+            let fd = new FormData();
+            fd.append('type', type);
+            fd.append('data', JSON.stringify(data));
+            fd.append('_token', token)
+            $.ajax({
+                url: url,
+                data: fd,
+                type: method,
+                processData: false,
+                contentType: false,
+                cash: true,
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (response) {
+                    console.log('Failure');
+                    console.log(response);
                 }
             })
         }

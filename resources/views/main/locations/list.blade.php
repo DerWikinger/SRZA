@@ -14,9 +14,12 @@
                         'avatar' => $location->name ?? '',
                         ];
                 } ) }}">
-                    <div>
-                        <h2>Локации: </h2>
-                    </div>
+                    <template v-slot:tittle>
+                        <h2>{{__('caption.locations')}}</h2>
+                    </template>
+                    <template v-slot:button>
+                        <h2>{{__('caption.new-location')}}</h2>
+                    </template>
                 </locations-list>
 
                 {{--                @if($totalPages > 1)--}}

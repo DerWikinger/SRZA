@@ -1,12 +1,11 @@
 <template>
     <div>
-        <slot>
-        </slot>
+        <slot name="tittle"></slot>
         <div class="p-1" v-for="(location, key) in locations">
             <location-brief :location="location"></location-brief>
         </div>
         <br>
-        <input type="button" value="Создать новую" @click="onClick">
+        <slot name="button"></slot>
     </div>
 </template>
 
@@ -18,6 +17,7 @@ export default {
     components: {LocationBrief},
     props: {
         locations: {type: Array},
+        button: {type: String},
     },
     methods: {
         onClick() {

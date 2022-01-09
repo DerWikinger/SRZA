@@ -2596,7 +2596,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "LocationsList",
@@ -2606,6 +2605,9 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     locations: {
       type: Array
+    },
+    button: {
+      type: String
     }
   },
   methods: {
@@ -47550,7 +47552,7 @@ var render = function () {
   return _c(
     "div",
     [
-      _vm._t("default"),
+      _vm._t("tittle"),
       _vm._v(" "),
       _vm._l(_vm.locations, function (location, key) {
         return _c(
@@ -47563,10 +47565,7 @@ var render = function () {
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
-      _c("input", {
-        attrs: { type: "button", value: "Создать новую" },
-        on: { click: _vm.onClick },
-      }),
+      _vm._t("button"),
     ],
     2
   )

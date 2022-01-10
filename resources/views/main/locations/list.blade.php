@@ -14,11 +14,13 @@
                         'avatar' => $location->name ?? '',
                         ];
                 } ) }}">
-                    <template v-slot:tittle>
+                    <template v-slot:list-tittle>
                         <h2>{{__('caption.locations')}}</h2>
                     </template>
-                    <template v-slot:button>
-                        <h2>{{__('caption.new-location')}}</h2>
+                    <template v-slot:list-footer>
+                        <add-button route="{{ route('locations.create') }}">
+                            {{ __('caption.new-location') }}
+                        </add-button>
                     </template>
                 </locations-list>
 
@@ -100,7 +102,10 @@
 @endsection
 <script>
     import LocationsList from "../../../js/components/locations/LocationsList";
+    import AddButton from "../../../js/components/global/AddButton";
+
     export default {
-        components: {LocationsList}
+        components: {AddButton, LocationsList},
+        methods: {}
     }
 </script>

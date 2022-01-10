@@ -1,11 +1,11 @@
 <template>
     <div>
-        <slot name="tittle"></slot>
+        <slot name="list-tittle"></slot>
         <div class="p-1" v-for="(location, key) in locations">
             <location-brief :location="location"></location-brief>
         </div>
         <br>
-        <slot name="button"></slot>
+        <slot name="list-footer"></slot>
     </div>
 </template>
 
@@ -20,9 +20,7 @@ export default {
         button: {type: String},
     },
     methods: {
-        onClick() {
-            window.location = '/locations/create';
-        }
+
     }
 }
 </script>

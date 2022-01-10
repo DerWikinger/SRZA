@@ -4,7 +4,7 @@
 <!--            <slot name="header"></slot>-->
 <!--        </div>-->
         <div class="card-body">
-            <form action="/store" method="POST">
+<!--            <form action="/store" method="POST">-->
                 <div class="input-group form-group">
                     <label class="col-form-label col-2" for="id">ID:</label>
                     <input class="form-control disabled" id="id" name="id" type="text" v-model="this.id" disabled>
@@ -14,7 +14,7 @@
                     <input class="form-control " type="text" id="name" name="name" v-model.trim="location.name" @input="onNameChanged">
                 </div>
                 <input class="form-control col-4 disabled" v-bind:id="'btnSave_' + this.id" type="button" @click="onClick" value="Save">
-            </form>
+<!--            </form>-->
         </div>
     </div>
 </template>

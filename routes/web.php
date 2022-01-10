@@ -27,6 +27,7 @@ Route::prefix('locations')->name('locations')->middleware('auth')->group(functio
     Route::get('/', 'App\Http\Controllers\Main\LocationController@index')->name('.list');
     Route::get('/create', 'App\Http\Controllers\Main\LocationController@create')->name('.create');
     Route::post('/store', 'App\Http\Controllers\Main\LocationController@store')->name('.store');
+    Route::post('/avatar-change', 'App\Http\Controllers\Main\LocationController@avatarChange')->name('.avatar-change');
 });
 
 Route::prefix('users')->name('users')->group(function() {

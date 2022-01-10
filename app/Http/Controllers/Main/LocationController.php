@@ -32,7 +32,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        $location = Location::make(['name' => '']); // new Location([ 'name' => '' ]);
+        $location = Location::make(['name' => '', 'avatar' => '']); // new Location([ 'name' => '' ]);
         return view('main.locations.create')->with([
             'location' => $location,
         ]);
@@ -107,5 +107,16 @@ class LocationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function avatarChange(Request $request)
+    {
+        return $this->upload($request);
     }
 }

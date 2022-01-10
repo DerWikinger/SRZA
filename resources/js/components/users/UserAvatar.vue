@@ -3,7 +3,7 @@
         <img class="img-avatar" v-if="avatar != ''"
              :src="srcValue" :alt="avatar">
         <img class="img-avatar" v-else
-             src="/storage/images/avatars/default_avatar.jpg" alt="default_avatar.jpg">
+             src="/storage/images/avatars/default_user.jpg" alt="default_user.jpg">
     </div>
 </template>
 

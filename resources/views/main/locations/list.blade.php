@@ -11,7 +11,7 @@
                     return [
                         'id' => $location->id,
                         'name' => $location->name,
-                        'avatar' => $location->name ?? '',
+                        'avatar' => $location->avatar ?? '',
                         ];
                 } ) }}">
                     <template v-slot:list-tittle>

@@ -1,14 +1,14 @@
 <template>
-    <div class="user-avatar-change" >
+    <div class="avatar-change" >
         <input class="input-avatar custom-file-input"
                accept="image/*"
                name="avatar_image"
                @change="onAvatarChanged"
                type="file">
-        <img id="avatar" class="img-avatar" v-if="avatar != ''"
+        <img id="avatar" class="image-avatar" v-if="avatar != ''"
              :src="srcValue" :alt="avatar">
-        <img id="avatar" class="img-avatar" v-else
-             src="/storage/images/avatars/default_user.jpg" alt="default_user.jpg">
+        <img id="avatar" class="image-avatar" v-else
+             src="/storage/images/avatars/default_avatar.png" alt="default_avatar.png">
     </div>
 </template>
 
@@ -17,28 +17,32 @@ export default {
     props: {
         avatar: {type: String},
         id: {type: String},
+        model: {type: String},
         token: {type: String},
     },
     created() {
     },
     methods: {
         onAvatarChanged(ev) {
-            console.log('Avatar image is upload');
             let fd = new FormData();
+            let self = this;
             fd.append('avatar', $('input[name=avatar_image]')[0].files[0]);
-            fd.append('userId', this.id);
+            fd.append('id', this.id);
+            fd.append('model', this.model);
             fd.append('_token', this.token);
             $.ajax({
-                url: '/profile/upload',
+                url: 'avatar-change',
                 data: fd,
                 type: 'POST',
                 processData: false,
                 contentType: false,
                 success: function (response) {
+                    console.log(response);
                     let path = response.path;
                     let filename = response.filename;
                     $('#avatar').attr('src', path + '/' + filename);
                     $('#avatar').attr('alt', filename);
+                    console.log('Success');
                 },
                 error: function (response) {
                     console.log('Failure', response);
@@ -51,7 +55,7 @@ export default {
     },
     computed: {
         srcValue: function () {
-            return '/storage/images/avatars/' + this.id + '/' + this.avatar;
+            return '/storage/images/avatars/' + this.model + '/' + this.id + '/' + this.avatar;
         }
     }
 }
@@ -62,18 +66,19 @@ export default {
     display: inline-block;
 }
 
-.input-avatar {
+input.input-avatar {
     position: absolute;
     width: 130px;
     height: 130px;
     cursor: pointer;
 }
 
-.img-avatar {
+img#avatar {
     width: 130px;
     height: 130px;
     border: #ced4da solid 1px;
     border-radius: 1.25rem;
+    overflow: hidden;
 }
 
 </style>

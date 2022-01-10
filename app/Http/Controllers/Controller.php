@@ -14,6 +14,7 @@ use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Mockery\Exception;
 use PhpParser\Builder\Class_;
@@ -118,5 +119,18 @@ class Controller extends BaseController
         $letter = strtoupper($letter);
         $model = $letter . substr($model, 1);
         return 'App\\Models\\'.$model;
+    }
+
+    public function getCaptions($model)
+    {
+        $collect = collect(__('caption'))->filter( function($value, $key) use($model) {
+            return str_contains($key, $model . '-'); });
+
+        $arr = [];
+        $collect->keys()->each(function ($key) use($model, &$arr, $collect) {
+            $arr[str_replace($model . '-', '', $key)] = $collect[$key];
+        });
+
+        return collect($arr);
     }
 }

@@ -33,8 +33,10 @@ class LocationController extends Controller
     public function create()
     {
         $location = Location::make(['name' => '', 'avatar' => '']); // new Location([ 'name' => '' ]);
+        $captions = $this->getCaptions('location');
         return view('main.locations.create')->with([
             'location' => $location,
+            'captions' => $captions,
         ]);
     }
 

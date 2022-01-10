@@ -15,4 +15,11 @@ return [
     'locations' => 'Locations',
     'new-location' => 'New location',
 
+    // Locales for Location model
+    'location-id' => 'Id',
+    'location-name' => 'Name',
+    'location-description' => 'Description',
+    'location-btnSave' => 'Save',
+    'location-btnReset' => 'Reset',
+    'location-btnCancel' => 'Cancel',
 ];

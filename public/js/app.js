@@ -2603,9 +2603,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "LocationDetail",
   props: {
+    captions: {
+      type: Object
+    },
     location: {
       type: Object
     },
@@ -2615,12 +2623,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this._oldLocation = JSON.stringify(this.location);
+    console.log('Captions: ', this.captions);
   },
   methods: {
     onClick: function onClick(ev) {
       this.$emit('data-changed', 'App\\Models\\Location', this.location, this.token, 'store');
     },
-    onNameChanged: function onNameChanged(ev) {
+    onDataChanged: function onDataChanged(ev) {
       this.dirty(ev);
     },
     isClean: function isClean() {
@@ -47787,7 +47796,7 @@ var render = function () {
         _c(
           "label",
           { staticClass: "col-form-label col-2", attrs: { for: "id" } },
-          [_vm._v("ID:")]
+          [_vm._v(_vm._s(this.captions.id + ":"))]
         ),
         _vm._v(" "),
         _c("input", {
@@ -47817,7 +47826,7 @@ var render = function () {
         _c(
           "label",
           { staticClass: "col-form-label col-2", attrs: { for: "name" } },
-          [_vm._v("Name:")]
+          [_vm._v(_vm._s(this.captions.name + ":"))]
         ),
         _vm._v(" "),
         _c("input", {
@@ -47841,7 +47850,56 @@ var render = function () {
                 }
                 _vm.$set(_vm.location, "name", $event.target.value.trim())
               },
-              _vm.onNameChanged,
+              _vm.onDataChanged,
+            ],
+            blur: function ($event) {
+              return _vm.$forceUpdate()
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group form-group" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-form-label col-2",
+            attrs: { for: "description" },
+          },
+          [_vm._v(_vm._s(this.captions.description + ":"))]
+        ),
+        _vm._v(" "),
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model.trim",
+              value: _vm.location.description,
+              expression: "location.description",
+              modifiers: { trim: true },
+            },
+          ],
+          staticClass: "form-control ",
+          attrs: {
+            type: "text",
+            rows: "3",
+            id: "description",
+            name: "description",
+          },
+          domProps: { value: _vm.location.description },
+          on: {
+            input: [
+              function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.location,
+                  "description",
+                  $event.target.value.trim()
+                )
+              },
+              _vm.onDataChanged,
             ],
             blur: function ($event) {
               return _vm.$forceUpdate()
@@ -47852,7 +47910,11 @@ var render = function () {
       _vm._v(" "),
       _c("input", {
         staticClass: "form-control col-4 disabled",
-        attrs: { id: "btnSave_" + this.id, type: "button", value: "Save" },
+        attrs: {
+          id: "btnSave_" + this.id,
+          type: "button",
+          value: this.captions.btnSave + ":",
+        },
         on: { click: _vm.onClick },
       }),
     ]),

@@ -2383,18 +2383,18 @@ __webpack_require__.r(__webpack_exports__);
     avatar: {
       type: String
     },
-    id: {
+    modelId: {
       type: String
     },
-    model: {
+    modelType: {
       type: String
     }
   },
   computed: {
     srcValue: function srcValue() {
-      var _this$id, _this$avatar;
+      var _this$modelId, _this$avatar;
 
-      return '/storage/images/avatars/' + this.model + '/' + ((_this$id = this.id) !== null && _this$id !== void 0 ? _this$id : 0) + '/' + ((_this$avatar = this.avatar) !== null && _this$avatar !== void 0 ? _this$avatar : '');
+      return '/storage/images/avatars/' + this.modelType + '/' + ((_this$modelId = this.modelId) !== null && _this$modelId !== void 0 ? _this$modelId : 0) + '/' + ((_this$avatar = this.avatar) !== null && _this$avatar !== void 0 ? _this$avatar : '');
     }
   }
 });
@@ -2412,6 +2412,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2424,31 +2426,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    avatar: {
+    value: {
       type: String
     },
-    id: {
+    modelId: {
       type: String
     },
-    model: {
+    modelType: {
       type: String
     },
     token: {
       type: String
     }
   },
-  created: function created() {},
+  mounted: function mounted() {
+    console.log('Mounted!');
+    this.setImage(this.srcValue, this.altValue);
+  },
+  watch: {
+    'value': {
+      handler: function handler() {
+        console.log('Value watcher is called!');
+        console.log('Value: ', this.value);
+        console.log('srcValue: ', this.srcValue);
+        this.setImage(this.srcValue, this.altValue);
+      },
+      deep: true,
+      immediate: true
+    }
+  },
   methods: {
+    onInput: function onInput(e) {
+      this.$emit('input', this.content);
+    },
+    setImage: function setImage(name, alt) {
+      $('#avatar').attr('src', name);
+      $('#avatar').attr('alt', alt);
+    },
     onAvatarChanged: function onAvatarChanged(ev) {
       var fd = new FormData();
       var self = this;
       fd.append('avatar', $('input[name=avatar_image]')[0].files[0]);
-      fd.append('id', this.id);
-      fd.append('model', this.model);
+      fd.append('id', this.modelId);
+      fd.append('model', this.modelType);
       fd.append('_token', this.token);
       $.ajax({
         url: 'avatar-change',
@@ -2457,11 +2480,11 @@ __webpack_require__.r(__webpack_exports__);
         processData: false,
         contentType: false,
         success: function success(response) {
-          console.log(response);
           var path = response.path;
-          var filename = response.filename;
-          $('#avatar').attr('src', path + '/' + filename);
-          $('#avatar').attr('alt', filename);
+          var filename = response.filename; // self._altValue = filename;
+          // self.avatar = path + '/' + filename;
+
+          self.$emit('value-changed', filename);
           console.log('Success');
         },
         error: function error(response) {
@@ -2471,11 +2494,23 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   data: function data() {
-    return {};
+    return {
+      _altValue: '',
+      // avatar: '',
+      content: this.value
+    };
   },
   computed: {
     srcValue: function srcValue() {
-      return '/storage/images/avatars/' + this.model + '/' + this.id + '/' + this.avatar;
+      if (this.value) {
+        return '/storage/images/avatars/' + this.modelType + '/' + ((0,lodash__WEBPACK_IMPORTED_MODULE_0__.isNumber)(this.modelId) ? this.modelId : 0) + '/' + this.value;
+      } else {
+        return '/storage/images/avatars/default_avatar.png';
+      }
+    },
+    altValue: function altValue() {
+      if (this.value) return this.value;
+      return 'default_avatar.png';
     }
   }
 });
@@ -2608,6 +2643,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "LocationDetail",
   props: {
@@ -2622,12 +2662,23 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this._oldLocation = JSON.stringify(this.location);
-    console.log('Captions: ', this.captions);
+    this._oldLocation = this.location.constructor();
+    this.copy(this.location, this._oldLocation);
   },
   methods: {
-    onClick: function onClick(ev) {
+    onSave: function onSave(ev) {
       this.$emit('data-changed', 'App\\Models\\Location', this.location, this.token, 'store');
+    },
+    onReset: function onReset(ev) {
+      var _this$location$id;
+
+      this.clear();
+      this.$emit('data-reset', 'App\\Models\\Location', (_this$location$id = this.location.id) !== null && _this$location$id !== void 0 ? _this$location$id : 0, this.token, 'reset');
+    },
+    onAvatarChanged: function onAvatarChanged(newAvatar) {
+      console.log('New avatar: ', newAvatar);
+      this.location.avatar = this.avatar = newAvatar;
+      console.log('Location: ', this.location);
     },
     onDataChanged: function onDataChanged(ev) {
       this.dirty(ev);
@@ -2638,7 +2689,7 @@ __webpack_require__.r(__webpack_exports__);
     dirty: function dirty(ev) {
       var elemId = '#btnSave_' + this.id;
 
-      if (this._oldLocation === JSON.stringify(this.location)) {
+      if (this.compare(this._oldLocation, this.location)) {
         this._dirty = false;
         $(elemId).removeClass('enabled').addClass('disabled');
       } else {
@@ -2647,13 +2698,35 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     clear: function clear() {
-      this._dirty = false;
+      this.copy(this._oldLocation, this.location, true);
+      this.dirty();
+      this.avatar = '';
+    },
+    compare: function compare(obj1, obj2) {
+      for (var prop in obj1) {
+        if (obj1[prop] != obj2[prop]) return false;
+      }
+
+      return true;
+    },
+    copy: function copy(obj_from, obj_to) {
+      var reset = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+      for (var property in obj_from) {
+        var _obj_from$property;
+
+        obj_to[property] = (_obj_from$property = obj_from[property]) !== null && _obj_from$property !== void 0 ? _obj_from$property : '';
+        if (reset) $("#" + property).prop('value', obj_to[property]);
+      }
     }
   },
   data: function data() {
+    var _this$location$avatar;
+
     return {
       _dirty: false,
-      _oldLocation: {}
+      _oldLocation: {},
+      avatar: (_this$location$avatar = this.location.avatar) !== null && _this$location$avatar !== void 0 ? _this$location$avatar : ''
     };
   },
   computed: {
@@ -3231,6 +3304,29 @@ var app = new Vue({
       var fd = new FormData();
       fd.append('type', type);
       fd.append('data', JSON.stringify(data));
+      fd.append('_token', token);
+      $.ajax({
+        url: url,
+        data: fd,
+        type: method,
+        processData: false,
+        contentType: false,
+        cash: true,
+        success: function success(response) {
+          console.log(response);
+        },
+        error: function error(response) {
+          console.log('Failure');
+          console.log(response);
+        }
+      });
+    },
+    onDataReset: function onDataReset(model, id, token, url) {
+      var method = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'post';
+      console.log("Event 'DataReset' is called!");
+      var fd = new FormData();
+      fd.append('model', model);
+      fd.append('id', id);
       fd.append('_token', token);
       $.ajax({
         url: url,
@@ -20318,7 +20414,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.user-avatar[data-v-e5f1be0c] {\n    display: inline-block;\n}\ninput.input-avatar[data-v-e5f1be0c] {\n    position: absolute;\n    width: 130px;\n    height: 130px;\n    cursor: pointer;\n}\nimg#avatar[data-v-e5f1be0c] {\n    width: 130px;\n    height: 130px;\n    border: #ced4da solid 1px;\n    border-radius: 1.25rem;\n    overflow: hidden;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ninput.input-avatar[data-v-e5f1be0c] {\n    position: absolute;\n    width: 130px;\n    height: 130px;\n    cursor: pointer;\n}\nimg#avatar[data-v-e5f1be0c] {\n    width: 130px;\n    height: 130px;\n    border: #ced4da solid 1px;\n    border-radius: 1.25rem;\n    overflow: hidden;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -20390,7 +20486,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ninput.disabled[data-v-145d61bc] {\n    color: gray;\n    cursor: default;\n}\ninput.enabled[data-v-145d61bc] {\n    color: black;\n    cursor: pointer;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ninput[type=button][data-v-145d61bc] {\n    margin-left: 1rem;\n}\ninput.disabled[data-v-145d61bc] {\n    color: gray;\n    cursor: default;\n}\ninput.enabled[data-v-145d61bc] {\n    color: black;\n    cursor: pointer;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -47660,22 +47756,10 @@ var render = function () {
     _c("input", {
       staticClass: "input-avatar custom-file-input",
       attrs: { accept: "image/*", name: "avatar_image", type: "file" },
-      on: { change: _vm.onAvatarChanged },
+      on: { change: _vm.onAvatarChanged, input: _vm.onInput },
     }),
     _vm._v(" "),
-    _vm.avatar != ""
-      ? _c("img", {
-          staticClass: "image-avatar",
-          attrs: { id: "avatar", src: _vm.srcValue, alt: _vm.avatar },
-        })
-      : _c("img", {
-          staticClass: "image-avatar",
-          attrs: {
-            id: "avatar",
-            src: "/storage/images/avatars/default_avatar.png",
-            alt: "default_avatar.png",
-          },
-        }),
+    _c("img", { staticClass: "image-avatar", attrs: { id: "avatar" } }),
   ])
 }
 var staticRenderFns = []
@@ -47736,8 +47820,8 @@ var render = function () {
     [
       _c("avatar", {
         attrs: {
-          id: this.location.id + "",
-          model: "location",
+          "model-id": this.location.id + "",
+          "model-type": "location",
           avatar: this.location.avatar,
         },
       }),
@@ -47781,10 +47865,18 @@ var render = function () {
           [
             _c("avatar-change", {
               attrs: {
-                avatar: this.location.avatar,
-                id: this.id,
+                "model-id": this.id,
                 token: this.token,
-                model: "location",
+                "model-type": "location",
+                id: "changeAvatar",
+              },
+              on: { "value-changed": _vm.onAvatarChanged },
+              model: {
+                value: _vm.avatar,
+                callback: function ($$v) {
+                  _vm.avatar = $$v
+                },
+                expression: "avatar",
               },
             }),
           ],
@@ -47909,13 +48001,23 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("input", {
-        staticClass: "form-control col-4 disabled",
+        staticClass: "form-control col-3 d-inline-block float-right",
+        attrs: {
+          id: "btnReset_" + this.id,
+          type: "button",
+          value: this.captions.btnReset,
+        },
+        on: { click: _vm.onReset },
+      }),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control col-3 disabled d-inline-block float-right",
         attrs: {
           id: "btnSave_" + this.id,
           type: "button",
-          value: this.captions.btnSave + ":",
+          value: this.captions.btnSave,
         },
-        on: { click: _vm.onClick },
+        on: { click: _vm.onSave },
       }),
     ]),
   ])

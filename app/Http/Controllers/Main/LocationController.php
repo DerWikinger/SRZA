@@ -32,7 +32,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        $location = Location::make(['name' => '', 'avatar' => '']); // new Location([ 'name' => '' ]);
+        $location = Location::make(['name' => '', 'avatar' => '', 'description'=>'']); // new Location([ 'name' => '' ]);
         $captions = $this->getCaptions('location');
         return view('main.locations.create')->with([
             'location' => $location,
@@ -48,11 +48,13 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        $location = Location::make(['name' => '']);
+        $location = Location::make(['name' => '', 'avatar' => '', 'description'=>'']);
         $data = json_decode($request->data);
 
         if ($data) {
             $location->name = $data->name ?? '';
+            $location->avatar = $data->avatar ?? '';
+            $location->description = $data->description ?? '';
         } else {
             abort(500);
         }

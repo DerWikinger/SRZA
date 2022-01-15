@@ -9,7 +9,8 @@
             <div class="col-md-12">
                 <h2>Новая локация</h2>
                 <location-detail :location="{{ $location }}" token="{{ csrf_token() }}"
-                                 :captions="{{ $captions }}" @data-changed="onDataChanged">
+                                 :captions="{{ $captions }}" @data-changed="onDataChanged"
+                                 @data-reset="onDataReset">
                 </location-detail>
             </div>
         </div>

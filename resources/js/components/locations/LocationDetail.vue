@@ -6,7 +6,8 @@
         <div class="card-body">
             <div class="form-group row">
                 <div class="col-12 text-center">
-                    <avatar-change :avatar="this.location.avatar" :id="this.id" :token="this.token" model="location">
+                    <avatar-change v-model="avatar" :model-id="this.id" :token="this.token" model-type="location"
+                    id="changeAvatar" @value-changed="onAvatarChanged">
                     </avatar-change>
                 </div>
             </div>
@@ -21,12 +22,16 @@
             </div>
             <div class="input-group form-group">
                 <label class="col-form-label col-2" for="description">{{ this.captions.description + ':' }}</label>
-                <textarea class="form-control " type="text" rows="3" id="description" name="description" v-model.trim="location.description"
+                <textarea class="form-control " type="text" rows="3" id="description" name="description"
+                          v-model.trim="location.description"
                           @input="onDataChanged"></textarea>
             </div>
-            <input class="form-control col-4 disabled" v-bind:id="'btnSave_' + this.id" type="button" @click="onClick"
-                   :value="this.captions.btnSave + ':'">
-            <!--            </form>-->
+            <input class="form-control col-3 d-inline-block float-right" v-bind:id="'btnReset_' + this.id" type="button"
+                   @click="onReset"
+                   :value="this.captions.btnReset">
+            <input class="form-control col-3 disabled d-inline-block float-right" v-bind:id="'btnSave_' + this.id"
+                   type="button" @click="onSave"
+                   :value="this.captions.btnSave">
         </div>
     </div>
 </template>
@@ -40,12 +45,21 @@ export default {
         token: {type: String},
     },
     created() {
-        this._oldLocation = JSON.stringify(this.location);
-        console.log('Captions: ', this.captions);
+        this._oldLocation = this.location.constructor();
+        this.copy(this.location, this._oldLocation);
     },
     methods: {
-        onClick(ev) {
+        onSave(ev) {
             this.$emit('data-changed', 'App\\Models\\Location', this.location, this.token, 'store');
+        },
+        onReset(ev) {
+            this.clear();
+            this.$emit('data-reset', 'App\\Models\\Location', this.location.id ?? 0, this.token, 'reset');
+        },
+        onAvatarChanged(newAvatar) {
+            console.log('New avatar: ', newAvatar);
+            this.location.avatar = this.avatar = newAvatar;
+            console.log('Location: ', this.location);
         },
         onDataChanged(ev) {
             this.dirty(ev);
@@ -55,7 +69,7 @@ export default {
         },
         dirty(ev) {
             let elemId = '#btnSave_' + this.id;
-            if (this._oldLocation === JSON.stringify(this.location)) {
+            if (this.compare(this._oldLocation, this.location)) {
                 this._dirty = false;
                 $(elemId).removeClass('enabled').addClass('disabled');
             } else {
@@ -64,13 +78,28 @@ export default {
             }
         },
         clear() {
-            this._dirty = false;
+            this.copy(this._oldLocation, this.location, true);
+            this.dirty();
+            this.avatar = '';
+        },
+        compare(obj1, obj2) {
+            for (let prop in obj1) {
+                if (obj1[prop] != obj2[prop]) return false;
+            }
+            return true;
+        },
+        copy(obj_from, obj_to, reset = false) {
+            for (let property in obj_from) {
+                obj_to[property] = obj_from[property] ?? '';
+                if (reset) $("#" + property).prop('value', obj_to[property]);
+            }
         }
     },
     data() {
         return {
             _dirty: false,
             _oldLocation: {},
+            avatar: this.location.avatar ?? '',
         }
     },
     computed: {
@@ -82,6 +111,10 @@ export default {
 </script>
 
 <style scoped>
+input[type=button] {
+    margin-left: 1rem;
+}
+
 input.disabled {
     color: gray;
     cursor: default;

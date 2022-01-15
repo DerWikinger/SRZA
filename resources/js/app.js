@@ -76,6 +76,28 @@ const app = new Vue({
                     console.log(response);
                 }
             })
+        },
+        onDataReset(model, id, token, url, method = 'post') {
+            console.log("Event 'DataReset' is called!");
+            let fd = new FormData();
+            fd.append('model', model);
+            fd.append('id', id);
+            fd.append('_token', token)
+            $.ajax({
+                url: url,
+                data: fd,
+                type: method,
+                processData: false,
+                contentType: false,
+                cash: true,
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (response) {
+                    console.log('Failure');
+                    console.log(response);
+                }
+            })
         }
     },
     data() {

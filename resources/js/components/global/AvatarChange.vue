@@ -1,34 +1,56 @@
 <template>
-    <div class="avatar-change" >
+    <div class="avatar-change">
         <input class="input-avatar custom-file-input"
                accept="image/*"
                name="avatar_image"
                @change="onAvatarChanged"
-               type="file">
-        <img id="avatar" class="image-avatar" v-if="avatar != ''"
-             :src="srcValue" :alt="avatar">
-        <img id="avatar" class="image-avatar" v-else
-             src="/storage/images/avatars/default_avatar.png" alt="default_avatar.png">
+               type="file"
+               @input="onInput">
+        <img id="avatar" class="image-avatar">
     </div>
 </template>
 
 <script>
+import {isNumber} from "lodash";
+
 export default {
     props: {
-        avatar: {type: String},
-        id: {type: String},
-        model: {type: String},
+        value: {type: String},
+        modelId: {type: String},
+        modelType: {type: String},
         token: {type: String},
     },
-    created() {
+    mounted() {
+        console.log('Mounted!');
+        this.setImage(this.srcValue, this.altValue);
+    },
+    watch: {
+        'value': {
+            handler: function () {
+                console.log('Value watcher is called!');
+                console.log('Value: ', this.value);
+                console.log('srcValue: ', this.srcValue);
+
+                this.setImage(this.srcValue, this.altValue);
+            },
+            deep: true,
+            immediate: true,
+        },
     },
     methods: {
+        onInput(e) {
+            this.$emit('input', this.content);
+        },
+        setImage(name, alt) {
+            $('#avatar').attr('src', name);
+            $('#avatar').attr('alt', alt);
+        },
         onAvatarChanged(ev) {
             let fd = new FormData();
             let self = this;
             fd.append('avatar', $('input[name=avatar_image]')[0].files[0]);
-            fd.append('id', this.id);
-            fd.append('model', this.model);
+            fd.append('id', this.modelId);
+            fd.append('model', this.modelType);
             fd.append('_token', this.token);
             $.ajax({
                 url: 'avatar-change',
@@ -37,11 +59,11 @@ export default {
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    console.log(response);
                     let path = response.path;
                     let filename = response.filename;
-                    $('#avatar').attr('src', path + '/' + filename);
-                    $('#avatar').attr('alt', filename);
+                    // self._altValue = filename;
+                    // self.avatar = path + '/' + filename;
+                    self.$emit('value-changed', filename);
                     console.log('Success');
                 },
                 error: function (response) {
@@ -51,21 +73,32 @@ export default {
         },
     },
     data() {
-        return {}
+        return {
+            _altValue: '',
+            // avatar: '',
+            content: this.value,
+        }
     },
     computed: {
         srcValue: function () {
-            return '/storage/images/avatars/' + this.model + '/' + this.id + '/' + this.avatar;
+            if (this.value) {
+                return '/storage/images/avatars/' +
+                    this.modelType + '/' +
+                    (isNumber(this.modelId) ? this.modelId : 0) + '/' +
+                    this.value;
+            } else {
+                return '/storage/images/avatars/default_avatar.png';
+            }
+        },
+        altValue: function () {
+            if (this.value) return this.value;
+            return 'default_avatar.png';
         }
     }
 }
 </script>
 
 <style scoped>
-.user-avatar {
-    display: inline-block;
-}
-
 input.input-avatar {
     position: absolute;
     width: 130px;

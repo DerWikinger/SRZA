@@ -27,12 +27,11 @@ class Controller extends BaseController
     public function upload(Request $request)
     {
         $model = $request->model;
-        if(!$model) abort(501);
+        if (!$model) abort(501);
         $className = $this->getClassName($model);
-        if(!$className) abort(502);
+        if (!$className) abort(502);
         $obj = null;
-        if($request->id == 0)
-        {
+        if ($request->id == 0) {
             try {
                 $obj = $className::make();
             } catch (\Exception $exception) {
@@ -70,38 +69,58 @@ class Controller extends BaseController
         return response()->json(['error' => 'Avatar image is not uploaded']);
     }
 
-    protected function updateAvatar(UploadedFile $file, User $user)
+    protected function updateAvatar(UploadedFile $file, $model, $id)
     {
-        $path = '/public/images/avatars/' . $user->id;
-        $count = 1;
-        // Get next number of picture by client uploaded
-        if (($user->avatar) && preg_match('/^.*_(\d+).[a-z]{3,4}$/', $user->avatar, $data)) {
-            $count = is_numeric($data[1]) ? (int)$data[1] + 1 : 1;
-        }
+        $path = '/public/images/avatars/' . $model . '/' . $id;
         $this->deleteTempAvatars($path, '.tmp');
         if (!Storage::exists($path)) {
             Storage::makeDirectory($path);
         }
-        $fileName = 'avatar_' . $count . '.' . $file->extension();
-        // Delete previuos avatar of client
-        if (Storage::exists($path . '/' . $user->avatar ?? '')) {
-            Storage::delete($path . '/' . $user->avatar);
-        }
-        // Delete same file if exists from storage
-        if (Storage::exists($path . '/' . $fileName)) {
-            Storage::delete($path . '/' . $fileName);
-        }
+        $fileName = 'avatar_' . $model . '_' . $id . '.' . $file->extension();
         Storage::putFileAs($path, new File($file), $fileName);
-        dump($fileName);
-        $user->avatar = $fileName;
+        if ($id) {
+            $className = $this->getClassName($model);
+            if (!$className) abort(502);
+            $obj = null;
+            try {
+                $obj = $className::find($id);
+                $obj->avatar = $fileName;
+                $obj->save();
+            } catch (\Exception $exception) {
+                abort(503);
+            }
+        }
         return;
     }
 
-    public function reset()
+    public function reset(Request $request)
     {
-        $path = '/public/images/avatars/' . auth()->id();
+        $model = $request->model;
+        if (!$model) abort(501);
+        $id = $request->id ?? 0;
+        $path = '/public/images/avatars/' . $model . '/' . $id;
         $this->deleteTempAvatars($path, '.tmp');
         return response('', 200);
+    }
+
+    public function clearAvatar(Request $request)
+    {
+        $model = $request->model;
+        if (!$model) abort(501);
+        $id = $request->id ?? 0;
+        if ($id) {
+            $className = $this->getClassName($model);
+            if (!$className) abort(502);
+            $obj = null;
+            try {
+                $obj = $className::find($id);
+                $obj->avatar = '';
+                $obj->save();
+            } catch (\Exception $exception) {
+                abort(503);
+            }
+        }
+        return $this->reset($request);
     }
 
     public function deleteTempAvatars($path, $pattern)
@@ -118,16 +137,17 @@ class Controller extends BaseController
         $letter = $model[0];
         $letter = strtoupper($letter);
         $model = $letter . substr($model, 1);
-        return 'App\\Models\\'.$model;
+        return 'App\\Models\\' . $model;
     }
 
     public function getCaptions($model)
     {
-        $collect = collect(__('caption'))->filter( function($value, $key) use($model) {
-            return str_contains($key, $model . '-'); });
+        $collect = collect(__('caption'))->filter(function ($value, $key) use ($model) {
+            return str_contains($key, $model . '-');
+        });
 
         $arr = [];
-        $collect->keys()->each(function ($key) use($model, &$arr, $collect) {
+        $collect->keys()->each(function ($key) use ($model, &$arr, $collect) {
             $arr[str_replace($model . '-', '', $key)] = $collect[$key];
         });
 

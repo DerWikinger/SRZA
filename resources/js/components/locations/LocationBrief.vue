@@ -1,6 +1,6 @@
 <template>
     <div class="location-info" @click="onClick">
-        <avatar :id="this.location.id + ''" model="location" :avatar="this.location.avatar"></avatar>
+        <avatar :model-id="this.location.id + ''" model-type="location" :avatar="this.location.avatar"></avatar>
         <div class="description">
             <div><strong>{{ this.location.name }}</strong></div>
         </div>

@@ -12,12 +12,12 @@ export default {
     name: "Avatar",
     props: {
         avatar: {type: String},
-        id: {type: String},
-        model: {type: String},
+        modelId: {type: String},
+        modelType: {type: String},
     },
     computed: {
         srcValue: function () {
-            return '/storage/images/avatars/' + this.model + '/' + (this.id ?? 0) + '/' + (this.avatar ?? '');
+            return '/storage/images/avatars/' + this.modelType + '/' + (this.modelId ?? 0) + '/' + (this.avatar ?? '');
         }
     }
 }

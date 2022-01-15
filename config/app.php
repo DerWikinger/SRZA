@@ -80,9 +80,9 @@ return [
     |
     */
 
-    'locale' => 'en',
+//    'locale' => 'en',
 //    TODO: refactor all locales in project
-//    'locale' => 'ru',
+    'locale' => 'ru',
 
     /*
     |--------------------------------------------------------------------------

@@ -15,4 +15,12 @@ return [
     'locations' => 'Локации',
     'new-location' => 'Новая локация',
 
+    // Locales for Location model
+    'location-id' => 'ИД',
+    'location-name' => 'Наименование',
+    'location-description' => 'Описание',
+    'location-btnSave' => 'Сохранить',
+    'location-btnReset' => 'Восстановить',
+    'location-btnCancel' => 'Отменить',
+
 ];

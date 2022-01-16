@@ -76,7 +76,7 @@ class LocationController extends Controller
      */
     public function show($id)
     {
-        //
+        return 'Show '.$id;
     }
 
     /**
@@ -87,7 +87,13 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $location = Location::find($id); // new Location([ 'name' => '' ]);
+        if(!$location) abort(404);
+        $captions = $this->getCaptions('location');
+        return view('main.locations.create')->with([
+            'location' => $location,
+            'captions' => $captions,
+        ]);
     }
 
     /**
@@ -110,7 +116,7 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return 'Delete '.$id;
     }
 
     /**

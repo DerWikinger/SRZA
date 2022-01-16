@@ -2,7 +2,7 @@
     <div>
         <slot name="list-tittle"></slot>
         <div class="p-1" v-for="(location, key) in locations">
-            <location-brief :location="location"></location-brief>
+            <location-brief :location="location" @click="onClick(key)"></location-brief>
         </div>
         <br>
         <slot name="list-footer"></slot>
@@ -20,7 +20,10 @@ export default {
         button: {type: String},
     },
     methods: {
-
+        onClick(key) {
+            console.log("Key: ", key);
+            window.location = '/' + key;
+        },
     }
 }
 </script>

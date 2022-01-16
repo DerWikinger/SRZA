@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Main;
 use App\Http\Controllers\Controller;
 use App\Models\Location;
 use Carbon\Carbon;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use mysql_xdevapi\Exception;
@@ -116,7 +117,8 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
-        return 'Delete '.$id;
+        if(Location::destroy($id)) return response('Object has been deleted', 200);
+        return ;
     }
 
     /**

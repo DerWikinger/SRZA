@@ -84,7 +84,7 @@ export default {
             if (this.value) {
                 return '/storage/images/avatars/' +
                     this.modelType + '/' +
-                    (isNumber(this.modelId) ? this.modelId : 0) + '/' +
+                    (+this.modelId ? this.modelId : 0) + '/' +
                     this.value;
             } else {
                 return '/storage/images/avatars/default_avatar.png';

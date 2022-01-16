@@ -1,8 +1,18 @@
 <template>
-    <div class="location-info" @click="onClick">
-        <avatar :model-id="this.location.id + ''" model-type="location" :avatar="this.location.avatar"></avatar>
-        <div class="description">
-            <div><strong>{{ this.location.name }}</strong></div>
+    <div class="location-info row align-baseline" @click="onClick">
+        <div class="col-1 ">
+            <avatar :model-id="this.location.id + ''" model-type="location" :avatar="this.location.avatar"></avatar>
+        </div>
+        <div class="description col-2 ">
+            <strong>{{ this.location.name }}</strong>
+        </div>
+        <div class="button-group offset-7 col-2 ">
+            <a :href="editPath">
+                <i class="fas fa-pencil-alt" style="font-size:1.25rem;vertical-align:middle;color:#ffe817"></i>
+            </a>
+            <a :href="deletePath">
+                <i class="fas fa-cut" style="font-size:1.25rem;vertical-align:middle;color:#e3342f"></i>
+            </a>
         </div>
     </div>
 </template>
@@ -12,14 +22,20 @@ import Avatar from "../global/Avatar";
 
 export default {
     name: "LocationBrief",
-    components: { Avatar },
+    components: {Avatar},
     props: {
         location: {type: Object},
     },
     methods: {
         onClick() {
-            let path = '/locations/' + this.location.id;
-            location = path;
+            let showPath = '/locations/' + this.location.id;
+            location = showPath;
+        },
+    },
+    data() {
+        return {
+            editPath: '/locations/edit/' + this.location.id,
+            deletePath: '/locations/delete/' + this.location.id,
         }
     },
 }
@@ -33,8 +49,18 @@ export default {
     cursor: pointer;
 }
 
-.description {
-    display: inline-block;
-    margin-left: 1rem;
+.description, button-group *  {
+    font-size: 1.5rem;
 }
+.button-group i {
+    margin-left: 0.5rem;
+}
+.button-group::after {
+    content: '';
+    vertical-align: middle;
+    line-height: 100%;
+    display: inline-block;
+    height: 100%;
+}
+
 </style>

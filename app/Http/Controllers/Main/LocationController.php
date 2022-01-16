@@ -59,13 +59,11 @@ class LocationController extends Controller
         } else {
             abort(500);
         }
-
         try {
-            $location->save();
+            if(!$location->save() || !$this->updateAvatar($location->avatar, 'location', $location->id)) abort(501);
             return response('Data is saved!', 200);
         } catch (Exception $exception) {
-            dump('Error: ' . $exception->getMessage());
-            abort(500);
+            abort(502);
         }
     }
 

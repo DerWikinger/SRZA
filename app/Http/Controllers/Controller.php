@@ -31,15 +31,15 @@ class Controller extends BaseController
         $className = $this->getClassName($model);
         if (!$className) abort(502);
         $obj = null;
-        if ($request->id == 0) {
+        if ($request->id > 0) {
             try {
-                $obj = $className::make();
+                $obj = $className::find($request->id);
             } catch (\Exception $exception) {
                 abort(503);
             }
         } else {
             try {
-                $obj = $className::find($request->id);
+                $obj = $className::make();
             } catch (\Exception $exception) {
                 abort(503);
             }
@@ -51,15 +51,13 @@ class Controller extends BaseController
             if (!Storage::exists($path)) {
                 Storage::makeDirectory($path);
             }
-            $fileName = 'temp_avatar_' . Carbon::now() . '.' . 'tmp';
+            $fileName = 'temp_avatar_' . Carbon::now() . '.' . $file->extension() . '.' . 'tmp';
             $fileName = str_replace([':', '\\'], '_', $fileName);
             try {
                 Storage::putFileAs($path, new File($file), $fileName);
             } catch (\Exception $exception) {
-                dump($exception);
                 return response()->json(['error' => 'File is not put on server!']);
             }
-            dump('A file is created');
             return response()->json([
                 'success' => 'AJAX request success',
                 'path' => '/storage/images/avatars/' . $model . '/' . ($obj->id ?? 0),
@@ -69,28 +67,37 @@ class Controller extends BaseController
         return response()->json(['error' => 'Avatar image is not uploaded']);
     }
 
-    protected function updateAvatar(UploadedFile $file, $model, $id)
+    protected function updateAvatar($file, $model, $id)
     {
-        $path = '/public/images/avatars/' . $model . '/' . $id;
-        $this->deleteTempAvatars($path, '.tmp');
-        if (!Storage::exists($path)) {
-            Storage::makeDirectory($path);
+        if (!$id) return false;
+        $className = $this->getClassName($model);
+        if (!$className) return false;
+
+        $oldPath = '/public/images/avatars/' . $model . '/0';
+        $tempFile =  $oldPath . '/' . $file;
+
+        $newPath = '/public/images/avatars/' . $model . '/' . $id;
+        if (!Storage::exists($newPath)) {
+            Storage::makeDirectory($newPath);
         }
-        $fileName = 'avatar_' . $model . '_' . $id . '.' . $file->extension();
-        Storage::putFileAs($path, new File($file), $fileName);
-        if ($id) {
-            $className = $this->getClassName($model);
-            if (!$className) abort(502);
-            $obj = null;
-            try {
-                $obj = $className::find($id);
+        $arr = [];
+        $fileFullname = str_replace('.tmp', '', $file);
+
+        preg_match('/[\.].{3,4}$/', $fileFullname, $arr);
+        $extenssion = ($arr[0] ? $arr[0] : '.png');
+        $fileName = 'avatar_' . $model . '_' . $id . $extenssion;
+
+        $obj = null;
+        try {
+            $obj = $className::find($id);
+            if(Storage::copy($tempFile, $newPath . '/' . $fileName)) {
                 $obj->avatar = $fileName;
-                $obj->save();
-            } catch (\Exception $exception) {
-                abort(503);
+                $this->deleteTempAvatars($oldPath, '.tmp');
+                return $obj->save();
             }
+        } catch (\Exception $exception) {
+            return false;
         }
-        return;
     }
 
     public function reset(Request $request)

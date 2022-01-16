@@ -2486,6 +2486,7 @@ __webpack_require__.r(__webpack_exports__);
 
           self.$emit('value-changed', filename);
           console.log('Success');
+          console.log('Saved file: ', filename);
         },
         error: function error(response) {
           console.log('Failure', response);
@@ -2731,12 +2732,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   data: function data() {
-    var _this$location$avatar;
-
     return {
       _dirty: false,
       _oldLocation: {},
-      avatar: (_this$location$avatar = this.location.avatar) !== null && _this$location$avatar !== void 0 ? _this$location$avatar : ''
+      avatar: this.location.avatar
     };
   },
   computed: {

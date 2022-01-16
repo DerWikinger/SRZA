@@ -104,7 +104,7 @@ export default {
         return {
             _dirty: false,
             _oldLocation: {},
-            avatar: this.location.avatar ?? '',
+            avatar: this.location.avatar,
         }
     },
     computed: {

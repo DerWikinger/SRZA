@@ -65,6 +65,7 @@ export default {
                     // self.avatar = path + '/' + filename;
                     self.$emit('value-changed', filename);
                     console.log('Success');
+                    console.log('Saved file: ', filename);
                 },
                 error: function (response) {
                     console.log('Failure', response);

@@ -50,7 +50,9 @@ export default {
     },
     methods: {
         onSave(ev) {
-            this.$emit('data-changed', 'App\\Models\\Location', this.location, this.token, 'store');
+            if(this.isClean()) return;
+            let url = (this.location.id ?? 0) ? 'update' : 'store';
+            this.$emit('data-changed', 'App\\Models\\Location', this.location, this.token, url);
         },
         onReset(ev) {
             this.clear();
@@ -60,15 +62,18 @@ export default {
             console.log('New avatar: ', newAvatar);
             this.location.avatar = this.avatar = newAvatar;
             console.log('Location: ', this.location);
+            console.log('Compare: ', this.compare(this._oldLocation, this.location));
+            this.dirty();
         },
         onDataChanged(ev) {
             this.dirty(ev);
         },
         isClean() {
-            return !this.dirty;
+            return !this._dirty;
         },
         dirty(ev) {
             let elemId = '#btnSave_' + this.id;
+            console.log('Button: ', elemId);
             if (this.compare(this._oldLocation, this.location)) {
                 this._dirty = false;
                 $(elemId).removeClass('enabled').addClass('disabled');
@@ -104,7 +109,7 @@ export default {
     },
     computed: {
         id() {
-            return this.location.id ? this.location.id : 'New';
+            return this.location.id ? this.location.id + '' : 'New';
         }
     }
 }

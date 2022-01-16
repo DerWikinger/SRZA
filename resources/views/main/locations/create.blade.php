@@ -7,7 +7,11 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <h2 class="text-primary text-capitalize">{{__('caption.new-location')}}</h2>
+                @if( $location->id )
+                    <h2 class="text-primary text-capitalize">{{__('caption.edit-location')}}</h2>
+                @else
+                    <h2 class="text-primary text-capitalize">{{__('caption.new-location')}}</h2>
+                @endif
                 <location-detail :location="{{ $location }}" token="{{ csrf_token() }}"
                                  :captions="{{ $captions }}" @data-changed="onDataChanged"
                                  @data-reset="onDataReset">
@@ -19,6 +23,7 @@
 @endsection
 <script>
     import LocationDetail from "../../../js/components/locations/LocationDetail";
+
     export default {
         components: {LocationDetail}
     }

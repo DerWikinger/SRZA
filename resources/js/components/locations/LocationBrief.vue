@@ -1,18 +1,11 @@
 <template>
-    <div class="location-info row align-baseline" @click="onClick">
-        <div class="col-1 ">
-            <avatar :model-id="this.location.id + ''" model-type="location" :avatar="this.location.avatar"></avatar>
-        </div>
-        <div class="description col-2 ">
-            <strong>{{ this.location.name }}</strong>
-        </div>
-        <div class="button-group offset-7 col-2 ">
-            <a :href="editPath">
-                <i class="fas fa-pencil-alt" style="font-size:1.25rem;vertical-align:middle;color:#ffe817"></i>
-            </a>
-            <a :href="deletePath">
-                <i class="fas fa-cut" style="font-size:1.25rem;vertical-align:middle;color:#e3342f"></i>
-            </a>
+    <div class="location-info" @click="onClick">
+        <div class="row">
+            <avatar class="col-2" :model-id="this.location.id + ''" model-type="location"
+                    :avatar="this.location.avatar"></avatar>
+            <div class="description col-10 ">
+                <strong>{{ this.location.name }}</strong>
+            </div>
         </div>
     </div>
 </template>
@@ -32,35 +25,19 @@ export default {
             location = showPath;
         },
     },
-    data() {
-        return {
-            editPath: '/locations/edit/' + this.location.id,
-            deletePath: '/locations/delete/' + this.location.id,
-        }
-    },
 }
 </script>
 
 <style scoped>
 
-.location-info {
-    border-bottom: #ced4da solid 1px;
-    padding-bottom: 0.25rem;
+.location-info .row div {
     cursor: pointer;
+    display: inline-block;
 }
 
-.description, button-group *  {
-    font-size: 1.5rem;
-}
-.button-group i {
-    margin-left: 0.5rem;
-}
-.button-group::after {
-    content: '';
-    vertical-align: middle;
-    line-height: 100%;
-    display: inline-block;
-    height: 100%;
-}
+/*.location-info div {*/
+/*    display: inline-block;*/
+/*    !*margin: 0 1rem;*!*/
+/*}*/
 
 </style>

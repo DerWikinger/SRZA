@@ -13,7 +13,8 @@
                         'name' => $location->name,
                         'avatar' => $location->avatar ?? '',
                         ];
-                } ) }}">
+                } ) }}" token="{{ csrf_token() }}"
+                        :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() }}">
                     <template v-slot:list-tittle>
                         <h2 class="text-primary text-capitalize">{{__('caption.locations')}}</h2>
                     </template>

@@ -8,6 +8,9 @@ require('./bootstrap');
 const {toJSON} = require("lodash/seq");
 
 window.Vue = require('vue').default;
+window.VueSimpleAlert = require('vue-simple-alert').default;
+
+Vue.use(VueSimpleAlert);
 
 /**
  * The following block of code may be used to automatically register your

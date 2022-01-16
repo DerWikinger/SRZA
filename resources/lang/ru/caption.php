@@ -14,6 +14,7 @@ return [
     */
     'locations' => 'Локации',
     'new-location' => 'Новая локация',
+    'edit-location' => 'Редактирование локации',
 
     // Locales for Location model
     'location-id' => 'ИД',

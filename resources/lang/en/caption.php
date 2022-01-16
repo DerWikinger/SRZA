@@ -14,6 +14,7 @@ return [
     */
     'locations' => 'Locations',
     'new-location' => 'New location',
+    'edit-location' => 'Edit location',
 
     // Locales for Location model
     'location-id' => 'Id',

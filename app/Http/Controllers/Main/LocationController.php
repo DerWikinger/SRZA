@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Main;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Main\MainController;
 use App\Models\Location;
 use Carbon\Carbon;
 use GuzzleHttp\Psr7\Response;
@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use mysql_xdevapi\Exception;
 
-class LocationController extends Controller
+class LocationController extends MainController
 {
     protected $location;
 

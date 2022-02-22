@@ -27,6 +27,7 @@ Route::prefix('locations')->name('locations')->middleware('auth')->group(functio
     Route::get('/', 'App\Http\Controllers\Main\LocationController@index')->name('.list');
     Route::get('/create', 'App\Http\Controllers\Main\LocationController@create')->name('.create');
     Route::post('/delete/{id}', 'App\Http\Controllers\Main\LocationController@destroy')->name('.delete');
+    Route::post('/update/{id}', 'App\Http\Controllers\Main\LocationController@update')->name('.update');
     Route::get('/edit/{id}', 'App\Http\Controllers\Main\LocationController@edit')->name('.edit');
     Route::get('/{id}', 'App\Http\Controllers\Main\LocationController@show')->name('.show');
     Route::post('/store', 'App\Http\Controllers\Main\LocationController@store')->name('.store');

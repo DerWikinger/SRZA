@@ -63,8 +63,8 @@ class LocationController extends MainController
         try {
             if(!$location->save()) abort(501);
             if($location->avatar != '') {
-                if(!$this->updateAvatar($location->avatar, 'location', $location->id)) abort(502);
                 $oldPath = '/public/images/avatars/location/0';
+                if(!$this->updateAvatar($location->avatar, 'location', $location->id, $oldPath)) abort(502);
                 $this->deleteAvatars($oldPath, '.tmp');
             }
             return response('Data is saved!', 200);
@@ -110,7 +110,33 @@ class LocationController extends MainController
      */
     public function update(Request $request, $id)
     {
-        //
+        $location = Location::find($id);
+        $data = json_decode($request->data);
+
+        if ($data) {
+            $location->name = $data->name ?? '';
+            $location->avatar = $data->avatar ?? '';
+            $location->description = $data->description ?? '';
+        } else {
+            abort(500);
+        }
+        dump($location);
+        try {
+            if(!$location->save()) abort(501);
+            $arr = [];
+            preg_match('/[\.].{3,4}$/', $location->avatar ?? '', $arr);
+            $extenssion = ($arr[0] ? $arr[0] : '');
+            dump($extenssion);
+            if($extenssion == '.tmp') {
+                $srcPath = '/public/images/avatars/location/' . $location->id;
+                dump($srcPath);
+                if(!$this->updateAvatar($location->avatar, 'location', $location->id, $srcPath)) abort(502);
+//                $this->deleteAvatars($oldPath, '.tmp');
+            }
+            return response('Data is saved!', 200);
+        } catch (Exception $exception) {
+            abort(503);
+        }
     }
 
     /**

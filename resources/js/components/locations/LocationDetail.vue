@@ -51,7 +51,7 @@ export default {
     methods: {
         onSave(ev) {
             if(this.isClean()) return;
-            let url = (this.location.id ?? 0) ? 'update' : 'store';
+            let url = (this.location.id ?? 0) ? '/locations/update/' + this.location.id : '/locations/store';
             this.$emit('data-changed', 'location', this.location, this.token, url);
         },
         onReset(ev) {

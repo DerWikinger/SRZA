@@ -2412,8 +2412,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2426,7 +2424,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     value: {
@@ -2459,8 +2456,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    onInput: function onInput(e) {
-      this.$emit('input', this.content);
+    onInput: function onInput(e) {// this.$emit('input', this.content);
     },
     setImage: function setImage(name, alt) {
       $('#avatar').attr('src', name);
@@ -2674,7 +2670,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this$location$id;
 
       if (this.isClean()) return;
-      var url = ((_this$location$id = this.location.id) !== null && _this$location$id !== void 0 ? _this$location$id : 0) ? 'update' : 'store';
+      var url = ((_this$location$id = this.location.id) !== null && _this$location$id !== void 0 ? _this$location$id : 0) ? '/locations/update/' + this.location.id : '/locations/store';
       this.$emit('data-changed', 'location', this.location, this.token, url);
     },
     onReset: function onReset(ev) {

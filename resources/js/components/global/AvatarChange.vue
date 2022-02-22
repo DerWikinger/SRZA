@@ -11,8 +11,6 @@
 </template>
 
 <script>
-import {isNumber} from "lodash";
-
 export default {
     props: {
         value: {type: String},
@@ -39,7 +37,7 @@ export default {
     },
     methods: {
         onInput(e) {
-            this.$emit('input', this.content);
+            // this.$emit('input', this.content);
         },
         setImage(name, alt) {
             $('#avatar').attr('src', name);

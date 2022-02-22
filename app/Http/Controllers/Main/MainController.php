@@ -53,19 +53,18 @@ class MainController extends Controller
         return response()->json(['error' => 'Avatar image is not uploaded']);
     }
 
-    protected function updateAvatar($file, $model, $id)
+    protected function updateAvatar($file, $model, $id, $sourcePath)
     {
         if (!$id) return false;
         $className = $this->getClassName($model);
         if (!$className) return false;
-
-        $oldPath = '/public/images/avatars/' . $model . '/0';
-        $tempFile = $oldPath . '/' . $file;
+        $tempFile = $sourcePath . '/' . $file;
 
         $newPath = '/public/images/avatars/' . $model . '/' . $id;
         if (!Storage::exists($newPath)) {
             Storage::makeDirectory($newPath);
         }
+
         $arr = [];
         $fileFullname = str_replace('.tmp', '', $file);
 
@@ -76,9 +75,14 @@ class MainController extends Controller
         $obj = null;
         try {
             $obj = $className::find($id);
+            dump('UpdateAvatar ', $tempFile, $newPath . '/' . $fileName );
+            if(Storage::exists($newPath . '/' . $fileName)) {
+                dump('delete old ', $newPath . '/' . $fileName );
+                Storage::delete($newPath . '/' . $fileName);
+            }
             if (Storage::copy($tempFile, $newPath . '/' . $fileName)) {
                 $obj->avatar = $fileName;
-                $this->deleteAvatars($oldPath, '.tmp');
+                $this->deleteAvatars($sourcePath, '.tmp');
                 return $obj->save();
             }
         } catch (\Exception $exception) {
@@ -121,6 +125,7 @@ class MainController extends Controller
     {
         foreach (Storage::allFiles($path) as $f) {
             if ($pattern && !str_contains($f, $pattern)) continue;
+            dump($f);
             Storage::delete($f);
         }
     }

@@ -32,6 +32,7 @@ Route::prefix('locations')->name('locations')->middleware('auth')->group(functio
     Route::post('/store', 'App\Http\Controllers\Main\LocationController@store')->name('.store');
     Route::post('/reset', 'App\Http\Controllers\Main\LocationController@reset')->name('.reset');
     Route::post('/avatar-change', 'App\Http\Controllers\Main\LocationController@avatarChange')->name('.avatar-change');
+    Route::post('/edit/avatar-change', 'App\Http\Controllers\Main\LocationController@avatarChange')->name('.edit.avatar-change');
 });
 
 Route::prefix('users')->name('users')->group(function() {

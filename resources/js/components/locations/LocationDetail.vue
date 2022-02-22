@@ -52,11 +52,12 @@ export default {
         onSave(ev) {
             if(this.isClean()) return;
             let url = (this.location.id ?? 0) ? 'update' : 'store';
-            this.$emit('data-changed', 'App\\Models\\Location', this.location, this.token, url);
+            this.$emit('data-changed', 'location', this.location, this.token, url);
         },
         onReset(ev) {
             this.clear();
-            this.$emit('data-reset', 'App\\Models\\Location', this.location.id ?? 0, this.token, 'reset');
+            let url = '/locations/reset';
+            this.$emit('data-reset', 'location', this.location.id ?? 0, this.token, url);
         },
         onAvatarChanged(newAvatar) {
             console.log('New avatar: ', newAvatar);
@@ -85,7 +86,7 @@ export default {
         clear() {
             this.copy(this._oldLocation, this.location, true);
             this.dirty();
-            this.avatar = '';
+            this.avatar = this.location.avatar ?? '';
         },
         compare(obj1, obj2) {
             for (let prop in obj1) {
@@ -126,7 +127,7 @@ input.disabled {
 }
 
 input.enabled {
-    color: black;
+    color: #495057;
     cursor: pointer;
 }
 </style>

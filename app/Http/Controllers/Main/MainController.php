@@ -33,7 +33,7 @@ class MainController extends Controller
         if (!(is_null($obj)) && $request->hasFile('avatar') && $request->file('avatar')->isValid()) {
             $file = $request->file('avatar');
             $path = '/public/images/avatars/' . $model . '/' . ($obj->id ?? 0);
-            $this->deleteTempAvatars($path, '.tmp');
+            $this->deleteAvatars($path, '.tmp');
             if (!Storage::exists($path)) {
                 Storage::makeDirectory($path);
             }
@@ -60,7 +60,7 @@ class MainController extends Controller
         if (!$className) return false;
 
         $oldPath = '/public/images/avatars/' . $model . '/0';
-        $tempFile =  $oldPath . '/' . $file;
+        $tempFile = $oldPath . '/' . $file;
 
         $newPath = '/public/images/avatars/' . $model . '/' . $id;
         if (!Storage::exists($newPath)) {
@@ -76,9 +76,9 @@ class MainController extends Controller
         $obj = null;
         try {
             $obj = $className::find($id);
-            if(Storage::copy($tempFile, $newPath . '/' . $fileName)) {
+            if (Storage::copy($tempFile, $newPath . '/' . $fileName)) {
                 $obj->avatar = $fileName;
-                $this->deleteTempAvatars($oldPath, '.tmp');
+                $this->deleteAvatars($oldPath, '.tmp');
                 return $obj->save();
             }
         } catch (\Exception $exception) {
@@ -92,7 +92,8 @@ class MainController extends Controller
         if (!$model) abort(501);
         $id = $request->id ?? 0;
         $path = '/public/images/avatars/' . $model . '/' . $id;
-        $this->deleteTempAvatars($path, '.tmp');
+        dump($path);
+        $this->deleteAvatars($path, '.tmp');
         return response('', 200);
     }
 
@@ -116,12 +117,11 @@ class MainController extends Controller
         return $this->reset($request);
     }
 
-    public function deleteTempAvatars($path, $pattern)
+    public function deleteAvatars($path, $pattern = '')
     {
         foreach (Storage::allFiles($path) as $f) {
-            if (str_contains($f, $pattern)) {
-                Storage::delete($f);
-            }
+            if ($pattern && !str_contains($f, $pattern)) continue;
+            Storage::delete($f);
         }
     }
 

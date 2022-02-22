@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use mysql_xdevapi\Exception;
 
 class LocationController extends MainController
@@ -60,10 +61,15 @@ class LocationController extends MainController
             abort(500);
         }
         try {
-            if(!$location->save() || !$this->updateAvatar($location->avatar, 'location', $location->id)) abort(501);
+            if(!$location->save()) abort(501);
+            if($location->avatar != '') {
+                if(!$this->updateAvatar($location->avatar, 'location', $location->id)) abort(502);
+                $oldPath = '/public/images/avatars/location/0';
+                $this->deleteAvatars($oldPath, '.tmp');
+            }
             return response('Data is saved!', 200);
         } catch (Exception $exception) {
-            abort(502);
+            abort(503);
         }
     }
 
@@ -115,8 +121,11 @@ class LocationController extends MainController
      */
     public function destroy($id)
     {
-        if(Location::destroy($id)) return response('Object has been deleted', 200);
-        return ;
+        if(Location::destroy($id)) {
+            $path = '/public/images/avatars/location/' . $id;
+            Storage::deleteDirectory($path);
+            return response('Object has been deleted', 200);
+        }
     }
 
     /**

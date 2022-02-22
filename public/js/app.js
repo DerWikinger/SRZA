@@ -2675,13 +2675,14 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.isClean()) return;
       var url = ((_this$location$id = this.location.id) !== null && _this$location$id !== void 0 ? _this$location$id : 0) ? 'update' : 'store';
-      this.$emit('data-changed', 'App\\Models\\Location', this.location, this.token, url);
+      this.$emit('data-changed', 'location', this.location, this.token, url);
     },
     onReset: function onReset(ev) {
       var _this$location$id2;
 
       this.clear();
-      this.$emit('data-reset', 'App\\Models\\Location', (_this$location$id2 = this.location.id) !== null && _this$location$id2 !== void 0 ? _this$location$id2 : 0, this.token, 'reset');
+      var url = '/locations/reset';
+      this.$emit('data-reset', 'location', (_this$location$id2 = this.location.id) !== null && _this$location$id2 !== void 0 ? _this$location$id2 : 0, this.token, url);
     },
     onAvatarChanged: function onAvatarChanged(newAvatar) {
       console.log('New avatar: ', newAvatar);
@@ -2709,9 +2710,11 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     clear: function clear() {
+      var _this$location$avatar;
+
       this.copy(this._oldLocation, this.location, true);
       this.dirty();
-      this.avatar = '';
+      this.avatar = (_this$location$avatar = this.location.avatar) !== null && _this$location$avatar !== void 0 ? _this$location$avatar : '';
     },
     compare: function compare(obj1, obj2) {
       for (var prop in obj1) {
@@ -2778,6 +2781,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "LocationsList",
@@ -2797,6 +2806,20 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    btnDeleteName: function btnDeleteName(key) {
+      return 'btnDelete_' + key;
+    },
+    btnEditName: function btnEditName(key) {
+      return 'btnEdit_' + key;
+    },
+    onMouseOver: function onMouseOver(key) {
+      var elem = $('#' + key);
+      elem.css('color', key.includes('btnEdit', 0) ? '#ffd200' : '#ec0909');
+    },
+    onMouseLeave: function onMouseLeave(key) {
+      var elem = $('#' + key);
+      elem.css('color', '#2d3748');
+    },
     onEdit: function onEdit(key) {
       console.log("Key: ", key);
       window.location = '/locations/edit/' + key;
@@ -20543,7 +20566,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ninput[type=button][data-v-145d61bc] {\n    margin-left: 1rem;\n}\ninput.disabled[data-v-145d61bc] {\n    color: gray;\n    cursor: default;\n}\ninput.enabled[data-v-145d61bc] {\n    color: black;\n    cursor: pointer;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ninput[type=button][data-v-145d61bc] {\n    margin-left: 1rem;\n}\ninput.disabled[data-v-145d61bc] {\n    color: gray;\n    cursor: default;\n}\ninput.enabled[data-v-145d61bc] {\n    color: #495057;\n    cursor: pointer;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -51157,6 +51180,15 @@ var render = function () {
                       "vertical-align": "middle",
                       color: "#2d3748",
                     },
+                    attrs: { id: _vm.btnDeleteName(location.id) },
+                    on: {
+                      mouseover: function ($event) {
+                        _vm.onMouseOver(_vm.btnDeleteName(location.id))
+                      },
+                      mouseleave: function ($event) {
+                        _vm.onMouseLeave(_vm.btnDeleteName(location.id))
+                      },
+                    },
                   }),
                 ]
               ),
@@ -51178,6 +51210,15 @@ var render = function () {
                       "font-size": "1.25rem",
                       "vertical-align": "middle",
                       color: "#2d3748",
+                    },
+                    attrs: { id: _vm.btnEditName(location.id) },
+                    on: {
+                      mouseover: function ($event) {
+                        _vm.onMouseOver(_vm.btnEditName(location.id))
+                      },
+                      mouseleave: function ($event) {
+                        _vm.onMouseLeave(_vm.btnEditName(location.id))
+                      },
                     },
                   }),
                 ]

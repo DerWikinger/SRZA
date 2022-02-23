@@ -7,7 +7,7 @@
             <div class="form-group row">
                 <div class="col-12 text-center">
                     <avatar-change v-model="avatar" :model-id="this.id" :token="this.token" model-type="location"
-                    id="changeAvatar" @value-changed="onAvatarChanged">
+                                   id="changeAvatar" @value-changed="onAvatarChanged">
                     </avatar-change>
                 </div>
             </div>
@@ -50,9 +50,27 @@ export default {
     },
     methods: {
         onSave(ev) {
-            if(this.isClean()) return;
+            if (this.isClean()) return;
+            let self = this;
             let url = (this.location.id ?? 0) ? '/locations/update/' + this.location.id : '/locations/store';
-            this.$emit('data-changed', 'location', this.location, this.token, url);
+            let callback = function (result) {
+                if(!self._oldLocation.id && result.id) {
+                    location = '/locations/edit/' + result.id;
+                } else {
+                    console.log('Before copy');
+                    console.log('Saved avatar: ', result.avatar);
+                    console.log('This location.avatar: ', self.location.avatar);
+                    console.log('This avatar: ', self.avatar);
+                    self.copy(result, self._oldLocation, true);
+                    self.avatar = self.location.avatar = result.avatar;
+                    self.dirty();
+                    console.log('After copy');
+                    console.log('Saved avatar: ', result.avatar);
+                    console.log('This location.avatar: ', self.location.avatar);
+                    console.log('This avatar: ', self.avatar);
+                }
+            }
+            this.$emit('data-changed', 'location', this.location, this.token, url, 'post', callback);
         },
         onReset(ev) {
             this.clear();

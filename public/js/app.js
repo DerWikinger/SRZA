@@ -2670,8 +2670,28 @@ __webpack_require__.r(__webpack_exports__);
       var _this$location$id;
 
       if (this.isClean()) return;
+      var self = this;
       var url = ((_this$location$id = this.location.id) !== null && _this$location$id !== void 0 ? _this$location$id : 0) ? '/locations/update/' + this.location.id : '/locations/store';
-      this.$emit('data-changed', 'location', this.location, this.token, url);
+
+      var callback = function callback(result) {
+        if (!self._oldLocation.id && result.id) {
+          location = '/locations/edit/' + result.id;
+        } else {
+          console.log('Before copy');
+          console.log('Saved avatar: ', result.avatar);
+          console.log('This location.avatar: ', self.location.avatar);
+          console.log('This avatar: ', self.avatar);
+          self.copy(result, self._oldLocation, true);
+          self.avatar = self.location.avatar = result.avatar;
+          self.dirty();
+          console.log('After copy');
+          console.log('Saved avatar: ', result.avatar);
+          console.log('This location.avatar: ', self.location.avatar);
+          console.log('This avatar: ', self.avatar);
+        }
+      };
+
+      this.$emit('data-changed', 'location', this.location, this.token, url, 'post', callback);
     },
     onReset: function onReset(ev) {
       var _this$location$id2;
@@ -3372,8 +3392,7 @@ var app = new Vue({
         }
       });
     },
-    onDataChanged: function onDataChanged(type, data, token, url) {
-      var method = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'post';
+    onDataChanged: function onDataChanged(type, data, token, url, method, callback) {
       console.log("Event 'DataChanged' is called!");
       console.log("Type: ", type);
       console.log("Data: ", data);
@@ -3390,10 +3409,12 @@ var app = new Vue({
         cash: true,
         success: function success(response) {
           console.log(response);
+          callback(response);
         },
         error: function error(response) {
           console.log('Failure');
           console.log(response);
+          return false;
         }
       });
     },

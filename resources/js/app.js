@@ -56,7 +56,7 @@ const app = new Vue({
                 }
             })
         },
-        onDataChanged(type, data, token, url, method = 'post') {
+        onDataChanged(type, data, token, url, method, callback) {
             console.log("Event 'DataChanged' is called!");
             console.log("Type: ", type);
             console.log("Data: ", data);
@@ -73,10 +73,12 @@ const app = new Vue({
                 cash: true,
                 success: function (response) {
                     console.log(response);
+                    callback(response);
                 },
                 error: function (response) {
                     console.log('Failure');
                     console.log(response);
+                    return false;
                 }
             })
         },

@@ -34,7 +34,7 @@ class LocationController extends MainController
      */
     public function create()
     {
-        $location = Location::make(['name' => '', 'avatar' => '', 'description'=>'']); // new Location([ 'name' => '' ]);
+        $location = Location::make(['name' => '', 'avatar' => '', 'description' => '']); // new Location([ 'name' => '' ]);
         $captions = $this->getCaptions('location');
         return view('main.locations.create')->with([
             'location' => $location,
@@ -50,27 +50,10 @@ class LocationController extends MainController
      */
     public function store(Request $request)
     {
-        $location = Location::make(['name' => '', 'avatar' => '', 'description'=>'']);
+        $location = Location::make(['name' => '', 'avatar' => '', 'description' => '']);
         $data = json_decode($request->data);
 
-        if ($data) {
-            $location->name = $data->name ?? '';
-            $location->avatar = $data->avatar ?? '';
-            $location->description = $data->description ?? '';
-        } else {
-            abort(500);
-        }
-        try {
-            if(!$location->save()) abort(501);
-            if($location->avatar != '') {
-                $oldPath = '/public/images/avatars/location/0';
-                if(!$this->updateAvatar($location->avatar, 'location', $location->id, $oldPath)) abort(502);
-                $this->deleteAvatars($oldPath, '.tmp');
-            }
-            return response('Data is saved!', 200);
-        } catch (Exception $exception) {
-            abort(503);
-        }
+        return response($this->modelSave($data, $location), 200);
     }
 
     /**
@@ -81,7 +64,7 @@ class LocationController extends MainController
      */
     public function show($id)
     {
-        return 'Show '.$id;
+        return 'Show ' . $id;
     }
 
     /**
@@ -93,7 +76,7 @@ class LocationController extends MainController
     public function edit($id)
     {
         $location = Location::find($id); // new Location([ 'name' => '' ]);
-        if(!$location) abort(404);
+        if (!$location) abort(404);
         $captions = $this->getCaptions('location');
         return view('main.locations.create')->with([
             'location' => $location,
@@ -113,30 +96,7 @@ class LocationController extends MainController
         $location = Location::find($id);
         $data = json_decode($request->data);
 
-        if ($data) {
-            $location->name = $data->name ?? '';
-            $location->avatar = $data->avatar ?? '';
-            $location->description = $data->description ?? '';
-        } else {
-            abort(500);
-        }
-        dump($location);
-        try {
-            if(!$location->save()) abort(501);
-            $arr = [];
-            preg_match('/[\.].{3,4}$/', $location->avatar ?? '', $arr);
-            $extenssion = ($arr[0] ? $arr[0] : '');
-            dump($extenssion);
-            if($extenssion == '.tmp') {
-                $srcPath = '/public/images/avatars/location/' . $location->id;
-                dump($srcPath);
-                if(!$this->updateAvatar($location->avatar, 'location', $location->id, $srcPath)) abort(502);
-//                $this->deleteAvatars($oldPath, '.tmp');
-            }
-            return response('Data is saved!', 200);
-        } catch (Exception $exception) {
-            abort(503);
-        }
+        return response($this->modelSave($data, $location), 200);
     }
 
     /**
@@ -147,7 +107,7 @@ class LocationController extends MainController
      */
     public function destroy($id)
     {
-        if(Location::destroy($id)) {
+        if (Location::destroy($id)) {
             $path = '/public/images/avatars/location/' . $id;
             Storage::deleteDirectory($path);
             return response('Object has been deleted', 200);
@@ -163,5 +123,40 @@ class LocationController extends MainController
     public function avatarChange(Request $request)
     {
         return $this->upload($request);
+    }
+
+    private function modelSave($data, $location)
+    {
+        if ($data) {
+            $location->name = $data->name ?? '';
+            $location->avatar = $data->avatar ?? '';
+            $location->description = $data->description ?? '';
+        } else {
+            abort(500);
+        }
+
+        try {
+            $srcPath = '';
+            $arr = [];
+            preg_match('/[\.].{3,4}$/', $location->avatar ?? '', $arr);
+            $extenssion = ($arr[0] ? $arr[0] : '');
+            if ($extenssion == '.tmp') {
+                if (!$location->id) {
+                    $srcPath = '/public/images/avatars/location/0';
+                    if (!$location->save()) abort(501);
+                } else {
+                    $srcPath = '/public/images/avatars/location/' . $location->id;
+                }
+            }
+            if ($srcPath) {
+                if (!($location->avatar = $this->updateAvatar($location->avatar, 'location', $location->id, $srcPath))) {
+                    abort(502);
+                }
+            }
+            $location->save();
+            return $location;
+        } catch (Exception $exception) {
+            abort(503);
+        }
     }
 }

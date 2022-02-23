@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use mysql_xdevapi\Exception;
 
@@ -139,7 +140,7 @@ class LocationController extends MainController
             $srcPath = '';
             $arr = [];
             preg_match('/[\.].{3,4}$/', $location->avatar ?? '', $arr);
-            $extenssion = ($arr[0] ? $arr[0] : '');
+            $extenssion = (count($arr) && $arr[0] ? $arr[0] : '');
             if ($extenssion == '.tmp') {
                 if (!$location->id) {
                     $srcPath = '/public/images/avatars/location/0';

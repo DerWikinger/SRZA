@@ -12,9 +12,15 @@ return [
     | these language lines according to your application's requirements.
     |
     */
+    'empty' => 'Список пуст',
+
     'locations' => 'Локации',
     'new-location' => 'Новая локация',
     'edit-location' => 'Редактирование локации',
+
+    'units' => 'Объекты',
+    'new-unit' => 'Новый объект',
+    'edit-unit' => 'Редактирование объекта',
 
     // Locales for Location model
     'location-id' => 'ИД',
@@ -23,5 +29,13 @@ return [
     'location-btnSave' => 'Сохранить',
     'location-btnReset' => 'Восстановить',
     'location-btnCancel' => 'Отменить',
+
+    // Locales for Unit model
+    'unit-id' => 'ИД',
+    'unit-name' => 'Наименование',
+    'unit-description' => 'Описание',
+    'unit-btnSave' => 'Сохранить',
+    'unit-btnReset' => 'Восстановить',
+    'unit-btnCancel' => 'Отменить',
 
 ];

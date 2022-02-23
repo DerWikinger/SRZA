@@ -12,9 +12,15 @@ return [
     | these language lines according to your application's requirements.
     |
     */
+    'empty' => 'Empty list',
+
     'locations' => 'Locations',
     'new-location' => 'New location',
     'edit-location' => 'Edit location',
+
+    'units' => 'Objects',
+    'new-unit' => 'New object',
+    'edit-unit' => 'Edit object',
 
     // Locales for Location model
     'location-id' => 'Id',
@@ -23,4 +29,12 @@ return [
     'location-btnSave' => 'Save',
     'location-btnReset' => 'Reset',
     'location-btnCancel' => 'Cancel',
+
+    // Locales for Unit model
+    'unit-id' => 'Id',
+    'unit-name' => 'Name',
+    'unit-description' => 'Description',
+    'unit-btnSave' => 'Save',
+    'unit-btnReset' => 'Reset',
+    'unit-btnCancel' => 'Cancel',
 ];

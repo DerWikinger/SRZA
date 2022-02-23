@@ -36,6 +36,19 @@ Route::prefix('locations')->name('locations')->middleware('auth')->group(functio
     Route::post('/edit/avatar-change', 'App\Http\Controllers\Main\LocationController@avatarChange')->name('.edit.avatar-change');
 });
 
+Route::prefix('units')->name('units')->middleware('auth')->group(function() {
+    Route::get('/', 'App\Http\Controllers\Main\UnitController@index')->name('.list');
+    Route::get('/create', 'App\Http\Controllers\Main\UnitController@create')->name('.create');
+    Route::post('/delete/{id}', 'App\Http\Controllers\Main\UnitController@destroy')->name('.delete');
+    Route::post('/update/{id}', 'App\Http\Controllers\Main\UnitController@update')->name('.update');
+    Route::get('/edit/{id}', 'App\Http\Controllers\Main\UnitController@edit')->name('.edit');
+    Route::get('/{id}', 'App\Http\Controllers\Main\UnitController@show')->name('.show');
+    Route::post('/store', 'App\Http\Controllers\Main\UnitController@store')->name('.store');
+    Route::post('/reset', 'App\Http\Controllers\Main\UnitController@reset')->name('.reset');
+    Route::post('/avatar-change', 'App\Http\Controllers\Main\UnitController@avatarChange')->name('.avatar-change');
+    Route::post('/edit/avatar-change', 'App\Http\Controllers\Main\UnitController@avatarChange')->name('.edit.avatar-change');
+});
+
 Route::prefix('users')->name('users')->group(function() {
     Route::get('/', 'App\Http\Controllers\Users\UsersController@index');
     Route::post('update', 'App\Http\Controllers\Users\UsersController@update')->name('.update');

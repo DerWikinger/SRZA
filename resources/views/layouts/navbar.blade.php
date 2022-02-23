@@ -16,9 +16,12 @@
                     <a class="navbar-brand" href="{{ route('locations.list') }}">
                         {{ __('menu.locations') }}
                     </a>
-                    <a class="navbar-brand" href="{{ route('cabinet', ['id' => auth()->user()->id]) }}">
-                        {{ __('users.cabinetNavbarIcon') }}
+                    <a class="navbar-brand" href="{{ route('units.list') }}">
+                        {{ __('menu.units') }}
                     </a>
+{{--                    <a class="navbar-brand" href="{{ route('cabinet', ['id' => auth()->user()->id]) }}">--}}
+{{--                        {{ __('users.cabinetNavbarIcon') }}--}}
+{{--                    </a>--}}
 {{--                    <a class="navbar-brand" href="{{ route('chats') }}">--}}
 {{--                        {{ __('users.chatsNavbarIcon') }}--}}
 {{--                    </a>--}}

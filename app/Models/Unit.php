@@ -16,4 +16,9 @@ class Unit extends Model
         'avatar',
         'description',
     ];
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class, 'location_id');
+    }
 }

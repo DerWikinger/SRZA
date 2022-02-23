@@ -16,4 +16,9 @@ class Location extends Model
         'avatar',
         'description',
     ];
+
+    public function units()
+    {
+        return $this->hasMany(Unit::class, 'location_id');
+    }
 }

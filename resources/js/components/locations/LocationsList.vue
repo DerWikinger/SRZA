@@ -2,8 +2,8 @@
     <div>
         <slot name="list-tittle"></slot>
         <div class="p-1 list-item row align-baseline" v-for="(location, key) in locations">
-            <location-brief class="col-6" :location="location"></location-brief>
-            <div class="button-group offset-4 col-2 ">
+            <location-brief class="col-8" :location="location"></location-brief>
+            <div class="button-group offset-2 col-2 ">
                 <div class="button" @click="onDelete(location.id)" v-show="deletePermission == 1">
                     <i class="fas fa-cut" style="font-size:1.25rem;vertical-align:middle;color:#2d3748"
                        :id="btnDeleteName(location.id)"

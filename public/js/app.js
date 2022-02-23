@@ -51166,11 +51166,11 @@ var render = function () {
           { staticClass: "p-1 list-item row align-baseline" },
           [
             _c("location-brief", {
-              staticClass: "col-6",
+              staticClass: "col-8",
               attrs: { location: location },
             }),
             _vm._v(" "),
-            _c("div", { staticClass: "button-group offset-4 col-2 " }, [
+            _c("div", { staticClass: "button-group offset-2 col-2 " }, [
               _c(
                 "div",
                 {

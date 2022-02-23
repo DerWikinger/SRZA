@@ -2674,6 +2674,8 @@ __webpack_require__.r(__webpack_exports__);
       var url = ((_this$location$id = this.location.id) !== null && _this$location$id !== void 0 ? _this$location$id : 0) ? '/locations/update/' + this.location.id : '/locations/store';
 
       var callback = function callback(result) {
+        self.$alert('Данные успешно сохранены!');
+
         if (!self._oldLocation.id && result.id) {
           location = '/locations/edit/' + result.id;
         } else {

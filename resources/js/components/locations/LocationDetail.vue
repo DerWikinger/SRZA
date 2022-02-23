@@ -54,6 +54,7 @@ export default {
             let self = this;
             let url = (this.location.id ?? 0) ? '/locations/update/' + this.location.id : '/locations/store';
             let callback = function (result) {
+                self.$alert('Данные успешно сохранены!');
                 if(!self._oldLocation.id && result.id) {
                     location = '/locations/edit/' + result.id;
                 } else {

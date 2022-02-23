@@ -37,7 +37,7 @@ class MainController extends Controller
             if (!Storage::exists($path)) {
                 Storage::makeDirectory($path);
             }
-            $fileName = 'temp_avatar_' . Carbon::now() . '.' . $file->extension() . '.' . 'tmp';
+            $fileName = 'temp_avatar_' . Carbon::now()->timestamp . '.' . $file->extension() . '.' . 'tmp';
             $fileName = str_replace([':', '\\'], '_', $fileName);
             try {
                 Storage::putFileAs($path, new File($file), $fileName);
@@ -73,28 +73,23 @@ class MainController extends Controller
         if (!Storage::exists($newPath)) {
             Storage::makeDirectory($newPath);
         }
-
+        dump($newPath);
         $arr = [];
         $fileFullname = str_replace('.tmp', '', $file);
 
         preg_match('/[\.].{3,4}$/', $fileFullname, $arr);
         $extenssion = ($arr[0] ? $arr[0] : '.png');
-        $fileName = 'avatar_' . $model . '_' . $id . $extenssion;
+        $pattern = 'avatar_' . $model . '_' . $id;
+        $fileName = $pattern . '_' . Carbon::now()->timestamp . $extenssion;
+        dump($fileName);
 
-//        $obj = null;
         try {
-//            $obj = $className::find($id);
-//            dump('UpdateAvatar ', $tempFile, $newPath . '/' . $fileName );
-            if(Storage::exists($newPath . '/' . $fileName)) {
-//                dump('delete old ', $newPath . '/' . $fileName );
-                Storage::delete($newPath . '/' . $fileName);
-            }
+            $this->deleteAvatars($newPath, $pattern);
             if (Storage::copy($tempFile, $newPath . '/' . $fileName)) {
-//                $obj->avatar = $fileName;
                 $this->deleteAvatars($sourcePath, '.tmp');
-//                return $obj->save() ? $fileName : '';
                 return $fileName;
             }
+            return '';
         } catch (\Exception $exception) {
             return '';
         }
@@ -106,7 +101,6 @@ class MainController extends Controller
         if (!$model) abort(501);
         $id = $request->id ?? 0;
         $path = '/public/images/avatars/' . $model . '/' . $id;
-//        dump($path);
         $this->deleteAvatars($path, '.tmp');
         return response('', 200);
     }
@@ -135,7 +129,6 @@ class MainController extends Controller
     {
         foreach (Storage::allFiles($path) as $f) {
             if ($pattern && !str_contains($f, $pattern)) continue;
-//            dump($f);
             Storage::delete($f);
         }
     }

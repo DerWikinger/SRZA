@@ -12,11 +12,14 @@ return [
     | these language lines according to your application's requirements.
     |
     */
+    'app-name' => 'СРЗА-ЭТЛ',
     'empty' => 'Список пуст',
 
     'locations' => 'Локации',
     'new-location' => 'Новая локация',
     'edit-location' => 'Редактирование локации',
+    'show-location' => 'Локация',
+    'show-objects' => 'Объекты',
 
     'units' => 'Объекты',
     'new-unit' => 'Новый объект',

@@ -65,7 +65,13 @@ class LocationController extends MainController
      */
     public function show($id)
     {
-        return 'Show ' . $id;
+        $location = Location::find($id); // new Location([ 'name' => '' ]);
+        if (!$location) abort(500);
+        $captions = $this->getCaptions($location);
+        return view('main.locations.show')->with([
+            'location' => $location,
+            'captions' => $captions,
+        ]);
     }
 
     /**
@@ -77,7 +83,7 @@ class LocationController extends MainController
     public function edit($id)
     {
         $location = Location::find($id); // new Location([ 'name' => '' ]);
-        if (!$location) abort(404);
+        if (!$location) abort(500);
         $captions = $this->getCaptions($location);
         return view('main.locations.create')->with([
             'location' => $location,

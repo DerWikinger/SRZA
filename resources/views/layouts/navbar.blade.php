@@ -16,9 +16,9 @@
                     <a class="navbar-brand" href="{{ route('locations.list') }}">
                         {{ __('menu.locations') }}
                     </a>
-                    <a class="navbar-brand" href="{{ route('locations.units.list', [ 1 ]) }}">
-                        {{ __('menu.units') }}
-                    </a>
+{{--                    <a class="navbar-brand" href="{{ route('locations.units.list', [ 1 ]) }}">--}}
+{{--                        {{ __('menu.units') }}--}}
+{{--                    </a>--}}
 {{--                    <a class="navbar-brand" href="{{ route('cabinet', ['id' => auth()->user()->id]) }}">--}}
 {{--                        {{ __('users.cabinetNavbarIcon') }}--}}
 {{--                    </a>--}}

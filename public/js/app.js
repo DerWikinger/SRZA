@@ -2722,11 +2722,11 @@ __webpack_require__.r(__webpack_exports__);
       if (this.compare(this._oldLocation, this.location)) {
         this._dirty = false;
         $(elemId).removeClass('enabled').addClass('disabled');
-        $(elemId).addClass('color-gray');
+        $(elemId).addClass('color-disabled');
       } else {
         this._dirty = true;
         $(elemId).removeClass('disabled').addClass('enabled');
-        $(elemId).removeClass('color-gray');
+        $(elemId).removeClass('color-disabled');
       }
     },
     clear: function clear() {
@@ -3231,11 +3231,11 @@ __webpack_require__.r(__webpack_exports__);
       if (this.compare(this._oldUnit, this.unit)) {
         this._dirty = false;
         $(elemId).removeClass('enabled').addClass('disabled');
-        $(elemId).addClass('color-gray');
+        $(elemId).addClass('color-disabled');
       } else {
         this._dirty = true;
         $(elemId).removeClass('disabled').addClass('enabled');
-        $(elemId).removeClass('color-gray');
+        $(elemId).removeClass('color-disabled');
       }
     },
     clear: function clear() {
@@ -51878,7 +51878,7 @@ var render = function () {
       _vm._v(" "),
       _c("input", {
         staticClass:
-          "form-control col-3 disabled d-inline-block float-right color-gray",
+          "form-control col-3 disabled d-inline-block float-right color-disabled",
         attrs: {
           id: "btnSave_" + this.id,
           type: "button",
@@ -52389,7 +52389,7 @@ var render = function () {
       _vm._v(" "),
       _c("input", {
         staticClass:
-          "form-control col-3 disabled d-inline-block float-right color-gray",
+          "form-control col-3 disabled d-inline-block float-right color-disabled",
         attrs: {
           id: "btnSave_" + this.id,
           type: "button",

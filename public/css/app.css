@@ -10024,7 +10024,7 @@ body {
   padding: 0;
 }
 
-.color-empty-list {
+.color-disabled, .color-empty-list {
   color: #a999ac !important;
 }
 

@@ -73,7 +73,7 @@ export default {
                         success: function (response) {
                             // self.$emit('record-delete', filename);
                             document.$alert('Запись успешно удалена!').then(() => {
-                                window.location = '/units';
+                                window.location = window.location;
                             });
                         },
                         error: function (response) {

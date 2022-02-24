@@ -7,23 +7,24 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <units-list :units="{{ collect($units)->map( function (\App\Models\Unit $unit) {
+                <units-list :units="{{ collect($units)->map( function (\App\Models\Unit $unit) use($foreign_id) {
                     return [
                         'id' => $unit->id,
                         'name' => $unit->name,
                         'avatar' => $unit->avatar ?? '',
+                        'location_id' => $foreign_id,
                         ];
                 } ) }}" token="{{ csrf_token() }}"
                         :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() }}">
                     <template v-slot:list-tittle>
-                        <h2 class="text-capitalize">{{__('caption.units')}}</h2>
+                        <h2 class="color-caption text-capitalize">{{__('caption.units')}}</h2>
                     </template>
                     <template v-slot:list-empty>
                         <br>
-                        <h4 class="color-gray">{{__('caption.empty')}}</h4>
+                        <h4 class="color-empty-list">{{__('caption.empty')}}</h4>
                     </template>
                     <template v-slot:list-footer>
-                        <add-button route="{{ route('units.create') }}">
+                        <add-button route="{{ url('/units/create/' . $foreign_id) }}">
                             {{ __('caption.new-unit') }}
                         </add-button>
                     </template>

@@ -78,7 +78,7 @@ class LocationController extends MainController
     {
         $location = Location::find($id); // new Location([ 'name' => '' ]);
         if (!$location) abort(404);
-        $captions = $this->getCaptions('location');
+        $captions = $this->getCaptions($location);
         return view('main.locations.create')->with([
             'location' => $location,
             'captions' => $captions,
@@ -115,49 +115,38 @@ class LocationController extends MainController
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function avatarChange(Request $request)
-    {
-        return $this->upload($request);
-    }
-
-    private function modelSave($data, $location)
-    {
-        if ($data) {
-            $location->name = $data->name ?? '';
-            $location->avatar = $data->avatar ?? '';
-            $location->description = $data->description ?? '';
-        } else {
-            abort(500);
-        }
-
-        try {
-            $srcPath = '';
-            $arr = [];
-            preg_match('/[\.].{3,4}$/', $location->avatar ?? '', $arr);
-            $extenssion = (count($arr) && $arr[0] ? $arr[0] : '');
-            if ($extenssion == '.tmp') {
-                if (!$location->id) {
-                    $srcPath = '/public/images/avatars/location/0';
-                    if (!$location->save()) abort(501);
-                } else {
-                    $srcPath = '/public/images/avatars/location/' . $location->id;
-                }
-            }
-            if ($srcPath) {
-                if (!($location->avatar = $this->updateAvatar($location->avatar, 'location', $location->id, $srcPath))) {
-                    abort(502);
-                }
-            }
-            $location->save();
-            return $location;
-        } catch (Exception $exception) {
-            abort(503);
-        }
-    }
+//    protected function modelSave($data, $location)
+//    {
+//        if ($data) {
+//            $location->name = $data->name ?? '';
+//            $location->avatar = $data->avatar ?? '';
+//            $location->description = $data->description ?? '';
+//        } else {
+//            abort(500);
+//        }
+//
+//        try {
+//            $srcPath = '';
+//            $arr = [];
+//            preg_match('/[\.].{3,4}$/', $location->avatar ?? '', $arr);
+//            $extenssion = (count($arr) && $arr[0] ? $arr[0] : '');
+//            if ($extenssion == '.tmp') {
+//                if (!$location->id) {
+//                    $srcPath = '/public/images/avatars/location/0';
+//                    if (!$location->save()) abort(501);
+//                } else {
+//                    $srcPath = '/public/images/avatars/location/' . $location->id;
+//                }
+//            }
+//            if ($srcPath) {
+//                if (!($location->avatar = $this->updateAvatar($location->avatar, 'location', $location->id, $srcPath))) {
+//                    abort(502);
+//                }
+//            }
+//            $location->save();
+//            return $location;
+//        } catch (Exception $exception) {
+//            abort(503);
+//        }
+//    }
 }

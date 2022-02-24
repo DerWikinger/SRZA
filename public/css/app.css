@@ -10024,8 +10024,12 @@ body {
   padding: 0;
 }
 
-.color-gray {
+.color-empty-list {
   color: #a999ac !important;
+}
+
+.color-caption {
+  color: #295b84 !important;
 }
 
 section.container {

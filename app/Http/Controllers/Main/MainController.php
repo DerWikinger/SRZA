@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use mysql_xdevapi\Exception;
 
 class MainController extends Controller
 {
@@ -143,15 +145,70 @@ class MainController extends Controller
 
     public function getCaptions($model)
     {
-        $collect = collect(__('caption'))->filter(function ($value, $key) use ($model) {
-            return str_contains($key, $model . '-');
+        $model_type = strtolower(class_basename($model));
+        $collect = collect(__('caption'))->filter(function ($value, $key) use ($model_type) {
+            return str_contains($key, $model_type . '-');
         });
 
         $arr = [];
-        $collect->keys()->each(function ($key) use ($model, &$arr, $collect) {
-            $arr[str_replace($model . '-', '', $key)] = $collect[$key];
+        $collect->keys()->each(function ($key) use ($model_type, &$arr, $collect) {
+            $arr[str_replace($model_type . '-', '', $key)] = $collect[$key];
         });
 
         return collect($arr);
+    }
+    /**
+     * Save the specified object in database.
+     *
+     * @param object $data
+     * @param Model $object
+     * @return Model
+     */
+    protected function modelSave($data, $object)
+    {
+        if ($data) {
+            $object->name = $data->name ?? '';
+            $object->avatar = $data->avatar ?? '';
+            $object->description = $data->description ?? '';
+        } else {
+            abort(500);
+        }
+
+        $className = strtolower(class_basename($object));
+
+        try {
+            $srcPath = '';
+            $arr = [];
+            preg_match('/[\.].{3,4}$/', $object->avatar ?? '', $arr);
+            $extenssion = (count($arr) && $arr[0] ? $arr[0] : '');
+            if ($extenssion == '.tmp') {
+                if (!$object->id) {
+                    $srcPath = '/public/images/avatars/'. $className .'/0';
+                    if (!$object->save()) abort(501);
+                } else {
+                    $srcPath = '/public/images/avatars/' . $className . '/' . $object->id;
+                }
+            }
+            if ($srcPath) {
+                if (!($object->avatar = $this->updateAvatar($object->avatar, $className, $object->id, $srcPath))) {
+                    abort(502);
+                }
+            }
+            $object->save();
+            return $object;
+        } catch (Exception $exception) {
+            abort(503);
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function avatarChange(Request $request)
+    {
+        return $this->upload($request);
     }
 }

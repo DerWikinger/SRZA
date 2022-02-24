@@ -20,7 +20,7 @@
                     </template>
                     <template v-slot:list-empty>
                         <br>
-                        <h4 class="" style="color:#505762">{{__('caption.empty')}}</h4>
+                        <h4 class="color-gray">{{__('caption.empty')}}</h4>
                     </template>
                     <template v-slot:list-footer>
                         <add-button route="{{ route('units.create') }}">

@@ -29,7 +29,7 @@
             <input class="form-control col-3 d-inline-block float-right" v-bind:id="'btnReset_' + this.id" type="button"
                    @click="onReset"
                    :value="this.captions.btnReset">
-            <input class="form-control col-3 disabled d-inline-block float-right" v-bind:id="'btnSave_' + this.id"
+            <input class="form-control col-3 disabled d-inline-block float-right color-gray" v-bind:id="'btnSave_' + this.id"
                    type="button" @click="onSave"
                    :value="this.captions.btnSave">
         </div>
@@ -97,9 +97,11 @@ export default {
             if (this.compare(this._oldLocation, this.location)) {
                 this._dirty = false;
                 $(elemId).removeClass('enabled').addClass('disabled');
+                $(elemId).addClass('color-gray');
             } else {
                 this._dirty = true;
                 $(elemId).removeClass('disabled').addClass('enabled');
+                $(elemId).removeClass('color-gray');
             }
         },
         clear() {
@@ -141,7 +143,6 @@ input[type=button] {
 }
 
 input.disabled {
-    color: gray;
     cursor: default;
 }
 

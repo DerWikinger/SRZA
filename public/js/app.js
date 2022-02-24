@@ -2722,9 +2722,11 @@ __webpack_require__.r(__webpack_exports__);
       if (this.compare(this._oldLocation, this.location)) {
         this._dirty = false;
         $(elemId).removeClass('enabled').addClass('disabled');
+        $(elemId).addClass('color-gray');
       } else {
         this._dirty = true;
         $(elemId).removeClass('disabled').addClass('enabled');
+        $(elemId).removeClass('color-gray');
       }
     },
     clear: function clear() {
@@ -20645,7 +20647,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.avatar[data-v-64305eaa] {\n    display: inline-block;\n}\n.img-avatar[data-v-64305eaa] {\n    height: 2.5rem;\n    vertical-align: middle;\n    padding: 0rem;\n    border-radius: 0rem 0.75rem 0.75rem 0.75rem;\n    border: 1px solid #ced4da;\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n    overflow: hidden;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.avatar[data-v-64305eaa] {\n    display: inline-block;\n    text-align: center;\n}\n.img-avatar[data-v-64305eaa] {\n    height: 2.5rem;\n    vertical-align: middle;\n    padding: 0rem;\n    border-radius: 0rem 0.75rem 0.75rem 0.75rem;\n    border: 1px solid #ced4da;\n    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n    overflow: hidden;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -20741,7 +20743,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ninput[type=button][data-v-145d61bc] {\n    margin-left: 1rem;\n}\ninput.disabled[data-v-145d61bc] {\n    color: gray;\n    cursor: default;\n}\ninput.enabled[data-v-145d61bc] {\n    color: #495057;\n    cursor: pointer;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ninput[type=button][data-v-145d61bc] {\n    margin-left: 1rem;\n}\ninput.disabled[data-v-145d61bc] {\n    cursor: default;\n}\ninput.enabled[data-v-145d61bc] {\n    color: #495057;\n    cursor: pointer;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -51561,7 +51563,8 @@ var render = function () {
       }),
       _vm._v(" "),
       _c("input", {
-        staticClass: "form-control col-3 disabled d-inline-block float-right",
+        staticClass:
+          "form-control col-3 disabled d-inline-block float-right color-gray",
         attrs: {
           id: "btnSave_" + this.id,
           type: "button",

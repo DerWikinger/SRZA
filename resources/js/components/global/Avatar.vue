@@ -27,6 +27,7 @@ export default {
 
 .avatar {
     display: inline-block;
+    text-align: center;
 }
 
 .img-avatar {

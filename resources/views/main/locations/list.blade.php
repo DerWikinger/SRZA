@@ -16,7 +16,7 @@
                 } ) }}" token="{{ csrf_token() }}"
                         :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() }}">
                     <template v-slot:list-tittle>
-                        <h2 class="text-primary text-capitalize">{{__('caption.locations')}}</h2>
+                        <h2 class="color-caption text-capitalize">{{__('caption.locations')}}</h2>
                     </template>
                     <template v-slot:list-footer>
                         <add-button route="{{ route('locations.create') }}">

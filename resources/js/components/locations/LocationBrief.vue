@@ -35,6 +35,9 @@ export default {
     display: inline-block;
 }
 
+.description {
+    font-size: 1.5rem;
+}
 /*.location-info div {*/
 /*    display: inline-block;*/
 /*    !*margin: 0 1rem;*!*/

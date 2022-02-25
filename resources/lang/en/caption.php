@@ -12,11 +12,14 @@ return [
     | these language lines according to your application's requirements.
     |
     */
+    'app-name' => 'SRZA',
     'empty' => 'Empty list',
 
     'locations' => 'Locations',
     'new-location' => 'New location',
     'edit-location' => 'Edit location',
+    'show-location' => 'Location',
+    'show-objects' => 'Objects',
 
     'units' => 'Objects',
     'new-unit' => 'New object',

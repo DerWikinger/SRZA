@@ -6,7 +6,7 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
+            <div class="col-12">
                 <units-list :units="{{ collect($units)->map( function (\App\Models\Unit $unit) use($foreign_id) {
                     return [
                         'id' => $unit->id,

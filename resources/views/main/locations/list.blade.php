@@ -6,7 +6,7 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
+            <div class="col-12">
                 <locations-list :locations="{{ collect($locations)->map( function (\App\Models\Location $location) {
                     return [
                         'id' => $location->id,
@@ -16,7 +16,7 @@
                 } ) }}" token="{{ csrf_token() }}"
                         :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() }}">
                     <template v-slot:list-tittle>
-                        <h2 class="color-caption text-capitalize">{{__('caption.locations')}}</h2>
+                        <h2 class="card-header color-caption text-capitalize">{{__('caption.locations')}}</h2>
                     </template>
                     <template v-slot:list-footer>
                         <add-button route="{{ route('locations.create') }}">

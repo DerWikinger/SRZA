@@ -1,22 +1,25 @@
 <template>
     <div>
         <slot name="list-tittle"></slot>
-        <div class="p-1 list-item row align-baseline" v-for="(location, key) in locations">
-            <location-brief class="col-8" :location="location"></location-brief>
-            <div class="button-group offset-2 col-2 ">
-                <div class="button" @click="onDelete(location.id)" v-show="deletePermission == 1">
-                    <i class="fas fa-cut" style="font-size:1.25rem;vertical-align:middle;color:#2d3748"
-                       :id="btnDeleteName(location.id)"
-                       @mouseover="onMouseOver(btnDeleteName(location.id))"
-                       @mouseleave="onMouseLeave(btnDeleteName(location.id))"></i>
-                </div>
-                <div class="button" @click="onEdit(location.id)">
-                    <i class="fas fa-pencil-alt" style="font-size:1.25rem;vertical-align:middle;color:#2d3748"
-                       :id="btnEditName(location.id)"
-                       @mouseover="onMouseOver(btnEditName(location.id))"
-                       @mouseleave="onMouseLeave(btnEditName(location.id))"></i>
+        <div class="list-item align-baseline " v-for="(location, key) in locations">
+            <div class="p-1 row">
+                <location-brief class="col-8" :location="location"></location-brief>
+                <div class="button-group offset-2 col-2 ">
+                    <div class="button" @click="onDelete(location.id)" v-show="deletePermission == 1">
+                        <i class="fas fa-cut" style="font-size:1.25rem;vertical-align:middle;color:#2d3748"
+                           :id="btnDeleteName(location.id)"
+                           @mouseover="onMouseOver(btnDeleteName(location.id))"
+                           @mouseleave="onMouseLeave(btnDeleteName(location.id))"></i>
+                    </div>
+                    <div class="button" @click="onEdit(location.id)">
+                        <i class="fas fa-pencil-alt" style="font-size:1.25rem;vertical-align:middle;color:#2d3748"
+                           :id="btnEditName(location.id)"
+                           @mouseover="onMouseOver(btnEditName(location.id))"
+                           @mouseleave="onMouseLeave(btnEditName(location.id))"></i>
+                    </div>
                 </div>
             </div>
+
         </div>
         <br>
         <slot name="list-footer"></slot>

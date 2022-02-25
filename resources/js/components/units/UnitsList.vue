@@ -4,20 +4,22 @@
         <div class="" v-if="units.length == 0">
             <slot name="list-empty"></slot>
         </div>
-        <div class="p-1 list-item row align-baseline" v-else v-for="(unit, key) in units">
-            <unit-brief class="col-8" :unit="unit"></unit-brief>
-            <div class="button-group offset-2 col-2 ">
-                <div class="button" @click="onDelete(unit.id)" v-show="deletePermission == 1">
-                    <i class="fas fa-cut" style="font-size:1.25rem;vertical-align:middle;color:#2d3748"
-                       :id="btnDeleteName(unit.id)"
-                       @mouseover="onMouseOver(btnDeleteName(unit.id))"
-                       @mouseleave="onMouseLeave(btnDeleteName(unit.id))"></i>
-                </div>
-                <div class="button" @click="onEdit(unit.id)">
-                    <i class="fas fa-pencil-alt" style="font-size:1.25rem;vertical-align:middle;color:#2d3748"
-                       :id="btnEditName(unit.id)"
-                       @mouseover="onMouseOver(btnEditName(unit.id))"
-                       @mouseleave="onMouseLeave(btnEditName(unit.id))"></i>
+        <div class="p-1 list-item align-baseline" v-else v-for="(unit, key) in units">
+            <div class="p-1 row">
+                <unit-brief class="col-8" :unit="unit"></unit-brief>
+                <div class="button-group offset-2 col-2 ">
+                    <div class="button" @click="onDelete(unit.id)" v-show="deletePermission == 1">
+                        <i class="fas fa-cut" style="font-size:1.25rem;vertical-align:middle;color:#2d3748"
+                           :id="btnDeleteName(unit.id)"
+                           @mouseover="onMouseOver(btnDeleteName(unit.id))"
+                           @mouseleave="onMouseLeave(btnDeleteName(unit.id))"></i>
+                    </div>
+                    <div class="button" @click="onEdit(unit.id)">
+                        <i class="fas fa-pencil-alt" style="font-size:1.25rem;vertical-align:middle;color:#2d3748"
+                           :id="btnEditName(unit.id)"
+                           @mouseover="onMouseOver(btnEditName(unit.id))"
+                           @mouseleave="onMouseLeave(btnEditName(unit.id))"></i>
+                    </div>
                 </div>
             </div>
         </div>

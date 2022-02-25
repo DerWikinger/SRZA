@@ -2807,6 +2807,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "LocationsList",
@@ -3291,6 +3294,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _units_UnitBrief__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../units/UnitBrief */ "./resources/js/components/units/UnitBrief.vue");
+//
+//
 //
 //
 //
@@ -51918,89 +51923,91 @@ var render = function () {
       _vm._t("list-tittle"),
       _vm._v(" "),
       _vm._l(_vm.locations, function (location, key) {
-        return _c(
-          "div",
-          { staticClass: "p-1 list-item row align-baseline" },
-          [
-            _c("location-brief", {
-              staticClass: "col-8",
-              attrs: { location: location },
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "button-group offset-2 col-2 " }, [
-              _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.deletePermission == 1,
-                      expression: "deletePermission == 1",
-                    },
-                  ],
-                  staticClass: "button",
-                  on: {
-                    click: function ($event) {
-                      return _vm.onDelete(location.id)
-                    },
-                  },
-                },
-                [
-                  _c("i", {
-                    staticClass: "fas fa-cut",
-                    staticStyle: {
-                      "font-size": "1.25rem",
-                      "vertical-align": "middle",
-                      color: "#2d3748",
-                    },
-                    attrs: { id: _vm.btnDeleteName(location.id) },
-                    on: {
-                      mouseover: function ($event) {
-                        _vm.onMouseOver(_vm.btnDeleteName(location.id))
-                      },
-                      mouseleave: function ($event) {
-                        _vm.onMouseLeave(_vm.btnDeleteName(location.id))
-                      },
-                    },
-                  }),
-                ]
-              ),
+        return _c("div", { staticClass: "list-item align-baseline " }, [
+          _c(
+            "div",
+            { staticClass: "p-1 row" },
+            [
+              _c("location-brief", {
+                staticClass: "col-8",
+                attrs: { location: location },
+              }),
               _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "button",
-                  on: {
-                    click: function ($event) {
-                      return _vm.onEdit(location.id)
+              _c("div", { staticClass: "button-group offset-2 col-2 " }, [
+                _c(
+                  "div",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.deletePermission == 1,
+                        expression: "deletePermission == 1",
+                      },
+                    ],
+                    staticClass: "button",
+                    on: {
+                      click: function ($event) {
+                        return _vm.onDelete(location.id)
+                      },
                     },
                   },
-                },
-                [
-                  _c("i", {
-                    staticClass: "fas fa-pencil-alt",
-                    staticStyle: {
-                      "font-size": "1.25rem",
-                      "vertical-align": "middle",
-                      color: "#2d3748",
-                    },
-                    attrs: { id: _vm.btnEditName(location.id) },
+                  [
+                    _c("i", {
+                      staticClass: "fas fa-cut",
+                      staticStyle: {
+                        "font-size": "1.25rem",
+                        "vertical-align": "middle",
+                        color: "#2d3748",
+                      },
+                      attrs: { id: _vm.btnDeleteName(location.id) },
+                      on: {
+                        mouseover: function ($event) {
+                          _vm.onMouseOver(_vm.btnDeleteName(location.id))
+                        },
+                        mouseleave: function ($event) {
+                          _vm.onMouseLeave(_vm.btnDeleteName(location.id))
+                        },
+                      },
+                    }),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "button",
                     on: {
-                      mouseover: function ($event) {
-                        _vm.onMouseOver(_vm.btnEditName(location.id))
-                      },
-                      mouseleave: function ($event) {
-                        _vm.onMouseLeave(_vm.btnEditName(location.id))
+                      click: function ($event) {
+                        return _vm.onEdit(location.id)
                       },
                     },
-                  }),
-                ]
-              ),
-            ]),
-          ],
-          1
-        )
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fas fa-pencil-alt",
+                      staticStyle: {
+                        "font-size": "1.25rem",
+                        "vertical-align": "middle",
+                        color: "#2d3748",
+                      },
+                      attrs: { id: _vm.btnEditName(location.id) },
+                      on: {
+                        mouseover: function ($event) {
+                          _vm.onMouseOver(_vm.btnEditName(location.id))
+                        },
+                        mouseleave: function ($event) {
+                          _vm.onMouseLeave(_vm.btnEditName(location.id))
+                        },
+                      },
+                    }),
+                  ]
+                ),
+              ]),
+            ],
+            1
+          ),
+        ])
       }),
       _vm._v(" "),
       _c("br"),
@@ -52431,89 +52438,91 @@ var render = function () {
       _vm.units.length == 0
         ? _c("div", {}, [_vm._t("list-empty")], 2)
         : _vm._l(_vm.units, function (unit, key) {
-            return _c(
-              "div",
-              { staticClass: "p-1 list-item row align-baseline" },
-              [
-                _c("unit-brief", {
-                  staticClass: "col-8",
-                  attrs: { unit: unit },
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "button-group offset-2 col-2 " }, [
-                  _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.deletePermission == 1,
-                          expression: "deletePermission == 1",
-                        },
-                      ],
-                      staticClass: "button",
-                      on: {
-                        click: function ($event) {
-                          return _vm.onDelete(unit.id)
-                        },
-                      },
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-cut",
-                        staticStyle: {
-                          "font-size": "1.25rem",
-                          "vertical-align": "middle",
-                          color: "#2d3748",
-                        },
-                        attrs: { id: _vm.btnDeleteName(unit.id) },
-                        on: {
-                          mouseover: function ($event) {
-                            _vm.onMouseOver(_vm.btnDeleteName(unit.id))
-                          },
-                          mouseleave: function ($event) {
-                            _vm.onMouseLeave(_vm.btnDeleteName(unit.id))
-                          },
-                        },
-                      }),
-                    ]
-                  ),
+            return _c("div", { staticClass: "p-1 list-item align-baseline" }, [
+              _c(
+                "div",
+                { staticClass: "p-1 row" },
+                [
+                  _c("unit-brief", {
+                    staticClass: "col-8",
+                    attrs: { unit: unit },
+                  }),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "button",
-                      on: {
-                        click: function ($event) {
-                          return _vm.onEdit(unit.id)
+                  _c("div", { staticClass: "button-group offset-2 col-2 " }, [
+                    _c(
+                      "div",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.deletePermission == 1,
+                            expression: "deletePermission == 1",
+                          },
+                        ],
+                        staticClass: "button",
+                        on: {
+                          click: function ($event) {
+                            return _vm.onDelete(unit.id)
+                          },
                         },
                       },
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-pencil-alt",
-                        staticStyle: {
-                          "font-size": "1.25rem",
-                          "vertical-align": "middle",
-                          color: "#2d3748",
-                        },
-                        attrs: { id: _vm.btnEditName(unit.id) },
+                      [
+                        _c("i", {
+                          staticClass: "fas fa-cut",
+                          staticStyle: {
+                            "font-size": "1.25rem",
+                            "vertical-align": "middle",
+                            color: "#2d3748",
+                          },
+                          attrs: { id: _vm.btnDeleteName(unit.id) },
+                          on: {
+                            mouseover: function ($event) {
+                              _vm.onMouseOver(_vm.btnDeleteName(unit.id))
+                            },
+                            mouseleave: function ($event) {
+                              _vm.onMouseLeave(_vm.btnDeleteName(unit.id))
+                            },
+                          },
+                        }),
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "button",
                         on: {
-                          mouseover: function ($event) {
-                            _vm.onMouseOver(_vm.btnEditName(unit.id))
-                          },
-                          mouseleave: function ($event) {
-                            _vm.onMouseLeave(_vm.btnEditName(unit.id))
+                          click: function ($event) {
+                            return _vm.onEdit(unit.id)
                           },
                         },
-                      }),
-                    ]
-                  ),
-                ]),
-              ],
-              1
-            )
+                      },
+                      [
+                        _c("i", {
+                          staticClass: "fas fa-pencil-alt",
+                          staticStyle: {
+                            "font-size": "1.25rem",
+                            "vertical-align": "middle",
+                            color: "#2d3748",
+                          },
+                          attrs: { id: _vm.btnEditName(unit.id) },
+                          on: {
+                            mouseover: function ($event) {
+                              _vm.onMouseOver(_vm.btnEditName(unit.id))
+                            },
+                            mouseleave: function ($event) {
+                              _vm.onMouseLeave(_vm.btnEditName(unit.id))
+                            },
+                          },
+                        }),
+                      ]
+                    ),
+                  ]),
+                ],
+                1
+              ),
+            ])
           }),
       _vm._v(" "),
       _c("br"),

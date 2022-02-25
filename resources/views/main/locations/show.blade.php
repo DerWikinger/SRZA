@@ -12,7 +12,7 @@
 {{--                            avatar="{{ $location->avatar }}"></avatar>--}}
                     <span class="color-caption">{{ __('caption.show-location') . ': ' . $location->name }}</span>
                 </h3>
-                <units-list class="col-12 card-body" :units="{{ collect( $location->units)->map( function (\App\Models\Unit $unit) use($location) {
+                <units-list class="" :units="{{ collect( $location->units)->map( function (\App\Models\Unit $unit) use($location) {
                     return [
                         'id' => $unit->id,
                         'name' => $unit->name,
@@ -22,7 +22,7 @@
                 } ) }}" token="{{ csrf_token() }}"
                             :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() }}">
                     <template v-slot:list-tittle>
-                        <h2 class="color-caption text-capitalize">{{__('caption.units')}}:</h2>
+                        <h2 class="p-1 color-caption text-capitalize">{{__('caption.units')}}:</h2>
                     </template>
                     <template v-slot:list-empty>
                         <br>

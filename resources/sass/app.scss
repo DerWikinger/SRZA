@@ -30,11 +30,17 @@ section.main {
 
 header {
     height: 100px;
-    background-color: #2d3748;
-    color: #cbd5e0;
+    background-color: $dark-grey;
+    color: $steel;
     text-align: center;
     padding: 20px 10px;
     box-sizing: border-box;
+}
+
+footer {
+    background-color: $dark-grey;
+    color: $steel;
+    height: 80px;
 }
 
 header h2 {

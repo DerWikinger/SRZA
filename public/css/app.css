@@ -10049,6 +10049,12 @@ header {
   box-sizing: border-box;
 }
 
+footer {
+  background-color: #2d3748;
+  color: #cbd5e0;
+  height: 80px;
+}
+
 header h2 {
   margin: 0;
 }

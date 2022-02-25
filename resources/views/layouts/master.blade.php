@@ -31,6 +31,7 @@
         <section class="main">
             @yield('content')
         </section>
+        @include('layouts.footer')
         @section('footerScripts')
         @show
     </div>

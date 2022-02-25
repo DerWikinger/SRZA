@@ -10038,6 +10038,7 @@ section.container {
 
 section.main {
   padding: 10px;
+  height: auto;
 }
 
 header {
@@ -10050,9 +10051,23 @@ header {
 }
 
 footer {
-  background-color: #2d3748;
+  background-color: transparent;
   color: #cbd5e0;
-  height: 80px;
+  height: 100px;
+}
+
+.footer-menu {
+  height: 60px;
+  padding: 0.5rem 0 0.8rem 0;
+}
+
+.sub-footer {
+  background-color: #2d3748;
+  height: 40px;
+}
+
+.sub-footer-content {
+  padding: 0.8rem 0 0.8rem 0;
 }
 
 header h2 {

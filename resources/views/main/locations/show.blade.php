@@ -29,9 +29,15 @@
                         <h4 class="color-empty-list">{{__('caption.empty')}}</h4>
                     </template>
                     <template v-slot:list-footer>
-                        <add-button route="{{ url('/units/create/' . $location->id) }}">
-                            {{ __('caption.new-unit') }}
-                        </add-button>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="col-3">
+                                    <add-button route="{{ url('/units/create/' . $location->id) }}">
+                                        {{ __('caption.new-unit') }}
+                                    </add-button>
+                                </div>
+                            </div>
+                        </div>
                     </template>
                 </units-list>
             </div>

@@ -20,6 +20,7 @@ return [
     'edit-location' => 'Edit location',
     'show-location' => 'Location',
     'show-objects' => 'Objects',
+    'btn-reset' => 'Return',
 
     'units' => 'Objects',
     'new-unit' => 'New object',

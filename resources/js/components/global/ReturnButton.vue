@@ -1,24 +1,26 @@
 <template>
-<!--    <a class="navbar-brand" :href="this.route">-->
-<!--        <slot></slot>-->
-<!--    </a>-->
-
+    <!--    <a class="navbar-brand" :href="this.route">-->
+    <!--        <slot></slot>-->
+    <!--    </a>-->
     <div class="btn-area">
-        <div class="color-caption btn form-control text-center" @click="onClick" id="btn-add">
+        <div class="color-caption btn form-control text-center" @click="onClick" id="btn-reset">
             <slot></slot>
         </div>
     </div>
+
+
 </template>
 
 <script>
 export default {
-    name: "AddButton",
+    name: "ReturnButton",
     props: {
         route: {type: String},
     },
     methods: {
         onClick() {
-            window.location = this.route;
+            this.$alert('Return!');
+            // window.location = this.route;
         }
     }
 }
@@ -26,10 +28,9 @@ export default {
 
 <style scoped>
 
-#btn-add {
+#btn-reset {
     border-radius: 0.25rem;
-    border: #0e7924 solid 1px;
-    color: #0e7924 !important;
+    border: solid 1px;
     width: 100%;
     font-weight: bolder;
     padding: 0.25rem;
@@ -38,4 +39,5 @@ export default {
 .btn-area {
     margin-right: 1rem;
 }
+
 </style>

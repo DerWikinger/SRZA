@@ -19,9 +19,15 @@
                         <h2 class="card-header color-caption text-capitalize">{{__('caption.locations')}}</h2>
                     </template>
                     <template v-slot:list-footer>
-                        <add-button route="{{ route('locations.create') }}">
-                            {{ __('caption.new-location') }}
-                        </add-button>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="col-3">
+                                    <add-button route="{{ route('locations.create') }}">
+                                        {{ __('caption.new-location') }}
+                                    </add-button>
+                                </div>
+                            </div>
+                        </div>
                     </template>
                 </locations-list>
 

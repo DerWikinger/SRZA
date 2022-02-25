@@ -20,6 +20,7 @@ return [
     'edit-location' => 'Редактирование локации',
     'show-location' => 'Локация',
     'show-objects' => 'Объекты',
+    'btn-reset' => 'Назад',
 
     'units' => 'Объекты',
     'new-unit' => 'Новый объект',

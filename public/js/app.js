@@ -2598,7 +2598,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     onClick: function onClick() {
-      this.$alert('Return!'); // window.location = this.route;
+      // this.$alert(this.route);
+      if (this.route) window.location = this.route;
     }
   }
 });

@@ -19,8 +19,8 @@ export default {
     },
     methods: {
         onClick() {
-            this.$alert('Return!');
-            // window.location = this.route;
+            // this.$alert(this.route);
+            if(this.route) window.location = this.route;
         }
     }
 }

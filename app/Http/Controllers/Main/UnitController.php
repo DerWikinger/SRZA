@@ -22,6 +22,7 @@ class UnitController extends MainController
         return view('main.units.list')->with([
             'units' => $location->units,
             'foreign_id' => $foreign_id,
+            'back' => '/locations',
         ]);
     }
 
@@ -44,6 +45,7 @@ class UnitController extends MainController
         return view('main.units.create')->with([
             'unit' => $unit,
             'captions' => $captions,
+            'back' => '/locations/' . $foreign_id,
         ]);
     }
 
@@ -93,6 +95,7 @@ class UnitController extends MainController
         return view('main.units.create')->with([
             'unit' => $unit,
             'captions' => $captions,
+            'back' => '/locations/' . $unit->location->id,
         ]);
     }
 

@@ -25,6 +25,7 @@ class LocationController extends MainController
     {
         return view('main.locations.list')->with([
             'locations' => Location::all(),
+            'back' => '/',
         ]);
     }
 
@@ -40,6 +41,7 @@ class LocationController extends MainController
         return view('main.locations.create')->with([
             'location' => $location,
             'captions' => $captions,
+            'back' => '/locations',
         ]);
     }
 
@@ -71,6 +73,7 @@ class LocationController extends MainController
         return view('main.locations.show')->with([
             'location' => $location,
             'captions' => $captions,
+            'back' => '/locations',
         ]);
     }
 
@@ -88,6 +91,7 @@ class LocationController extends MainController
         return view('main.locations.create')->with([
             'location' => $location,
             'captions' => $captions,
+            'back' => '/locations',
         ]);
     }
 

@@ -112,10 +112,12 @@ export default {
             this.avatar = this.unit.avatar ?? '';
         },
         compare(obj1, obj2) {
-            for (let prop in obj1) {
-                if (obj1[prop] != obj2[prop]) return false;
-            }
-            return true;
+            // for (let prop in obj1) {
+            //     if (obj1[prop] != obj2[prop]) return false;
+            // }
+            return obj1.avatar == obj2.avatar &&
+                obj1.name == obj2.name &&
+                obj1.description == obj2.description;
         },
         copy(obj_from, obj_to, reset = false) {
             for (let property in obj_from) {

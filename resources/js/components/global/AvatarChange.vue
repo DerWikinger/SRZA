@@ -1,12 +1,17 @@
 <template>
     <div class="avatar-change">
-        <input class="input-avatar custom-file-input"
-               accept="image/*"
-               name="avatar_image"
-               @change="onAvatarChanged"
-               type="file"
-               @input="onInput">
-        <img id="avatar" class="image-avatar">
+        <div class="outer-block">
+            <input class="input-avatar custom-file-input"
+                   accept="image/*"
+                   name="avatar_image"
+                   @change="onAvatarChanged"
+                   type="file"
+                   @input="onInput">
+            <img id="avatar" class="image-avatar">
+            <div class="inner-block" id="btnReset" @click="onReset">
+                <i class="fas fa-cut"></i>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -17,6 +22,7 @@ export default {
         modelId: {type: String},
         modelType: {type: String},
         token: {type: String},
+        confirmMessage: {type: String},
     },
     mounted() {
         console.log('Mounted!');
@@ -43,6 +49,11 @@ export default {
             $('#avatar').attr('src', name);
             $('#avatar').attr('alt', alt);
         },
+        onReset() {
+            if(this.$confirm(this.confirmMessage ?? 'Are you sure? \n Do you want to delete this avatar image?')) {
+                this.$emit('value-changed', '');
+            }
+        },
         onAvatarChanged(ev) {
             let fd = new FormData();
             let self = this;
@@ -59,8 +70,6 @@ export default {
                 success: function (response) {
                     let path = response.path;
                     let filename = response.filename;
-                    // self._altValue = filename;
-                    // self.avatar = path + '/' + filename;
                     self.$emit('value-changed', filename);
                     console.log('Success');
                     console.log('Saved file: ', filename);
@@ -74,7 +83,6 @@ export default {
     data() {
         return {
             _altValue: '',
-            // avatar: '',
             content: this.value,
         }
     },
@@ -111,6 +119,31 @@ img#avatar {
     border: #ced4da solid 1px;
     border-radius: 1.25rem;
     overflow: hidden;
+}
+
+.avatar-change {
+    position: relative;
+    align-content: center;
+    display: inline-block;
+}
+
+#btnReset {
+    position: absolute;
+    top: 0;
+    right: -1rem;
+    width: 1rem;
+    height: 1rem;
+    opacity: 0.1;
+    cursor: pointer;
+}
+
+#btnReset:hover {
+    opacity: 1;
+}
+
+.outer-block {
+    width: fit-content;
+    left: 30%;
 }
 
 </style>

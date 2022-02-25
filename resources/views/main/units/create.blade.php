@@ -6,7 +6,7 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
+            <div class="col-12">
                 @if( $unit->id )
                     <h2 class="text-primary text-capitalize">{{__('caption.edit-unit')}}</h2>
                 @else

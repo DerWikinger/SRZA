@@ -59,16 +59,22 @@ export default {
                     location = '/locations/edit/' + result.id;
                 } else {
                     console.log('Before copy');
-                    console.log('Saved avatar: ', result.avatar);
-                    console.log('This location.avatar: ', self.location.avatar);
-                    console.log('This avatar: ', self.avatar);
+                    // console.log(self._oldLocation);
+                    // console.log(self.location);
+                    console.log(self.compare(self._oldLocation, self.location));
+                    // console.log('Saved avatar: ', result.avatar);
+                    // console.log('This location.avatar: ', self.location.avatar);
+                    // console.log('This avatar: ', self.avatar);
                     self.copy(result, self._oldLocation, true);
                     self.avatar = self.location.avatar = result.avatar;
                     self.dirty();
                     console.log('After copy');
-                    console.log('Saved avatar: ', result.avatar);
-                    console.log('This location.avatar: ', self.location.avatar);
-                    console.log('This avatar: ', self.avatar);
+                    // console.log(self._oldLocation);
+                    // console.log(self.location);
+                    console.log(self.compare(self._oldLocation, self.location));
+                    // console.log('Saved avatar: ', result.avatar);
+                    // console.log('This location.avatar: ', self.location.avatar);
+                    // console.log('This avatar: ', self.avatar);
                 }
             }
             this.$emit('data-changed', 'location', this.location, this.token, url, 'post', callback);
@@ -110,10 +116,13 @@ export default {
             this.avatar = this.location.avatar ?? '';
         },
         compare(obj1, obj2) {
-            for (let prop in obj1) {
-                if (obj1[prop] != obj2[prop]) return false;
-            }
-            return true;
+            // for (let prop in obj1) {
+            //     if (obj1[prop] != obj2[prop]) return false;
+            // }
+            // return true;
+            return obj1.avatar == obj2.avatar &&
+                obj1.name == obj2.name &&
+                obj1.description == obj2.description;
         },
         copy(obj_from, obj_to, reset = false) {
             for (let property in obj_from) {

@@ -2435,6 +2435,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     value: {
@@ -2447,6 +2452,9 @@ __webpack_require__.r(__webpack_exports__);
       type: String
     },
     token: {
+      type: String
+    },
+    confirmMessage: {
       type: String
     }
   },
@@ -2473,6 +2481,13 @@ __webpack_require__.r(__webpack_exports__);
       $('#avatar').attr('src', name);
       $('#avatar').attr('alt', alt);
     },
+    onReset: function onReset() {
+      var _this$confirmMessage;
+
+      if (this.$confirm((_this$confirmMessage = this.confirmMessage) !== null && _this$confirmMessage !== void 0 ? _this$confirmMessage : 'Are you sure? \n Do you want to delete this avatar image?')) {
+        this.$emit('value-changed', '');
+      }
+    },
     onAvatarChanged: function onAvatarChanged(ev) {
       var fd = new FormData();
       var self = this;
@@ -2488,9 +2503,7 @@ __webpack_require__.r(__webpack_exports__);
         contentType: false,
         success: function success(response) {
           var path = response.path;
-          var filename = response.filename; // self._altValue = filename;
-          // self.avatar = path + '/' + filename;
-
+          var filename = response.filename;
           self.$emit('value-changed', filename);
           console.log('Success');
           console.log('Saved file: ', filename);
@@ -2504,7 +2517,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       _altValue: '',
-      // avatar: '',
       content: this.value
     };
   },
@@ -2731,17 +2743,22 @@ __webpack_require__.r(__webpack_exports__);
         if (!self._oldLocation.id && result.id) {
           location = '/locations/edit/' + result.id;
         } else {
-          console.log('Before copy');
-          console.log('Saved avatar: ', result.avatar);
-          console.log('This location.avatar: ', self.location.avatar);
-          console.log('This avatar: ', self.avatar);
+          console.log('Before copy'); // console.log(self._oldLocation);
+          // console.log(self.location);
+
+          console.log(self.compare(self._oldLocation, self.location)); // console.log('Saved avatar: ', result.avatar);
+          // console.log('This location.avatar: ', self.location.avatar);
+          // console.log('This avatar: ', self.avatar);
+
           self.copy(result, self._oldLocation, true);
           self.avatar = self.location.avatar = result.avatar;
           self.dirty();
-          console.log('After copy');
-          console.log('Saved avatar: ', result.avatar);
-          console.log('This location.avatar: ', self.location.avatar);
-          console.log('This avatar: ', self.avatar);
+          console.log('After copy'); // console.log(self._oldLocation);
+          // console.log(self.location);
+
+          console.log(self.compare(self._oldLocation, self.location)); // console.log('Saved avatar: ', result.avatar);
+          // console.log('This location.avatar: ', self.location.avatar);
+          // console.log('This avatar: ', self.avatar);
         }
       };
 
@@ -2789,11 +2806,11 @@ __webpack_require__.r(__webpack_exports__);
       this.avatar = (_this$location$avatar = this.location.avatar) !== null && _this$location$avatar !== void 0 ? _this$location$avatar : '';
     },
     compare: function compare(obj1, obj2) {
-      for (var prop in obj1) {
-        if (obj1[prop] != obj2[prop]) return false;
-      }
-
-      return true;
+      // for (let prop in obj1) {
+      //     if (obj1[prop] != obj2[prop]) return false;
+      // }
+      // return true;
+      return obj1.avatar == obj2.avatar && obj1.name == obj2.name && obj1.description == obj2.description;
     },
     copy: function copy(obj_from, obj_to) {
       var reset = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
@@ -3301,11 +3318,10 @@ __webpack_require__.r(__webpack_exports__);
       this.avatar = (_this$unit$avatar = this.unit.avatar) !== null && _this$unit$avatar !== void 0 ? _this$unit$avatar : '';
     },
     compare: function compare(obj1, obj2) {
-      for (var prop in obj1) {
-        if (obj1[prop] != obj2[prop]) return false;
-      }
-
-      return true;
+      // for (let prop in obj1) {
+      //     if (obj1[prop] != obj2[prop]) return false;
+      // }
+      return obj1.avatar == obj2.avatar && obj1.name == obj2.name && obj1.description == obj2.description;
     },
     copy: function copy(obj_from, obj_to) {
       var reset = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
@@ -20901,7 +20917,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ninput.input-avatar[data-v-e5f1be0c] {\n    position: absolute;\n    width: 130px;\n    height: 130px;\n    cursor: pointer;\n}\nimg#avatar[data-v-e5f1be0c] {\n    width: 130px;\n    height: 130px;\n    border: #ced4da solid 1px;\n    border-radius: 1.25rem;\n    overflow: hidden;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ninput.input-avatar[data-v-e5f1be0c] {\n    position: absolute;\n    width: 130px;\n    height: 130px;\n    cursor: pointer;\n}\nimg#avatar[data-v-e5f1be0c] {\n    width: 130px;\n    height: 130px;\n    border: #ced4da solid 1px;\n    border-radius: 1.25rem;\n    overflow: hidden;\n}\n.avatar-change[data-v-e5f1be0c] {\n    position: relative;\n    align-content: center;\n    display: inline-block;\n}\n#btnReset[data-v-e5f1be0c] {\n    position: absolute;\n    top: 0;\n    right: -1rem;\n    width: 1rem;\n    height: 1rem;\n    opacity: 0.1;\n    cursor: pointer;\n}\n#btnReset[data-v-e5f1be0c]:hover {\n    opacity: 1;\n}\n.outer-block[data-v-e5f1be0c] {\n    width: -webkit-fit-content;\n    width: -moz-fit-content;\n    width: fit-content;\n    left: 30%;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -51816,13 +51832,25 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "avatar-change" }, [
-    _c("input", {
-      staticClass: "input-avatar custom-file-input",
-      attrs: { accept: "image/*", name: "avatar_image", type: "file" },
-      on: { change: _vm.onAvatarChanged, input: _vm.onInput },
-    }),
-    _vm._v(" "),
-    _c("img", { staticClass: "image-avatar", attrs: { id: "avatar" } }),
+    _c("div", { staticClass: "outer-block" }, [
+      _c("input", {
+        staticClass: "input-avatar custom-file-input",
+        attrs: { accept: "image/*", name: "avatar_image", type: "file" },
+        on: { change: _vm.onAvatarChanged, input: _vm.onInput },
+      }),
+      _vm._v(" "),
+      _c("img", { staticClass: "image-avatar", attrs: { id: "avatar" } }),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "inner-block",
+          attrs: { id: "btnReset" },
+          on: { click: _vm.onReset },
+        },
+        [_c("i", { staticClass: "fas fa-cut" })]
+      ),
+    ]),
   ])
 }
 var staticRenderFns = []

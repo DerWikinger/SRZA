@@ -12,9 +12,11 @@
                     <div class="col-12">
                         <div class="footer-menu-content">
                             <div class="col-3">
-                                <return-button>
-                                    <div class="">{{ __('caption.btn-reset') }}</div>
-                                </return-button>
+                                @if(isset($back))
+                                    <return-button route="{{ $back }}">
+                                        <div class="">{{ __('caption.btn-reset') }}</div>
+                                    </return-button>
+                                @endif
                             </div>
                         </div>
                     </div>

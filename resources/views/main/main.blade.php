@@ -29,7 +29,7 @@
                     <div class="sub-footer-content">
                         <div class="col-12">
                             <h6>
-                                @copyright: Mitrofanov VI
+                                @MitrofanovVI
                             </h6>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-<footer class="">
+<footer class="fixed-bottom">
     @yield('footer-content')
 </footer>
 

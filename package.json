@@ -22,6 +22,7 @@
         "resolve-url-loader": "^4.0.0",
         "sass": "^1.43.4",
         "sass-loader": "^8.0.0",
+        "section-scroll": "github:m-danish-iqbal/section-scroll",
         "vue": "^2.6.14",
         "vue-loader": "^15.9.8",
         "vue-template-compiler": "^2.6.14"

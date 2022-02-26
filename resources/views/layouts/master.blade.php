@@ -28,7 +28,7 @@
     <div id="app">
         @include('layouts.header')
         @include('layouts.navbar')
-        <section class="main">
+        <section class="main scrolling-pagination">
             @yield('content')
         </section>
         @include('layouts.footer')

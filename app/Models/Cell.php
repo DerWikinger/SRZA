@@ -5,25 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Unit extends Model
+class Cell extends Model
 {
     use HasFactory;
 
-    protected $table = 'units';
+    protected $table = 'cells';
 
     protected $fillable = [
+        'number',
         'name',
         'avatar',
         'description',
     ];
 
-    public function location()
+    public function unit()
     {
-        return $this->belongsTo(Location::class, 'location_id');
-    }
-
-    public function cells()
-    {
-        return $this->hasMany(Cell::class, 'unit_id');
+        return $this->belongsTo(Unit::class, 'unit_id');
     }
 }

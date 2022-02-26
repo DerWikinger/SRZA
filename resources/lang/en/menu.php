@@ -15,5 +15,6 @@ return [
     'home' => 'SRZA',
     'locations' => 'Locations',
     'units' => 'Objects',
+    'equipment' => 'Equipment',
 
 ];

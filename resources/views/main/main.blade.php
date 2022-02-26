@@ -11,10 +11,9 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="footer-menu-content">
-                            <div class="col-3">
+                            <div class="float-right">
                                 @if(isset($back))
                                     <return-button route="{{ $back }}">
-{{--                                        <div class="">{{ __('caption.btn-reset') }}</div>--}}
                                         <arrow-left></arrow-left>
                                     </return-button>
                                 @endif

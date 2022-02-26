@@ -8,9 +8,9 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 @if( $location->id )
-                    <h2 class="text-primary text-capitalize">{{__('caption.edit-location')}}</h2>
+                    <caption-block value="{{__('caption.edit-location')}}" route="{{ $back }}"></caption-block>
                 @else
-                    <h2 class="text-primary text-capitalize">{{__('caption.new-location')}}</h2>
+                    <caption-block value="{{__('caption.new-location')}}" route="{{ $back }}"></caption-block>
                 @endif
                 <location-detail :location="{{ $location }}" token="{{ csrf_token() }}"
                                  :captions="{{ $captions }}" @data-changed="onDataChanged"

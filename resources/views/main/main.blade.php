@@ -14,7 +14,8 @@
                             <div class="col-3">
                                 @if(isset($back))
                                     <return-button route="{{ $back }}">
-                                        <div class="">{{ __('caption.btn-reset') }}</div>
+{{--                                        <div class="">{{ __('caption.btn-reset') }}</div>--}}
+                                        <arrow-left></arrow-left>
                                     </return-button>
                                 @endif
                             </div>

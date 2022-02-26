@@ -7,11 +7,18 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 ">
-                <h3 class="card-header text-center">
+                <div class="card-header">
+                    <caption-block
+                        value="{{ __('caption.show-location') . ': ' . $location->name }}"
+                        route="{{ $back }}"
+                        align="center"
+                    ></caption-block>
+                </div>
+{{--                <h3 class="card-header text-center">--}}
 {{--                    <avatar class="" model-id="{{ $location->id }}" model-type="location"--}}
 {{--                            avatar="{{ $location->avatar }}"></avatar>--}}
-                    <span class="color-caption">{{ __('caption.show-location') . ': ' . $location->name }}</span>
-                </h3>
+{{--                    <span class="color-caption">{{ __('caption.show-location') . ': ' . $location->name }}</span>--}}
+{{--                </h3>--}}
                 <units-list class="" :units="{{ collect( $location->units)->map( function (\App\Models\Unit $unit) use($location) {
                     return [
                         'id' => $unit->id,

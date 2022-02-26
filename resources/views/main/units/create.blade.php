@@ -8,9 +8,9 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 @if( $unit->id )
-                    <h2 class="text-primary text-capitalize">{{__('caption.edit-unit')}}</h2>
+                    <caption-block value="{{__('caption.edit-unit')}}" route="{{ $back }}"></caption-block>
                 @else
-                    <h2 class="text-primary text-capitalize">{{__('caption.new-unit')}}</h2>
+                    <caption-block value="{{__('caption.new-unit')}}" route="{{ $back }}"></caption-block>
                 @endif
                 <unit-detail :unit="{{ $unit }}" token="{{ csrf_token() }}"
                                  :captions="{{ $captions }}" @data-changed="onDataChanged"

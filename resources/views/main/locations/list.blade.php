@@ -16,7 +16,9 @@
                 } ) }}" token="{{ csrf_token() }}"
                         :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() }}">
                     <template v-slot:list-tittle>
-                        <h2 class="card-header color-caption text-capitalize">{{__('caption.locations')}}</h2>
+                        <div class="card-header">
+                            <caption-block value="{{__('caption.locations')}}" route="{{ $back }}"></caption-block>
+                        </div>
                     </template>
                     <template v-slot:list-footer>
                         <div class="row">

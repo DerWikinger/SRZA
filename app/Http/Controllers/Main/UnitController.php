@@ -78,7 +78,14 @@ class UnitController extends MainController
      */
     public function show(int $id)
     {
-        return 'Show ' . $id;
+        $unit = Unit::find($id);
+        if (!$unit) abort(500);
+        $captions = $this->getCaptions($unit);
+        return view('main.units.show')->with([
+            'unit' => $unit,
+            'captions' => $captions,
+            'back' => '/locations/' . $unit->location->id . '/units',
+        ]);
     }
 
     /**

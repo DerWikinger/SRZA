@@ -1,15 +1,15 @@
-@extends('main.locations.locations')
+@extends('main.units.units')
 
 @section('title', __('caption.app-name'))
 
-@section('location-content')
+@section('unit-content')
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 ">
                 <div class="card-header">
                     <caption-block
-                        value="{{ __('caption.show-location') . ': ' . $location->name }}"
+                        value="{{ __('caption.show-unit') . ': ' . $unit->name }}"
                         route="{{ $back }}"
                         align="center"
                     ></caption-block>
@@ -19,17 +19,18 @@
 {{--                            avatar="{{ $location->avatar }}"></avatar>--}}
 {{--                    <span class="color-caption">{{ __('caption.show-location') . ': ' . $location->name }}</span>--}}
 {{--                </h3>--}}
-                <units-list class="" :units="{{ collect( $location->units)->map( function (\App\Models\Unit $unit) use($location) {
+                <cells-list class="" :cells="{{ collect( $unit->cells)->map( function (\App\Models\Cell $cell) use($unit) {
                     return [
-                        'id' => $unit->id,
-                        'name' => $unit->name,
-                        'avatar' => $unit->avatar ?? '',
-                        'location_id' => $location->id,
+                        'id' => $cell->id,
+                        'number' => $cell->number,
+                        'name' => $cell->name,
+                        'avatar' => $cell->avatar ?? '',
+                        'unit_id' => $unit->id,
                         ];
                 } ) }}" token="{{ csrf_token() }}"
                             :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() }}">
                     <template v-slot:list-tittle>
-                        <h2 class="p-1 color-caption text-capitalize">{{__('caption.units')}}:</h2>
+                        <h2 class="p-1 color-caption text-capitalize">{{__('caption.cells')}}:</h2>
                     </template>
                     <template v-slot:list-empty>
                         <br>
@@ -39,14 +40,14 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="col-3">
-                                    <add-button route="{{ url('/units/create/' . $location->id) }}">
-                                        {{ __('caption.new-unit') }}
+                                    <add-button route="{{ url('/cells/create/' . $unit->id) }}">
+                                        {{ __('caption.new-cell') }}
                                     </add-button>
                                 </div>
                             </div>
                         </div>
                     </template>
-                </units-list>
+                </cells-list>
             </div>
         </div>
     </div>

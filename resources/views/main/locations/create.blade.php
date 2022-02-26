@@ -1,6 +1,6 @@
 @extends('main.locations.locations')
 
-{{--@section('title', 'Users')--}}
+@section('title', __('caption.app-name'))
 
 @section('location-content')
 

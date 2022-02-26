@@ -1,6 +1,6 @@
 @extends('main.units.units')
 
-{{--@section('title', 'Users')--}}
+@section('title', __('caption.app-name'))
 
 @section('unit-content')
 

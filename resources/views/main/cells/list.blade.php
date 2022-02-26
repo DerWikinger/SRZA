@@ -1,24 +1,25 @@
-@extends('main.units.units')
+@extends('main.cells.units')
 
 @section('title', __('caption.app-name'))
 
-@section('unit-content')
+@section('cell-content')
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12">
-                <units-list :units="{{ collect($units)->map( function (\App\Models\Unit $unit) use($foreign_id) {
+                <units-list :cells="{{ collect($cells)->map( function (\App\Models\Cell $cell) use($foreign_id) {
                     return [
-                        'id' => $unit->id,
-                        'name' => $unit->name,
-                        'avatar' => $unit->avatar ?? '',
-                        'location_id' => $foreign_id,
+                        'id' => $cell->id,
+                        'number' => $cell->number,
+                        'name' => $cell->name,
+                        'avatar' => $cell->avatar ?? '',
+                        'unit_id' => $foreign_id,
                         ];
                 } ) }}" token="{{ csrf_token() }}"
                         :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() }}">
                     <template v-slot:list-tittle>
                         <div class="card-header">
-                            <caption-block value="{{__('caption.units')}}" route="{{ $back }}"></caption-block>
+                            <caption-block value="{{__('caption.cells')}}" route="{{ $back }}"></caption-block>
                         </div>
                     </template>
                     <template v-slot:list-empty>
@@ -29,8 +30,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="col-3">
-                                    <add-button route="{{ url('/units/create/' . $foreign_id) }}">
-                                        {{ __('caption.new-unit') }}
+                                    <add-button route="{{ url('/cells/create/' . $foreign_id) }}">
+                                        {{ __('caption.new-cell') }}
                                     </add-button>
                                 </div>
                             </div>
@@ -115,11 +116,11 @@
 
 @endsection
 <script>
-    import UnitsList from "../../../js/components/units/UnitsList";
+    import CellsList from "../../../js/components/cells/CellsList";
     import AddButton from "../../../js/components/global/AddButton";
 
     export default {
-        components: {AddButton, UnitsList},
+        components: {AddButton, CellsList},
         methods: {}
     }
 </script>

@@ -63,6 +63,27 @@ Route::prefix('units')->name('units')->middleware('auth')->group(function () {
     Route::post('/reset', 'App\Http\Controllers\Main\UnitController@reset')->name('.reset');
     Route::post('/avatar-change', 'App\Http\Controllers\Main\UnitController@avatarChange')->name('.avatar-change');
     Route::post('/edit/avatar-change', 'App\Http\Controllers\Main\UnitController@avatarChange')->name('.edit.avatar-change');
+
+    Route::prefix('/{uint_id}/cells')->name('.cells')->middleware('auth')->group(function () {
+        Route::get('/','App\Http\Controllers\Main\CellController@index')->name('.list');
+    });
+});
+
+Route::prefix('cells')->name('cells')->middleware('auth')->group(function () {
+//    Route::get('/', 'App\Http\Controllers\Main\UnitController@index')->name('.list');
+    Route::get('/create/{unit_id}', 'App\Http\Controllers\Main\CellController@create')->name('.create');
+    Route::post('/delete/{cell_id}', 'App\Http\Controllers\Main\CellController@destroy')->name('.delete');
+    Route::post('/update/{cell_id}', 'App\Http\Controllers\Main\CellController@update')->name('.update');
+    Route::get('/edit/{cell_id}', 'App\Http\Controllers\Main\CellController@edit')->name('.edit');
+    Route::get('/{cell_id}', 'App\Http\Controllers\Main\CellController@show')->name('.show');
+    Route::post('/store', 'App\Http\Controllers\Main\CellController@store')->name('.store');
+    Route::post('/reset', 'App\Http\Controllers\Main\CellController@reset')->name('.reset');
+    Route::post('/avatar-change', 'App\Http\Controllers\Main\CellController@avatarChange')->name('.avatar-change');
+    Route::post('/edit/avatar-change', 'App\Http\Controllers\Main\CellController@avatarChange')->name('.edit.avatar-change');
+
+//    Route::prefix('/{cell_id}/equipments')->name('.equipments')->middleware('auth')->group(function () {
+//        Route::get('/','App\Http\Controllers\Main\CellController@index')->name('.list');
+//    });
 });
 
 Route::prefix('users')->name('users')->group(function () {

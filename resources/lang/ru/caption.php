@@ -14,17 +14,23 @@ return [
     */
     'app-name' => 'СРЗА-ЭТЛ',
     'empty' => 'Список пуст',
+    'btn-reset' => 'Назад',
 
     'locations' => 'Локации',
     'new-location' => 'Новая локация',
     'edit-location' => 'Редактирование локации',
     'show-location' => 'Локация',
     'show-objects' => 'Объекты',
-    'btn-reset' => 'Назад',
 
     'units' => 'Объекты',
     'new-unit' => 'Новый объект',
     'edit-unit' => 'Редактирование объекта',
+    'show-unit' => 'Объект',
+    'show-cells' => 'Ячейки',
+
+    'cells' => 'Ячейки',
+    'new-cell' => 'Новая ячейка',
+    'edit-cell' => 'Редактирование ячейки',
 
     // Locales for Location model
     'location-id' => 'ИД',
@@ -42,4 +48,12 @@ return [
     'unit-btnReset' => 'Восстановить',
     'unit-btnCancel' => 'Отменить',
 
+    // Locales for Cell model
+    'cell-id' => 'ИД',
+    'cell-number' => 'Номер',
+    'cell-name' => 'Присоединение',
+    'cell-description' => 'Описание',
+    'cell-btnSave' => 'Сохранить',
+    'cell-btnReset' => 'Восстановить',
+    'cell-btnCancel' => 'Отменить',
 ];

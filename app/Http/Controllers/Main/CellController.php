@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Main;
 
 use App\Models\Cell;
 use Illuminate\Http\Request;
+use App\Models\Unit;
+use Illuminate\Support\Facades\Storage;
 
 class CellController extends MainController
 {
@@ -17,8 +19,8 @@ class CellController extends MainController
     {
         $unit = Unit::find($foreign_id);
         if(!$unit) abort(500);
-        return view('main.units.list')->with([
-            'units' => $unit->cells,
+        return view('main.cells.list')->with([
+            'cells' => $unit->cells,
             'foreign_id' => $foreign_id,
             'back' => 'locations' . $unit->location->id . '/units',
         ]);
@@ -27,11 +29,25 @@ class CellController extends MainController
     /**
      * Show the form for creating a new resource.
      *
+     * @param int $foreign_id
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(int $foreign_id)
     {
-        //
+        $cell = Cell::make(
+            [
+                'number' => 0,
+                'name' => '',
+                'avatar' => '',
+                'description' => '',
+            ]);
+        $cell->unit_id = $foreign_id ?? 0;
+        $captions = $this->getCaptions($cell);
+        return view('main.cells.create')->with([
+            'cell' => $cell,
+            'captions' => $captions,
+            'back' => '/units/' . $foreign_id,
+        ]);
     }
 
     /**
@@ -42,51 +58,76 @@ class CellController extends MainController
      */
     public function store(Request $request)
     {
-        //
+        $data = json_decode($request->data);
+        dump($data);
+        $cell = Cell::make(
+            [
+                'number' => 0,
+                'name' => '',
+                'avatar' => '',
+                'description' => '',
+            ]);
+        $cell->unit_id = $data->unit_id ?? 0;
+        dump($cell);
+        return response($this->modelSave($data, $cell), 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cell  $cell
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Cell $cell)
+    public function show(int  $id)
     {
-        //
+        return 'Show ' . $id;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cell  $cell
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cell $cell)
+    public function edit(int $id)
     {
-        //
+        $cell = Cell::find($id);
+        if (!$cell) abort(404);
+        $captions = $this->getCaptions($cell);
+        return view('main.cells.create')->with([
+            'cell' => $cell,
+            'captions' => $captions,
+            'back' => '/units/' . $cell->unit->id,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cell  $cell
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cell $cell)
+    public function update(Request $request, int $id)
     {
-        //
+        $cell = Cell::find($id);
+        $data = json_decode($request->data);
+
+        return response($this->modelSave($data, $cell), 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cell  $cell
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cell $cell)
+    public function destroy(int $id)
     {
-        //
+        if (Cell::destroy($id)) {
+            $path = '/public/images/avatars/cell/' . $id;
+            Storage::deleteDirectory($path);
+            return response('Object has been deleted', 200);
+        }
     }
 }

@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12">
-                <units-list :cells="{{ collect($cells)->map( function (\App\Models\Cell $cell) use($foreign_id) {
+                <cells-list :cells="{{ collect($cells)->map( function (\App\Models\Cell $cell) use($foreign_id) {
                     return [
                         'id' => $cell->id,
                         'number' => $cell->number,
@@ -37,7 +37,7 @@
                             </div>
                         </div>
                     </template>
-                </units-list>
+                </cells-list>
 
                 {{--                @if($totalPages > 1)--}}
                 {{--                    <ul class="pagination">--}}

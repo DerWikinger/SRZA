@@ -19,6 +19,9 @@
                     <a class="navbar-brand" href="{{ route('locations.list') }}">
                         {{ __('menu.equipment') }}
                     </a>
+                    <a class="navbar-brand" href="{{ route('dictionaries.all') }}">
+                        {{ __('menu.dictionary') }}
+                    </a>
 {{--                    <a class="navbar-brand" href="{{ route('locations.units.list', [ 1 ]) }}">--}}
 {{--                        {{ __('menu.units') }}--}}
 {{--                    </a>--}}

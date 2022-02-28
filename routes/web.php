@@ -40,6 +40,10 @@ Route::prefix('locations')->name('locations')->middleware('auth')->group(functio
     });
 });
 
+Route::prefix('dictionaries')->name('dictionaries')->middleware('auth')->group(function () {
+    Route::get('/', 'App\Http\Controllers\Dictionaries\DictionaryController@index')->name('.all');
+});
+
 Route::prefix('units')->name('units')->middleware('auth')->group(function () {
 //    Route::get('/', 'App\Http\Controllers\Main\UnitController@index')->name('.list');
     Route::get('/create/{location_id}', 'App\Http\Controllers\Main\UnitController@create')->name('.create');

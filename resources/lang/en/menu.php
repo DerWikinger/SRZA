@@ -16,5 +16,6 @@ return [
     'locations' => 'Locations',
     'units' => 'Objects',
     'equipment' => 'Equipment',
+    'dictionaries' => 'Dictionaries',
 
 ];

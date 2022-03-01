@@ -32,6 +32,11 @@ return [
     'new-cell' => 'New cell',
     'edit-cell' => 'Edit cell',
 
+    'dictionaries' => 'Dictionaries',
+    'new-dictionary' => 'New dictionary',
+    'EquipmentType' => 'Equipment type',
+
+
     // Locales for Location model
     'location-id' => 'Id',
     'location-name' => 'Name',

@@ -32,6 +32,10 @@ return [
     'new-cell' => 'Новая ячейка',
     'edit-cell' => 'Редактирование ячейки',
 
+    'dictionaries' => 'Справочники',
+    'new-dictionary' => 'Новый справочник',
+    'EquipmentType' => 'Тип оборудования',
+
     // Locales for Location model
     'location-id' => 'ИД',
     'location-name' => 'Наименование',
@@ -56,4 +60,5 @@ return [
     'cell-btnSave' => 'Сохранить',
     'cell-btnReset' => 'Восстановить',
     'cell-btnCancel' => 'Отменить',
+
 ];

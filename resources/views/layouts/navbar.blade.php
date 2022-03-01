@@ -20,7 +20,7 @@
                         {{ __('menu.equipment') }}
                     </a>
                     <a class="navbar-brand" href="{{ route('dictionaries.all') }}">
-                        {{ __('menu.dictionary') }}
+                        {{ __('menu.dictionaries') }}
                     </a>
 {{--                    <a class="navbar-brand" href="{{ route('locations.units.list', [ 1 ]) }}">--}}
 {{--                        {{ __('menu.units') }}--}}

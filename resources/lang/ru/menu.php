@@ -16,5 +16,6 @@ return [
     'locations' => 'Локации',
     'units' => 'Объекты',
     'equipment' => 'Оборудование',
+    'dictionaries' => 'Справочники',
 
 ];

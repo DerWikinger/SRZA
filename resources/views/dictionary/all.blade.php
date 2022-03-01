@@ -19,30 +19,27 @@
                     @foreach($dictionaries as $dictionary)
                         <div class="row list-item align-baseline">
                             <div class="col-12">
-                                <div class="dictionary-brief" @click="onClick">
-                                    <div class="description col-10 ">
+                                <div class="dictionary-brief cursor-pointer" onclick="{{ 'window.location = "/dictionaries/' . $dictionary->id . '"'}}">
+                                    <div class="description col-12 col-form-label form-control">
                                         <strong>{{ $dictionary->name }}</strong>
+                                        <i class="fas fa-pencil-alt"
+                                           style="font-size:1.25rem;
+                                                  vertical-align:middle;
+                                                  color:#2d3748;
+                                                  display: inline-block;
+                                                  float: right;"
+                                           onmouseover="{{ '$("#' . class_basename($dictionary) . '").css({"color": "#ffd200", "cursor": "pointer"})' }}"
+                                           onmouseleave="{{ '$("#' . class_basename($dictionary) . '").css({"color": "#2d3748", "cursor": "default"})' }}"
+                                           id="{{ class_basename($dictionary) }}"></i>
                                     </div>
                                 </div>
-                                {{--                                <div class="button-group offset-2 col-2 ">--}}
-                                {{--                                    <div class="button" @click="onDelete(cell.id)" v-show="deletePermission == 1">--}}
-                                {{--                                        <i class="fas fa-cut" style="font-size:1.25rem;vertical-align:middle;color:#2d3748"--}}
-                                {{--                                           :id="btnDeleteName(cell.id)"--}}
-                                {{--                                           @mouseover="onMouseOver(btnDeleteName(cell.id))"--}}
-                                {{--                                           @mouseleave="onMouseLeave(btnDeleteName(cell.id))"></i>--}}
-                                {{--                                    </div>--}}
-                                {{--                                    <div class="button" @click="onEdit(cell.id)">--}}
-                                {{--                                        <i class="fas fa-pencil-alt" style="font-size:1.25rem;vertical-align:middle;color:#2d3748"--}}
-                                {{--                                           :id="btnEditName(cell.id)"--}}
-                                {{--                                           @mouseover="onMouseOver(btnEditName(cell.id))"--}}
-                                {{--                                           @mouseleave="onMouseLeave(btnEditName(cell.id))"></i>--}}
-                                {{--                                    </div>--}}
-                                {{--                                </div>--}}
                             </div>
                         </div>
                     @endforeach
                 @endif
                 <br>
+{{--                Пока не реализовано добавление справочника из приложения--}}
+                @if(false)
                 <div class="row">
                     <div class="col-12">
                         <div class="col-3">
@@ -52,6 +49,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>
@@ -63,6 +61,9 @@
 
     export default {
         components: {AddButton, CellsList},
-        methods: {}
+        methods: {
+
+        },
     }
 </script>
+

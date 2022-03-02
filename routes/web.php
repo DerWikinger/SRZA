@@ -43,8 +43,10 @@ Route::prefix('locations')->name('locations')->middleware('auth')->group(functio
 Route::prefix('dictionaries')->name('dictionaries')->middleware('auth')->group(function () {
     Route::get('/', 'App\Http\Controllers\Dictionaries\DictionaryController@index')->name('.all');
     Route::get('/{id}', 'App\Http\Controllers\Dictionaries\DictionaryController@list')->name('.list');
-    Route::get('/{id}/create', 'App\Http\Controllers\Dictionaries\DictionaryController@create')->name('.create');
-
+    Route::prefix('/{id}')->group(function() {
+        Route::get('/create', 'App\Http\Controllers\Dictionaries\DictionaryController@create')->name('.create');
+        Route::post('/store', 'App\Http\Controllers\Dictionaries\DictionaryController@store')->name('.store');
+    });
 });
 
 //Route::prefix('equipment-types')->name('equipment-types')->middleware('auth')->group(function() {

@@ -43,7 +43,8 @@ class DictionaryController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function list(int $id) {
+    public function list(int $id)
+    {
         $dictionary = Dictionary::findOrFail($id);
         return view('dictionary.list')->with([
             'dictionary' => $dictionary,
@@ -58,13 +59,47 @@ class DictionaryController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function create(int $id) {
+    public function create(int $id)
+    {
         $dictionary = Dictionary::findOrFail($id);
-        return $dictionary->class;
-        return view('dictionary.list')->with([
-            'dictionary' => $dictionary,
-            'back' => '/dictionaries',
+        $className = 'App\\Models\\Dictionaries\\' . $dictionary->class;
+        $object = $className::make([
+            'name' => '',
         ]);
-//        return Redirect::route( $dictionary->table . '.list');
+        $captions = collect([
+            'id' => __('caption.dictionary-id'),
+            'name' => __('caption.dictionary-name'),
+            'btnSave' => __('caption.btnSave'),
+            'btnReset' => __('caption.btnReset'),
+        ]);
+        return view('dictionary.create')->with([
+            'object' => $object,
+            'captions' => $captions,
+            'back' => '/dictionaries/' . $id,
+        ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(int $id, Request $request) {
+        $data = json_decode($request->data);
+        dump($data);
+        $dictionary = Dictionary::findOrFail($id);
+        $className = 'App\\Models\\Dictionaries\\' . $dictionary->class;
+        $object = $className::make([
+            'name' => $data->name,
+        ]);
+        dump($object);
+        try {
+            if($object->save()) return response($object, 200);
+        } catch (Exception $ex) {
+            return response($ex, 200);
+            abort(500);
+        }
     }
 }

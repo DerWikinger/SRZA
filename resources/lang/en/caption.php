@@ -14,7 +14,9 @@ return [
     */
     'app-name' => 'SRZA',
     'empty' => 'Empty list',
-    'btn-reset' => 'Return',
+    'btnSave' => 'Save',
+    'btnReset' => 'Reset',
+    'btnCancel' => 'Cancel',
 
     'locations' => 'Locations',
     'new-location' => 'New location',
@@ -32,10 +34,15 @@ return [
     'new-cell' => 'New cell',
     'edit-cell' => 'Edit cell',
 
+    // Locales for Dictionary model
     'dictionaries' => 'Dictionaries',
     'new-dictionary' => 'New dictionary',
+    'dictionary-edit-element' => 'Edit of the dictionary element',
+    'dictionary-new-element' => 'Create of the dictionary element',
     'EquipmentType' => 'Equipment type',
     'new-EquipmentType' => 'New type of equipment',
+    'dictionary-id' => 'Id',
+    'dictionary-name' => 'Name',
 
 
     // Locales for Location model

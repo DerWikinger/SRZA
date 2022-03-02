@@ -63,7 +63,7 @@ const app = new Vue({
             let fd = new FormData();
             fd.append('type', type);
             fd.append('data', JSON.stringify(data));
-            fd.append('_token', token)
+            fd.append('_token', token);
             $.ajax({
                 url: url,
                 data: fd,

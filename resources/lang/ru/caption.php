@@ -14,7 +14,9 @@ return [
     */
     'app-name' => 'СРЗА-ЭТЛ',
     'empty' => 'Список пуст',
-    'btn-reset' => 'Назад',
+    'btnSave' => 'Сохранить',
+    'btnReset' => 'Восстановить',
+    'btnCancel' => 'Отменить',
 
     'locations' => 'Локации',
     'new-location' => 'Новая локация',
@@ -32,10 +34,15 @@ return [
     'new-cell' => 'Новая ячейка',
     'edit-cell' => 'Редактирование ячейки',
 
+    // Locales for Dictionary model
     'dictionaries' => 'Справочники',
     'new-dictionary' => 'Новый справочник',
+    'dictionary-edit-element' => 'Редактирование элемента справочника',
+    'dictionary-new-element' => 'Создание элемента справочника',
     'EquipmentType' => 'Тип оборудования',
     'new-EquipmentType' => 'Новый тип оборудования',
+    'dictionary-id' => 'ИД',
+    'dictionary-name' => 'Наименование',
 
     // Locales for Location model
     'location-id' => 'ИД',

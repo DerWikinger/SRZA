@@ -43,7 +43,7 @@ class DictionaryController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(int $id) {
+    public function list(int $id) {
         $dictionary = Dictionary::findOrFail($id);
         return view('dictionary.list')->with([
             'dictionary' => $dictionary,

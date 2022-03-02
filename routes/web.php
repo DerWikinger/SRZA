@@ -42,7 +42,7 @@ Route::prefix('locations')->name('locations')->middleware('auth')->group(functio
 
 Route::prefix('dictionaries')->name('dictionaries')->middleware('auth')->group(function () {
     Route::get('/', 'App\Http\Controllers\Dictionaries\DictionaryController@index')->name('.all');
-    Route::get('/{id}', 'App\Http\Controllers\Dictionaries\DictionaryController@edit')->name('.edit');
+    Route::get('/{id}', 'App\Http\Controllers\Dictionaries\DictionaryController@list')->name('.list');
     Route::get('/{id}/create', 'App\Http\Controllers\Dictionaries\DictionaryController@create')->name('.create');
 
 });

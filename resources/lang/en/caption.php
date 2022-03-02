@@ -35,6 +35,7 @@ return [
     'dictionaries' => 'Dictionaries',
     'new-dictionary' => 'New dictionary',
     'EquipmentType' => 'Equipment type',
+    'new-EquipmentType' => 'New type of equipment',
 
 
     // Locales for Location model

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Dictionaries\Dictionary;
 use App\Models\Dictionaries\EquipmentType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class DictionaryController extends Controller
 {
@@ -34,5 +35,36 @@ class DictionaryController extends Controller
             'dictionaries' => $dictionaries,
             'back' => '/',
         ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(int $id) {
+        $dictionary = Dictionary::findOrFail($id);
+        return view('dictionary.list')->with([
+            'dictionary' => $dictionary,
+            'back' => '/dictionaries',
+        ]);
+//        return Redirect::route( $dictionary->table . '.list');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function create(int $id) {
+        $dictionary = Dictionary::findOrFail($id);
+        return $dictionary->class;
+        return view('dictionary.list')->with([
+            'dictionary' => $dictionary,
+            'back' => '/dictionaries',
+        ]);
+//        return Redirect::route( $dictionary->table . '.list');
     }
 }

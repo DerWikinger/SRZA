@@ -10039,6 +10039,7 @@ section.container {
 section.main {
   padding: 10px;
   height: auto;
+  min-height: 361px;
 }
 
 header {

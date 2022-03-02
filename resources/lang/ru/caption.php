@@ -35,6 +35,7 @@ return [
     'dictionaries' => 'Справочники',
     'new-dictionary' => 'Новый справочник',
     'EquipmentType' => 'Тип оборудования',
+    'new-EquipmentType' => 'Новый тип оборудования',
 
     // Locales for Location model
     'location-id' => 'ИД',

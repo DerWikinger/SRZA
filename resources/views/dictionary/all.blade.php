@@ -19,7 +19,8 @@
                     @foreach($dictionaries as $dictionary)
                         <div class="row list-item align-baseline">
                             <div class="col-12">
-                                <div class="dictionary-brief cursor-pointer" onclick="{{ 'window.location = "/dictionaries/' . $dictionary->id . '"'}}">
+                                <div class="dictionary-brief cursor-pointer"
+                                     onclick="{{ 'window.location = "/dictionaries/' . $dictionary->id . '"'}}">
                                     <div class="description col-12 col-form-label form-control">
                                         <strong>{{ $dictionary->name }}</strong>
                                         <i class="fas fa-pencil-alt"
@@ -38,17 +39,17 @@
                     @endforeach
                 @endif
                 <br>
-{{--                Пока не реализовано добавление справочника из приложения--}}
+                {{--                Пока не реализовано добавление справочника из приложения--}}
                 @if(false)
-                <div class="row">
-                    <div class="col-12">
-                        <div class="col-3">
-                            <add-button route="{{ url('/cells/create/' . 0) }}">
-                                {{ __('caption.new-dictionary') }}
-                            </add-button>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="col-3">
+                                <add-button route="{{ url('/cells/create/' . 0) }}">
+                                    {{ __('caption.new-dictionary') }}
+                                </add-button>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endif
             </div>
         </div>
@@ -61,9 +62,7 @@
 
     export default {
         components: {AddButton, CellsList},
-        methods: {
-
-        },
+        methods: {},
     }
 </script>
 

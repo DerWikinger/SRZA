@@ -1,25 +1,22 @@
-@extends('main.cells.units')
+@extends('dictionary.dictionary')
 
 @section('title', __('caption.app-name'))
 
-@section('cell-content')
+@section('dictionary-content')
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12">
-                <units-list :cells="{{ collect($cells)->map( function (\App\Models\Cell $cell) use($foreign_id) {
+                <dictionaries-list :objects="{{ collect(('App\\Models\\Dictionaries\\' . $dictionary->class)::all())->map( function ($object) {
                     return [
-                        'id' => $cell->id,
-                        'number' => $cell->number,
-                        'name' => $cell->name,
-                        'avatar' => $cell->avatar ?? '',
-                        'unit_id' => $foreign_id,
+                        'id' => $object->id,
+                        'name' => $object->name,
                         ];
                 } ) }}" token="{{ csrf_token() }}"
                         :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() }}">
                     <template v-slot:list-tittle>
                         <div class="card-header">
-                            <caption-block value="{{__('caption.cells')}}" route="{{ $back }}"></caption-block>
+                            <caption-block value="{{__('caption.' .  $dictionary->class)}}" route="{{ $back }}"></caption-block>
                         </div>
                     </template>
                     <template v-slot:list-empty>
@@ -30,14 +27,14 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="col-3">
-                                    <add-button route="{{ url('/cells/create/' . $foreign_id) }}">
-                                        {{ __('caption.new-cell') }}
+                                    <add-button route="{{ route('dictionaries.create', [ 'id' => $dictionary->id ] ) }}">
+                                        {{ __('caption.new-' . $dictionary->class) }}
                                     </add-button>
                                 </div>
                             </div>
                         </div>
                     </template>
-                </units-list>
+                </dictionaries-list>
 
                 {{--                @if($totalPages > 1)--}}
                 {{--                    <ul class="pagination">--}}
@@ -116,11 +113,11 @@
 
 @endsection
 <script>
-    import CellsList from "../../../js/components/cells/CellsList";
+    import DictionariesList from "../../../js/components/dictionaries/DictionariesList";
     import AddButton from "../../../js/components/global/AddButton";
 
     export default {
-        components: {AddButton, CellsList},
+        components: {AddButton, DictionariesList},
         methods: {}
     }
 </script>

@@ -15,6 +15,7 @@ class CreateEquipmentTypesTable extends Migration
     {
         Schema::create('equipment-types', function (Blueprint $table) {
             $table->id();
+            $table->timestamps();
             $table->string('name')->nullable(false)->default('empty');
         });
     }

@@ -12,7 +12,8 @@
                         'id' => $object->id,
                         'name' => $object->name,
                         ];
-                } ) }}" token="{{ csrf_token() }}"
+                } ) }}" dictionary-id="{{ $dictionary->id }}"
+                        token="{{ csrf_token() }}"
                         :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() }}">
                     <template v-slot:list-tittle>
                         <div class="card-header">

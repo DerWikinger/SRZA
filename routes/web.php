@@ -45,7 +45,10 @@ Route::prefix('dictionaries')->name('dictionaries')->middleware('auth')->group(f
     Route::get('/{id}', 'App\Http\Controllers\Dictionaries\DictionaryController@list')->name('.list');
     Route::prefix('/{id}')->group(function() {
         Route::get('/create', 'App\Http\Controllers\Dictionaries\DictionaryController@create')->name('.create');
+        Route::get('/edit/{object_id}', 'App\Http\Controllers\Dictionaries\DictionaryController@edit')->name('.edit');
         Route::post('/store', 'App\Http\Controllers\Dictionaries\DictionaryController@store')->name('.store');
+        Route::post('/update', 'App\Http\Controllers\Dictionaries\DictionaryController@update')->name('.update');
+        Route::post('/delete/{object_id}', 'App\Http\Controllers\Dictionaries\DictionaryController@destroy')->name('.delete');
     });
 });
 

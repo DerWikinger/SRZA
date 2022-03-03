@@ -2709,6 +2709,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "DictionariesList",
@@ -2720,6 +2724,9 @@ __webpack_require__.r(__webpack_exports__);
       type: Array
     },
     token: {
+      type: String
+    },
+    dictionaryId: {
       type: String
     },
     deletePermission: {
@@ -2744,12 +2751,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     onEdit: function onEdit(key) {
       console.log("Key: ", key);
-      window.location = '/locations/edit/' + key;
+      window.location = '/dictionaries/' + this.dictionaryId + '/edit/' + key;
     },
     onDelete: function onDelete(key) {
       var _this = this;
 
-      var document = this;
       this.$confirm('Запись будет безвозвратно удалена! Продолжить удаление?', 'Вы уверены?').then(function (result) {
         if (result) {
           var fd = new FormData();
@@ -2757,15 +2763,15 @@ __webpack_require__.r(__webpack_exports__);
 
           fd.append('_token', _this.token);
           $.ajax({
-            url: '/locations/delete/' + key,
+            url: '/dictionaries/' + self.dictionaryId + '/delete/' + key,
             data: fd,
             type: 'POST',
             processData: false,
             contentType: false,
             success: function success(response) {
               // self.$emit('record-delete', filename);
-              document.$alert('Запись успешно удалена!').then(function () {
-                window.location = '/locations';
+              self.$alert('Запись успешно удалена!').then(function () {
+                window.location = '/dictionaries/' + self.dictionaryId;
               });
             },
             error: function error(response) {
@@ -2791,8 +2797,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
 //
 //
 //
@@ -2865,6 +2869,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     token: {
       type: String
+    },
+    dictionaryId: {
+      type: String
     }
   },
   created: function created() {
@@ -2878,13 +2885,13 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.isClean()) return;
       var self = this;
-      var url = ((_this$object$id = this.object.id) !== null && _this$object$id !== void 0 ? _this$object$id : 0) ? 'update/' + this.object.id : 'store';
+      var url = '/dictionaries/' + this.dictionaryId + (((_this$object$id = this.object.id) !== null && _this$object$id !== void 0 ? _this$object$id : 0) ? '/update' : '/store');
 
       var callback = function callback(result) {
         self.$alert('Данные успешно сохранены!');
 
         if (!self._oldObject.id && result.id) {
-          location = 'edit/' + result.id;
+          location = '/dictionaries/' + self.dictionaryId + '/edit/' + result.id;
         } else {
           self.copy(result, self._oldObject, true);
           self.dirty();
@@ -21626,7 +21633,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.list-item[data-v-1af1e2d2] {\n    font-size: 1.5rem;\n}\ndiv.list-item[data-v-1af1e2d2] {\n    border-bottom: #ced4da solid 1px;\n    padding-bottom: 0.25rem;\n}\n.button-group[data-v-1af1e2d2] {\n    direction: rtl;\n}\n.button-group div.button[data-v-1af1e2d2] {\n    margin-left: 0.5rem;\n    display: inline-block;\n    cursor: pointer;\n}\n.button-group[data-v-1af1e2d2]::after {\n    content: '';\n    vertical-align: middle;\n    line-height: 100%;\n    display: inline-block;\n    height: 100%;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ndiv.list-item[data-v-1af1e2d2] {\n    border-bottom: #ced4da solid 1px;\n    padding-bottom: 0.25rem;\n    font-size: 1.25rem;\n}\n.button-group[data-v-1af1e2d2] {\n    direction: rtl;\n}\n.button-outer-block[data-v-1af1e2d2] {\n    height: 100%;\n    width: -webkit-max-content;\n    width: -moz-max-content;\n    width: max-content;\n    padding-right: 1.25rem;\n}\n.button-group div.button[data-v-1af1e2d2] {\n    margin-left: 0.5rem;\n    cursor: pointer;\n    display: inline-block;\n    vertical-align: middle;\n}\n.button-group[data-v-1af1e2d2]::after {\n    content: '';\n    vertical-align: middle;\n    line-height: 100%;\n    display: inline-block;\n    height: 100%;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -21650,7 +21657,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.location-info .row div[data-v-1b07b254] {\n    cursor: pointer;\n    display: inline-block;\n}\n.description[data-v-1b07b254] {\n    font-size: 1.5rem;\n}\n/*.location-info div {*/\n/*    display: inline-block;*/\n/*    !*margin: 0 1rem;*!*/\n/*}*/\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.location-info .row div[data-v-1b07b254] {\n    cursor: pointer;\n    display: inline-block;\n}\n.description[data-v-1b07b254] {\n}\n\n/*.location-info div {*/\n/*    display: inline-block;*/\n/*    !*margin: 0 1rem;*!*/\n/*}*/\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -53910,7 +53917,7 @@ var render = function () {
         return _c("div", { staticClass: "list-item align-baseline " }, [
           _c(
             "div",
-            { staticClass: "p-1 row" },
+            { staticClass: "row" },
             [
               _c("dictionary-brief", {
                 staticClass: "col-8",
@@ -53918,36 +53925,77 @@ var render = function () {
               }),
               _vm._v(" "),
               _c("div", { staticClass: "button-group offset-2 col-2 " }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "button",
-                    on: {
-                      click: function ($event) {
-                        return _vm.onEdit(_vm.location.id)
+                _c("div", { staticClass: "button-outer-block" }, [
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.deletePermission == 1,
+                          expression: "deletePermission == 1",
+                        },
+                      ],
+                      staticClass: "button",
+                      on: {
+                        click: function ($event) {
+                          return _vm.onDelete(object.id)
+                        },
                       },
                     },
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fas fa-pencil-alt",
-                      staticStyle: {
-                        "font-size": "1.25rem",
-                        "vertical-align": "middle",
-                        color: "#2d3748",
-                      },
-                      attrs: { id: _vm.btnEditName(_vm.location.id) },
+                    [
+                      _c("i", {
+                        staticClass: "fas fa-cut",
+                        staticStyle: {
+                          "font-size": "1.25rem",
+                          "vertical-align": "middle",
+                          color: "#2d3748",
+                        },
+                        attrs: { id: _vm.btnDeleteName(object.id) },
+                        on: {
+                          mouseover: function ($event) {
+                            _vm.onMouseOver(_vm.btnDeleteName(object.id))
+                          },
+                          mouseleave: function ($event) {
+                            _vm.onMouseLeave(_vm.btnDeleteName(object.id))
+                          },
+                        },
+                      }),
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "button",
                       on: {
-                        mouseover: function ($event) {
-                          _vm.onMouseOver(_vm.btnEditName(_vm.location.id))
-                        },
-                        mouseleave: function ($event) {
-                          _vm.onMouseLeave(_vm.btnEditName(_vm.location.id))
+                        click: function ($event) {
+                          return _vm.onEdit(object.id)
                         },
                       },
-                    }),
-                  ]
-                ),
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fas fa-pencil-alt",
+                        staticStyle: {
+                          "font-size": "1.25rem",
+                          "vertical-align": "middle",
+                          color: "#2d3748",
+                        },
+                        attrs: { id: _vm.btnEditName(object.id) },
+                        on: {
+                          mouseover: function ($event) {
+                            _vm.onMouseOver(_vm.btnEditName(object.id))
+                          },
+                          mouseleave: function ($event) {
+                            _vm.onMouseLeave(_vm.btnEditName(object.id))
+                          },
+                        },
+                      }),
+                    ]
+                  ),
+                ]),
               ]),
             ],
             1
@@ -53986,10 +54034,8 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { on: { click: _vm.onClick } }, [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "description col-10 " }, [
-        _c("strong", [_vm._v(_vm._s(this.object.name))]),
-      ]),
+    _c("div", { staticClass: "description col-10 " }, [
+      _c("strong", [_vm._v(_vm._s(this.object.name))]),
     ]),
   ])
 }

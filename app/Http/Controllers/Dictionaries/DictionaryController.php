@@ -75,6 +75,7 @@ class DictionaryController extends Controller
         return view('dictionary.create')->with([
             'object' => $object,
             'captions' => $captions,
+            'dictionaryId' => $id,
             'back' => '/dictionaries/' . $id,
         ]);
     }
@@ -88,18 +89,79 @@ class DictionaryController extends Controller
      */
     public function store(int $id, Request $request) {
         $data = json_decode($request->data);
-        dump($data);
         $dictionary = Dictionary::findOrFail($id);
         $className = 'App\\Models\\Dictionaries\\' . $dictionary->class;
         $object = $className::make([
             'name' => $data->name,
         ]);
-        dump($object);
         try {
             if($object->save()) return response($object, 200);
         } catch (Exception $ex) {
             return response($ex, 200);
             abort(500);
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param int $dictionaryId
+     * @param int $objectId
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(int $dictionaryId, int $objectId)
+    {
+        $dictionary = Dictionary::findOrFail($dictionaryId);
+        $className = 'App\\Models\\Dictionaries\\' . $dictionary->class;
+        $object = $className::findOrFail($objectId);
+        $captions = collect([
+            'id' => __('caption.dictionary-id'),
+            'name' => __('caption.dictionary-name'),
+            'btnSave' => __('caption.btnSave'),
+            'btnReset' => __('caption.btnReset'),
+        ]);
+        return view('dictionary.create')->with([
+            'object' => $object,
+            'captions' => $captions,
+            'dictionaryId' => $dictionaryId,
+            'back' => '/dictionaries/' . $dictionaryId,
+        ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param int $dictionaryId
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(int $dictionaryId, Request $request) {
+        $data = json_decode($request->data);
+        $dictionary = Dictionary::findOrFail($dictionaryId);
+        $className = 'App\\Models\\Dictionaries\\' . $dictionary->class;
+        $object = $className::findOrFail($data->id);
+        $object->name = $data->name;
+        try {
+            if($object->save()) return response($object, 200);
+        } catch (Exception $ex) {
+            return response($ex, 200);
+            abort(500);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $dictionaryId
+     * @param int $objectId
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(int $dictionaryId, int $objectId)
+    {
+        $dictionary = Dictionary::findOrFail($dictionaryId);
+        $className = 'App\\Models\\Dictionaries\\' . $dictionary->class;
+        if ($className::destroy($objectId)) {
+            return response('Object has been deleted', 200);
         }
     }
 }

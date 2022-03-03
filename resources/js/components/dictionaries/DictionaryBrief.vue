@@ -1,9 +1,7 @@
 <template>
     <div class="" @click="onClick">
-        <div class="row">
-            <div class="description col-10 ">
-                <strong>{{ this.object.name }}</strong>
-            </div>
+        <div class="description col-10 ">
+            <strong>{{ this.object.name }}</strong>
         </div>
     </div>
 </template>
@@ -32,8 +30,9 @@ export default {
 }
 
 .description {
-    font-size: 1.5rem;
+
 }
+
 /*.location-info div {*/
 /*    display: inline-block;*/
 /*    !*margin: 0 1rem;*!*/

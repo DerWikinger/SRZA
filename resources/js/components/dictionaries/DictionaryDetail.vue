@@ -30,6 +30,7 @@ export default {
         captions: {type: Object},
         object: {type: Object},
         token: {type: String},
+        dictionaryId: {type: String},
     },
     created() {
         this._oldObject = this.object.constructor();
@@ -40,11 +41,11 @@ export default {
         onSave(ev) {
             if (this.isClean()) return;
             let self = this;
-            let url = (this.object.id ?? 0) ? 'update/' + this.object.id : 'store';
+            let url = '/dictionaries/' + this.dictionaryId + ((this.object.id ?? 0) ?  '/update' : '/store');
             let callback = function (result) {
                 self.$alert('Данные успешно сохранены!');
                 if(!self._oldObject.id && result.id) {
-                    location = 'edit/' + result.id;
+                    location = '/dictionaries/' + self.dictionaryId + '/edit/' + result.id;
                 } else {
                     self.copy(result, self._oldObject, true);
                     self.dirty();

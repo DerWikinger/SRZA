@@ -39,6 +39,8 @@ return [
     'new-dictionary' => 'New dictionary',
     'dictionary-edit-element' => 'Edit of the dictionary element',
     'dictionary-new-element' => 'Create of the dictionary element',
+    'dictionary-id' => 'Id',
+    'dictionary-name' => 'Name',
 
     'EquipmentType' => 'Equipment type',
     'new-EquipmentType' => 'New type of equipment',
@@ -46,9 +48,11 @@ return [
     'VoltageTransformer' => 'Voltage transformer',
     'new-VoltageTransformer' => 'New VT',
 
-    'dictionary-id' => 'Id',
-    'dictionary-name' => 'Name',
+    'CurrentTransformer' => 'Current transformer',
+    'new-CurrentTransformer' => 'New CT',
+
     'voltage-transformer-name' => 'Ratio',
+    'current-transformer-name' => 'Ratio',
 
     // Locales for Location model
     'location-id' => 'Id',

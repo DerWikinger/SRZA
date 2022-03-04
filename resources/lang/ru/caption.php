@@ -39,6 +39,8 @@ return [
     'new-dictionary' => 'Новый справочник',
     'dictionary-edit-element' => 'Редактирование элемента справочника',
     'dictionary-new-element' => 'Создание элемента справочника',
+    'dictionary-id' => 'ИД',
+    'dictionary-name' => 'Наименование',
 
     'EquipmentType' => 'Тип оборудования',
     'new-EquipmentType' => 'Новый тип оборудования',
@@ -46,9 +48,11 @@ return [
     'VoltageTransformer' => 'Трансформатор напряжения',
     'new-VoltageTransformer' => 'Новый ТН',
 
-    'dictionary-id' => 'ИД',
-    'dictionary-name' => 'Наименование',
+    'CurrentTransformer' => 'Трансформатор тока',
+    'new-CurrentTransformer' => 'Новый ТТ',
+
     'voltage-transformer-name' => 'КТ',
+    'current-transformer-name' => 'КТ',
 
     // Locales for Location model
     'location-id' => 'ИД',

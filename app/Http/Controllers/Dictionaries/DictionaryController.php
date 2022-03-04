@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Dictionaries;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dictionaries\Dictionary;
-use App\Models\Dictionaries\EquipmentType;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 class DictionaryController extends Controller
 {
@@ -76,7 +74,6 @@ class DictionaryController extends Controller
             'name' => '',
         ]);
         $captions = $this->getCaptions($id);
-        dump($captions);
         return view('dictionary.create')->with([
             'object' => $object,
             'captions' => $captions,
@@ -167,7 +164,7 @@ class DictionaryController extends Controller
         }
     }
 
-    protected function getCaptions(int $dictionaryId) {
+    public function getCaptions(int $dictionaryId) {
         $captions = collect([
             'id' => __('caption.dictionary-id'),
             'name' => __('caption.dictionary-name'),
@@ -176,6 +173,8 @@ class DictionaryController extends Controller
         ]);
         if ($dictionaryId == 2) {
             $captions['name'] = __('caption.voltage-transformer-name');
+        } else if($dictionaryId == 3) {
+            $captions['name'] = __('caption.current-transformer-name');
         }
         return $captions;
     }

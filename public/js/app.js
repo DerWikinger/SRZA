@@ -2813,9 +2813,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    onClick: function onClick() {
-      var showPath = '/dictionaries/' + this.object.id;
-      window.location = showPath;
+    onClick: function onClick() {// let showPath = '/dictionaries/' + this.object.id;
+      // window.location = showPath;
     }
   }
 });

@@ -15,8 +15,8 @@ export default {
     },
     methods: {
         onClick() {
-            let showPath = '/dictionaries/' + this.object.id;
-            window.location = showPath;
+            // let showPath = '/dictionaries/' + this.object.id;
+            // window.location = showPath;
         },
     },
 }

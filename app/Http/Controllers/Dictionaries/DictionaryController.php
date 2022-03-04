@@ -46,12 +46,15 @@ class DictionaryController extends Controller
         $dictionary = Dictionary::findOrFail($id);
         $objects = collect(('App\\Models\\Dictionaries\\' . $dictionary->class)::all())->
         sortBy(['order_index', 'name'])->
-        map( function ($object) {
+        filter(function ($object) {
+            return $object->id > 0;
+        })->
+        map(function ($object) {
             return [
                 'id' => $object->id,
                 'name' => $object->name,
             ];
-        } );
+        });
         return view('dictionary.list')->with([
             'dictionary' => $dictionary,
             'objects' => $objects,
@@ -164,7 +167,8 @@ class DictionaryController extends Controller
         }
     }
 
-    public function getCaptions(int $dictionaryId) {
+    public function getCaptions(int $dictionaryId)
+    {
         $captions = collect([
             'id' => __('caption.dictionary-id'),
             'name' => __('caption.dictionary-name'),
@@ -173,7 +177,7 @@ class DictionaryController extends Controller
         ]);
         if ($dictionaryId == 2) {
             $captions['name'] = __('caption.voltage-transformer-name');
-        } else if($dictionaryId == 3) {
+        } else if ($dictionaryId == 3) {
             $captions['name'] = __('caption.current-transformer-name');
         }
         return $captions;

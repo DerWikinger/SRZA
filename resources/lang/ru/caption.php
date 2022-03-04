@@ -51,6 +51,12 @@ return [
     'CurrentTransformer' => 'Трансформатор тока',
     'new-CurrentTransformer' => 'Новый ТТ',
 
+    'CurrentClass' => 'Класс тока',
+    'new-CurrentClass' => 'Новый класс тока',
+
+    'VoltageClass' => 'Класс напряжения',
+    'new-VoltageClass' => 'Новый класс напряжения',
+
     'voltage-transformer-name' => 'КТ',
     'current-transformer-name' => 'КТ',
 

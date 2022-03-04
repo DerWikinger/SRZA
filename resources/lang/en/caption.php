@@ -51,6 +51,12 @@ return [
     'CurrentTransformer' => 'Current transformer',
     'new-CurrentTransformer' => 'New CT',
 
+    'CurrentClass' => 'Current class',
+    'new-CurrentClass' => 'New current class',
+
+    'VoltageClass' => 'Voltage class',
+    'new-VoltageClass' => 'New voltage class',
+
     'voltage-transformer-name' => 'Ratio',
     'current-transformer-name' => 'Ratio',
 

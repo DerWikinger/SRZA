@@ -7,12 +7,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12">
-                <dictionaries-list :objects="{{ collect(('App\\Models\\Dictionaries\\' . $dictionary->class)::all())->map( function ($object) {
-                    return [
-                        'id' => $object->id,
-                        'name' => $object->name,
-                        ];
-                } ) }}" dictionary-id="{{ $dictionary->id }}"
+                <dictionaries-list :objects="{{ $objects }}" dictionary-id="{{ $dictionary->id }}"
                         token="{{ csrf_token() }}"
                         :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() }}">
                     <template v-slot:list-tittle>

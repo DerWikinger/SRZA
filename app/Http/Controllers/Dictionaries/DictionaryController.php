@@ -46,8 +46,17 @@ class DictionaryController extends Controller
     public function list(int $id)
     {
         $dictionary = Dictionary::findOrFail($id);
+        $objects = collect(('App\\Models\\Dictionaries\\' . $dictionary->class)::all())->
+        sortBy(['order_index', 'name'])->
+        map( function ($object) {
+            return [
+                'id' => $object->id,
+                'name' => $object->name,
+            ];
+        } );
         return view('dictionary.list')->with([
             'dictionary' => $dictionary,
+            'objects' => $objects,
             'back' => '/dictionaries',
         ]);
 //        return Redirect::route( $dictionary->table . '.list');
@@ -66,12 +75,8 @@ class DictionaryController extends Controller
         $object = $className::make([
             'name' => '',
         ]);
-        $captions = collect([
-            'id' => __('caption.dictionary-id'),
-            'name' => __('caption.dictionary-name'),
-            'btnSave' => __('caption.btnSave'),
-            'btnReset' => __('caption.btnReset'),
-        ]);
+        $captions = $this->getCaptions($id);
+        dump($captions);
         return view('dictionary.create')->with([
             'object' => $object,
             'captions' => $captions,
@@ -84,10 +89,11 @@ class DictionaryController extends Controller
      * Display a listing of the resource.
      *
      * @param int $id
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(int $id, Request $request) {
+    public function store(int $id, Request $request)
+    {
         $data = json_decode($request->data);
         $dictionary = Dictionary::findOrFail($id);
         $className = 'App\\Models\\Dictionaries\\' . $dictionary->class;
@@ -95,7 +101,7 @@ class DictionaryController extends Controller
             'name' => $data->name,
         ]);
         try {
-            if($object->save()) return response($object, 200);
+            if ($object->save()) return response($object, 200);
         } catch (Exception $ex) {
             return response($ex, 200);
             abort(500);
@@ -114,12 +120,7 @@ class DictionaryController extends Controller
         $dictionary = Dictionary::findOrFail($dictionaryId);
         $className = 'App\\Models\\Dictionaries\\' . $dictionary->class;
         $object = $className::findOrFail($objectId);
-        $captions = collect([
-            'id' => __('caption.dictionary-id'),
-            'name' => __('caption.dictionary-name'),
-            'btnSave' => __('caption.btnSave'),
-            'btnReset' => __('caption.btnReset'),
-        ]);
+        $captions = $this->getCaptions($dictionaryId);
         return view('dictionary.create')->with([
             'object' => $object,
             'captions' => $captions,
@@ -135,14 +136,15 @@ class DictionaryController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function update(int $dictionaryId, Request $request) {
+    public function update(int $dictionaryId, Request $request)
+    {
         $data = json_decode($request->data);
         $dictionary = Dictionary::findOrFail($dictionaryId);
         $className = 'App\\Models\\Dictionaries\\' . $dictionary->class;
         $object = $className::findOrFail($data->id);
         $object->name = $data->name;
         try {
-            if($object->save()) return response($object, 200);
+            if ($object->save()) return response($object, 200);
         } catch (Exception $ex) {
             return response($ex, 200);
             abort(500);
@@ -163,5 +165,18 @@ class DictionaryController extends Controller
         if ($className::destroy($objectId)) {
             return response('Object has been deleted', 200);
         }
+    }
+
+    protected function getCaptions(int $dictionaryId) {
+        $captions = collect([
+            'id' => __('caption.dictionary-id'),
+            'name' => __('caption.dictionary-name'),
+            'btnSave' => __('caption.btnSave'),
+            'btnReset' => __('caption.btnReset'),
+        ]);
+        if ($dictionaryId == 2) {
+            $captions['name'] = __('caption.voltage-transformer-name');
+        }
+        return $captions;
     }
 }

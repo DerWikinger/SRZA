@@ -85,8 +85,25 @@ Route::prefix('cells')->name('cells')->middleware('auth')->group(function () {
     Route::post('/avatar-change', 'App\Http\Controllers\Main\CellController@avatarChange')->name('.avatar-change');
     Route::post('/edit/avatar-change', 'App\Http\Controllers\Main\CellController@avatarChange')->name('.edit.avatar-change');
 
+    Route::prefix('/{cell_id}/equipments')->name('.equipments')->middleware('auth')->group(function () {
+        Route::get('/','App\Http\Controllers\Main\EquipmentController@index')->name('.list');
+    });
+});
+
+Route::prefix('equipments')->name('equipments')->middleware('auth')->group(function () {
+//    Route::get('/', 'App\Http\Controllers\Main\UnitController@index')->name('.list');
+    Route::get('/create/{cell_id}', 'App\Http\Controllers\Main\EquipmentController@create')->name('.create');
+    Route::post('/delete/{equipment_id}', 'App\Http\Controllers\Main\EquipmentController@destroy')->name('.delete');
+    Route::post('/update/{equipment_id}', 'App\Http\Controllers\Main\EquipmentController@update')->name('.update');
+    Route::get('/edit/{equipment_id}', 'App\Http\Controllers\Main\EquipmentController@edit')->name('.edit');
+    Route::get('/{equipment_id}', 'App\Http\Controllers\Main\EquipmentController@show')->name('.show');
+    Route::post('/store', 'App\Http\Controllers\Main\EquipmentController@store')->name('.store');
+    Route::post('/reset', 'App\Http\Controllers\Main\EquipmentController@reset')->name('.reset');
+    Route::post('/avatar-change', 'App\Http\Controllers\Main\EquipmentController@avatarChange')->name('.avatar-change');
+    Route::post('/edit/avatar-change', 'App\Http\Controllers\Main\EquipmentController@avatarChange')->name('.edit.avatar-change');
+
 //    Route::prefix('/{cell_id}/equipments')->name('.equipments')->middleware('auth')->group(function () {
-//        Route::get('/','App\Http\Controllers\Main\CellController@index')->name('.list');
+//        Route::get('/','App\Http\Controllers\Main\EquipmentController@index')->name('.list');
 //    });
 });
 

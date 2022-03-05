@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Main;
 
+use App\Http\Controllers\Controller;
 use App\Models\Cell;
-use Illuminate\Http\Request;
 use App\Models\Unit;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class CellController extends MainController
+class EquipmentController extends MainController
 {
     /**
      * Display a listing of the resource.
@@ -17,13 +18,13 @@ class CellController extends MainController
      */
     public function index(int $foreign_id)
     {
-        $unit = Unit::find($foreign_id);
-        dump($unit);
-        if(!$unit) abort(500);
-        return view('main.cells.list')->with([
-            'cells' => $unit->cells,
+        $cell = Cell::find($foreign_id);
+        dump($cell);
+        if(!$cell) abort(500);
+        return view('main.equipments.list')->with([
+            'equipments' => $cell->equipments,
             'foreign_id' => $foreign_id,
-            'back' => '/locations/' . $unit->location->id,
+            'back' => '/units/' . $cell->unit->id,
         ]);
     }
 

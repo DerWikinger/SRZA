@@ -84,7 +84,7 @@ class UnitController extends MainController
         return view('main.units.show')->with([
             'unit' => $unit,
             'captions' => $captions,
-            'back' => '/locations/' . $unit->location->id . '/units',
+            'back' => '/locations/' . $unit->location->id,
         ]);
     }
 

@@ -7,20 +7,15 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12">
-                <equipments-list :equipments="{{ collect($equipments)->map( function (\App\Models\Location $equipment) {
+                <equipments-list :equipments="{{ collect($equipments)->map( function (\App\Models\Equipment $equipment) {
                     return [
                         'id' => $equipment->id,
-                        'name' => $equipment->name,
-                        'avatar' => $equipment->avatar ?? '',
-                        'equipment_type' => $equipment->equipmentType,
                         'mark' => $equipment->mark,
-                        'cell_id' => $cellId,
-                        'number' => $equipment->number,
-                        'ratio' => $equipment->ratio,
-                        'voltage_class' => $equipment->voltage,
-                        'current_lass' => $equipment->current,
-                        'production_date' => $equipment->productionDate,
-                        'schema_label' => $equipment->schemaLabel,
+                        'model' => $equipment->model,
+                        'schema' => $equipment->schema_label,
+                        'type' => $equipment->equipmentType->name,
+                        'avatar' => $equipment->avatar ?? '',
+                        'cell_id' => $equipment->cell->id,
                         ];
                 } ) }}" token="{{ csrf_token() }}"
                         :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() }}">
@@ -33,7 +28,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="col-3">
-                                    <add-button route="{{ route('equipments.create') }}">
+                                    <add-button route="{{ url('/equipments/create/' . $foreign_id) }}">
                                         {{ __('caption.new-equipment') }}
                                     </add-button>
                                 </div>
@@ -119,11 +114,11 @@
 
 @endsection
 <script>
-    import LocationsList from "../../../js/components/locations/LocationsList";
+    import EquipmentsList from "../../../js/components/equipments/EquipmentsList";
     import AddButton from "../../../js/components/global/AddButton";
 
     export default {
-        components: {AddButton, LocationsList},
+        components: {AddButton, EquipmentsList},
         methods: {}
     }
 </script>

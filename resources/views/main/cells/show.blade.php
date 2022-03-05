@@ -9,7 +9,7 @@
             <div class="col-12 ">
                 <div class="card-header">
                     <caption-block
-                        value="{{ __('caption.show-cell') . ': №' . $cell->number . ' - ' . $cell->name }}"
+                        value="{{ __('caption.show-cell') . ': №' . $cell->number . ' "' . $cell->name . '"' }}"
                         route="{{ $back }}"
                         align="center"
                     ></caption-block>
@@ -24,8 +24,8 @@
                         'id' => $equipment->id,
                         'mark' => $equipment->mark,
                         'model' => $equipment->model,
-                        'schema' => $equipment->schema_label,
-                        'type' => $equipment->equipmentType->name,
+                        'schema_label' => $equipment->schema_label,
+                        'equipment_type' => ($equipment->equipmentType ? $equipment->equipmentType->name : null),
                         'avatar' => $equipment->avatar ?? '',
                         'cell_id' => $cell->id,
                         ];

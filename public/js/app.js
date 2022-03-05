@@ -3061,13 +3061,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "CellDetail",
+  name: "EquipmentDetail",
   props: {
     captions: {
       type: Object
     },
-    cell: {
+    equipment: {
       type: Object
     },
     token: {
@@ -3075,53 +3095,44 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this._oldCell = this.cell.constructor();
-    this.copy(this.cell, this._oldCell);
-    console.log('Created, this.cell => ', this.cell);
+    this._oldEquipment = this.equipment.constructor();
+    this.copy(this.equipment, this._oldEquipment);
+    console.log('Created, this.equipment => ', this.equipment);
   },
   methods: {
     onSave: function onSave(ev) {
-      var _this$cell$id;
+      var _this$equipment$id;
 
       if (this.isClean()) return;
       var self = this;
-      var url = ((_this$cell$id = this.cell.id) !== null && _this$cell$id !== void 0 ? _this$cell$id : 0) ? '/cells/update/' + this.cell.id : '/cells/store';
+      var url = ((_this$equipment$id = this.equipment.id) !== null && _this$equipment$id !== void 0 ? _this$equipment$id : 0) ? '/equipments/update/' + this.equipment.id : '/equipments/store';
 
       var callback = function callback(result) {
         self.$alert('Данные успешно сохранены!');
 
-        if (!self._oldCell.id && result.id) {
-          location = '/cells/edit/' + result.id;
+        if (!self._oldEquipment.id && result.id) {
+          location = '/equipments/edit/' + result.id;
         } else {
-          console.log('Before copy');
-          console.log('Saved avatar: ', result.avatar);
-          console.log('This cell.avatar: ', self.cell.avatar);
-          console.log('This avatar: ', self.avatar);
-          self.copy(result, self._oldCell, true);
-          self.avatar = self.cell.avatar = result.avatar;
+          self.copy(result, self._oldEquipment, true);
+          self.avatar = self.equipment.avatar = result.avatar;
           self.dirty();
-          console.log('After copy');
-          console.log('Saved avatar: ', result.avatar);
-          console.log('This cell.avatar: ', self.cell.avatar);
-          console.log('This avatar: ', self.avatar);
         }
       };
 
-      console.log('This.cell => ', this.cell);
-      this.$emit('data-changed', 'cell', this.cell, this.token, url, 'post', callback);
+      this.$emit('data-changed', 'equipment', this.equipment, this.token, url, 'post', callback);
     },
     onReset: function onReset(ev) {
-      var _this$cell$id2;
+      var _this$equipment$id2;
 
       this.clear();
-      var url = '/cells/reset';
-      this.$emit('data-reset', 'cell', (_this$cell$id2 = this.cell.id) !== null && _this$cell$id2 !== void 0 ? _this$cell$id2 : 0, this.token, url);
+      var url = '/equipments/reset';
+      this.$emit('data-reset', 'equipment', (_this$equipment$id2 = this.equipment.id) !== null && _this$equipment$id2 !== void 0 ? _this$equipment$id2 : 0, this.token, url);
     },
     onAvatarChanged: function onAvatarChanged(newAvatar) {
       console.log('New avatar: ', newAvatar);
-      this.cell.avatar = this.avatar = newAvatar;
-      console.log('Cell: ', this.cell);
-      console.log('Compare: ', this.compare(this._oldCell, this.cell));
+      this.equipment.avatar = this.avatar = newAvatar;
+      console.log('Equipment: ', this.equipment);
+      console.log('Compare: ', this.compare(this._oldEquipment, this.equipment));
       this.dirty();
     },
     onDataChanged: function onDataChanged(ev) {
@@ -3134,7 +3145,7 @@ __webpack_require__.r(__webpack_exports__);
       var elemId = '#btnSave_' + this.id;
       console.log('Button: ', elemId);
 
-      if (this.compare(this._oldCell, this.cell)) {
+      if (this.compare(this._oldEquipment, this.equipment)) {
         this._dirty = false;
         $(elemId).removeClass('enabled').addClass('disabled');
         $(elemId).addClass('color-disabled');
@@ -3145,25 +3156,22 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     clear: function clear() {
-      var _this$cell$avatar;
+      var _this$equipment$avata;
 
-      this.copy(this._oldCell, this.cell, true);
+      this.copy(this._oldEquipment, this.equipment, true);
       this.dirty();
-      this.avatar = (_this$cell$avatar = this.cell.avatar) !== null && _this$cell$avatar !== void 0 ? _this$cell$avatar : '';
+      this.avatar = (_this$equipment$avata = this.equipment.avatar) !== null && _this$equipment$avata !== void 0 ? _this$equipment$avata : '';
     },
     compare: function compare(obj1, obj2) {
-      // for (let prop in obj1) {
-      //     if (obj1[prop] != obj2[prop]) return false;
-      // }
-      return obj1.avatar == obj2.avatar && obj1.number == obj2.number && obj1.name == obj2.name && obj1.description == obj2.description;
+      var _obj1$avatar, _obj2$avatar, _obj1$number, _obj2$number, _obj1$production_date, _obj2$production_date, _obj1$name, _obj2$name, _obj1$mark, _obj2$mark, _obj1$model, _obj2$model, _obj1$schema_label, _obj2$schema_label, _obj1$description, _obj2$description;
+
+      return ((_obj1$avatar = obj1.avatar) !== null && _obj1$avatar !== void 0 ? _obj1$avatar : '') == ((_obj2$avatar = obj2.avatar) !== null && _obj2$avatar !== void 0 ? _obj2$avatar : '') && ((_obj1$number = obj1.number) !== null && _obj1$number !== void 0 ? _obj1$number : 0) == ((_obj2$number = obj2.number) !== null && _obj2$number !== void 0 ? _obj2$number : 0) && ((_obj1$production_date = obj1.production_date) !== null && _obj1$production_date !== void 0 ? _obj1$production_date : 0) == ((_obj2$production_date = obj2.production_date) !== null && _obj2$production_date !== void 0 ? _obj2$production_date : 0) && ((_obj1$name = obj1.name) !== null && _obj1$name !== void 0 ? _obj1$name : '') == ((_obj2$name = obj2.name) !== null && _obj2$name !== void 0 ? _obj2$name : '') && ((_obj1$mark = obj1.mark) !== null && _obj1$mark !== void 0 ? _obj1$mark : '') == ((_obj2$mark = obj2.mark) !== null && _obj2$mark !== void 0 ? _obj2$mark : '') && ((_obj1$model = obj1.model) !== null && _obj1$model !== void 0 ? _obj1$model : '') == ((_obj2$model = obj2.model) !== null && _obj2$model !== void 0 ? _obj2$model : '') && ((_obj1$schema_label = obj1.schema_label) !== null && _obj1$schema_label !== void 0 ? _obj1$schema_label : '') == ((_obj2$schema_label = obj2.schema_label) !== null && _obj2$schema_label !== void 0 ? _obj2$schema_label : '') && ((_obj1$description = obj1.description) !== null && _obj1$description !== void 0 ? _obj1$description : '') == ((_obj2$description = obj2.description) !== null && _obj2$description !== void 0 ? _obj2$description : '');
     },
     copy: function copy(obj_from, obj_to) {
       var reset = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
       for (var property in obj_from) {
-        var _obj_from$property;
-
-        obj_to[property] = (_obj_from$property = obj_from[property]) !== null && _obj_from$property !== void 0 ? _obj_from$property : '';
+        obj_to[property] = obj_from[property];
         if (reset) $("#" + property).prop('value', obj_to[property]);
       }
     }
@@ -3171,13 +3179,13 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       _dirty: false,
-      _oldCell: {},
-      avatar: this.cell.avatar
+      _oldEquipment: {},
+      avatar: this.equipment.avatar
     };
   },
   computed: {
     id: function id() {
-      return this.cell.id ? this.cell.id + '' : 'New';
+      return this.equipment.id ? this.equipment.id + '' : 'New';
     }
   }
 });
@@ -54954,11 +54962,15 @@ var render = function () {
           }),
           _vm._v(" "),
           _c("div", { staticClass: "equipment-info col-10" }, [
-            _c("strong", [_vm._v(_vm._s(this.equipment.type) + " : ")]),
+            _c("strong", [
+              _vm._v(_vm._s(this.equipment.equipment_type) + " : "),
+            ]),
             _vm._v(" "),
             _c("strong", [_vm._v(_vm._s(this.equipment.mark) + " ")]),
             _vm._v(" "),
-            _c("strong", [_vm._v("«" + _vm._s(this.equipment.schema) + "»")]),
+            _c("strong", [
+              _vm._v("«" + _vm._s(this.equipment.schema_label) + "»"),
+            ]),
           ]),
         ],
         1
@@ -55000,7 +55012,7 @@ var render = function () {
               attrs: {
                 "model-id": this.id,
                 token: this.token,
-                "model-type": "cell",
+                "model-type": "equipment",
                 id: "changeAvatar",
               },
               on: { "value-changed": _vm.onAvatarChanged },
@@ -55050,32 +55062,117 @@ var render = function () {
       _c("div", { staticClass: "input-group form-group" }, [
         _c(
           "label",
-          { staticClass: "col-form-label col-3", attrs: { for: "number" } },
-          [_vm._v(_vm._s(this.captions.number + ":"))]
+          { staticClass: "col-form-label col-3", attrs: { for: "mark" } },
+          [_vm._v(_vm._s(this.captions.mark + ":"))]
         ),
         _vm._v(" "),
         _c("input", {
           directives: [
             {
               name: "model",
-              rawName: "v-model",
-              value: _vm.cell.number,
-              expression: "cell.number",
+              rawName: "v-model.trim",
+              value: _vm.equipment.mark,
+              expression: "equipment.mark",
+              modifiers: { trim: true },
             },
           ],
           staticClass: "form-control ",
-          attrs: { type: "number", id: "number", name: "number" },
-          domProps: { value: _vm.cell.number },
+          attrs: { type: "text", id: "mark", name: "mark" },
+          domProps: { value: _vm.equipment.mark },
           on: {
             input: [
               function ($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.cell, "number", $event.target.value)
+                _vm.$set(_vm.equipment, "mark", $event.target.value.trim())
               },
               _vm.onDataChanged,
             ],
+            blur: function ($event) {
+              return _vm.$forceUpdate()
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group form-group" }, [
+        _c(
+          "label",
+          { staticClass: "col-form-label col-3", attrs: { for: "model" } },
+          [_vm._v(_vm._s(this.captions.model + ":"))]
+        ),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model.trim",
+              value: _vm.equipment.model,
+              expression: "equipment.model",
+              modifiers: { trim: true },
+            },
+          ],
+          staticClass: "form-control ",
+          attrs: { type: "text", id: "model", name: "model" },
+          domProps: { value: _vm.equipment.model },
+          on: {
+            input: [
+              function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.equipment, "model", $event.target.value.trim())
+              },
+              _vm.onDataChanged,
+            ],
+            blur: function ($event) {
+              return _vm.$forceUpdate()
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group form-group" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-form-label col-3",
+            attrs: { for: "schema_label" },
+          },
+          [_vm._v(_vm._s(this.captions.schema_label + ":"))]
+        ),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model.trim",
+              value: _vm.equipment.schema_label,
+              expression: "equipment.schema_label",
+              modifiers: { trim: true },
+            },
+          ],
+          staticClass: "form-control ",
+          attrs: { type: "text", id: "schema_label", name: "schema_label" },
+          domProps: { value: _vm.equipment.schema_label },
+          on: {
+            input: [
+              function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.equipment,
+                  "schema_label",
+                  $event.target.value.trim()
+                )
+              },
+              _vm.onDataChanged,
+            ],
+            blur: function ($event) {
+              return _vm.$forceUpdate()
+            },
           },
         }),
       ]),
@@ -55092,21 +55189,106 @@ var render = function () {
             {
               name: "model",
               rawName: "v-model.trim",
-              value: _vm.cell.name,
-              expression: "cell.name",
+              value: _vm.equipment.name,
+              expression: "equipment.name",
               modifiers: { trim: true },
             },
           ],
           staticClass: "form-control ",
           attrs: { type: "text", id: "name", name: "name" },
-          domProps: { value: _vm.cell.name },
+          domProps: { value: _vm.equipment.name },
           on: {
             input: [
               function ($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.cell, "name", $event.target.value.trim())
+                _vm.$set(_vm.equipment, "name", $event.target.value.trim())
+              },
+              _vm.onDataChanged,
+            ],
+            blur: function ($event) {
+              return _vm.$forceUpdate()
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group form-group" }, [
+        _c(
+          "label",
+          { staticClass: "col-form-label col-3", attrs: { for: "number" } },
+          [_vm._v(_vm._s(this.captions.number + ":"))]
+        ),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model.trim",
+              value: _vm.equipment.number,
+              expression: "equipment.number",
+              modifiers: { trim: true },
+            },
+          ],
+          staticClass: "form-control ",
+          attrs: { type: "text", id: "number", name: "number" },
+          domProps: { value: _vm.equipment.number },
+          on: {
+            input: [
+              function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.equipment, "number", $event.target.value.trim())
+              },
+              _vm.onDataChanged,
+            ],
+            blur: function ($event) {
+              return _vm.$forceUpdate()
+            },
+          },
+        }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group form-group" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-form-label col-3",
+            attrs: { for: "production_date" },
+          },
+          [_vm._v(_vm._s(this.captions.production_date + ":"))]
+        ),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model.number",
+              value: _vm.equipment.production_date,
+              expression: "equipment.production_date",
+              modifiers: { number: true },
+            },
+          ],
+          staticClass: "form-control ",
+          attrs: {
+            type: "number",
+            id: "production_date",
+            name: "production_date",
+          },
+          domProps: { value: _vm.equipment.production_date },
+          on: {
+            input: [
+              function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.equipment,
+                  "production_date",
+                  _vm._n($event.target.value)
+                )
               },
               _vm.onDataChanged,
             ],
@@ -55132,8 +55314,8 @@ var render = function () {
             {
               name: "model",
               rawName: "v-model.trim",
-              value: _vm.cell.description,
-              expression: "cell.description",
+              value: _vm.equipment.description,
+              expression: "equipment.description",
               modifiers: { trim: true },
             },
           ],
@@ -55144,14 +55326,18 @@ var render = function () {
             id: "description",
             name: "description",
           },
-          domProps: { value: _vm.cell.description },
+          domProps: { value: _vm.equipment.description },
           on: {
             input: [
               function ($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.cell, "description", $event.target.value.trim())
+                _vm.$set(
+                  _vm.equipment,
+                  "description",
+                  $event.target.value.trim()
+                )
               },
               _vm.onDataChanged,
             ],

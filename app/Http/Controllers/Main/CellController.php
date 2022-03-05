@@ -60,7 +60,6 @@ class CellController extends MainController
     public function store(Request $request)
     {
         $data = json_decode($request->data);
-        dump($data);
         $cell = Cell::make(
             [
                 'number' => 0,
@@ -69,7 +68,6 @@ class CellController extends MainController
                 'description' => '',
             ]);
         $cell->unit_id = $data->unit_id ?? 0;
-        dump($cell);
         return response($this->modelSave($data, $cell), 200);
     }
 
@@ -100,7 +98,7 @@ class CellController extends MainController
     public function edit(int $id)
     {
         $cell = Cell::find($id);
-        if (!$cell) abort(404);
+        if (!$cell) abort(500);
         $captions = $this->getCaptions($cell);
         return view('main.cells.create')->with([
             'cell' => $cell,

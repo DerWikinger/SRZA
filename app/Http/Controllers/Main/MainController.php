@@ -9,6 +9,7 @@ use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use mysql_xdevapi\Exception;
+use phpDocumentor\Reflection\DocBlock\Tags\Property;
 
 class MainController extends Controller
 {
@@ -149,12 +150,10 @@ class MainController extends Controller
         $collect = collect(__('caption'))->filter(function ($value, $key) use ($model_type) {
             return str_contains($key, $model_type . '-');
         });
-
         $arr = [];
         $collect->keys()->each(function ($key) use ($model_type, &$arr, $collect) {
             $arr[str_replace($model_type . '-', '', $key)] = $collect[$key];
         });
-
         return collect($arr);
     }
     /**
@@ -167,9 +166,11 @@ class MainController extends Controller
     protected function modelSave($data, $object)
     {
         if ($data) {
-            $object->name = $data->name ?? '';
-            $object->avatar = $data->avatar ?? '';
-            $object->description = $data->description ?? '';
+            $properties = collect($data)->keys();
+            $source = collect($data);
+            foreach($properties as $property) {
+                if(!is_object($object[$property])) $object[$property] = $source[$property];
+            }
         } else {
             abort(500);
         }
@@ -184,20 +185,20 @@ class MainController extends Controller
             if ($extenssion == '.tmp') {
                 if (!$object->id) {
                     $srcPath = '/public/images/avatars/'. $className .'/0';
-                    if (!$object->save()) abort(501);
+                    if (!$object->save()) abort(500);
                 } else {
                     $srcPath = '/public/images/avatars/' . $className . '/' . $object->id;
                 }
             }
             if ($srcPath) {
                 if (!($object->avatar = $this->updateAvatar($object->avatar, $className, $object->id, $srcPath))) {
-                    abort(502);
+                    abort(500);
                 }
             }
             $object->save();
             return $object;
         } catch (Exception $exception) {
-            abort(503);
+            abort($exception->getMessage(), 500);
         }
     }
 

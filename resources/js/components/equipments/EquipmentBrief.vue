@@ -4,9 +4,9 @@
             <avatar class="col-2" :model-id="this.equipment.id + ''" model-type="equipment"
                     :avatar="this.equipment.avatar"></avatar>
             <div class="equipment-info col-10">
-                <strong>{{ this.equipment.type }}&nbsp;:&nbsp;</strong>
+                <strong>{{ this.equipment.equipment_type }}&nbsp;:&nbsp;</strong>
                 <strong>{{ this.equipment.mark }}&nbsp;</strong>
-                <strong>&laquo;{{ this.equipment.schema }}&raquo;</strong>
+                <strong>&laquo;{{ this.equipment.schema_label }}&raquo;</strong>
             </div>
         </div>
     </div>

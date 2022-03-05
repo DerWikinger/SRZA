@@ -22,7 +22,7 @@ class CellController extends MainController
         return view('main.cells.list')->with([
             'cells' => $unit->cells,
             'foreign_id' => $foreign_id,
-            'back' => 'locations' . $unit->location->id . '/units',
+            'back' => '/locations/' . $unit->location->id . '/units',
         ]);
     }
 
@@ -80,7 +80,14 @@ class CellController extends MainController
      */
     public function show(int  $id)
     {
-        return 'Show ' . $id;
+        $cell = Cell::find($id);
+        if (!$cell) abort(500);
+        $captions = $this->getCaptions($cell);
+        return view('main.cells.show')->with([
+            'cell' => $cell,
+            'captions' => $captions,
+            'back' => '/units/' . $cell->unit->id . '/cells',
+        ]);
     }
 
     /**

@@ -22,4 +22,9 @@ class Cell extends Model
     {
         return $this->belongsTo(Unit::class, 'unit_id');
     }
+
+    public function equipments()
+    {
+        return $this->hasMany(Equipment::class, 'cell_id');
+    }
 }

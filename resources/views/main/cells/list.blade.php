@@ -1,4 +1,4 @@
-@extends('main.cells.units')
+@extends('main.cells.cells')
 
 @section('title', __('caption.app-name'))
 

@@ -33,6 +33,12 @@ return [
     'cells' => 'Cells',
     'new-cell' => 'New cell',
     'edit-cell' => 'Edit cell',
+    'show-cell' => 'Cell',
+    'show-equipments' => 'Equipments',
+
+    'equipments' => 'Equipments',
+    'new-equipment' => 'New equipment',
+    'edit-equipment' => 'Edit equipment',
 
     // Locales for Dictionary model
     'dictionaries' => 'Dictionaries',
@@ -84,4 +90,18 @@ return [
     'cell-btnSave' => 'Save',
     'cell-btnReset' => 'Reset',
     'cell-btnCancel' => 'Cancel',
+
+    // Locales for Equipment model
+    'Equipment-id' => 'Id',
+    'Equipment-number' => 'Number',
+    'Equipment-name' => 'Name',
+    'Equipment-mark' => 'Mark',
+    'Equipment-model' => 'Model',
+    'Equipment-type' => 'Type',
+    'Equipment-date' => 'Production date',
+    'Equipment-schema' => 'Schema label',
+    'Equipment-ratio' => 'Transformation ratio',
+    'Equipment-voltage' => 'Voltage class',
+    'Equipment-current' => 'Current class',
+    'Equipment-description' => 'Description',
 ];

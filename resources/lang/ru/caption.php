@@ -33,6 +33,12 @@ return [
     'cells' => 'Ячейки',
     'new-cell' => 'Новая ячейка',
     'edit-cell' => 'Редактирование ячейки',
+    'show-cell' => 'Ячейка/панель',
+    'show-equipments' => 'Оборудование',
+
+    'equipments' => 'Оборудование',
+    'new-equipment' => 'Новое оборудование',
+    'edit-equipment' => 'Редактирование оборудования',
 
     // Locales for Dictionary model
     'dictionaries' => 'Справочники',
@@ -84,5 +90,19 @@ return [
     'cell-btnSave' => 'Сохранить',
     'cell-btnReset' => 'Восстановить',
     'cell-btnCancel' => 'Отменить',
+
+    // Locales for Equipment model
+    'Equipment-id' => 'ИД',
+    'Equipment-number' => 'Заводской номер',
+    'Equipment-name' => 'Наименование',
+    'Equipment-mark' => 'Марка',
+    'Equipment-model' => 'Модель',
+    'Equipment-type' => 'Тип',
+    'Equipment-date' => 'Дата производства',
+    'Equipment-schema' => 'Обозначение на схеме',
+    'Equipment-ratio' => 'Коэффициент трансформации',
+    'Equipment-voltage' => 'Класс напряжения',
+    'Equipment-current' => 'Класс тока',
+    'Equipment-description' => 'Примечание',
 
 ];

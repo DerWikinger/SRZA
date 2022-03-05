@@ -12,21 +12,21 @@
                 </div>
             </div>
             <div class="input-group form-group">
-                <label class="col-form-label col-2" for="id">{{ this.captions.id + ':' }}</label>
+                <label class="col-form-label col-3" for="id">{{ this.captions.id + ':' }}</label>
                 <input class="form-control disabled" id="id" name="id" type="text" v-model="this.id" disabled>
             </div>
             <div class="input-group form-group">
-                <label class="col-form-label col-2" for="number">{{ this.captions.number + ':' }}</label>
+                <label class="col-form-label col-3" for="number">{{ this.captions.number + ':' }}</label>
                 <input class="form-control " type="number" id="number" name="number" v-model="cell.number"
                        @input="onDataChanged">
             </div>
             <div class="input-group form-group">
-                <label class="col-form-label col-2" for="name">{{ this.captions.name + ':' }}</label>
+                <label class="col-form-label col-3" for="name">{{ this.captions.name + ':' }}</label>
                 <input class="form-control " type="text" id="name" name="name" v-model.trim="cell.name"
                        @input="onDataChanged">
             </div>
             <div class="input-group form-group">
-                <label class="col-form-label col-2" for="description">{{ this.captions.description + ':' }}</label>
+                <label class="col-form-label col-3" for="description">{{ this.captions.description + ':' }}</label>
                 <textarea class="form-control " type="text" rows="3" id="description" name="description"
                           v-model.trim="cell.description"
                           @input="onDataChanged"></textarea>

@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cell;
+use App\Models\Dictionaries\EquipmentType;
 use App\Models\Equipment;
 use App\Models\Unit;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 
 class EquipmentController extends MainController
 {
@@ -20,7 +23,6 @@ class EquipmentController extends MainController
     public function index(int $foreign_id)
     {
         $cell = Cell::find($foreign_id);
-        dump($cell);
         if(!$cell) abort(500);
         return view('main.equipments.list')->with([
             'equipments' => $cell->equipments,
@@ -49,12 +51,7 @@ class EquipmentController extends MainController
                 'description' => '',
             ]);
         $equipment->cell_id = $foreign_id ?? 0;
-        $captions = $this->getCaptions($equipment);
-        return view('main.equipments.create')->with([
-            'equipment' => $equipment,
-            'captions' => $captions,
-            'back' => '/cells/' . $foreign_id,
-        ]);
+        return $this->getCreateView($equipment);
     }
 
     /**
@@ -78,7 +75,6 @@ class EquipmentController extends MainController
                 'description' => '',
             ]);
         $equipment->cell_id = $data->cell_id ?? 0;
-        dump($equipment);
         return response($this->modelSave($data, $equipment), 200);
     }
 
@@ -91,13 +87,7 @@ class EquipmentController extends MainController
     public function show(int  $id)
     {
         $equipment = Equipment::find($id);
-        if (!$equipment) abort(500);
-        $captions = $this->getCaptions($equipment);
-        return view('main.equipments.create')->with([
-            'equipment' => $equipment,
-            'captions' => $captions,
-            'back' => '/cells/' . $equipment->cell->id,
-        ]);
+        return $this->getCreateView($equipment);
     }
 
     /**
@@ -109,13 +99,7 @@ class EquipmentController extends MainController
     public function edit(int $id)
     {
         $equipment = Equipment::find($id);
-        if (!$equipment) abort(500);
-        $captions = $this->getCaptions($equipment);
-        return view('main.equipments.create')->with([
-            'equipment' => $equipment,
-            'captions' => $captions,
-            'back' => '/cells/' . $equipment->cell->id,
-        ]);
+        return $this->getCreateView($equipment);
     }
 
     /**
@@ -146,5 +130,23 @@ class EquipmentController extends MainController
             Storage::deleteDirectory($path);
             return response('Object has been deleted', 200);
         }
+    }
+
+    /**
+     * Return the 'CreateView'.
+     *
+     * @param  Equipment $equipment
+     * @return View
+     */
+    private function getCreateView(Equipment $equipment){
+        if (!$equipment) abort(500);
+        $captions = $this->getCaptions($equipment);
+        $equipmentTypes = EquipmentType::all()->sortBy('order_index');;
+        return view('main.equipments.create')->with([
+            'equipment' => $equipment,
+            'equipmentTypes' => $equipmentTypes,
+            'captions' => $captions,
+            'back' => '/cells/' . $equipment->cell->id,
+        ]);
     }
 }

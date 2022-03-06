@@ -13,6 +13,8 @@
                     <caption-block value="{{__('caption.new-equipment')}}" route="{{ $back }}"></caption-block>
                 @endif
                 <equipment-detail :equipment="{{ $equipment }}" token="{{ csrf_token() }}"
+                                  :equipment-types="{{ collect($equipmentTypes)->
+                                  map( function ($item) { return [ 'id' => $item->id, 'name' => $item->name ];}) }}"
                                  :captions="{{ $captions }}" @data-changed="onDataChanged"
                                  @data-reset="onDataReset">
                 </equipment-detail>

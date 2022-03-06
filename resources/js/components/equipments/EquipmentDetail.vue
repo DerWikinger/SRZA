@@ -16,6 +16,13 @@
                 <input class="form-control disabled" id="id" name="id" type="text" v-model="this.id" disabled>
             </div>
             <div class="input-group form-group">
+                <label class="col-form-label col-3" for="equipment_type">{{ this.captions.equipment_type + ':' }}</label>
+                <select class="form-control " type="text" id="equipment_type" name="equipment_type" v-model="equipment.equipment_type"
+                       @change="onDataChanged">
+                    <option class="" v-for="(equipmentType, key) in this.equipmentTypes" :value="equipmentType.id">{{ equipmentType.name }}</option>
+                </select>
+            </div>
+            <div class="input-group form-group">
                 <label class="col-form-label col-3" for="mark">{{ this.captions.mark + ':' }}</label>
                 <input class="form-control " type="text" id="mark" name="mark" v-model.trim="equipment.mark"
                        @input="onDataChanged">
@@ -67,12 +74,15 @@ export default {
     props: {
         captions: {type: Object},
         equipment: {type: Object},
+        equipmentTypes: {type: Array},
         token: {type: String},
     },
     created() {
         this._oldEquipment = this.equipment.constructor();
         this.copy(this.equipment, this._oldEquipment);
         console.log('Created, this.equipment => ', this.equipment);
+        console.log('Created, this.oldEquipment => ', this._oldEquipment);
+        console.log('Created, this.equipmentTypes => ', this.equipmentTypes);
     },
     methods: {
         onSave(ev) {
@@ -128,14 +138,17 @@ export default {
             this.avatar = this.equipment.avatar ?? '';
         },
         compare(obj1, obj2) {
-            return (obj1.avatar ?? '') == (obj2.avatar ?? '') &&
+            let result = (obj1.avatar ?? '') == (obj2.avatar ?? '') &&
                 (obj1.number ?? 0) == (obj2.number ?? 0) &&
                 (obj1.production_date ?? 0) == (obj2.production_date ?? 0) &&
+                (obj1.equipment_type ?? 0) == (obj2.equipment_type ?? 0) &&
                 (obj1.name ?? '') == (obj2.name ?? '') &&
                 (obj1.mark ?? '') == (obj2.mark ?? '') &&
                 (obj1.model ?? '') == (obj2.model ?? '') &&
                 (obj1.schema_label ?? '') == (obj2.schema_label ?? '') &&
                 (obj1.description ?? '') == (obj2.description ?? '');
+            console.log(obj1.equipment_type, obj2.equipment_type);
+            return result;
         },
         copy(obj_from, obj_to, reset = false) {
             for (let property in obj_from) {

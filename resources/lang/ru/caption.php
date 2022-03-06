@@ -97,7 +97,7 @@ return [
     'equipment-name' => 'Наименование',
     'equipment-mark' => 'Марка',
     'equipment-model' => 'Модель',
-    'equipment-type' => 'Тип',
+    'equipment-equipment_type' => 'Тип',
     'equipment-production_date' => 'Дата производства',
     'equipment-schema_label' => 'Обозначение на схеме',
     'equipment-ratio' => 'Коэффициент трансформации',

@@ -3081,6 +3081,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "EquipmentDetail",
   props: {
@@ -3090,6 +3097,9 @@ __webpack_require__.r(__webpack_exports__);
     equipment: {
       type: Object
     },
+    equipmentTypes: {
+      type: Array
+    },
     token: {
       type: String
     }
@@ -3098,6 +3108,8 @@ __webpack_require__.r(__webpack_exports__);
     this._oldEquipment = this.equipment.constructor();
     this.copy(this.equipment, this._oldEquipment);
     console.log('Created, this.equipment => ', this.equipment);
+    console.log('Created, this.oldEquipment => ', this._oldEquipment);
+    console.log('Created, this.equipmentTypes => ', this.equipmentTypes);
   },
   methods: {
     onSave: function onSave(ev) {
@@ -3163,9 +3175,11 @@ __webpack_require__.r(__webpack_exports__);
       this.avatar = (_this$equipment$avata = this.equipment.avatar) !== null && _this$equipment$avata !== void 0 ? _this$equipment$avata : '';
     },
     compare: function compare(obj1, obj2) {
-      var _obj1$avatar, _obj2$avatar, _obj1$number, _obj2$number, _obj1$production_date, _obj2$production_date, _obj1$name, _obj2$name, _obj1$mark, _obj2$mark, _obj1$model, _obj2$model, _obj1$schema_label, _obj2$schema_label, _obj1$description, _obj2$description;
+      var _obj1$avatar, _obj2$avatar, _obj1$number, _obj2$number, _obj1$production_date, _obj2$production_date, _obj1$equipment_type, _obj2$equipment_type, _obj1$name, _obj2$name, _obj1$mark, _obj2$mark, _obj1$model, _obj2$model, _obj1$schema_label, _obj2$schema_label, _obj1$description, _obj2$description;
 
-      return ((_obj1$avatar = obj1.avatar) !== null && _obj1$avatar !== void 0 ? _obj1$avatar : '') == ((_obj2$avatar = obj2.avatar) !== null && _obj2$avatar !== void 0 ? _obj2$avatar : '') && ((_obj1$number = obj1.number) !== null && _obj1$number !== void 0 ? _obj1$number : 0) == ((_obj2$number = obj2.number) !== null && _obj2$number !== void 0 ? _obj2$number : 0) && ((_obj1$production_date = obj1.production_date) !== null && _obj1$production_date !== void 0 ? _obj1$production_date : 0) == ((_obj2$production_date = obj2.production_date) !== null && _obj2$production_date !== void 0 ? _obj2$production_date : 0) && ((_obj1$name = obj1.name) !== null && _obj1$name !== void 0 ? _obj1$name : '') == ((_obj2$name = obj2.name) !== null && _obj2$name !== void 0 ? _obj2$name : '') && ((_obj1$mark = obj1.mark) !== null && _obj1$mark !== void 0 ? _obj1$mark : '') == ((_obj2$mark = obj2.mark) !== null && _obj2$mark !== void 0 ? _obj2$mark : '') && ((_obj1$model = obj1.model) !== null && _obj1$model !== void 0 ? _obj1$model : '') == ((_obj2$model = obj2.model) !== null && _obj2$model !== void 0 ? _obj2$model : '') && ((_obj1$schema_label = obj1.schema_label) !== null && _obj1$schema_label !== void 0 ? _obj1$schema_label : '') == ((_obj2$schema_label = obj2.schema_label) !== null && _obj2$schema_label !== void 0 ? _obj2$schema_label : '') && ((_obj1$description = obj1.description) !== null && _obj1$description !== void 0 ? _obj1$description : '') == ((_obj2$description = obj2.description) !== null && _obj2$description !== void 0 ? _obj2$description : '');
+      var result = ((_obj1$avatar = obj1.avatar) !== null && _obj1$avatar !== void 0 ? _obj1$avatar : '') == ((_obj2$avatar = obj2.avatar) !== null && _obj2$avatar !== void 0 ? _obj2$avatar : '') && ((_obj1$number = obj1.number) !== null && _obj1$number !== void 0 ? _obj1$number : 0) == ((_obj2$number = obj2.number) !== null && _obj2$number !== void 0 ? _obj2$number : 0) && ((_obj1$production_date = obj1.production_date) !== null && _obj1$production_date !== void 0 ? _obj1$production_date : 0) == ((_obj2$production_date = obj2.production_date) !== null && _obj2$production_date !== void 0 ? _obj2$production_date : 0) && ((_obj1$equipment_type = obj1.equipment_type) !== null && _obj1$equipment_type !== void 0 ? _obj1$equipment_type : 0) == ((_obj2$equipment_type = obj2.equipment_type) !== null && _obj2$equipment_type !== void 0 ? _obj2$equipment_type : 0) && ((_obj1$name = obj1.name) !== null && _obj1$name !== void 0 ? _obj1$name : '') == ((_obj2$name = obj2.name) !== null && _obj2$name !== void 0 ? _obj2$name : '') && ((_obj1$mark = obj1.mark) !== null && _obj1$mark !== void 0 ? _obj1$mark : '') == ((_obj2$mark = obj2.mark) !== null && _obj2$mark !== void 0 ? _obj2$mark : '') && ((_obj1$model = obj1.model) !== null && _obj1$model !== void 0 ? _obj1$model : '') == ((_obj2$model = obj2.model) !== null && _obj2$model !== void 0 ? _obj2$model : '') && ((_obj1$schema_label = obj1.schema_label) !== null && _obj1$schema_label !== void 0 ? _obj1$schema_label : '') == ((_obj2$schema_label = obj2.schema_label) !== null && _obj2$schema_label !== void 0 ? _obj2$schema_label : '') && ((_obj1$description = obj1.description) !== null && _obj1$description !== void 0 ? _obj1$description : '') == ((_obj2$description = obj2.description) !== null && _obj2$description !== void 0 ? _obj2$description : '');
+      console.log(obj1.equipment_type, obj2.equipment_type);
+      return result;
     },
     copy: function copy(obj_from, obj_to) {
       var reset = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
@@ -55057,6 +55071,63 @@ var render = function () {
             },
           },
         }),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group form-group" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-form-label col-3",
+            attrs: { for: "equipment_type" },
+          },
+          [_vm._v(_vm._s(this.captions.equipment_type + ":"))]
+        ),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.equipment.equipment_type,
+                expression: "equipment.equipment_type",
+              },
+            ],
+            staticClass: "form-control ",
+            attrs: {
+              type: "text",
+              id: "equipment_type",
+              name: "equipment_type",
+            },
+            on: {
+              change: [
+                function ($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function (o) {
+                      return o.selected
+                    })
+                    .map(function (o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.equipment,
+                    "equipment_type",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                },
+                _vm.onDataChanged,
+              ],
+            },
+          },
+          _vm._l(this.equipmentTypes, function (equipmentType, key) {
+            return _c("option", { domProps: { value: equipmentType.id } }, [
+              _vm._v(_vm._s(equipmentType.name)),
+            ])
+          }),
+          0
+        ),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "input-group form-group" }, [

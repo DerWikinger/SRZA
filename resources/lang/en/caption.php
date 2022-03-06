@@ -97,7 +97,7 @@ return [
     'equipment-name' => 'Name',
     'equipment-mark' => 'Mark',
     'equipment-model' => 'Model',
-    'equipment-type' => 'Type',
+    'equipment-equipment_type' => 'Type',
     'equipment-production_date' => 'Production date',
     'equipment-schema_label' => 'Schema label',
     'equipment-ratio' => 'Transformation ratio',

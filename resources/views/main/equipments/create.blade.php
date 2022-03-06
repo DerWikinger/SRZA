@@ -14,7 +14,35 @@
                 @endif
                 <equipment-detail :equipment="{{ $equipment }}" token="{{ csrf_token() }}"
                                   :equipment-types="{{ collect($equipmentTypes)->
-                                  map( function ($item) { return [ 'id' => $item->id, 'name' => $item->name ];}) }}"
+                                  map( function ($item) { return [
+                                      'id' => $item->id,
+                                      'name' => $item->name,
+                                      'order_index' => $item->order_index ?? 0,
+                                      ];}) }}"
+                                  :voltage-transformer="{{ collect($voltageTransformer)->
+                                  map( function ($item) { return [
+                                      'id' => $item->id,
+                                      'name' => $item->name,
+                                      'order_index' => $item->order_index ?? 0,
+                                       ];}) }}"
+                                  :current-transformer="{{ collect($currentTransformer)->
+                                  map( function ($item) { return [
+                                      'id' => $item->id,
+                                      'name' => $item->name,
+                                      'order_index' => $item->order_index ?? 0,
+                                       ];}) }}"
+                                  :voltage-class="{{ collect($voltageClass)->
+                                  map( function ($item) { return [
+                                      'id' => $item->id,
+                                      'name' => $item->name,
+                                      'order_index' => $item->order_index ?? 0,
+                                       ];}) }}"
+                                  :current-class="{{ collect($currentClass)->
+                                  map( function ($item) { return [
+                                      'id' => $item->id,
+                                      'name' => $item->name,
+                                      'order_index' => $item->order_index ?? 0,
+                                       ];}) }}"
                                  :captions="{{ $captions }}" @data-changed="onDataChanged"
                                  @data-reset="onDataReset">
                 </equipment-detail>

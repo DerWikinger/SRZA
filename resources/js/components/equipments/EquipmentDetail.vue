@@ -16,52 +16,104 @@
                 <input class="form-control disabled" id="id" name="id" type="text" v-model="this.id" disabled>
             </div>
             <div class="input-group form-group">
-                <label class="col-form-label col-3" for="equipment_type">{{ this.captions.equipment_type + ':' }}</label>
-                <select class="form-control " type="text" id="equipment_type" name="equipment_type" v-model="equipment.equipment_type"
-                       @change="onDataChanged">
-                    <option class="" v-for="(equipmentType, key) in this.equipmentTypes" :value="equipmentType.id">{{ equipmentType.name }}</option>
+                <label class="col-form-label col-3" for="equipment_type">{{
+                        this.captions.equipment_type + ':'
+                    }}</label>
+                <select class="form-control " type="text" id="equipment_type" name="equipment_type"
+                        v-model="equipment.equipment_type"
+                        @change="onDataChanged">
+                    <option class="" v-for="(equipmentType, key) in this.orderedEquipmentTypes" :value="equipmentType.id">
+                        {{ equipmentType.name }}
+                    </option>
                 </select>
             </div>
             <div class="input-group form-group">
                 <label class="col-form-label col-3" for="mark">{{ this.captions.mark + ':' }}</label>
-                <input class="form-control " type="text" id="mark" name="mark" v-model.trim="equipment.mark"
+                <input class="form-control " type="text" id="mark" name="mark" v-model.trim.lazy="equipment.mark"
                        @input="onDataChanged">
             </div>
             <div class="input-group form-group">
                 <label class="col-form-label col-3" for="model">{{ this.captions.model + ':' }}</label>
-                <input class="form-control " type="text" id="model" name="model" v-model.trim="equipment.model"
+                <input class="form-control " type="text" id="model" name="model" v-model.trim.lazy="equipment.model"
                        @input="onDataChanged">
             </div>
             <div class="input-group form-group">
                 <label class="col-form-label col-3" for="schema_label">{{ this.captions.schema_label + ':' }}</label>
-                <input class="form-control " type="text" id="schema_label" name="schema_label" v-model.trim="equipment.schema_label"
+                <input class="form-control " type="text" id="schema_label" name="schema_label"
+                       v-model.trim.lazy="equipment.schema_label"
                        @input="onDataChanged">
             </div>
             <div class="input-group form-group">
+                <label class="col-form-label col-3" for="voltage_class">{{
+                    this.captions.voltage_class + ':'
+                    }}</label>
+                <select class="form-control " type="text" id="voltage_class" name="voltage_class"
+                        v-model="equipment.voltage_class"
+                        @change="onDataChanged">
+                    <option class="" v-for="(voltageClass, key) in this.orderedVoltageClass" :value="voltageClass.id">
+                        {{ voltageClass.name }}
+                    </option>
+                </select>
+            </div>
+            <div class="input-group form-group">
+                <label class="col-form-label col-3" for="current_class">{{
+                        this.captions.current_class + ':'
+                    }}</label>
+                <select class="form-control " type="text" id="current_class" name="current_class"
+                        v-model="equipment.current_class"
+                        @change="onDataChanged">
+                    <option class="" v-for="(currentClass, key) in this.orderedCurrentClass" :value="currentClass.id">
+                        {{ currentClass.name }}
+                    </option>
+                </select>
+            </div>
+            <div class="input-group form-group" id="VT">
+                <label class="col-form-label col-3" for="ratioV">{{ this.captions.ratio + ':' }}</label>
+                <select class="form-control " type="text" id="ratioV" name="ratioV" v-model="equipment.ratio"
+                        @change="onDataChanged">
+                    <option class="" v-for="(voltageRatio, key) in this.orderedVoltageTransformer"
+                            :value="voltageRatio.id">{{ voltageRatio.name }}
+                    </option>
+                </select>
+            </div>
+            <div class="input-group form-group" id="CT">
+                <label class="col-form-label col-3" for="ratioC">{{ this.captions.ratio + ':' }}</label>
+                <select class="form-control " type="text" id="ratioC" name="ratioC" v-model="equipment.ratio"
+                        @change="onDataChanged">
+                    <option class="" v-for="(currentRatio, key) in this.orderedCurrentTransformer"
+                            :value="currentRatio.id">{{ currentRatio.name }}
+                    </option>
+                </select>
+            </div>
+            <div class="input-group form-group">
                 <label class="col-form-label col-3" for="name">{{ this.captions.name + ':' }}</label>
-                <input class="form-control " type="text" id="name" name="name" v-model.trim="equipment.name"
+                <input class="form-control " type="text" id="name" name="name" v-model.trim.lazy="equipment.name"
                        @input="onDataChanged">
             </div>
             <div class="input-group form-group">
                 <label class="col-form-label col-3" for="number">{{ this.captions.number + ':' }}</label>
-                <input class="form-control " type="text" id="number" name="number" v-model.trim="equipment.number"
+                <input class="form-control " type="text" id="number" name="number" v-model.trim.lazy="equipment.number"
                        @input="onDataChanged">
             </div>
             <div class="input-group form-group">
-                <label class="col-form-label col-3" for="production_date">{{ this.captions.production_date + ':' }}</label>
-                <input class="form-control " type="number" id="production_date" name="production_date" v-model.number="equipment.production_date"
+                <label class="col-form-label col-3" for="production_date">{{
+                        this.captions.production_date + ':'
+                    }}</label>
+                <input class="form-control " type="number" id="production_date" name="production_date"
+                       v-model.number="equipment.production_date"
                        @input="onDataChanged">
             </div>
             <div class="input-group form-group">
                 <label class="col-form-label col-3" for="description">{{ this.captions.description + ':' }}</label>
                 <textarea class="form-control " type="text" rows="3" id="description" name="description"
-                          v-model.trim="equipment.description"
+                          v-model.trim.lazy="equipment.description"
                           @input="onDataChanged"></textarea>
             </div>
             <input class="form-control col-3 d-inline-block float-right" v-bind:id="'btnReset_' + this.id" type="button"
                    @click="onReset"
                    :value="this.captions.btnReset">
-            <input class="form-control col-3 disabled d-inline-block float-right color-disabled" v-bind:id="'btnSave_' + this.id"
+            <input class="form-control col-3 disabled d-inline-block float-right color-disabled"
+                   v-bind:id="'btnSave_' + this.id"
                    type="button" @click="onSave"
                    :value="this.captions.btnSave">
         </div>
@@ -75,6 +127,10 @@ export default {
         captions: {type: Object},
         equipment: {type: Object},
         equipmentTypes: {type: Array},
+        voltageTransformer: {type: Array},
+        voltageClass: {type: Array},
+        currentTransformer: {type: Array},
+        currentClass: {type: Array},
         token: {type: String},
     },
     created() {
@@ -82,7 +138,10 @@ export default {
         this.copy(this.equipment, this._oldEquipment);
         console.log('Created, this.equipment => ', this.equipment);
         console.log('Created, this.oldEquipment => ', this._oldEquipment);
-        console.log('Created, this.equipmentTypes => ', this.equipmentTypes);
+        console.log('Created, this.currentTransformer => ', this.currentTransformer);
+    },
+    mounted() {
+        this.ratioShowHide();
     },
     methods: {
         onSave(ev) {
@@ -91,7 +150,7 @@ export default {
             let url = (this.equipment.id ?? 0) ? '/equipments/update/' + this.equipment.id : '/equipments/store';
             let callback = function (result) {
                 self.$alert('Данные успешно сохранены!');
-                if(!self._oldEquipment.id && result.id) {
+                if (!self._oldEquipment.id && result.id) {
                     location = '/equipments/edit/' + result.id;
                 } else {
                     self.copy(result, self._oldEquipment, true);
@@ -116,6 +175,19 @@ export default {
         onDataChanged(ev) {
             this.dirty(ev);
         },
+        ratioShowHide() {
+            if (this.isVoltageTransformer()) {
+                $('#VT').show();
+                $('#CT').hide();
+            } else if (this.isCurrentTransformer()) {
+                $('#CT').show();
+                $('#VT').hide();
+            } else {
+                $('#VT').hide();
+                $('#CT').hide();
+                this.equipment.ratio = 0;
+            }
+        },
         isClean() {
             return !this._dirty;
         },
@@ -131,6 +203,7 @@ export default {
                 $(elemId).removeClass('disabled').addClass('enabled');
                 $(elemId).removeClass('color-disabled');
             }
+            this.ratioShowHide();
         },
         clear() {
             this.copy(this._oldEquipment, this.equipment, true);
@@ -143,6 +216,9 @@ export default {
                 (obj1.production_date ?? 0) == (obj2.production_date ?? 0) &&
                 (obj1.equipment_type ?? 0) == (obj2.equipment_type ?? 0) &&
                 (obj1.name ?? '') == (obj2.name ?? '') &&
+                (obj1.ratio ?? 0) == (obj2.ratio ?? 0) &&
+                (obj1.voltage_class ?? 0) == (obj2.voltage_class ?? 0) &&
+                (obj1.current_class ?? 0) == (obj2.current_class ?? 0) &&
                 (obj1.mark ?? '') == (obj2.mark ?? '') &&
                 (obj1.model ?? '') == (obj2.model ?? '') &&
                 (obj1.schema_label ?? '') == (obj2.schema_label ?? '') &&
@@ -155,6 +231,12 @@ export default {
                 obj_to[property] = obj_from[property];
                 if (reset) $("#" + property).prop('value', obj_to[property]);
             }
+        },
+        isVoltageTransformer() {
+            return this.equipment.equipment_type == 11;
+        },
+        isCurrentTransformer() {
+            return this.equipment.equipment_type == 12;
         }
     },
     data() {
@@ -167,7 +249,22 @@ export default {
     computed: {
         id() {
             return this.equipment.id ? this.equipment.id + '' : 'New';
-        }
+        },
+        orderedEquipmentTypes() {
+            return _.orderBy(this.equipmentTypes, ['order_index', 'id']);
+        },
+        orderedVoltageTransformer() {
+            return _.orderBy(this.voltageTransformer, ['order_index', 'name']);
+        },
+        orderedVoltageClass() {
+            return _.orderBy(this.voltageClass, ['order_index', 'name']);
+        },
+        orderedCurrentTransformer() {
+            return _.orderBy(this.currentTransformer, ['order_index', 'name']);
+        },
+        orderedCurrentClass() {
+            return _.orderBy(this.currentClass, ['order_index', 'name']);
+        },
     }
 }
 </script>

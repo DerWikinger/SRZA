@@ -3088,6 +3088,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "EquipmentDetail",
   props: {
@@ -3100,6 +3152,18 @@ __webpack_require__.r(__webpack_exports__);
     equipmentTypes: {
       type: Array
     },
+    voltageTransformer: {
+      type: Array
+    },
+    voltageClass: {
+      type: Array
+    },
+    currentTransformer: {
+      type: Array
+    },
+    currentClass: {
+      type: Array
+    },
     token: {
       type: String
     }
@@ -3109,7 +3173,10 @@ __webpack_require__.r(__webpack_exports__);
     this.copy(this.equipment, this._oldEquipment);
     console.log('Created, this.equipment => ', this.equipment);
     console.log('Created, this.oldEquipment => ', this._oldEquipment);
-    console.log('Created, this.equipmentTypes => ', this.equipmentTypes);
+    console.log('Created, this.currentTransformer => ', this.currentTransformer);
+  },
+  mounted: function mounted() {
+    this.ratioShowHide();
   },
   methods: {
     onSave: function onSave(ev) {
@@ -3150,6 +3217,19 @@ __webpack_require__.r(__webpack_exports__);
     onDataChanged: function onDataChanged(ev) {
       this.dirty(ev);
     },
+    ratioShowHide: function ratioShowHide() {
+      if (this.isVoltageTransformer()) {
+        $('#VT').show();
+        $('#CT').hide();
+      } else if (this.isCurrentTransformer()) {
+        $('#CT').show();
+        $('#VT').hide();
+      } else {
+        $('#VT').hide();
+        $('#CT').hide();
+        this.equipment.ratio = 0;
+      }
+    },
     isClean: function isClean() {
       return !this._dirty;
     },
@@ -3166,6 +3246,8 @@ __webpack_require__.r(__webpack_exports__);
         $(elemId).removeClass('disabled').addClass('enabled');
         $(elemId).removeClass('color-disabled');
       }
+
+      this.ratioShowHide();
     },
     clear: function clear() {
       var _this$equipment$avata;
@@ -3175,9 +3257,9 @@ __webpack_require__.r(__webpack_exports__);
       this.avatar = (_this$equipment$avata = this.equipment.avatar) !== null && _this$equipment$avata !== void 0 ? _this$equipment$avata : '';
     },
     compare: function compare(obj1, obj2) {
-      var _obj1$avatar, _obj2$avatar, _obj1$number, _obj2$number, _obj1$production_date, _obj2$production_date, _obj1$equipment_type, _obj2$equipment_type, _obj1$name, _obj2$name, _obj1$mark, _obj2$mark, _obj1$model, _obj2$model, _obj1$schema_label, _obj2$schema_label, _obj1$description, _obj2$description;
+      var _obj1$avatar, _obj2$avatar, _obj1$number, _obj2$number, _obj1$production_date, _obj2$production_date, _obj1$equipment_type, _obj2$equipment_type, _obj1$name, _obj2$name, _obj1$ratio, _obj2$ratio, _obj1$voltage_class, _obj2$voltage_class, _obj1$current_class, _obj2$current_class, _obj1$mark, _obj2$mark, _obj1$model, _obj2$model, _obj1$schema_label, _obj2$schema_label, _obj1$description, _obj2$description;
 
-      var result = ((_obj1$avatar = obj1.avatar) !== null && _obj1$avatar !== void 0 ? _obj1$avatar : '') == ((_obj2$avatar = obj2.avatar) !== null && _obj2$avatar !== void 0 ? _obj2$avatar : '') && ((_obj1$number = obj1.number) !== null && _obj1$number !== void 0 ? _obj1$number : 0) == ((_obj2$number = obj2.number) !== null && _obj2$number !== void 0 ? _obj2$number : 0) && ((_obj1$production_date = obj1.production_date) !== null && _obj1$production_date !== void 0 ? _obj1$production_date : 0) == ((_obj2$production_date = obj2.production_date) !== null && _obj2$production_date !== void 0 ? _obj2$production_date : 0) && ((_obj1$equipment_type = obj1.equipment_type) !== null && _obj1$equipment_type !== void 0 ? _obj1$equipment_type : 0) == ((_obj2$equipment_type = obj2.equipment_type) !== null && _obj2$equipment_type !== void 0 ? _obj2$equipment_type : 0) && ((_obj1$name = obj1.name) !== null && _obj1$name !== void 0 ? _obj1$name : '') == ((_obj2$name = obj2.name) !== null && _obj2$name !== void 0 ? _obj2$name : '') && ((_obj1$mark = obj1.mark) !== null && _obj1$mark !== void 0 ? _obj1$mark : '') == ((_obj2$mark = obj2.mark) !== null && _obj2$mark !== void 0 ? _obj2$mark : '') && ((_obj1$model = obj1.model) !== null && _obj1$model !== void 0 ? _obj1$model : '') == ((_obj2$model = obj2.model) !== null && _obj2$model !== void 0 ? _obj2$model : '') && ((_obj1$schema_label = obj1.schema_label) !== null && _obj1$schema_label !== void 0 ? _obj1$schema_label : '') == ((_obj2$schema_label = obj2.schema_label) !== null && _obj2$schema_label !== void 0 ? _obj2$schema_label : '') && ((_obj1$description = obj1.description) !== null && _obj1$description !== void 0 ? _obj1$description : '') == ((_obj2$description = obj2.description) !== null && _obj2$description !== void 0 ? _obj2$description : '');
+      var result = ((_obj1$avatar = obj1.avatar) !== null && _obj1$avatar !== void 0 ? _obj1$avatar : '') == ((_obj2$avatar = obj2.avatar) !== null && _obj2$avatar !== void 0 ? _obj2$avatar : '') && ((_obj1$number = obj1.number) !== null && _obj1$number !== void 0 ? _obj1$number : 0) == ((_obj2$number = obj2.number) !== null && _obj2$number !== void 0 ? _obj2$number : 0) && ((_obj1$production_date = obj1.production_date) !== null && _obj1$production_date !== void 0 ? _obj1$production_date : 0) == ((_obj2$production_date = obj2.production_date) !== null && _obj2$production_date !== void 0 ? _obj2$production_date : 0) && ((_obj1$equipment_type = obj1.equipment_type) !== null && _obj1$equipment_type !== void 0 ? _obj1$equipment_type : 0) == ((_obj2$equipment_type = obj2.equipment_type) !== null && _obj2$equipment_type !== void 0 ? _obj2$equipment_type : 0) && ((_obj1$name = obj1.name) !== null && _obj1$name !== void 0 ? _obj1$name : '') == ((_obj2$name = obj2.name) !== null && _obj2$name !== void 0 ? _obj2$name : '') && ((_obj1$ratio = obj1.ratio) !== null && _obj1$ratio !== void 0 ? _obj1$ratio : 0) == ((_obj2$ratio = obj2.ratio) !== null && _obj2$ratio !== void 0 ? _obj2$ratio : 0) && ((_obj1$voltage_class = obj1.voltage_class) !== null && _obj1$voltage_class !== void 0 ? _obj1$voltage_class : 0) == ((_obj2$voltage_class = obj2.voltage_class) !== null && _obj2$voltage_class !== void 0 ? _obj2$voltage_class : 0) && ((_obj1$current_class = obj1.current_class) !== null && _obj1$current_class !== void 0 ? _obj1$current_class : 0) == ((_obj2$current_class = obj2.current_class) !== null && _obj2$current_class !== void 0 ? _obj2$current_class : 0) && ((_obj1$mark = obj1.mark) !== null && _obj1$mark !== void 0 ? _obj1$mark : '') == ((_obj2$mark = obj2.mark) !== null && _obj2$mark !== void 0 ? _obj2$mark : '') && ((_obj1$model = obj1.model) !== null && _obj1$model !== void 0 ? _obj1$model : '') == ((_obj2$model = obj2.model) !== null && _obj2$model !== void 0 ? _obj2$model : '') && ((_obj1$schema_label = obj1.schema_label) !== null && _obj1$schema_label !== void 0 ? _obj1$schema_label : '') == ((_obj2$schema_label = obj2.schema_label) !== null && _obj2$schema_label !== void 0 ? _obj2$schema_label : '') && ((_obj1$description = obj1.description) !== null && _obj1$description !== void 0 ? _obj1$description : '') == ((_obj2$description = obj2.description) !== null && _obj2$description !== void 0 ? _obj2$description : '');
       console.log(obj1.equipment_type, obj2.equipment_type);
       return result;
     },
@@ -3188,6 +3270,12 @@ __webpack_require__.r(__webpack_exports__);
         obj_to[property] = obj_from[property];
         if (reset) $("#" + property).prop('value', obj_to[property]);
       }
+    },
+    isVoltageTransformer: function isVoltageTransformer() {
+      return this.equipment.equipment_type == 11;
+    },
+    isCurrentTransformer: function isCurrentTransformer() {
+      return this.equipment.equipment_type == 12;
     }
   },
   data: function data() {
@@ -3200,6 +3288,21 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     id: function id() {
       return this.equipment.id ? this.equipment.id + '' : 'New';
+    },
+    orderedEquipmentTypes: function orderedEquipmentTypes() {
+      return _.orderBy(this.equipmentTypes, ['order_index', 'id']);
+    },
+    orderedVoltageTransformer: function orderedVoltageTransformer() {
+      return _.orderBy(this.voltageTransformer, ['order_index', 'name']);
+    },
+    orderedVoltageClass: function orderedVoltageClass() {
+      return _.orderBy(this.voltageClass, ['order_index', 'name']);
+    },
+    orderedCurrentTransformer: function orderedCurrentTransformer() {
+      return _.orderBy(this.currentTransformer, ['order_index', 'name']);
+    },
+    orderedCurrentClass: function orderedCurrentClass() {
+      return _.orderBy(this.currentClass, ['order_index', 'name']);
     }
   }
 });
@@ -55121,9 +55224,13 @@ var render = function () {
               ],
             },
           },
-          _vm._l(this.equipmentTypes, function (equipmentType, key) {
+          _vm._l(this.orderedEquipmentTypes, function (equipmentType, key) {
             return _c("option", { domProps: { value: equipmentType.id } }, [
-              _vm._v(_vm._s(equipmentType.name)),
+              _vm._v(
+                "\n                    " +
+                  _vm._s(equipmentType.name) +
+                  "\n                "
+              ),
             ])
           }),
           0
@@ -55141,25 +55248,20 @@ var render = function () {
           directives: [
             {
               name: "model",
-              rawName: "v-model.trim",
+              rawName: "v-model.trim.lazy",
               value: _vm.equipment.mark,
               expression: "equipment.mark",
-              modifiers: { trim: true },
+              modifiers: { trim: true, lazy: true },
             },
           ],
           staticClass: "form-control ",
           attrs: { type: "text", id: "mark", name: "mark" },
           domProps: { value: _vm.equipment.mark },
           on: {
-            input: [
-              function ($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.equipment, "mark", $event.target.value.trim())
-              },
-              _vm.onDataChanged,
-            ],
+            input: _vm.onDataChanged,
+            change: function ($event) {
+              _vm.$set(_vm.equipment, "mark", $event.target.value.trim())
+            },
             blur: function ($event) {
               return _vm.$forceUpdate()
             },
@@ -55178,25 +55280,20 @@ var render = function () {
           directives: [
             {
               name: "model",
-              rawName: "v-model.trim",
+              rawName: "v-model.trim.lazy",
               value: _vm.equipment.model,
               expression: "equipment.model",
-              modifiers: { trim: true },
+              modifiers: { trim: true, lazy: true },
             },
           ],
           staticClass: "form-control ",
           attrs: { type: "text", id: "model", name: "model" },
           domProps: { value: _vm.equipment.model },
           on: {
-            input: [
-              function ($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.equipment, "model", $event.target.value.trim())
-              },
-              _vm.onDataChanged,
-            ],
+            input: _vm.onDataChanged,
+            change: function ($event) {
+              _vm.$set(_vm.equipment, "model", $event.target.value.trim())
+            },
             blur: function ($event) {
               return _vm.$forceUpdate()
             },
@@ -55218,35 +55315,258 @@ var render = function () {
           directives: [
             {
               name: "model",
-              rawName: "v-model.trim",
+              rawName: "v-model.trim.lazy",
               value: _vm.equipment.schema_label,
               expression: "equipment.schema_label",
-              modifiers: { trim: true },
+              modifiers: { trim: true, lazy: true },
             },
           ],
           staticClass: "form-control ",
           attrs: { type: "text", id: "schema_label", name: "schema_label" },
           domProps: { value: _vm.equipment.schema_label },
           on: {
-            input: [
-              function ($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(
-                  _vm.equipment,
-                  "schema_label",
-                  $event.target.value.trim()
-                )
-              },
-              _vm.onDataChanged,
-            ],
+            input: _vm.onDataChanged,
+            change: function ($event) {
+              _vm.$set(
+                _vm.equipment,
+                "schema_label",
+                $event.target.value.trim()
+              )
+            },
             blur: function ($event) {
               return _vm.$forceUpdate()
             },
           },
         }),
       ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group form-group" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-form-label col-3",
+            attrs: { for: "voltage_class" },
+          },
+          [_vm._v(_vm._s(this.captions.voltage_class + ":"))]
+        ),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.equipment.voltage_class,
+                expression: "equipment.voltage_class",
+              },
+            ],
+            staticClass: "form-control ",
+            attrs: { type: "text", id: "voltage_class", name: "voltage_class" },
+            on: {
+              change: [
+                function ($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function (o) {
+                      return o.selected
+                    })
+                    .map(function (o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.equipment,
+                    "voltage_class",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                },
+                _vm.onDataChanged,
+              ],
+            },
+          },
+          _vm._l(this.orderedVoltageClass, function (voltageClass, key) {
+            return _c("option", { domProps: { value: voltageClass.id } }, [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(voltageClass.name) +
+                  "\n                "
+              ),
+            ])
+          }),
+          0
+        ),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "input-group form-group" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-form-label col-3",
+            attrs: { for: "current_class" },
+          },
+          [_vm._v(_vm._s(this.captions.current_class + ":"))]
+        ),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.equipment.current_class,
+                expression: "equipment.current_class",
+              },
+            ],
+            staticClass: "form-control ",
+            attrs: { type: "text", id: "current_class", name: "current_class" },
+            on: {
+              change: [
+                function ($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function (o) {
+                      return o.selected
+                    })
+                    .map(function (o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.equipment,
+                    "current_class",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                },
+                _vm.onDataChanged,
+              ],
+            },
+          },
+          _vm._l(this.orderedCurrentClass, function (currentClass, key) {
+            return _c("option", { domProps: { value: currentClass.id } }, [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(currentClass.name) +
+                  "\n                "
+              ),
+            ])
+          }),
+          0
+        ),
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "input-group form-group", attrs: { id: "VT" } },
+        [
+          _c(
+            "label",
+            { staticClass: "col-form-label col-3", attrs: { for: "ratioV" } },
+            [_vm._v(_vm._s(this.captions.ratio + ":"))]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.equipment.ratio,
+                  expression: "equipment.ratio",
+                },
+              ],
+              staticClass: "form-control ",
+              attrs: { type: "text", id: "ratioV", name: "ratioV" },
+              on: {
+                change: [
+                  function ($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function (o) {
+                        return o.selected
+                      })
+                      .map(function (o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.equipment,
+                      "ratio",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  },
+                  _vm.onDataChanged,
+                ],
+              },
+            },
+            _vm._l(
+              this.orderedVoltageTransformer,
+              function (voltageRatio, key) {
+                return _c("option", { domProps: { value: voltageRatio.id } }, [
+                  _vm._v(_vm._s(voltageRatio.name) + "\n                "),
+                ])
+              }
+            ),
+            0
+          ),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "input-group form-group", attrs: { id: "CT" } },
+        [
+          _c(
+            "label",
+            { staticClass: "col-form-label col-3", attrs: { for: "ratioC" } },
+            [_vm._v(_vm._s(this.captions.ratio + ":"))]
+          ),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.equipment.ratio,
+                  expression: "equipment.ratio",
+                },
+              ],
+              staticClass: "form-control ",
+              attrs: { type: "text", id: "ratioC", name: "ratioC" },
+              on: {
+                change: [
+                  function ($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function (o) {
+                        return o.selected
+                      })
+                      .map(function (o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.equipment,
+                      "ratio",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  },
+                  _vm.onDataChanged,
+                ],
+              },
+            },
+            _vm._l(
+              this.orderedCurrentTransformer,
+              function (currentRatio, key) {
+                return _c("option", { domProps: { value: currentRatio.id } }, [
+                  _vm._v(_vm._s(currentRatio.name) + "\n                "),
+                ])
+              }
+            ),
+            0
+          ),
+        ]
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "input-group form-group" }, [
         _c(
@@ -55259,25 +55579,20 @@ var render = function () {
           directives: [
             {
               name: "model",
-              rawName: "v-model.trim",
+              rawName: "v-model.trim.lazy",
               value: _vm.equipment.name,
               expression: "equipment.name",
-              modifiers: { trim: true },
+              modifiers: { trim: true, lazy: true },
             },
           ],
           staticClass: "form-control ",
           attrs: { type: "text", id: "name", name: "name" },
           domProps: { value: _vm.equipment.name },
           on: {
-            input: [
-              function ($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.equipment, "name", $event.target.value.trim())
-              },
-              _vm.onDataChanged,
-            ],
+            input: _vm.onDataChanged,
+            change: function ($event) {
+              _vm.$set(_vm.equipment, "name", $event.target.value.trim())
+            },
             blur: function ($event) {
               return _vm.$forceUpdate()
             },
@@ -55296,25 +55611,20 @@ var render = function () {
           directives: [
             {
               name: "model",
-              rawName: "v-model.trim",
+              rawName: "v-model.trim.lazy",
               value: _vm.equipment.number,
               expression: "equipment.number",
-              modifiers: { trim: true },
+              modifiers: { trim: true, lazy: true },
             },
           ],
           staticClass: "form-control ",
           attrs: { type: "text", id: "number", name: "number" },
           domProps: { value: _vm.equipment.number },
           on: {
-            input: [
-              function ($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.equipment, "number", $event.target.value.trim())
-              },
-              _vm.onDataChanged,
-            ],
+            input: _vm.onDataChanged,
+            change: function ($event) {
+              _vm.$set(_vm.equipment, "number", $event.target.value.trim())
+            },
             blur: function ($event) {
               return _vm.$forceUpdate()
             },
@@ -55384,10 +55694,10 @@ var render = function () {
           directives: [
             {
               name: "model",
-              rawName: "v-model.trim",
+              rawName: "v-model.trim.lazy",
               value: _vm.equipment.description,
               expression: "equipment.description",
-              modifiers: { trim: true },
+              modifiers: { trim: true, lazy: true },
             },
           ],
           staticClass: "form-control ",
@@ -55399,19 +55709,10 @@ var render = function () {
           },
           domProps: { value: _vm.equipment.description },
           on: {
-            input: [
-              function ($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(
-                  _vm.equipment,
-                  "description",
-                  $event.target.value.trim()
-                )
-              },
-              _vm.onDataChanged,
-            ],
+            input: _vm.onDataChanged,
+            change: function ($event) {
+              _vm.$set(_vm.equipment, "description", $event.target.value.trim())
+            },
             blur: function ($event) {
               return _vm.$forceUpdate()
             },

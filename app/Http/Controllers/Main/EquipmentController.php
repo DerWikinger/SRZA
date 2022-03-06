@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Main;
 
-use App\Http\Controllers\Controller;
 use App\Models\Cell;
 use App\Models\Dictionaries\EquipmentType;
+use App\Models\Dictionaries\VoltageTransformer;
+use App\Models\Dictionaries\VoltageClass;
+use App\Models\Dictionaries\CurrentTransformer;
+use App\Models\Dictionaries\CurrentClass;
 use App\Models\Equipment;
-use App\Models\Unit;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
@@ -141,10 +142,18 @@ class EquipmentController extends MainController
     private function getCreateView(Equipment $equipment){
         if (!$equipment) abort(500);
         $captions = $this->getCaptions($equipment);
-        $equipmentTypes = EquipmentType::all()->sortBy('order_index');;
+        $equipmentTypes = EquipmentType::all()->sortBy('order_index');
+        $voltageTransformer = VoltageTransformer::all();
+        $voltageClass = VoltageClass::all();
+        $currentTransformer = CurrentTransformer::all();
+        $currentClass = CurrentClass::all();
         return view('main.equipments.create')->with([
             'equipment' => $equipment,
             'equipmentTypes' => $equipmentTypes,
+            'voltageTransformer' => $voltageTransformer,
+            'voltageClass' => $voltageClass,
+            'currentTransformer' => $currentTransformer,
+            'currentClass' => $currentClass,
             'captions' => $captions,
             'back' => '/cells/' . $equipment->cell->id,
         ]);

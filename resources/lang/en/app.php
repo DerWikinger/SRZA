@@ -13,5 +13,8 @@ return [
     |
     */
     'app-name' => 'Relay Protection and Automation Service',
+    'logged' => 'You are logged in!',
+    'not-logged' => 'You are not logged in!',
+    'dashboard' => 'Database of the equipments by the Relay Protection and Automation Service',
 
 ];

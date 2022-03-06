@@ -13,9 +13,6 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 @auth
-{{--                    <a class="navbar-brand" href="{{ route('locations.list') }}">--}}
-{{--                        {{ __('menu.locations') }}--}}
-{{--                    </a>--}}
                     <a class="navbar-brand" href="{{ route('locations.list') }}">
                         {{ __('menu.equipment') }}
                     </a>
@@ -52,11 +49,11 @@
                             <a class="nav-link" href="{{ route('login') }}">{{ __('auth.login') }}</a>
                         </li>
                     @endif
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('auth.register') }}</a>
-                        </li>
-                    @endif
+{{--                    @if (Route::has('register'))--}}
+{{--                        <li class="nav-item">--}}
+{{--                            <a class="nav-link" href="{{ route('register') }}">{{ __('auth.register') }}</a>--}}
+{{--                        </li>--}}
+{{--                    @endif--}}
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

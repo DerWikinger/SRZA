@@ -2315,12 +2315,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CellsList",
@@ -2337,55 +2331,6 @@ __webpack_require__.r(__webpack_exports__);
     deletePermission: {
       type: Number,
       "default": 0
-    }
-  },
-  methods: {
-    btnDeleteName: function btnDeleteName(key) {
-      return 'btnDelete_' + key;
-    },
-    btnEditName: function btnEditName(key) {
-      return 'btnEdit_' + key;
-    },
-    onMouseOver: function onMouseOver(key) {
-      var elem = $('#' + key);
-      elem.css('color', key.includes('btnEdit', 0) ? '#ffd200' : '#ec0909');
-    },
-    onMouseLeave: function onMouseLeave(key) {
-      var elem = $('#' + key);
-      elem.css('color', '#2d3748');
-    },
-    onEdit: function onEdit(key) {
-      console.log("Key: ", key);
-      window.location = '/cells/edit/' + key;
-    },
-    onDelete: function onDelete(key) {
-      var _this = this;
-
-      var document = this;
-      this.$confirm('Запись будет безвозвратно удалена! Продолжить удаление?', 'Вы уверены?').then(function (result) {
-        if (result) {
-          var fd = new FormData();
-          var self = _this; // fd.append('id', this.location.id);
-
-          fd.append('_token', _this.token);
-          $.ajax({
-            url: '/cells/delete/' + key,
-            data: fd,
-            type: 'POST',
-            processData: false,
-            contentType: false,
-            success: function success(response) {
-              // self.$emit('record-delete', filename);
-              document.$alert('Запись успешно удалена!').then(function () {
-                window.location = window.location;
-              });
-            },
-            error: function error(response) {
-              console.log('Failure! Data is not deleted', response);
-            }
-          });
-        }
-      }); // if(window.frames[0].window.confirm("Запись будет безвозвратно удалена! Продолжить удаление?")) {
     }
   }
 });
@@ -2703,16 +2648,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "DictionariesList",
@@ -2721,7 +2656,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     objects: {
-      type: Array
+      type: Object
     },
     token: {
       type: String
@@ -2732,54 +2667,6 @@ __webpack_require__.r(__webpack_exports__);
     deletePermission: {
       type: Number,
       "default": 0
-    }
-  },
-  methods: {
-    btnDeleteName: function btnDeleteName(key) {
-      return 'btnDelete_' + key;
-    },
-    btnEditName: function btnEditName(key) {
-      return 'btnEdit_' + key;
-    },
-    onMouseOver: function onMouseOver(key) {
-      var elem = $('#' + key);
-      elem.css('color', key.includes('btnEdit', 0) ? '#ffd200' : '#ec0909');
-    },
-    onMouseLeave: function onMouseLeave(key) {
-      var elem = $('#' + key);
-      elem.css('color', '#2d3748');
-    },
-    onEdit: function onEdit(key) {
-      console.log("Key: ", key);
-      window.location = '/dictionaries/' + this.dictionaryId + '/edit/' + key;
-    },
-    onDelete: function onDelete(key) {
-      var _this = this;
-
-      this.$confirm('Запись будет безвозвратно удалена! Продолжить удаление?', 'Вы уверены?').then(function (result) {
-        if (result) {
-          var fd = new FormData();
-          var self = _this; // fd.append('id', this.location.id);
-
-          fd.append('_token', _this.token);
-          $.ajax({
-            url: '/dictionaries/' + self.dictionaryId + '/delete/' + key,
-            data: fd,
-            type: 'POST',
-            processData: false,
-            contentType: false,
-            success: function success(response) {
-              // self.$emit('record-delete', filename);
-              self.$alert('Запись успешно удалена!').then(function () {
-                window.location = '/dictionaries/' + self.dictionaryId;
-              });
-            },
-            error: function error(response) {
-              console.log('Failure! Data is not deleted', response);
-            }
-          });
-        }
-      }); // if(window.frames[0].window.confirm("Запись будет безвозвратно удалена! Продолжить удаление?")) {
     }
   }
 });
@@ -3345,12 +3232,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "EquipmentsList",
@@ -3367,55 +3248,6 @@ __webpack_require__.r(__webpack_exports__);
     deletePermission: {
       type: Number,
       "default": 0
-    }
-  },
-  methods: {
-    btnDeleteName: function btnDeleteName(key) {
-      return 'btnDelete_' + key;
-    },
-    btnEditName: function btnEditName(key) {
-      return 'btnEdit_' + key;
-    },
-    onMouseOver: function onMouseOver(key) {
-      var elem = $('#' + key);
-      elem.css('color', key.includes('btnEdit', 0) ? '#ffd200' : '#ec0909');
-    },
-    onMouseLeave: function onMouseLeave(key) {
-      var elem = $('#' + key);
-      elem.css('color', '#2d3748');
-    },
-    onEdit: function onEdit(key) {
-      console.log("Key: ", key);
-      window.location = '/equipments/edit/' + key;
-    },
-    onDelete: function onDelete(key) {
-      var _this = this;
-
-      var document = this;
-      this.$confirm('Запись будет безвозвратно удалена! Продолжить удаление?', 'Вы уверены?').then(function (result) {
-        if (result) {
-          var fd = new FormData();
-          var self = _this; // fd.append('id', this.location.id);
-
-          fd.append('_token', _this.token);
-          $.ajax({
-            url: '/equipments/delete/' + key,
-            data: fd,
-            type: 'POST',
-            processData: false,
-            contentType: false,
-            success: function success(response) {
-              // self.$emit('record-delete', filename);
-              document.$alert('Запись успешно удалена!').then(function () {
-                window.location = window.location;
-              });
-            },
-            error: function error(response) {
-              console.log('Failure! Data is not deleted', response);
-            }
-          });
-        }
-      }); // if(window.frames[0].window.confirm("Запись будет безвозвратно удалена! Продолжить удаление?")) {
     }
   }
 });
@@ -3691,6 +3523,106 @@ __webpack_require__.r(__webpack_exports__);
     onClick: function onClick() {
       // this.$alert(this.route);
       if (this.route) window.location = this.route;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "EditDeleteButtonGroup",
+  props: {
+    id: {
+      type: Number
+    },
+    baseRoute: {
+      type: String
+    },
+    token: {
+      type: String
+    },
+    deletePermission: {
+      type: Number,
+      "default": 0
+    }
+  },
+  methods: {
+    btnDeleteName: function btnDeleteName(key) {
+      return 'btnDelete_' + key;
+    },
+    btnEditName: function btnEditName(key) {
+      return 'btnEdit_' + key;
+    },
+    onMouseOver: function onMouseOver(key) {
+      var elem = $('#' + key);
+      elem.css('color', key.includes('btnEdit', 0) ? '#ffd200' : '#ec0909');
+    },
+    onMouseLeave: function onMouseLeave(key) {
+      var elem = $('#' + key);
+      elem.css('color', '#2d3748');
+    },
+    onEdit: function onEdit(key) {
+      // console.log("Key: ", key);
+      window.location = this.baseRoute + '/edit/' + key;
+    },
+    onDelete: function onDelete(key) {
+      var _this = this;
+
+      var document = this;
+      this.$confirm('Запись будет безвозвратно удалена! Продолжить удаление?', 'Вы уверены?').then(function (result) {
+        if (result) {
+          var fd = new FormData();
+          var self = _this; // fd.append('id', this.location.id);
+
+          fd.append('_token', _this.token);
+          $.ajax({
+            url: self.baseRoute + '/delete/' + key,
+            data: fd,
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            success: function success(response) {
+              // self.$emit('record-delete', filename);
+              document.$alert('Запись успешно удалена!').then(function () {
+                window.location = window.location;
+              });
+            },
+            error: function error(response) {
+              console.log('Failure! Data is not deleted', response);
+            }
+          });
+        }
+      }); // if(window.frames[0].window.confirm("Запись будет безвозвратно удалена! Продолжить удаление?")) {
     }
   }
 });
@@ -4025,13 +3957,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "LocationsList",
@@ -4048,55 +3973,6 @@ __webpack_require__.r(__webpack_exports__);
     deletePermission: {
       type: Number,
       "default": 0
-    }
-  },
-  methods: {
-    btnDeleteName: function btnDeleteName(key) {
-      return 'btnDelete_' + key;
-    },
-    btnEditName: function btnEditName(key) {
-      return 'btnEdit_' + key;
-    },
-    onMouseOver: function onMouseOver(key) {
-      var elem = $('#' + key);
-      elem.css('color', key.includes('btnEdit', 0) ? '#ffd200' : '#ec0909');
-    },
-    onMouseLeave: function onMouseLeave(key) {
-      var elem = $('#' + key);
-      elem.css('color', '#2d3748');
-    },
-    onEdit: function onEdit(key) {
-      console.log("Key: ", key);
-      window.location = '/locations/edit/' + key;
-    },
-    onDelete: function onDelete(key) {
-      var _this = this;
-
-      var document = this;
-      this.$confirm('Запись будет безвозвратно удалена! Продолжить удаление?', 'Вы уверены?').then(function (result) {
-        if (result) {
-          var fd = new FormData();
-          var self = _this; // fd.append('id', this.location.id);
-
-          fd.append('_token', _this.token);
-          $.ajax({
-            url: '/locations/delete/' + key,
-            data: fd,
-            type: 'POST',
-            processData: false,
-            contentType: false,
-            success: function success(response) {
-              // self.$emit('record-delete', filename);
-              document.$alert('Запись успешно удалена!').then(function () {
-                window.location = '/locations';
-              });
-            },
-            error: function error(response) {
-              console.log('Failure! Data is not deleted', response);
-            }
-          });
-        }
-      }); // if(window.frames[0].window.confirm("Запись будет безвозвратно удалена! Продолжить удаление?")) {
     }
   }
 });
@@ -4539,12 +4415,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "UnitsList",
@@ -4561,55 +4431,6 @@ __webpack_require__.r(__webpack_exports__);
     deletePermission: {
       type: Number,
       "default": 0
-    }
-  },
-  methods: {
-    btnDeleteName: function btnDeleteName(key) {
-      return 'btnDelete_' + key;
-    },
-    btnEditName: function btnEditName(key) {
-      return 'btnEdit_' + key;
-    },
-    onMouseOver: function onMouseOver(key) {
-      var elem = $('#' + key);
-      elem.css('color', key.includes('btnEdit', 0) ? '#ffd200' : '#ec0909');
-    },
-    onMouseLeave: function onMouseLeave(key) {
-      var elem = $('#' + key);
-      elem.css('color', '#2d3748');
-    },
-    onEdit: function onEdit(key) {
-      console.log("Key: ", key);
-      window.location = '/units/edit/' + key;
-    },
-    onDelete: function onDelete(key) {
-      var _this = this;
-
-      var document = this;
-      this.$confirm('Запись будет безвозвратно удалена! Продолжить удаление?', 'Вы уверены?').then(function (result) {
-        if (result) {
-          var fd = new FormData();
-          var self = _this; // fd.append('id', this.location.id);
-
-          fd.append('_token', _this.token);
-          $.ajax({
-            url: '/units/delete/' + key,
-            data: fd,
-            type: 'POST',
-            processData: false,
-            contentType: false,
-            success: function success(response) {
-              // self.$emit('record-delete', filename);
-              document.$alert('Запись успешно удалена!').then(function () {
-                window.location = window.location;
-              });
-            },
-            error: function error(response) {
-              console.log('Failure! Data is not deleted', response);
-            }
-          });
-        }
-      }); // if(window.frames[0].window.confirm("Запись будет безвозвратно удалена! Продолжить удаление?")) {
     }
   }
 });
@@ -21974,7 +21795,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.list-item[data-v-75585b94] {\n    font-size: 1.5rem;\n}\ndiv.list-item[data-v-75585b94] {\n    border-bottom: #ced4da solid 1px;\n    padding-bottom: 0.25rem;\n}\n.button-group[data-v-75585b94] {\n    direction: rtl;\n}\n.button-group div.button[data-v-75585b94] {\n    margin-left: 0.5rem;\n    display: inline-block;\n    cursor: pointer;\n}\n.button-group[data-v-75585b94]::after {\n    content: '';\n    vertical-align: middle;\n    line-height: 100%;\n    display: inline-block;\n    height: 100%;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ndiv.list-item[data-v-75585b94] {\n    border-bottom: #ced4da solid 1px;\n    padding-bottom: 0.25rem;\n    font-size: 1.5rem;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -22094,7 +21915,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ndiv.list-item[data-v-1af1e2d2] {\n    border-bottom: #ced4da solid 1px;\n    padding-bottom: 0.25rem;\n    font-size: 1.25rem;\n}\n.button-group[data-v-1af1e2d2] {\n    direction: rtl;\n}\n.button-outer-block[data-v-1af1e2d2] {\n    height: 100%;\n    width: -webkit-max-content;\n    width: -moz-max-content;\n    width: max-content;\n    padding-right: 1.25rem;\n}\n.button-group div.button[data-v-1af1e2d2] {\n    margin-left: 0.5rem;\n    cursor: pointer;\n    display: inline-block;\n    vertical-align: middle;\n}\n.button-group[data-v-1af1e2d2]::after {\n    content: '';\n    vertical-align: middle;\n    line-height: 100%;\n    display: inline-block;\n    height: 100%;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ndiv.list-item[data-v-1af1e2d2] {\n    border-bottom: #ced4da solid 1px;\n    padding-bottom: 0.25rem;\n    font-size: 1.25rem;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -22214,7 +22035,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.list-item[data-v-f272091c] {\n    font-size: 1.5rem;\n}\ndiv.list-item[data-v-f272091c] {\n    border-bottom: #ced4da solid 1px;\n    padding-bottom: 0.25rem;\n}\n.button-group[data-v-f272091c] {\n    direction: rtl;\n}\n.button-group div.button[data-v-f272091c] {\n    margin-left: 0.5rem;\n    display: inline-block;\n    cursor: pointer;\n}\n.button-group[data-v-f272091c]::after {\n    content: '';\n    vertical-align: middle;\n    line-height: 100%;\n    display: inline-block;\n    height: 100%;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ndiv.list-item[data-v-f272091c] {\n    border-bottom: #ced4da solid 1px;\n    padding-bottom: 0.25rem;\n    font-size: 1.5rem;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -22311,6 +22132,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.outer-block[data-v-574ae1d8] {\n    position: relative;\n    width: 100%;\n}\n.outer-block *[data-v-574ae1d8] {\n    display: inline-block;\n}\n.inner-block[data-v-574ae1d8] {\n    position: relative;\n    display: inline-block;\n    float: right;\n}\n\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=style&index=0&id=d59385d2&scoped=true&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=style&index=0&id=d59385d2&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js */ "./node_modules/laravel-mix/node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.button-group[data-v-d59385d2] {\n    direction: rtl;\n}\n.button-outer-block[data-v-d59385d2] {\n    width: -webkit-max-content;\n    width: -moz-max-content;\n    width: max-content;\n    padding-right: 1.25rem;\n    display: inline-block;\n}\n.button-group div.button[data-v-d59385d2] {\n    margin-left: 0.5rem;\n    cursor: pointer;\n    display: inline-block;\n    vertical-align: middle;\n}\n.button-group[data-v-d59385d2]::after {\n    content: '';\n    vertical-align: middle;\n    line-height: 100%;\n    display: inline-block;\n    height: 100%;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -22430,7 +22275,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.list-item[data-v-aafe13e0] {\n    font-size: 1.5rem;\n}\ndiv.list-item[data-v-aafe13e0] {\n    border-bottom: #ced4da solid 1px;\n    padding-bottom: 0.25rem;\n}\n.button-group[data-v-aafe13e0] {\n    direction: rtl;\n}\n.button-group div.button[data-v-aafe13e0] {\n    margin-left: 0.5rem;\n    display: inline-block;\n    cursor: pointer;\n}\n.button-group[data-v-aafe13e0]::after {\n    content: '';\n    vertical-align: middle;\n    line-height: 100%;\n    display: inline-block;\n    height: 100%;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ndiv.list-item[data-v-aafe13e0] {\n    border-bottom: #ced4da solid 1px;\n    padding-bottom: 0.25rem;\n    font-size: 1.5rem;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -22550,7 +22395,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.list-item[data-v-2d13aff2] {\n    font-size: 1.5rem;\n}\ndiv.list-item[data-v-2d13aff2] {\n    border-bottom: #ced4da solid 1px;\n    padding-bottom: 0.25rem;\n}\n.button-group[data-v-2d13aff2] {\n    direction: rtl;\n}\n.button-group div.button[data-v-2d13aff2] {\n    margin-left: 0.5rem;\n    display: inline-block;\n    cursor: pointer;\n}\n.button-group[data-v-2d13aff2]::after {\n    content: '';\n    vertical-align: middle;\n    line-height: 100%;\n    display: inline-block;\n    height: 100%;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ndiv.list-item[data-v-2d13aff2] {\n    border-bottom: #ced4da solid 1px;\n    padding-bottom: 0.25rem;\n    font-size: 1.5rem;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -47743,6 +47588,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=style&index=0&id=d59385d2&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=style&index=0&id=d59385d2&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EditDeleteButtonGroup_vue_vue_type_style_index_0_id_d59385d2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EditDeleteButtonGroup.vue?vue&type=style&index=0&id=d59385d2&scoped=true&lang=css& */ "./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=style&index=0&id=d59385d2&scoped=true&lang=css&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EditDeleteButtonGroup_vue_vue_type_style_index_0_id_d59385d2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EditDeleteButtonGroup_vue_vue_type_style_index_0_id_d59385d2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/global/ElemInOutLeft.vue?vue&type=style&index=0&id=79614180&scoped=true&lang=css&":
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/global/ElemInOutLeft.vue?vue&type=style&index=0&id=79614180&scoped=true&lang=css& ***!
@@ -52072,6 +51947,47 @@ component.options.__file = "resources/js/components/global/CaptionBlock.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/global/EditDeleteButtonGroup.vue":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/global/EditDeleteButtonGroup.vue ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _EditDeleteButtonGroup_vue_vue_type_template_id_d59385d2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditDeleteButtonGroup.vue?vue&type=template&id=d59385d2&scoped=true& */ "./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=template&id=d59385d2&scoped=true&");
+/* harmony import */ var _EditDeleteButtonGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditDeleteButtonGroup.vue?vue&type=script&lang=js& */ "./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=script&lang=js&");
+/* harmony import */ var _EditDeleteButtonGroup_vue_vue_type_style_index_0_id_d59385d2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EditDeleteButtonGroup.vue?vue&type=style&index=0&id=d59385d2&scoped=true&lang=css& */ "./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=style&index=0&id=d59385d2&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _EditDeleteButtonGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditDeleteButtonGroup_vue_vue_type_template_id_d59385d2_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render,
+  _EditDeleteButtonGroup_vue_vue_type_template_id_d59385d2_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  "d59385d2",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/global/EditDeleteButtonGroup.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/global/ElemInOutLeft.vue":
 /*!**********************************************************!*\
   !*** ./resources/js/components/global/ElemInOutLeft.vue ***!
@@ -52971,6 +52887,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditDeleteButtonGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EditDeleteButtonGroup.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditDeleteButtonGroup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/global/ElemInOutLeft.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************!*\
   !*** ./resources/js/components/global/ElemInOutLeft.vue?vue&type=script&lang=js& ***!
@@ -53428,6 +53360,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_CaptionBlock_vue_vue_type_style_index_0_id_574ae1d8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CaptionBlock.vue?vue&type=style&index=0&id=574ae1d8&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/global/CaptionBlock.vue?vue&type=style&index=0&id=574ae1d8&scoped=true&lang=css&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=style&index=0&id=d59385d2&scoped=true&lang=css&":
+/*!***************************************************************************************************************************!*\
+  !*** ./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=style&index=0&id=d59385d2&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_laravel_mix_node_modules_css_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_10_0_rules_0_use_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EditDeleteButtonGroup_vue_vue_type_style_index_0_id_d59385d2_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader/dist/cjs.js!../../../../node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EditDeleteButtonGroup.vue?vue&type=style&index=0&id=d59385d2&scoped=true&lang=css& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/laravel-mix/node_modules/css-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-10[0].rules[0].use[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=style&index=0&id=d59385d2&scoped=true&lang=css&");
 
 
 /***/ }),
@@ -53903,6 +53848,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaptionBlock_vue_vue_type_template_id_574ae1d8_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CaptionBlock_vue_vue_type_template_id_574ae1d8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CaptionBlock.vue?vue&type=template&id=574ae1d8&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/global/CaptionBlock.vue?vue&type=template&id=574ae1d8&scoped=true&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=template&id=d59385d2&scoped=true&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=template&id=d59385d2&scoped=true& ***!
+  \*************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditDeleteButtonGroup_vue_vue_type_template_id_d59385d2_scoped_true___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditDeleteButtonGroup_vue_vue_type_template_id_d59385d2_scoped_true___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditDeleteButtonGroup_vue_vue_type_template_id_d59385d2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EditDeleteButtonGroup.vue?vue&type=template&id=d59385d2&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=template&id=d59385d2&scoped=true&");
 
 
 /***/ }),
@@ -54457,87 +54419,31 @@ var render = function () {
       _vm.cells.length == 0
         ? _c("div", {}, [_vm._t("list-empty")], 2)
         : _vm._l(_vm.cells, function (cell, key) {
-            return _c("div", { staticClass: "p-1 list-item align-baseline" }, [
+            return _c("div", { staticClass: "list-item align-baseline" }, [
               _c(
                 "div",
-                { staticClass: "p-1 row" },
+                { staticClass: "row" },
                 [
                   _c("cell-brief", {
                     staticClass: "col-8",
                     attrs: { cell: cell },
                   }),
                   _vm._v(" "),
-                  _c("div", { staticClass: "button-group offset-2 col-2 " }, [
-                    _c(
-                      "div",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.deletePermission == 1,
-                            expression: "deletePermission == 1",
-                          },
-                        ],
-                        staticClass: "button",
-                        on: {
-                          click: function ($event) {
-                            return _vm.onDelete(cell.id)
-                          },
+                  _c(
+                    "div",
+                    { staticClass: "offset-2 col-2 " },
+                    [
+                      _c("edit-delete-button-group", {
+                        attrs: {
+                          id: cell.id,
+                          token: _vm.token,
+                          "base-route": "/cells",
+                          "delete-permission": _vm.deletePermission,
                         },
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "fas fa-cut",
-                          staticStyle: {
-                            "font-size": "1.25rem",
-                            "vertical-align": "middle",
-                            color: "#2d3748",
-                          },
-                          attrs: { id: _vm.btnDeleteName(cell.id) },
-                          on: {
-                            mouseover: function ($event) {
-                              _vm.onMouseOver(_vm.btnDeleteName(cell.id))
-                            },
-                            mouseleave: function ($event) {
-                              _vm.onMouseLeave(_vm.btnDeleteName(cell.id))
-                            },
-                          },
-                        }),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "button",
-                        on: {
-                          click: function ($event) {
-                            return _vm.onEdit(cell.id)
-                          },
-                        },
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "fas fa-pencil-alt",
-                          staticStyle: {
-                            "font-size": "1.25rem",
-                            "vertical-align": "middle",
-                            color: "#2d3748",
-                          },
-                          attrs: { id: _vm.btnEditName(cell.id) },
-                          on: {
-                            mouseover: function ($event) {
-                              _vm.onMouseOver(_vm.btnEditName(cell.id))
-                            },
-                            mouseleave: function ($event) {
-                              _vm.onMouseLeave(_vm.btnEditName(cell.id))
-                            },
-                          },
-                        }),
-                      ]
-                    ),
-                  ]),
+                      }),
+                    ],
+                    1
+                  ),
                 ],
                 1
               ),
@@ -54808,79 +54714,21 @@ var render = function () {
                 attrs: { object: object },
               }),
               _vm._v(" "),
-              _c("div", { staticClass: "button-group offset-2 col-2 " }, [
-                _c("div", { staticClass: "button-outer-block" }, [
-                  _c(
-                    "div",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.deletePermission == 1,
-                          expression: "deletePermission == 1",
-                        },
-                      ],
-                      staticClass: "button",
-                      on: {
-                        click: function ($event) {
-                          return _vm.onDelete(object.id)
-                        },
-                      },
+              _c(
+                "div",
+                { staticClass: "offset-2 col-2 " },
+                [
+                  _c("edit-delete-button-group", {
+                    attrs: {
+                      id: object.id,
+                      token: _vm.token,
+                      "base-route": "/dictionaries/" + _vm.dictionaryId,
+                      "delete-permission": _vm.deletePermission,
                     },
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-cut",
-                        staticStyle: {
-                          "font-size": "1.25rem",
-                          "vertical-align": "middle",
-                          color: "#2d3748",
-                        },
-                        attrs: { id: _vm.btnDeleteName(object.id) },
-                        on: {
-                          mouseover: function ($event) {
-                            _vm.onMouseOver(_vm.btnDeleteName(object.id))
-                          },
-                          mouseleave: function ($event) {
-                            _vm.onMouseLeave(_vm.btnDeleteName(object.id))
-                          },
-                        },
-                      }),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "button",
-                      on: {
-                        click: function ($event) {
-                          return _vm.onEdit(object.id)
-                        },
-                      },
-                    },
-                    [
-                      _c("i", {
-                        staticClass: "fas fa-pencil-alt",
-                        staticStyle: {
-                          "font-size": "1.25rem",
-                          "vertical-align": "middle",
-                          color: "#2d3748",
-                        },
-                        attrs: { id: _vm.btnEditName(object.id) },
-                        on: {
-                          mouseover: function ($event) {
-                            _vm.onMouseOver(_vm.btnEditName(object.id))
-                          },
-                          mouseleave: function ($event) {
-                            _vm.onMouseLeave(_vm.btnEditName(object.id))
-                          },
-                        },
-                      }),
-                    ]
-                  ),
-                ]),
-              ]),
+                  }),
+                ],
+                1
+              ),
             ],
             1
           ),
@@ -55784,77 +55632,21 @@ var render = function () {
                     attrs: { equipment: equipment },
                   }),
                   _vm._v(" "),
-                  _c("div", { staticClass: "button-group offset-2 col-2 " }, [
-                    _c(
-                      "div",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.deletePermission == 1,
-                            expression: "deletePermission == 1",
-                          },
-                        ],
-                        staticClass: "button",
-                        on: {
-                          click: function ($event) {
-                            return _vm.onDelete(equipment.id)
-                          },
+                  _c(
+                    "div",
+                    { staticClass: "offset-2 col-2 " },
+                    [
+                      _c("edit-delete-button-group", {
+                        attrs: {
+                          id: equipment.id,
+                          token: _vm.token,
+                          "base-route": "/equipments",
+                          "delete-permission": _vm.deletePermission,
                         },
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "fas fa-cut",
-                          staticStyle: {
-                            "font-size": "1.25rem",
-                            "vertical-align": "middle",
-                            color: "#2d3748",
-                          },
-                          attrs: { id: _vm.btnDeleteName(equipment.id) },
-                          on: {
-                            mouseover: function ($event) {
-                              _vm.onMouseOver(_vm.btnDeleteName(equipment.id))
-                            },
-                            mouseleave: function ($event) {
-                              _vm.onMouseLeave(_vm.btnDeleteName(equipment.id))
-                            },
-                          },
-                        }),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "button",
-                        on: {
-                          click: function ($event) {
-                            return _vm.onEdit(equipment.id)
-                          },
-                        },
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "fas fa-pencil-alt",
-                          staticStyle: {
-                            "font-size": "1.25rem",
-                            "vertical-align": "middle",
-                            color: "#2d3748",
-                          },
-                          attrs: { id: _vm.btnEditName(equipment.id) },
-                          on: {
-                            mouseover: function ($event) {
-                              _vm.onMouseOver(_vm.btnEditName(equipment.id))
-                            },
-                            mouseleave: function ($event) {
-                              _vm.onMouseLeave(_vm.btnEditName(equipment.id))
-                            },
-                          },
-                        }),
-                      ]
-                    ),
-                  ]),
+                      }),
+                    ],
+                    1
+                  ),
                 ],
                 1
               ),
@@ -56075,6 +55867,103 @@ var render = function () {
       ),
     ]
   )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=template&id=d59385d2&scoped=true&":
+/*!****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/global/EditDeleteButtonGroup.vue?vue&type=template&id=d59385d2&scoped=true& ***!
+  \****************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "button-group row" }, [
+    _c("div", { staticClass: "button-outer-block" }, [
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.deletePermission == 1,
+              expression: "deletePermission == 1",
+            },
+          ],
+          staticClass: "button",
+          on: {
+            click: function ($event) {
+              return _vm.onDelete(_vm.id)
+            },
+          },
+        },
+        [
+          _c("i", {
+            staticClass: "fas fa-cut",
+            staticStyle: {
+              "font-size": "1.25rem",
+              "vertical-align": "middle",
+              color: "#2d3748",
+            },
+            attrs: { id: _vm.btnDeleteName(_vm.id) },
+            on: {
+              mouseover: function ($event) {
+                _vm.onMouseOver(_vm.btnDeleteName(_vm.id))
+              },
+              mouseleave: function ($event) {
+                _vm.onMouseLeave(_vm.btnDeleteName(_vm.id))
+              },
+            },
+          }),
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "button",
+          on: {
+            click: function ($event) {
+              return _vm.onEdit(_vm.id)
+            },
+          },
+        },
+        [
+          _c("i", {
+            staticClass: "fas fa-pencil-alt",
+            staticStyle: {
+              "font-size": "1.25rem",
+              "vertical-align": "middle",
+              color: "#2d3748",
+            },
+            attrs: { id: _vm.btnEditName(_vm.id) },
+            on: {
+              mouseover: function ($event) {
+                _vm.onMouseOver(_vm.btnEditName(_vm.id))
+              },
+              mouseleave: function ($event) {
+                _vm.onMouseLeave(_vm.btnEditName(_vm.id))
+              },
+            },
+          }),
+        ]
+      ),
+    ]),
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -56413,77 +56302,21 @@ var render = function () {
                 attrs: { location: location },
               }),
               _vm._v(" "),
-              _c("div", { staticClass: "button-group offset-2 col-2 " }, [
-                _c(
-                  "div",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.deletePermission == 1,
-                        expression: "deletePermission == 1",
-                      },
-                    ],
-                    staticClass: "button",
-                    on: {
-                      click: function ($event) {
-                        return _vm.onDelete(location.id)
-                      },
+              _c(
+                "div",
+                { staticClass: "offset-2 col-2 " },
+                [
+                  _c("edit-delete-button-group", {
+                    attrs: {
+                      id: location.id,
+                      token: _vm.token,
+                      "base-route": "/locations",
+                      "delete-permission": _vm.deletePermission,
                     },
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fas fa-cut",
-                      staticStyle: {
-                        "font-size": "1.25rem",
-                        "vertical-align": "middle",
-                        color: "#2d3748",
-                      },
-                      attrs: { id: _vm.btnDeleteName(location.id) },
-                      on: {
-                        mouseover: function ($event) {
-                          _vm.onMouseOver(_vm.btnDeleteName(location.id))
-                        },
-                        mouseleave: function ($event) {
-                          _vm.onMouseLeave(_vm.btnDeleteName(location.id))
-                        },
-                      },
-                    }),
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "button",
-                    on: {
-                      click: function ($event) {
-                        return _vm.onEdit(location.id)
-                      },
-                    },
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fas fa-pencil-alt",
-                      staticStyle: {
-                        "font-size": "1.25rem",
-                        "vertical-align": "middle",
-                        color: "#2d3748",
-                      },
-                      attrs: { id: _vm.btnEditName(location.id) },
-                      on: {
-                        mouseover: function ($event) {
-                          _vm.onMouseOver(_vm.btnEditName(location.id))
-                        },
-                        mouseleave: function ($event) {
-                          _vm.onMouseLeave(_vm.btnEditName(location.id))
-                        },
-                      },
-                    }),
-                  ]
-                ),
-              ]),
+                  }),
+                ],
+                1
+              ),
             ],
             1
           ),
@@ -56928,77 +56761,21 @@ var render = function () {
                     attrs: { unit: unit },
                   }),
                   _vm._v(" "),
-                  _c("div", { staticClass: "button-group offset-2 col-2 " }, [
-                    _c(
-                      "div",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.deletePermission == 1,
-                            expression: "deletePermission == 1",
-                          },
-                        ],
-                        staticClass: "button",
-                        on: {
-                          click: function ($event) {
-                            return _vm.onDelete(unit.id)
-                          },
+                  _c(
+                    "div",
+                    { staticClass: "offset-2 col-2 " },
+                    [
+                      _c("edit-delete-button-group", {
+                        attrs: {
+                          id: unit.id,
+                          token: _vm.token,
+                          "base-route": "/units",
+                          "delete-permission": _vm.deletePermission,
                         },
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "fas fa-cut",
-                          staticStyle: {
-                            "font-size": "1.25rem",
-                            "vertical-align": "middle",
-                            color: "#2d3748",
-                          },
-                          attrs: { id: _vm.btnDeleteName(unit.id) },
-                          on: {
-                            mouseover: function ($event) {
-                              _vm.onMouseOver(_vm.btnDeleteName(unit.id))
-                            },
-                            mouseleave: function ($event) {
-                              _vm.onMouseLeave(_vm.btnDeleteName(unit.id))
-                            },
-                          },
-                        }),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "button",
-                        on: {
-                          click: function ($event) {
-                            return _vm.onEdit(unit.id)
-                          },
-                        },
-                      },
-                      [
-                        _c("i", {
-                          staticClass: "fas fa-pencil-alt",
-                          staticStyle: {
-                            "font-size": "1.25rem",
-                            "vertical-align": "middle",
-                            color: "#2d3748",
-                          },
-                          attrs: { id: _vm.btnEditName(unit.id) },
-                          on: {
-                            mouseover: function ($event) {
-                              _vm.onMouseOver(_vm.btnEditName(unit.id))
-                            },
-                            mouseleave: function ($event) {
-                              _vm.onMouseLeave(_vm.btnEditName(unit.id))
-                            },
-                          },
-                        }),
-                      ]
-                    ),
-                  ]),
+                      }),
+                    ],
+                    1
+                  ),
                 ],
                 1
               ),
@@ -69788,6 +69565,7 @@ var map = {
 	"./components/global/Avatar.vue": "./resources/js/components/global/Avatar.vue",
 	"./components/global/AvatarChange.vue": "./resources/js/components/global/AvatarChange.vue",
 	"./components/global/CaptionBlock.vue": "./resources/js/components/global/CaptionBlock.vue",
+	"./components/global/EditDeleteButtonGroup.vue": "./resources/js/components/global/EditDeleteButtonGroup.vue",
 	"./components/global/ElemInOutLeft.vue": "./resources/js/components/global/ElemInOutLeft.vue",
 	"./components/global/ReturnButton.vue": "./resources/js/components/global/ReturnButton.vue",
 	"./components/locations/LocationBrief.vue": "./resources/js/components/locations/LocationBrief.vue",

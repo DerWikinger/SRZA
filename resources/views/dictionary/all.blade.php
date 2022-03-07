@@ -21,17 +21,32 @@
                             <div class="col-12">
                                 <div class="dictionary-brief cursor-pointer"
                                      onclick="{{ 'window.location = "/dictionaries/' . $dictionary->id . '"'}}">
-                                    <div class="description col-12 col-form-label form-control">
-                                        <strong>{{ $dictionary->name }}</strong>
-                                        <i class="fas fa-pencil-alt"
-                                           style="font-size:1.25rem;
-                                                  vertical-align:middle;
-                                                  color:#2d3748;
-                                                  display: inline-block;
-                                                  float: right;"
-                                           onmouseover="{{ '$("#' . class_basename($dictionary) . '").css({"color": "#ffd200", "cursor": "pointer"})' }}"
-                                           onmouseleave="{{ '$("#' . class_basename($dictionary) . '").css({"color": "#2d3748", "cursor": "default"})' }}"
-                                           id="{{ class_basename($dictionary) }}"></i>
+                                    <div class="p-2 row col-form-label">
+                                        <div class="col-8"
+                                             onmouseover="{{ '$("#' . 'dictionary-' . $dictionary->id . '").css({"color": "#0764b0", "text-decoration": "underline"})' }}"
+                                             onmouseleave="{{ '$("#' . 'dictionary-' . $dictionary->id . '").css({"color": "#2d3748", "text-decoration": "none"})' }}"
+                                             id="{{ 'dictionary-' . $dictionary->id }}">
+                                            <strong>{{ $dictionary->name }}</strong>
+                                        </div>
+                                        <div class="offset-2 col-2 ">
+                                            <edit-delete-button-group
+                                                id="{{ $dictionary->id }}"
+                                                token="{{ csrf_token() }}"
+                                                base-route="/dictionaries"
+                                                delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() }}">
+                                            </edit-delete-button-group>
+                                        </div>
+{{--                                        <div class="direction-rtl" style="direction: rtl;">--}}
+{{--                                            <div class="button-group" style="font-size:1.25rem;--}}
+{{--                                                  width: max-content;--}}
+{{--                                                  color:#2d3748;--}}
+{{--                                                  height: 100%;">--}}
+{{--                                                <i class="fas fa-pencil-alt" style="display: inline-block; vertical-align:middle;"--}}
+{{--                                                   onmouseover="{{ '$("#' . class_basename($dictionary) . '").css({"color": "#ffd200", "cursor": "pointer"})' }}"--}}
+{{--                                                   onmouseleave="{{ '$("#' . class_basename($dictionary) . '").css({"color": "#2d3748", "cursor": "default"})' }}"--}}
+{{--                                                   id="{{ class_basename($dictionary) }}"></i>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +59,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="col-3">
-                                <add-button route="{{ url('/cells/create/' . 0) }}">
+                                <add-button route="{{ url('/dictionaries/create/' . 0) }}">
                                     {{ __('caption.new-dictionary') }}
                                 </add-button>
                             </div>

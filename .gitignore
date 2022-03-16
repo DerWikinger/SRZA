@@ -4,11 +4,14 @@
 /storage/*.key
 /vendor
 .idea/*
+/docker
+/app/Data
 .env
 .env.*
 *.jpg
 .phpunit.result.cache
 docker-compose.override.yml
+docker-compose.yml
 Homestead.json
 Homestead.yaml
 npm-debug.log

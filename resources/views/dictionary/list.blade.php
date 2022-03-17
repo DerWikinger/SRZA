@@ -9,7 +9,7 @@
             <div class="col-12">
                 <dictionaries-list :objects="{{ $objects }}" dictionary-id="{{ $dictionary->id }}"
                         token="{{ csrf_token() }}"
-                        :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() }}">
+                        :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() ? 1 : 0 }}">
                     <template v-slot:list-tittle>
                         <div class="card-header">
                             <caption-block value="{{__('caption.' .  $dictionary->class)}}" route="{{ $back }}"></caption-block>

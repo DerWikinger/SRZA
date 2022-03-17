@@ -18,7 +18,7 @@
                         'cell_id' => $equipment->cell->id,
                         ];
                 } ) }}" token="{{ csrf_token() }}"
-                        :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() }}">
+                        :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() ? 1 : 0 }}">
                     <template v-slot:list-tittle>
                         <div class="card-header">
                             <caption-block value="{{__('caption.equipments')}}" route="{{ $back }}"></caption-block>

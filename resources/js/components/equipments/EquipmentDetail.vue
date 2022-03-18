@@ -29,12 +29,12 @@
             </div>
             <div class="input-group form-group">
                 <label class="col-form-label col-3" for="mark">{{ this.captions.mark + ':' }}</label>
-                <input class="form-control " type="text" id="mark" name="mark" v-model.trim.lazy="equipment.mark"
+                <input class="form-control " type="text" id="mark" name="mark" v-model.trim="equipment.mark"
                        @input="onDataChanged">
             </div>
             <div class="input-group form-group">
                 <label class="col-form-label col-3" for="model">{{ this.captions.model + ':' }}</label>
-                <input class="form-control " type="text" id="model" name="model" v-model.trim.lazy="equipment.model"
+                <input class="form-control " type="text" id="model" name="model" v-model.trim="equipment.model"
                        @input="onDataChanged">
             </div>
             <div class="input-group form-group">
@@ -87,12 +87,12 @@
             </div>
             <div class="input-group form-group">
                 <label class="col-form-label col-3" for="name">{{ this.captions.name + ':' }}</label>
-                <input class="form-control " type="text" id="name" name="name" v-model.trim.lazy="equipment.name"
+                <input class="form-control " type="text" id="name" name="name" v-model.trim="equipment.name"
                        @input="onDataChanged">
             </div>
             <div class="input-group form-group">
                 <label class="col-form-label col-3" for="number">{{ this.captions.number + ':' }}</label>
-                <input class="form-control " type="text" id="number" name="number" v-model.trim.lazy="equipment.number"
+                <input class="form-control " type="text" id="number" name="number" v-model="equipment.number"
                        @input="onDataChanged">
             </div>
             <div class="input-group form-group">

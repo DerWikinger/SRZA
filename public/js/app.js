@@ -55096,20 +55096,25 @@ var render = function () {
           directives: [
             {
               name: "model",
-              rawName: "v-model.trim.lazy",
+              rawName: "v-model.trim",
               value: _vm.equipment.mark,
               expression: "equipment.mark",
-              modifiers: { trim: true, lazy: true },
+              modifiers: { trim: true },
             },
           ],
           staticClass: "form-control ",
           attrs: { type: "text", id: "mark", name: "mark" },
           domProps: { value: _vm.equipment.mark },
           on: {
-            input: _vm.onDataChanged,
-            change: function ($event) {
-              _vm.$set(_vm.equipment, "mark", $event.target.value.trim())
-            },
+            input: [
+              function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.equipment, "mark", $event.target.value.trim())
+              },
+              _vm.onDataChanged,
+            ],
             blur: function ($event) {
               return _vm.$forceUpdate()
             },
@@ -55128,20 +55133,25 @@ var render = function () {
           directives: [
             {
               name: "model",
-              rawName: "v-model.trim.lazy",
+              rawName: "v-model.trim",
               value: _vm.equipment.model,
               expression: "equipment.model",
-              modifiers: { trim: true, lazy: true },
+              modifiers: { trim: true },
             },
           ],
           staticClass: "form-control ",
           attrs: { type: "text", id: "model", name: "model" },
           domProps: { value: _vm.equipment.model },
           on: {
-            input: _vm.onDataChanged,
-            change: function ($event) {
-              _vm.$set(_vm.equipment, "model", $event.target.value.trim())
-            },
+            input: [
+              function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.equipment, "model", $event.target.value.trim())
+              },
+              _vm.onDataChanged,
+            ],
             blur: function ($event) {
               return _vm.$forceUpdate()
             },
@@ -55427,20 +55437,25 @@ var render = function () {
           directives: [
             {
               name: "model",
-              rawName: "v-model.trim.lazy",
+              rawName: "v-model.trim",
               value: _vm.equipment.name,
               expression: "equipment.name",
-              modifiers: { trim: true, lazy: true },
+              modifiers: { trim: true },
             },
           ],
           staticClass: "form-control ",
           attrs: { type: "text", id: "name", name: "name" },
           domProps: { value: _vm.equipment.name },
           on: {
-            input: _vm.onDataChanged,
-            change: function ($event) {
-              _vm.$set(_vm.equipment, "name", $event.target.value.trim())
-            },
+            input: [
+              function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.equipment, "name", $event.target.value.trim())
+              },
+              _vm.onDataChanged,
+            ],
             blur: function ($event) {
               return _vm.$forceUpdate()
             },
@@ -55459,23 +55474,24 @@ var render = function () {
           directives: [
             {
               name: "model",
-              rawName: "v-model.trim.lazy",
+              rawName: "v-model",
               value: _vm.equipment.number,
               expression: "equipment.number",
-              modifiers: { trim: true, lazy: true },
             },
           ],
           staticClass: "form-control ",
           attrs: { type: "text", id: "number", name: "number" },
           domProps: { value: _vm.equipment.number },
           on: {
-            input: _vm.onDataChanged,
-            change: function ($event) {
-              _vm.$set(_vm.equipment, "number", $event.target.value.trim())
-            },
-            blur: function ($event) {
-              return _vm.$forceUpdate()
-            },
+            input: [
+              function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.equipment, "number", $event.target.value)
+              },
+              _vm.onDataChanged,
+            ],
           },
         }),
       ]),

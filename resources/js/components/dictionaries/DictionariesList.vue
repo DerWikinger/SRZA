@@ -42,6 +42,7 @@ export default {
 div.list-item {
     border-bottom: #ced4da solid 1px;
     padding-bottom: 0.25rem;
+    padding-top: 0.25rem;
     font-size: 1.25rem;
 }
 

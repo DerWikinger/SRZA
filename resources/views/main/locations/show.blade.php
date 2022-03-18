@@ -27,7 +27,7 @@
                         'location_id' => $location->id,
                         ];
                 } ) }}" token="{{ csrf_token() }}"
-                            :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() }}">
+                            :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() ? 1 : 0 }}">
                     <template v-slot:list-tittle>
                         <h2 class="p-1 color-caption text-capitalize">{{__('caption.units')}}:</h2>
                     </template>

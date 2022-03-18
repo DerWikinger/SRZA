@@ -33,7 +33,7 @@
                                                 id="{{ $dictionary->id }}"
                                                 token="{{ csrf_token() }}"
                                                 base-route="/dictionaries"
-                                                delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() }}">
+                                                delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() ? 1 : 0 }}">
                                             </edit-delete-button-group>
                                         </div>
 {{--                                        <div class="direction-rtl" style="direction: rtl;">--}}

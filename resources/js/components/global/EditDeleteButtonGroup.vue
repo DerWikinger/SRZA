@@ -1,17 +1,17 @@
 <template>
-    <div class="button-group row">
+    <div class="button-group">
         <div class="button-outer-block">
-            <div class="button" @click="onDelete(id)" v-show="deletePermission == 1">
-                <i class="fas fa-cut" style="font-size:1.25rem;vertical-align:middle;color:#2d3748"
-                   :id="btnDeleteName(id)"
-                   @mouseover="onMouseOver(btnDeleteName(id))"
-                   @mouseleave="onMouseLeave(btnDeleteName(id))"></i>
-            </div>
             <div class="button" @click="onEdit(id)">
                 <i class="fas fa-pencil-alt" style="font-size:1.25rem;vertical-align:middle;color:#2d3748"
                    :id="btnEditName(id)"
                    @mouseover="onMouseOver(btnEditName(id))"
                    @mouseleave="onMouseLeave(btnEditName(id))"></i>
+            </div>
+            <div class="button" @click="onDelete(id)" v-show="deletePermission == 1">
+                <i class="fas fa-cut" style="font-size:1.25rem;vertical-align:middle;color:#2d3748"
+                   :id="btnDeleteName(id)"
+                   @mouseover="onMouseOver(btnDeleteName(id))"
+                   @mouseleave="onMouseLeave(btnDeleteName(id))"></i>
             </div>
         </div>
     </div>
@@ -80,12 +80,12 @@ export default {
 <style scoped>
 
 .button-group {
-    direction: rtl;
+    float: right;
+    padding-right: 0.25rem;
 }
 
 .button-outer-block {
     width: max-content;
-    padding-right: 1.25rem;
     display: inline-block;
 }
 

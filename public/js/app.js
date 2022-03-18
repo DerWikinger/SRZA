@@ -22155,7 +22155,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.button-group[data-v-d59385d2] {\n    direction: rtl;\n}\n.button-outer-block[data-v-d59385d2] {\n    width: -webkit-max-content;\n    width: -moz-max-content;\n    width: max-content;\n    padding-right: 1.25rem;\n    display: inline-block;\n}\n.button-group div.button[data-v-d59385d2] {\n    margin-left: 0.5rem;\n    cursor: pointer;\n    display: inline-block;\n    vertical-align: middle;\n}\n.button-group[data-v-d59385d2]::after {\n    content: '';\n    vertical-align: middle;\n    line-height: 100%;\n    display: inline-block;\n    height: 100%;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.button-group[data-v-d59385d2] {\n    float: right;\n    padding-right: 0.25rem;\n}\n.button-outer-block[data-v-d59385d2] {\n    width: -webkit-max-content;\n    width: -moz-max-content;\n    width: max-content;\n    display: inline-block;\n}\n.button-group div.button[data-v-d59385d2] {\n    margin-left: 0.5rem;\n    cursor: pointer;\n    display: inline-block;\n    vertical-align: middle;\n}\n.button-group[data-v-d59385d2]::after {\n    content: '';\n    vertical-align: middle;\n    line-height: 100%;\n    display: inline-block;\n    height: 100%;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -55891,8 +55891,39 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "button-group row" }, [
+  return _c("div", { staticClass: "button-group" }, [
     _c("div", { staticClass: "button-outer-block" }, [
+      _c(
+        "div",
+        {
+          staticClass: "button",
+          on: {
+            click: function ($event) {
+              return _vm.onEdit(_vm.id)
+            },
+          },
+        },
+        [
+          _c("i", {
+            staticClass: "fas fa-pencil-alt",
+            staticStyle: {
+              "font-size": "1.25rem",
+              "vertical-align": "middle",
+              color: "#2d3748",
+            },
+            attrs: { id: _vm.btnEditName(_vm.id) },
+            on: {
+              mouseover: function ($event) {
+                _vm.onMouseOver(_vm.btnEditName(_vm.id))
+              },
+              mouseleave: function ($event) {
+                _vm.onMouseLeave(_vm.btnEditName(_vm.id))
+              },
+            },
+          }),
+        ]
+      ),
+      _vm._v(" "),
       _c(
         "div",
         {
@@ -55926,37 +55957,6 @@ var render = function () {
               },
               mouseleave: function ($event) {
                 _vm.onMouseLeave(_vm.btnDeleteName(_vm.id))
-              },
-            },
-          }),
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "button",
-          on: {
-            click: function ($event) {
-              return _vm.onEdit(_vm.id)
-            },
-          },
-        },
-        [
-          _c("i", {
-            staticClass: "fas fa-pencil-alt",
-            staticStyle: {
-              "font-size": "1.25rem",
-              "vertical-align": "middle",
-              color: "#2d3748",
-            },
-            attrs: { id: _vm.btnEditName(_vm.id) },
-            on: {
-              mouseover: function ($event) {
-                _vm.onMouseOver(_vm.btnEditName(_vm.id))
-              },
-              mouseleave: function ($event) {
-                _vm.onMouseLeave(_vm.btnEditName(_vm.id))
               },
             },
           }),

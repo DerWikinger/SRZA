@@ -488,6 +488,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-auto{
   width: auto;
 }
+.w-3\/5{
+  width: 60%;
+}
+.w-1\/5{
+  width: 20%;
+}
+.w-2\/5{
+  width: 40%;
+}
 .max-w-6xl{
   max-width: 72rem;
 }
@@ -505,6 +514,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .justify-center{
   justify-content: center;
+}
+.justify-between{
+  justify-content: space-between;
 }
 .overflow-hidden{
   overflow: hidden;

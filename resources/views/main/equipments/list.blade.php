@@ -4,9 +4,7 @@
 
 @section('equipment-content')
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12">
+    <div class="container h-100">
                 <equipments-list :equipments="{{ collect($equipments)->map( function (\App\Models\Equipment $equipment) {
                     return [
                         'id' => $equipment->id,
@@ -108,8 +106,6 @@
                 {{--                        @endif--}}
                 {{--                    </ul>--}}
                 {{--                @endif--}}
-            </div>
-        </div>
     </div>
 
 @endsection

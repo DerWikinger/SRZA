@@ -4,9 +4,7 @@
 
 @section('cell-content')
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 ">
+    <div class="container h-100">
                 <div class="card-header">
                     <caption-block
                         value="{{ __('caption.show-cell') . ': №' . $cell->number . ' "' . $cell->name . '"' }}"
@@ -50,8 +48,6 @@
                         </div>
                     </template>
                 </equipments-list>
-            </div>
-        </div>
     </div>
 
 @endsection

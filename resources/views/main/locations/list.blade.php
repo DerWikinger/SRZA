@@ -4,9 +4,7 @@
 
 @section('location-content')
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12">
+    <div class="container h-100">
                 <locations-list :locations="{{ collect($locations)->map( function (\App\Models\Location $location) {
                     return [
                         'id' => $location->id,
@@ -104,8 +102,6 @@
                 {{--                        @endif--}}
                 {{--                    </ul>--}}
                 {{--                @endif--}}
-            </div>
-        </div>
     </div>
 
 @endsection

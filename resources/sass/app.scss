@@ -38,32 +38,17 @@ section.container {
 }
 
 header {
-    height: 100px;
     background-color: $dark-gray;
     color: $steel;
-    //text-align: center;
-    padding: 20px 10px;
 }
 
 footer {
-    background-color: transparent;
     color: $steel;
-    height: 8rem;
-}
-
-.footer-menu {
-    height: 4rem;
-    padding: 0.5rem 0 0.8rem 0;
 }
 
 .sub-footer {
     background-color: $dark-gray;
     height: 4rem;
-}
-
-.sub-footer-content {
-    padding: 0.8rem 0 0.8rem 0;
-    width: 100%;
 }
 
 .cursor-pointer {

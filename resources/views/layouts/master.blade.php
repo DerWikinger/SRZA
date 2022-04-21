@@ -18,17 +18,16 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!--Icons-->
-{{--    <link href="/css/all.min.css" rel="stylesheet"> <!--load all styles -->--}}
+    <link href="/css/all.min.css" rel="stylesheet"> <!--load all styles -->
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix("css/app.css") }}">
 
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="relative">
         @include('layouts.header')
-        @include('layouts.navbar')
-        <section class="main scrolling-pagination">
+        <section class="pt-4 h-4/6 overscroll-auto overflow-auto">
             @yield('content')
         </section>
         @include('layouts.footer')

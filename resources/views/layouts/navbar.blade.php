@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm h-25 text-sm ">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('home') }}">
+        <a class="navbar-brand !text-sm " href="{{ route('home') }}">
             {{ __('menu.home') }}
         </a>
 
@@ -13,10 +13,10 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 @auth
-                    <a class="navbar-brand" href="{{ route('locations.list') }}">
+                    <a class="navbar-brand !text-sm " href="{{ route('locations.list') }}">
                         {{ __('menu.equipment') }}
                     </a>
-                    <a class="navbar-brand" href="{{ route('dictionaries.all') }}">
+                    <a class="navbar-brand !text-sm " href="{{ route('dictionaries.all') }}">
                         {{ __('menu.dictionaries') }}
                     </a>
 {{--                    <a class="navbar-brand" href="{{ route('locations.units.list', [ 1 ]) }}">--}}
@@ -33,7 +33,7 @@
 {{--                    </a>--}}
 
                     @can('view-users')
-                        <a class="navbar-brand" href="{{ route('users') }}">
+                        <a class="navbar-brand text-sm " href="{{ route('users') }}">
                             {{ __('users.usersNavbarIcon') }}
                         </a>
                     @endcan

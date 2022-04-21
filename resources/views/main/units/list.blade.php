@@ -4,9 +4,7 @@
 
 @section('unit-content')
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12">
+    <div class="container h-100">
                 <units-list :units="{{ collect($units)->map( function (\App\Models\Unit $unit) use($foreign_id) {
                     return [
                         'id' => $unit->id,
@@ -109,8 +107,6 @@
                 {{--                        @endif--}}
                 {{--                    </ul>--}}
                 {{--                @endif--}}
-            </div>
-        </div>
     </div>
 
 @endsection

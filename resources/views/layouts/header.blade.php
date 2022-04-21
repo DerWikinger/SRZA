@@ -1,5 +1,5 @@
-<header>
-    <div class="container">
+<header class="h-28">
+    <div class="container h-75 py-2">
         <div class="flex justify-between">
             @component('layouts.logo')
                 @slot('title')
@@ -16,6 +16,7 @@
             </div>
         </div>
     </div>
+    @include('layouts.navbar')
 </header>
 
 

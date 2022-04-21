@@ -14,6 +14,7 @@ const tailwindcss = require('tailwindcss'); /* Add this line at the top */
 
 mix.js('resources/js/app.js', 'public/js')
     .vue()
+    .css('resources/css/all.min.css', 'public/css')
     .sass('resources/sass/app.scss', 'public/css')
     .options( {
         postCss: [

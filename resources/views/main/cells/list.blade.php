@@ -4,9 +4,7 @@
 
 @section('cell-content')
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12">
+    <div class="container h-100">
                 <cells-list :cells="{{ collect($cells)->map( function (\App\Models\Cell $cell) use($foreign_id) {
                     return [
                         'id' => $cell->id,
@@ -110,8 +108,6 @@
                 {{--                        @endif--}}
                 {{--                    </ul>--}}
                 {{--                @endif--}}
-            </div>
-        </div>
     </div>
 
 @endsection

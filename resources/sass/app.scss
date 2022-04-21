@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
@@ -6,6 +10,10 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
@@ -29,20 +37,12 @@ section.container {
     padding: 10px;
 }
 
-section.main {
-    padding: 10px;
-    height: auto;
-    min-height: 375px;
-    font-size: 1.25rem;
-}
-
 header {
     height: 100px;
     background-color: $dark-gray;
     color: $steel;
-    text-align: center;
+    //text-align: center;
     padding: 20px 10px;
-    box-sizing: border-box;
 }
 
 footer {
@@ -64,11 +64,6 @@ footer {
 .sub-footer-content {
     padding: 0.8rem 0 0.8rem 0;
     width: 100%;
-    text-align: center;
-}
-
-header h2 {
-    margin: 0;
 }
 
 .cursor-pointer {
@@ -86,7 +81,6 @@ header h2 {
 .input-over-image {
     margin: 0.25rem;
     border: 1px solid transparent;
-    box-sizing: border-box;
 }
 
 // Users views

@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!--Icons-->
-    <link href="/css/all.min.css" rel="stylesheet"> <!--load all styles -->
+{{--    <link href="/css/all.min.css" rel="stylesheet"> <!--load all styles -->--}}
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix("css/app.css") }}">

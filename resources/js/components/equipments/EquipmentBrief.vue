@@ -1,9 +1,9 @@
 <template>
-    <div class="equipment-block" @click="onClick">
-        <div class="row">
-            <avatar class="col-2" :model-id="this.equipment.id + ''" model-type="equipment"
+    <div class="hover:cursor-pointer" @click="onClick">
+        <div class="flex items-center text-lg mt-2">
+            <avatar class="w-1/6 -mt-2" :model-id="this.equipment.id + ''" model-type="equipment"
                     :avatar="this.equipment.avatar"></avatar>
-            <div class="equipment-info col-10">
+            <div class="w-5/6 flex">
                 <strong>{{ this.equipment.equipment_type }}&nbsp;:&nbsp;</strong>
                 <strong>{{ this.equipment.mark }}&nbsp;</strong>
                 <strong>&laquo;{{ this.equipment.schema_label }}&raquo;</strong>
@@ -32,23 +32,5 @@ export default {
 
 <style scoped>
 
-.equipment-block .row div {
-    cursor: pointer;
-    display: inline-block;
-    font-size: 1rem;
-}
-
-/*.equipment-info * {*/
-/*    display: inline-block;*/
-/*    height: 100%;*/
-/*}*/
-
-.equipment-info:after {
-    content: '';
-    line-height: 100%;
-    height: 100%;
-    vertical-align: middle;
-    display: inline-block;
-}
 
 </style>

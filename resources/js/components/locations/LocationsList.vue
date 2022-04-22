@@ -1,18 +1,17 @@
 <template>
     <div>
         <slot name="list-tittle"></slot>
-        <div class="list-item align-baseline " v-for="(location, key) in locations">
-            <div class="p-1 row">
-                <location-brief class="col-8" :location="location"></location-brief>
-                <div class="offset-2 col-2 ">
-                    <edit-delete-button-group
-                        :id="location.id"
-                        :token="token"
-                        base-route="/locations"
-                        :delete-permission="deletePermission">
-                    </edit-delete-button-group>
-                </div>
+        <div class="flex justify-between border-b border-gray-300 py-1 align-baseline " v-for="(location, key) in locations">
+            <location-brief class="w-4/5" :location="location"></location-brief>
+            <div class="w-1/5">
+                <edit-delete-button-group
+                    :id="location.id"
+                    :token="token"
+                    base-route="/locations"
+                    :delete-permission="deletePermission">
+                </edit-delete-button-group>
             </div>
+
         </div>
         <br>
         <slot name="list-footer"></slot>
@@ -35,11 +34,5 @@ export default {
 
 <style scoped>
 
-div.list-item {
-    border-bottom: #ced4da solid 1px;
-    padding-bottom: 0.25rem;
-    padding-top: 0.25rem;
-    font-size: 1.5rem;
-}
 
 </style>

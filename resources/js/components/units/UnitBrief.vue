@@ -1,9 +1,9 @@
 <template>
-    <div class="unit-info" @click="onClick">
-        <div class="row">
-            <avatar class="col-2" :model-id="this.unit.id + ''" model-type="unit"
+    <div class="hover:cursor-pointer" @click="onClick">
+        <div class="flex items-center text-lg mt-2">
+            <avatar class="w-1/6 -mt-2" :model-id="this.unit.id + ''" model-type="unit"
                     :avatar="this.unit.avatar"></avatar>
-            <div class="description col-10 ">
+            <div class="w-5/6">
                 <strong>{{ this.unit.name }}</strong>
             </div>
         </div>
@@ -30,9 +30,5 @@ export default {
 
 <style scoped>
 
-.unit-info .row div {
-    cursor: pointer;
-    display: inline-block;
-}
 
 </style>

@@ -1,9 +1,11 @@
 <template>
-    <div class="avatar">
-        <img class="img-avatar" v-if="avatar != ''"
-             :src="srcValue" :alt="avatar">
-        <img class="img-avatar" v-else
-             src="/storage/images/avatars/default_avatar.png" alt="default_avatar.png">
+    <div class="wrapper flex justify-center">
+        <div class="avatar flex justify-center items-center" >
+            <img class="img-avatar" v-if="avatar != ''"
+                 :src="srcValue" :alt="avatar">
+            <img class="img-avatar" v-else
+                 src="/storage/images/avatars/default_avatar.png" alt="default_avatar.png">
+        </div>
     </div>
 </template>
 
@@ -26,17 +28,16 @@ export default {
 <style scoped>
 
 .avatar {
-    display: inline-block;
-    text-align: center;
+    height: 2.5rem;
+    width: 2.5rem;
 }
 
 .img-avatar {
+    width: auto;
     height: 2.5rem;
-    vertical-align: middle;
-    padding: 0rem;
+    object-fit: contain;
     border-radius: 0rem 0.75rem 0.75rem 0.75rem;
     border: 1px solid #ced4da;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     overflow: hidden;
 }
 

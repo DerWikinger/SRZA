@@ -4,10 +4,9 @@
         <div class="" v-if="cells.length == 0">
             <slot name="list-empty"></slot>
         </div>
-        <div class="list-item align-baseline" v-else v-for="(cell, key) in cells">
-            <div class="row">
-                <cell-brief class="col-8" :cell="cell"></cell-brief>
-                <div class="offset-2 col-2 ">
+        <div class="flex justify-between border-b border-gray-300 py-1 align-baseline" v-else v-for="(cell, key) in cells">
+                <cell-brief class="w-4/5" :cell="cell"></cell-brief>
+                <div class="w-1/5">
                     <edit-delete-button-group
                         :id="cell.id"
                         :token="token"
@@ -15,7 +14,6 @@
                         :delete-permission="deletePermission">
                     </edit-delete-button-group>
                 </div>
-            </div>
         </div>
         <br>
         <slot name="list-footer"></slot>
@@ -37,12 +35,5 @@ export default {
 </script>
 
 <style scoped>
-
-div.list-item {
-    border-bottom: #ced4da solid 1px;
-    padding-bottom: 0.25rem;
-    padding-top: 0.25rem;
-    font-size: 1.5rem;
-}
 
 </style>

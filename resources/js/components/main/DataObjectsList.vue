@@ -1,13 +1,13 @@
 <template>
     <div>
         <slot name="list-tittle"></slot>
-        <div class="flex justify-between border-b border-gray-300 py-1 align-baseline " v-for="(location, key) in locations">
-            <data-object-brief class="w-4/5" :data-object="location" data-type="location"></data-object-brief>
+        <div class="flex justify-between border-b border-gray-300 py-1 align-baseline " v-for="(dataObject, key) in dataObjects">
+            <data-object-brief class="w-4/5" :data-object="dataObject" :data-type="dataType"></data-object-brief>
             <div class="w-1/5">
                 <edit-delete-button-group
-                    :id="location.id"
+                    :id="dataObject.id"
                     :token="token"
-                    base-route="/locations"
+                    :base-route="'/' + dataType + 's'"
                     :delete-permission="deletePermission">
                 </edit-delete-button-group>
             </div>
@@ -19,14 +19,14 @@
 </template>
 
 <script>
-import LocationBrief from "../locations/LocationBrief";
 import DataObjectBrief from "../main/DataObjectBrief";
 
 export default {
-    name: "LocationsList",
-    components: {DataObjectBrief, LocationBrief},
+    name: "DataObjectsList",
+    components: {DataObjectBrief},
     props: {
-        locations: {type: Array},
+        dataObjects: {type: Array},
+        dataType: {type: String},
         token: {type: String},
         deletePermission: {type: Number, default: 0},
     },

@@ -19,7 +19,6 @@ export default {
     },
     methods: {
         onClick() {
-            // this.$alert(this.route);
             if (this.route) window.location = this.route;
         }
     }
@@ -29,18 +28,14 @@ export default {
 <style scoped>
 
 .outer-block {
-    position: relative;
     width: 100%;
-}
-
-.outer-block * {
-    display: inline-block;
+    display: flex;
+    justify-content: space-between;
 }
 
 .inner-block {
-    position: relative;
-    display: inline-block;
-    float: right;
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 </style>

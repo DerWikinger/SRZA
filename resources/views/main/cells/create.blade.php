@@ -12,17 +12,19 @@
                 @else
                     <caption-block value="{{__('caption.new-cell')}}" route="{{ $back }}"></caption-block>
                 @endif
-                <cell-detail :cell="{{ $cell }}" token="{{ csrf_token() }}"
-                                 :captions="{{ $captions }}" @data-changed="onDataChanged"
-                                 @data-reset="onDataReset">
-                </cell-detail>
+                <data-object-detail :data-object="{{ $cell }}" token="{{ csrf_token() }}"
+                                    :fields="['number', 'name', 'description']" data-type="cell"
+                                    :captions="{{ $captions }}" @data-changed="onDataChanged"
+                                    @data-reset="onDataReset">
+                </data-object-detail>
+
             </div>
         </div>
     </div>
 
 @endsection
 <script>
-    import CellDetail from "../../../js/components/cells/CellDetail";
+    import DataObjectDetail from "../../js/components/main/DataObjectDetail";
 
     export default {
         components: {CellDetail}

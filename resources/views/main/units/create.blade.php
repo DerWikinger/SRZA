@@ -12,17 +12,18 @@
                 @else
                     <caption-block value="{{__('caption.new-unit')}}" route="{{ $back }}"></caption-block>
                 @endif
-                <unit-detail :unit="{{ $unit }}" token="{{ csrf_token() }}"
-                                 :captions="{{ $captions }}" @data-changed="onDataChanged"
-                                 @data-reset="onDataReset">
-                </unit-detail>
+                <data-object-detail :data-object="{{ $unit }}" token="{{ csrf_token() }}"
+                                    :fields="['name', 'description']" data-type="unit"
+                                    :captions="{{ $captions }}" @data-changed="onDataChanged"
+                                    @data-reset="onDataReset">
+                </data-object-detail>
             </div>
         </div>
     </div>
 
 @endsection
 <script>
-    import UnitDetail from "../../../js/components/units/UnitDetail";
+    import DataObjectDetail from "../../js/components/main/DataObjectDetail";
 
     export default {
         components: {UnitDetail}

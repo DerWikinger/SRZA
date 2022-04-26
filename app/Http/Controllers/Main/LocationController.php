@@ -107,7 +107,9 @@ class LocationController extends MainController
         $location = Location::find($id);
         $data = json_decode($request->data);
 
-        return response($this->modelSave($data, $location), 200);
+        $result = $this->modelSave($data, $location);
+//        dump($result->avatar);
+        return response($result, 200);
     }
 
     /**

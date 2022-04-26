@@ -3794,6 +3794,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "LocationDetail",
   props: {
@@ -3808,39 +3809,26 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this._oldLocation = this.location.constructor();
-    this.copy(this.location, this._oldLocation);
+    this._oldLocation = Object.assign({}, this.location);
   },
   methods: {
     onSave: function onSave(ev) {
       var _this$location$id;
 
-      if (this.isClean()) return;
+      if (!this.dirty()) return;
       var self = this;
       var url = ((_this$location$id = this.location.id) !== null && _this$location$id !== void 0 ? _this$location$id : 0) ? '/locations/update/' + this.location.id : '/locations/store';
 
       var callback = function callback(result) {
         self.$alert('Данные успешно сохранены!');
+        var obj = JSON.parse(result);
+        console.log("New id: ", obj.id);
+        console.log("Old id: ", self._oldLocation.id);
 
-        if (!self._oldLocation.id && result.id) {
-          location = '/locations/edit/' + result.id;
+        if (obj.id) {
+          location = '/locations/edit/' + obj.id;
         } else {
-          console.log('Before copy'); // console.log(self._oldLocation);
-          // console.log(self.location);
-
-          console.log(self.compare(self._oldLocation, self.location)); // console.log('Saved avatar: ', result.avatar);
-          // console.log('This location.avatar: ', self.location.avatar);
-          // console.log('This avatar: ', self.avatar);
-
-          self.copy(result, self._oldLocation, true);
-          self.avatar = self.location.avatar = result.avatar;
-          self.dirty();
-          console.log('After copy'); // console.log(self._oldLocation);
-          // console.log(self.location);
-
-          console.log(self.compare(self._oldLocation, self.location)); // console.log('Saved avatar: ', result.avatar);
-          // console.log('This location.avatar: ', self.location.avatar);
-          // console.log('This avatar: ', self.avatar);
+          console.log('Что-то пошло не так!');
         }
       };
 
@@ -3849,65 +3837,66 @@ __webpack_require__.r(__webpack_exports__);
     onReset: function onReset(ev) {
       var _this$location$id2;
 
+      if (!this.dirty()) return;
       this.clear();
       var url = '/locations/reset';
       this.$emit('data-reset', 'location', (_this$location$id2 = this.location.id) !== null && _this$location$id2 !== void 0 ? _this$location$id2 : 0, this.token, url);
     },
     onAvatarChanged: function onAvatarChanged(newAvatar) {
-      console.log('New avatar: ', newAvatar);
       this.location.avatar = this.avatar = newAvatar;
-      console.log('Location: ', this.location);
-      console.log('Compare: ', this.compare(this._oldLocation, this.location));
-      this.dirty();
+      this.check();
     },
     onDataChanged: function onDataChanged(ev) {
-      this.dirty(ev);
+      this.check(ev);
     },
-    isClean: function isClean() {
-      return !this._dirty;
-    },
-    dirty: function dirty(ev) {
-      var elemId = '#btnSave_' + this.id;
-      console.log('Button: ', elemId);
+    check: function check(ev) {
+      var btnSave = '#btnSave_' + this.id;
+      var btnReset = '#btnReset_' + this.id;
 
-      if (this.compare(this._oldLocation, this.location)) {
-        this._dirty = false;
-        $(elemId).removeClass('enabled').addClass('disabled');
-        $(elemId).addClass('color-disabled');
+      if (!this.dirty()) {
+        $(btnSave).removeClass('enabled').addClass('disabled');
+        $(btnSave).addClass('color-disabled');
+        $(btnReset).removeClass('enabled').addClass('disabled');
+        $(btnReset).addClass('color-disabled');
       } else {
-        this._dirty = true;
-        $(elemId).removeClass('disabled').addClass('enabled');
-        $(elemId).removeClass('color-disabled');
+        $(btnSave).removeClass('disabled').addClass('enabled');
+        $(btnSave).removeClass('color-disabled');
+        $(btnReset).removeClass('disabled').addClass('enabled');
+        $(btnReset).removeClass('color-disabled');
       }
     },
     clear: function clear() {
       var _this$location$avatar;
 
-      this.copy(this._oldLocation, this.location, true);
-      this.dirty();
+      this.copy(this._oldLocation, this.location);
       this.avatar = (_this$location$avatar = this.location.avatar) !== null && _this$location$avatar !== void 0 ? _this$location$avatar : '';
+
+      for (var prop in this._oldLocation) {
+        var elem = document.getElementById(prop);
+        if (elem) elem.value = this._oldLocation[prop];
+      }
+
+      this.check();
     },
     compare: function compare(obj1, obj2) {
-      // for (let prop in obj1) {
-      //     if (obj1[prop] != obj2[prop]) return false;
-      // }
-      // return true;
-      return obj1.avatar == obj2.avatar && obj1.name == obj2.name && obj1.description == obj2.description;
+      for (var prop in obj2) {
+        console.log(prop, obj1[prop], obj2[prop]);
+        if (obj1[prop] === undefined || obj1[prop] != obj2[prop]) return false;
+      }
+
+      return true;
     },
     copy: function copy(obj_from, obj_to) {
-      var reset = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-      for (var property in obj_from) {
-        var _obj_from$property;
-
-        obj_to[property] = (_obj_from$property = obj_from[property]) !== null && _obj_from$property !== void 0 ? _obj_from$property : '';
-        if (reset) $("#" + property).prop('value', obj_to[property]);
+      for (var prop in obj_to) {
+        obj_to[prop] = obj_from[prop];
       }
+    },
+    dirty: function dirty() {
+      return !this.compare(this.location, this._oldLocation);
     }
   },
   data: function data() {
     return {
-      _dirty: false,
       _oldLocation: {},
       avatar: this.location.avatar
     };
@@ -22014,7 +22003,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ninput.input-avatar[data-v-e5f1be0c] {\n    position: absolute;\n    width: 130px;\n    height: 130px;\n    cursor: pointer;\n}\nimg#avatar[data-v-e5f1be0c] {\n    width: 130px;\n    height: 130px;\n    border: #ced4da solid 1px;\n    border-radius: 1.25rem;\n    overflow: hidden;\n}\n.avatar-change[data-v-e5f1be0c] {\n    position: relative;\n    align-content: center;\n    display: inline-block;\n}\n#btnReset[data-v-e5f1be0c] {\n    position: absolute;\n    top: 0;\n    right: -1rem;\n    width: 1rem;\n    height: 1rem;\n    opacity: 0.1;\n    cursor: pointer;\n}\n#btnReset[data-v-e5f1be0c]:hover {\n    opacity: 1;\n}\n.outer-block[data-v-e5f1be0c] {\n    width: -webkit-fit-content;\n    width: -moz-fit-content;\n    width: fit-content;\n    left: 30%;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ninput.input-avatar[data-v-e5f1be0c] {\n    position: absolute;\n    left: 0;\n    top: 0;\n    width: 130px;\n    height: 130px;\n    cursor: pointer;\n}\nimg#avatar[data-v-e5f1be0c] {\n    width: 130px;\n    height: 130px;\n    border: #ced4da solid 1px;\n    overflow: hidden;\n    z-index: 10;\n}\n.avatar-change[data-v-e5f1be0c] {\n    position: relative;\n    align-content: center;\n    display: inline-block;\n}\n#btnReset[data-v-e5f1be0c] {\n    position: absolute;\n    top: 0;\n    right: -1rem;\n    width: 1rem;\n    height: 1rem;\n    opacity: 0.1;\n    cursor: pointer;\n}\n#btnReset[data-v-e5f1be0c]:hover {\n    opacity: 1;\n}\n.wrapper[data-v-e5f1be0c] {\n    width: -webkit-fit-content;\n    width: -moz-fit-content;\n    width: fit-content;\n    left: 30%;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -22134,7 +22123,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\ninput[type=button][data-v-145d61bc] {\n    margin-left: 1rem;\n}\ninput.disabled[data-v-145d61bc] {\n    cursor: default;\n}\ninput.enabled[data-v-145d61bc] {\n    color: #495057;\n    cursor: pointer;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\ninput.disabled[data-v-145d61bc] {\n    cursor: default;\n}\ninput.enabled[data-v-145d61bc] {\n    color: #495057;\n    cursor: pointer;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -55259,14 +55248,17 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "avatar-change" }, [
-    _c("div", { staticClass: "outer-block" }, [
+    _c("div", { staticClass: "wrapper" }, [
       _c("input", {
-        staticClass: "input-avatar custom-file-input",
+        staticClass: "input-avatar rounded custom-file-input",
         attrs: { accept: "image/*", name: "avatar_image", type: "file" },
         on: { change: _vm.onAvatarChanged, input: _vm.onInput },
       }),
       _vm._v(" "),
-      _c("img", { staticClass: "image-avatar", attrs: { id: "avatar" } }),
+      _c("img", {
+        staticClass: "image-avatar rounded",
+        attrs: { id: "avatar" },
+      }),
       _vm._v(" "),
       _c(
         "div",
@@ -55275,7 +55267,7 @@ var render = function () {
           attrs: { id: "btnReset" },
           on: { click: _vm.onReset },
         },
-        [_c("i", { staticClass: "fas fa-cut" })]
+        [_c("i", { staticClass: "fas fa-trash" })]
       ),
     ]),
   ])
@@ -55569,40 +55561,38 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card form-group" }, [
-    _c("div", { staticClass: "card-body" }, [
-      _c("div", { staticClass: "form-group row" }, [
-        _c(
-          "div",
-          { staticClass: "col-12 text-center" },
-          [
-            _c("avatar-change", {
-              attrs: {
-                "model-id": this.id,
-                token: this.token,
-                "model-type": "location",
-                id: "changeAvatar",
+  return _c(
+    "div",
+    { staticClass: "flex justify-between flex-col text-center" },
+    [
+      _c(
+        "div",
+        { staticClass: "w-full flex justify-center rounded mt-2 mb-4" },
+        [
+          _c("avatar-change", {
+            attrs: {
+              "model-id": this.id,
+              token: this.token,
+              "model-type": "location",
+              id: "changeAvatar",
+            },
+            on: { "value-changed": _vm.onAvatarChanged },
+            model: {
+              value: _vm.avatar,
+              callback: function ($$v) {
+                _vm.avatar = $$v
               },
-              on: { "value-changed": _vm.onAvatarChanged },
-              model: {
-                value: _vm.avatar,
-                callback: function ($$v) {
-                  _vm.avatar = $$v
-                },
-                expression: "avatar",
-              },
-            }),
-          ],
-          1
-        ),
-      ]),
+              expression: "avatar",
+            },
+          }),
+        ],
+        1
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "input-group form-group" }, [
-        _c(
-          "label",
-          { staticClass: "col-form-label col-2", attrs: { for: "id" } },
-          [_vm._v(_vm._s(this.captions.id + ":"))]
-        ),
+      _c("div", { staticClass: "flex justify-between items-center" }, [
+        _c("div", { staticClass: "w-25 text-left font-bold" }, [
+          _vm._v(_vm._s(this.captions.id + ":")),
+        ]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -55613,7 +55603,8 @@ var render = function () {
               expression: "this.id",
             },
           ],
-          staticClass: "form-control disabled",
+          staticClass:
+            "w-75 disabled:opacity-75 form-input form-text px-2 py-1 rounded ",
           attrs: { id: "id", name: "id", type: "text", disabled: "" },
           domProps: { value: this.id },
           on: {
@@ -55627,12 +55618,10 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "input-group form-group" }, [
-        _c(
-          "label",
-          { staticClass: "col-form-label col-2", attrs: { for: "name" } },
-          [_vm._v(_vm._s(this.captions.name + ":"))]
-        ),
+      _c("div", { staticClass: "flex justify-between items-center" }, [
+        _c("div", { staticClass: "w-25 text-left font-bold" }, [
+          _vm._v(_vm._s(this.captions.name + ":")),
+        ]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -55644,7 +55633,7 @@ var render = function () {
               modifiers: { trim: true },
             },
           ],
-          staticClass: "form-control ",
+          staticClass: "w-75 form-input form-text px-2 py-1 rounded",
           attrs: { type: "text", id: "name", name: "name" },
           domProps: { value: _vm.location.name },
           on: {
@@ -55664,15 +55653,10 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "input-group form-group" }, [
-        _c(
-          "label",
-          {
-            staticClass: "col-form-label col-2",
-            attrs: { for: "description" },
-          },
-          [_vm._v(_vm._s(this.captions.description + ":"))]
-        ),
+      _c("div", { staticClass: "flex justify-between" }, [
+        _c("div", { staticClass: "w-25 text-left font-bold pt-2" }, [
+          _vm._v(_vm._s(this.captions.description + ":")),
+        ]),
         _vm._v(" "),
         _c("textarea", {
           directives: [
@@ -55684,7 +55668,7 @@ var render = function () {
               modifiers: { trim: true },
             },
           ],
-          staticClass: "form-control ",
+          staticClass: "w-75 form-input form-text px-2 py-1 rounded",
           attrs: {
             type: "text",
             rows: "3",
@@ -55713,28 +55697,29 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control col-3 d-inline-block float-right",
-        attrs: {
-          id: "btnReset_" + this.id,
-          type: "button",
-          value: this.captions.btnReset,
-        },
-        on: { click: _vm.onReset },
-      }),
-      _vm._v(" "),
-      _c("input", {
-        staticClass:
-          "form-control col-3 disabled d-inline-block float-right color-disabled",
-        attrs: {
-          id: "btnSave_" + this.id,
-          type: "button",
-          value: this.captions.btnSave,
-        },
-        on: { click: _vm.onSave },
-      }),
-    ]),
-  ])
+      _c("div", { staticClass: "flex justify-end py-1" }, [
+        _c("input", {
+          staticClass: "form-input w-32 ml-2 rounded disabled color-disabled",
+          attrs: {
+            id: "btnSave_" + this.id,
+            type: "button",
+            value: this.captions.btnSave,
+          },
+          on: { click: _vm.onSave },
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-input w-32 ml-2 rounded disabled color-disabled",
+          attrs: {
+            id: "btnReset_" + this.id,
+            type: "button",
+            value: this.captions.btnReset,
+          },
+          on: { click: _vm.onReset },
+        }),
+      ]),
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

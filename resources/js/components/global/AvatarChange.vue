@@ -1,15 +1,15 @@
 <template>
     <div class="avatar-change">
-        <div class="outer-block">
-            <input class="input-avatar custom-file-input"
+        <div class="wrapper">
+            <input class="input-avatar rounded custom-file-input"
                    accept="image/*"
                    name="avatar_image"
                    @change="onAvatarChanged"
                    type="file"
                    @input="onInput">
-            <img id="avatar" class="image-avatar">
+            <img id="avatar" class="image-avatar rounded">
             <div class="inner-block" id="btnReset" @click="onReset">
-                <i class="fas fa-cut"></i>
+                <i class="fas fa-trash"></i>
             </div>
         </div>
     </div>
@@ -108,6 +108,8 @@ export default {
 <style scoped>
 input.input-avatar {
     position: absolute;
+    left: 0;
+    top: 0;
     width: 130px;
     height: 130px;
     cursor: pointer;
@@ -117,8 +119,8 @@ img#avatar {
     width: 130px;
     height: 130px;
     border: #ced4da solid 1px;
-    border-radius: 1.25rem;
     overflow: hidden;
+    z-index: 10;
 }
 
 .avatar-change {
@@ -141,7 +143,7 @@ img#avatar {
     opacity: 1;
 }
 
-.outer-block {
+.wrapper {
     width: fit-content;
     left: 30%;
 }

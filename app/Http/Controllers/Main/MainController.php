@@ -196,7 +196,7 @@ class MainController extends Controller
                 }
             }
             $object->save();
-            return $object;
+            return json_encode($object);
         } catch (Exception $exception) {
             abort($exception->getMessage(), 500);
         }

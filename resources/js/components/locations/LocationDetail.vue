@@ -1,37 +1,38 @@
 <template>
-    <div class="card form-group">
-        <!--        <div class="card-header">-->
-        <!--            <slot name="header"></slot>-->
-        <!--        </div>-->
-        <div class="card-body">
-            <div class="form-group row">
-                <div class="col-12 text-center">
-                    <avatar-change v-model="avatar" :model-id="this.id" :token="this.token" model-type="location"
-                                   id="changeAvatar" @value-changed="onAvatarChanged">
-                    </avatar-change>
-                </div>
-            </div>
-            <div class="input-group form-group">
-                <label class="col-form-label col-2" for="id">{{ this.captions.id + ':' }}</label>
-                <input class="form-control disabled" id="id" name="id" type="text" v-model="this.id" disabled>
-            </div>
-            <div class="input-group form-group">
-                <label class="col-form-label col-2" for="name">{{ this.captions.name + ':' }}</label>
-                <input class="form-control " type="text" id="name" name="name" v-model.trim="location.name"
-                       @input="onDataChanged">
-            </div>
-            <div class="input-group form-group">
-                <label class="col-form-label col-2" for="description">{{ this.captions.description + ':' }}</label>
-                <textarea class="form-control " type="text" rows="3" id="description" name="description"
-                          v-model.trim="location.description"
-                          @input="onDataChanged"></textarea>
-            </div>
-            <input class="form-control col-3 d-inline-block float-right" v-bind:id="'btnReset_' + this.id" type="button"
-                   @click="onReset"
-                   :value="this.captions.btnReset">
-            <input class="form-control col-3 disabled d-inline-block float-right color-disabled" v-bind:id="'btnSave_' + this.id"
+    <div class="flex justify-between flex-col text-center">
+        <div class="w-full flex justify-center rounded mt-2 mb-4">
+            <avatar-change v-model="avatar" :model-id="this.id" :token="this.token" model-type="location"
+                           id="changeAvatar" @value-changed="onAvatarChanged">
+            </avatar-change>
+        </div>
+        <div class="flex justify-between items-center">
+            <div class="w-25 text-left font-bold">{{ this.captions.id + ':' }}</div>
+            <input class="w-75 disabled:opacity-75 form-input form-text px-2 py-1 rounded " id="id" name="id" type="text"
+                   v-model="this.id" disabled>
+        </div>
+        <div class="flex justify-between items-center">
+            <div class="w-25 text-left font-bold">{{ this.captions.name + ':' }}</div>
+            <input class="w-75 form-input form-text px-2 py-1 rounded" type="text" id="name" name="name"
+                   v-model.trim="location.name"
+                   @input="onDataChanged">
+        </div>
+        <div class="flex justify-between">
+            <div class="w-25 text-left font-bold pt-2">{{ this.captions.description + ':' }}</div>
+            <textarea class="w-75 form-input form-text px-2 py-1 rounded" type="text" rows="3" id="description"
+                      name="description"
+                      v-model.trim="location.description"
+                      @input="onDataChanged"></textarea>
+        </div>
+        <div class="flex justify-end py-1">
+            <input class="form-input w-32 ml-2 rounded disabled color-disabled"
+                   v-bind:id="'btnSave_' + this.id"
                    type="button" @click="onSave"
                    :value="this.captions.btnSave">
+            <input class="form-input w-32 ml-2 rounded disabled color-disabled"
+                   v-bind:id="'btnReset_' + this.id"
+                   type="button"
+                   @click="onReset"
+                   :value="this.captions.btnReset">
         </div>
     </div>
 </template>
@@ -45,95 +46,81 @@ export default {
         token: {type: String},
     },
     created() {
-        this._oldLocation = this.location.constructor();
-        this.copy(this.location, this._oldLocation);
+        this._oldLocation = Object.assign({}, this.location);
     },
     methods: {
         onSave(ev) {
-            if (this.isClean()) return;
+            if (!this.dirty()) return;
             let self = this;
             let url = (this.location.id ?? 0) ? '/locations/update/' + this.location.id : '/locations/store';
             let callback = function (result) {
                 self.$alert('Данные успешно сохранены!');
-                if(!self._oldLocation.id && result.id) {
-                    location = '/locations/edit/' + result.id;
+                let obj = JSON.parse(result);
+                console.log("New id: ", obj.id);
+                console.log("Old id: ", self._oldLocation.id);
+                if (obj.id) {
+                    location = '/locations/edit/' + obj.id;
                 } else {
-                    console.log('Before copy');
-                    // console.log(self._oldLocation);
-                    // console.log(self.location);
-                    console.log(self.compare(self._oldLocation, self.location));
-                    // console.log('Saved avatar: ', result.avatar);
-                    // console.log('This location.avatar: ', self.location.avatar);
-                    // console.log('This avatar: ', self.avatar);
-                    self.copy(result, self._oldLocation, true);
-                    self.avatar = self.location.avatar = result.avatar;
-                    self.dirty();
-                    console.log('After copy');
-                    // console.log(self._oldLocation);
-                    // console.log(self.location);
-                    console.log(self.compare(self._oldLocation, self.location));
-                    // console.log('Saved avatar: ', result.avatar);
-                    // console.log('This location.avatar: ', self.location.avatar);
-                    // console.log('This avatar: ', self.avatar);
+                    console.log('Что-то пошло не так!');
                 }
             }
             this.$emit('data-changed', 'location', this.location, this.token, url, 'post', callback);
         },
         onReset(ev) {
+            if (!this.dirty()) return;
             this.clear();
             let url = '/locations/reset';
             this.$emit('data-reset', 'location', this.location.id ?? 0, this.token, url);
         },
         onAvatarChanged(newAvatar) {
-            console.log('New avatar: ', newAvatar);
             this.location.avatar = this.avatar = newAvatar;
-            console.log('Location: ', this.location);
-            console.log('Compare: ', this.compare(this._oldLocation, this.location));
-            this.dirty();
+            this.check();
         },
         onDataChanged(ev) {
-            this.dirty(ev);
+            this.check(ev);
         },
-        isClean() {
-            return !this._dirty;
-        },
-        dirty(ev) {
-            let elemId = '#btnSave_' + this.id;
-            console.log('Button: ', elemId);
-            if (this.compare(this._oldLocation, this.location)) {
-                this._dirty = false;
-                $(elemId).removeClass('enabled').addClass('disabled');
-                $(elemId).addClass('color-disabled');
+        check(ev) {
+            let btnSave = '#btnSave_' + this.id;
+            let btnReset = '#btnReset_' + this.id;
+            if (!this.dirty()) {
+                $(btnSave).removeClass('enabled').addClass('disabled');
+                $(btnSave).addClass('color-disabled');
+                $(btnReset).removeClass('enabled').addClass('disabled');
+                $(btnReset).addClass('color-disabled');
             } else {
-                this._dirty = true;
-                $(elemId).removeClass('disabled').addClass('enabled');
-                $(elemId).removeClass('color-disabled');
+                $(btnSave).removeClass('disabled').addClass('enabled');
+                $(btnSave).removeClass('color-disabled');
+                $(btnReset).removeClass('disabled').addClass('enabled');
+                $(btnReset).removeClass('color-disabled');
             }
         },
         clear() {
-            this.copy(this._oldLocation, this.location, true);
-            this.dirty();
+            this.copy(this._oldLocation, this.location);
             this.avatar = this.location.avatar ?? '';
+            for (let prop in this._oldLocation) {
+                let elem = document.getElementById(prop);
+                if (elem) elem.value = this._oldLocation[prop];
+            }
+            this.check();
         },
         compare(obj1, obj2) {
-            // for (let prop in obj1) {
-            //     if (obj1[prop] != obj2[prop]) return false;
-            // }
-            // return true;
-            return obj1.avatar == obj2.avatar &&
-                obj1.name == obj2.name &&
-                obj1.description == obj2.description;
-        },
-        copy(obj_from, obj_to, reset = false) {
-            for (let property in obj_from) {
-                obj_to[property] = obj_from[property] ?? '';
-                if (reset) $("#" + property).prop('value', obj_to[property]);
+            for (let prop in obj2) {
+                console.log(prop, obj1[prop], obj2[prop]);
+                if (obj1[prop] === undefined || obj1[prop] != obj2[prop]) return false;
             }
+            return true;
+        },
+        copy(obj_from, obj_to) {
+            for (let prop in obj_to) {
+                obj_to[prop] = obj_from[prop];
+            }
+        },
+        dirty() {
+            return !this.compare(this.location, this._oldLocation);
         }
     },
     data() {
         return {
-            _dirty: false,
             _oldLocation: {},
             avatar: this.location.avatar,
         }
@@ -141,15 +128,12 @@ export default {
     computed: {
         id() {
             return this.location.id ? this.location.id + '' : 'New';
-        }
+        },
     }
 }
 </script>
 
 <style scoped>
-input[type=button] {
-    margin-left: 1rem;
-}
 
 input.disabled {
     cursor: default;

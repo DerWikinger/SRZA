@@ -76,7 +76,7 @@ class MainController extends Controller
         if (!Storage::exists($newPath)) {
             Storage::makeDirectory($newPath);
         }
-        dump($newPath);
+
         $arr = [];
         $fileFullname = str_replace('.tmp', '', $file);
 
@@ -84,7 +84,6 @@ class MainController extends Controller
         $extenssion = ($arr[0] ? $arr[0] : '.png');
         $pattern = 'avatar_' . $model . '_' . $id;
         $fileName = $pattern . '_' . Carbon::now()->timestamp . $extenssion;
-        dump($fileName);
 
         try {
             $this->deleteAvatars($newPath, $pattern);
@@ -154,6 +153,7 @@ class MainController extends Controller
         $collect->keys()->each(function ($key) use ($model_type, &$arr, $collect) {
             $arr[str_replace($model_type . '-', '', $key)] = $collect[$key];
         });
+        $arr['avatarConfirmMessage'] = __('caption.avatarConfirmMessage');
         return collect($arr);
     }
     /**

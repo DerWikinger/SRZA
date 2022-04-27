@@ -1,7 +1,8 @@
 <template>
     <div class="flex justify-between flex-col text-center">
         <div class="w-full flex justify-center rounded mt-2 mb-4">
-            <avatar-change v-model="avatar" :model-id="this.id" :token="this.token" model-type="location"
+            <avatar-change v-model="avatar" :model-id="this.id" :token="this.token" :model-type="this.dataType"
+                           :confirm-message="this.captions.avatarConfirmMessage"
                            id="changeAvatar" @value-changed="onAvatarChanged">
             </avatar-change>
         </div>
@@ -64,10 +65,13 @@ export default {
             let callback = function (result) {
                 self.$alert('Данные успешно сохранены!');
                 let obj = JSON.parse(result);
+                self.copy(obj, self.dataObject);
+                self.copy(obj, self._oldData);
+                self.check();
                 console.log("New id: ", obj.id);
                 console.log("Old id: ", self._oldData.id);
                 if (obj.id) {
-                    location = '/' + this.dataType + 's/edit/' + obj.id;
+                    location = '/' + self.dataType + 's/edit/' + obj.id;
                 } else {
                     console.log('Что-то пошло не так!');
                 }
@@ -77,8 +81,8 @@ export default {
         onReset(ev) {
             if (!this.dirty()) return;
             this.clear();
-            let url = '/' + this.dataType + 's/reset';
-            this.$emit('data-reset', this.dataType, this.dataObject.id ?? 0, this.token, url);
+            // let url = '/' + this.dataType + 's/reset';
+            // this.$emit('data-reset', this.dataType, this.dataObject.id ?? 0, this.token, url);
         },
         onAvatarChanged(newAvatar) {
             this.dataObject.avatar = this.avatar = newAvatar;

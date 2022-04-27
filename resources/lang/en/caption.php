@@ -17,6 +17,7 @@ return [
     'btnSave' => 'Save',
     'btnReset' => 'Reset',
     'btnCancel' => 'Cancel',
+    'avatarConfirmMessage' => "Are you sure?\n Do you want to delete this avatar image?",
 
     'locations' => 'Locations',
     'new-location' => 'New location',

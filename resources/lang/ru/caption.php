@@ -17,6 +17,7 @@ return [
     'btnSave' => 'Сохранить',
     'btnReset' => 'Восстановить',
     'btnCancel' => 'Отменить',
+    'avatarConfirmMessage' => "Вы увернны?\n Вы хотите безвозвратно удалить данное изображение?",
 
     'locations' => 'Локации',
     'new-location' => 'Новая локация',

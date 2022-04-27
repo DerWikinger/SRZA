@@ -1,5 +1,5 @@
 <template>
-        <div @click="onClick" class="btn-area">
+        <div @click="onClick" class="hover:cursor-pointer flex items-center pt-2">
             <slot></slot>
         </div>
 </template>
@@ -12,7 +12,6 @@ export default {
     },
     methods: {
         onClick() {
-            // this.$alert(this.route);
             if(this.route) window.location = this.route;
         }
     }
@@ -20,9 +19,5 @@ export default {
 </script>
 
 <style scoped>
-
-.btn-area {
-    cursor: pointer;
-}
 
 </style>

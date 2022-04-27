@@ -1,9 +1,9 @@
 <template>
     <div :class="'color-caption outer-block ' + ( this.align == 'center' ? 'text-center' : '' )">
-        <h2 class="text-capitalize">{{ this.value }}</h2>
-        <div class="inner-block">
-            <return-button v-show="this.route" :route="this.route">
-                <arrow-left></arrow-left>
+        <h2 class="text-capitalize w-full text-center w-100">{{ this.value }}</h2>
+        <div class="inner-block w-10">
+            <return-button class="" v-show="this.route" :route="this.route">
+                <arrow-left class=""></arrow-left>
             </return-button>
         </div>
     </div>
@@ -29,13 +29,16 @@ export default {
 
 .outer-block {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
+    display: block;
+    position: relative;
 }
 
 .inner-block {
     display: flex;
     flex-direction: row-reverse;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 </style>

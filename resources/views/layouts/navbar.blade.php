@@ -33,7 +33,7 @@
 {{--                    </a>--}}
 
                     @can('view-users')
-                        <a class="navbar-brand text-sm " href="{{ route('users') }}">
+                        <a class="navbar-brand !text-sm " href="{{ route('users') }}">
                             {{ __('users.usersNavbarIcon') }}
                         </a>
                     @endcan

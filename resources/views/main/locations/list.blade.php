@@ -15,7 +15,7 @@
                            data-type="location"
                            :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() ? 1 : 0 }}">
             <template v-slot:list-tittle>
-                <div class="card-header">
+                <div class="flex">
                     <caption-block value="{{__('caption.locations')}}" route="{{ $back }}"></caption-block>
                 </div>
             </template>

@@ -54015,7 +54015,15 @@ var render = function () {
           }),
           _vm._v(" "),
           _c("div", { staticClass: "w-5/6" }, [
-            _c("strong", [_vm._v(_vm._s(this.dataObject.name))]),
+            _c("strong", [
+              _vm._v(
+                _vm._s(
+                  (this.dataObject.number
+                    ? this.dataObject.number + " - "
+                    : "") + this.dataObject.name
+                )
+              ),
+            ]),
           ]),
         ],
         1

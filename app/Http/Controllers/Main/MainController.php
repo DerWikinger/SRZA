@@ -7,30 +7,31 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use mysql_xdevapi\Exception;
 use phpDocumentor\Reflection\DocBlock\Tags\Property;
 
 class MainController extends Controller
 {
-    public function upload(Request $request)
+    public function avatarChange(Request $request)
     {
         $model = $request->model;
-        if (!$model) abort(501);
+        if (!$model) abort(500,'Model is not found!');
         $className = $this->getClassName($model);
-        if (!$className) abort(502);
+        if (!$className) abort(500,'Class name is invalid!');
         $obj = null;
         if ($request->id > 0) {
             try {
                 $obj = $className::find($request->id);
             } catch (\Exception $exception) {
-                abort(503);
+                abort(500, $exception->getMessage());
             }
         } else {
             try {
                 $obj = $className::make();
             } catch (\Exception $exception) {
-                abort(503);
+                abort(500, $exception->getMessage());
             }
         }
         if (!(is_null($obj)) && $request->hasFile('avatar') && $request->file('avatar')->isValid()) {
@@ -45,7 +46,7 @@ class MainController extends Controller
             try {
                 Storage::putFileAs($path, new File($file), $fileName);
             } catch (\Exception $exception) {
-                return response()->json(['error' => 'File is not put on server!']);
+                return response(['error' => 'File is not put on server!']);
             }
             return response()->json([
                 'success' => 'AJAX request success',
@@ -53,7 +54,7 @@ class MainController extends Controller
                 'filename' => $fileName,
             ]);
         }
-        return response()->json(['error' => 'Avatar image is not uploaded']);
+        return response(['error' => 'Avatar image is not uploaded'], 200);
     }
 
     /**
@@ -202,14 +203,14 @@ class MainController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function avatarChange(Request $request)
-    {
-        return $this->upload($request);
-    }
+//    /**
+//     * Update the specified resource in storage.
+//     *
+//     * @param \Illuminate\Http\Request $request
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function avatarChange(Request $request)
+//    {
+//        return $this->upload($request);
+//    }
 }

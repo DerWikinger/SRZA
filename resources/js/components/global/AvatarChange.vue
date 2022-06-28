@@ -70,6 +70,7 @@ export default {
                 success: function (response) {
                     let path = response.path;
                     let filename = response.filename;
+                    console.log(response);
                     self.$emit('value-changed', filename);
                     console.log('Success');
                     console.log('Saved file: ', filename);

@@ -3169,6 +3169,7 @@ __webpack_require__.r(__webpack_exports__);
         success: function success(response) {
           var path = response.path;
           var filename = response.filename;
+          console.log(response);
           self.$emit('value-changed', filename);
           console.log('Success');
           console.log('Saved file: ', filename);

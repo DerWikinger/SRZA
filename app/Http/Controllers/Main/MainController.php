@@ -46,7 +46,10 @@ class MainController extends Controller
             try {
                 Storage::putFileAs($path, new File($file), $fileName);
             } catch (\Exception $exception) {
-                return response(['error' => 'File is not put on server!']);
+                return response()->json([
+                    'error' => 'File is not put on server!',
+                    'message' => $exception->getMessage()
+                ]);
             }
             return response()->json([
                 'success' => 'AJAX request success',

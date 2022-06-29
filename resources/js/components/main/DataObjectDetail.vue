@@ -68,13 +68,6 @@ export default {
                 self.copy(obj, self.dataObject);
                 self.copy(obj, self._oldData);
                 self.check();
-                console.log("New id: ", obj.id);
-                console.log("Old id: ", self._oldData.id);
-                if (obj.id) {
-                    location = '/' + self.dataType + 's/edit/' + obj.id;
-                } else {
-                    console.log('Что-то пошло не так!');
-                }
             }
             this.$emit('data-changed', this.dataType, this.dataObject, this.token, url, 'post', callback);
         },
@@ -117,7 +110,6 @@ export default {
         },
         compare(obj1, obj2) {
             for (let prop in obj2) {
-                console.log(prop, obj1[prop], obj2[prop]);
                 if (obj1[prop] === undefined || obj1[prop] != obj2[prop]) return false;
             }
             return true;

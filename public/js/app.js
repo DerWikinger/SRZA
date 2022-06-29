@@ -2744,6 +2744,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "EquipmentDetail",
   props: {
@@ -2775,31 +2776,22 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this._oldEquipment = this.equipment.constructor();
     this.copy(this.equipment, this._oldEquipment);
-    console.log('Created, this.equipment => ', this.equipment);
-    console.log('Created, this.oldEquipment => ', this._oldEquipment);
-    console.log('Created, this.currentTransformer => ', this.currentTransformer);
-  },
-  mounted: function mounted() {
-    this.ratioShowHide();
+    this.check();
   },
   methods: {
     onSave: function onSave(ev) {
       var _this$equipment$id;
 
-      if (this.isClean()) return;
+      if (!this.dirty()) return;
       var self = this;
       var url = ((_this$equipment$id = this.equipment.id) !== null && _this$equipment$id !== void 0 ? _this$equipment$id : 0) ? '/equipments/update/' + this.equipment.id : '/equipments/store';
 
       var callback = function callback(result) {
         self.$alert('Данные успешно сохранены!');
-
-        if (!self._oldEquipment.id && result.id) {
-          location = '/equipments/edit/' + result.id;
-        } else {
-          self.copy(result, self._oldEquipment, true);
-          self.avatar = self.equipment.avatar = result.avatar;
-          self.dirty();
-        }
+        var obj = JSON.parse(result);
+        self.copy(obj, self.equipment);
+        self.copy(obj, self._oldEquipment);
+        self.check();
       };
 
       this.$emit('data-changed', 'equipment', this.equipment, this.token, url, 'post', callback);
@@ -2811,15 +2803,30 @@ __webpack_require__.r(__webpack_exports__);
       var url = '/equipments/reset';
       this.$emit('data-reset', 'equipment', (_this$equipment$id2 = this.equipment.id) !== null && _this$equipment$id2 !== void 0 ? _this$equipment$id2 : 0, this.token, url);
     },
-    onAvatarChanged: function onAvatarChanged(newAvatar) {
-      console.log('New avatar: ', newAvatar);
-      this.equipment.avatar = this.avatar = newAvatar;
-      console.log('Equipment: ', this.equipment);
-      console.log('Compare: ', this.compare(this._oldEquipment, this.equipment));
-      this.dirty();
-    },
     onDataChanged: function onDataChanged(ev) {
-      this.dirty(ev);
+      this.check();
+    },
+    onAvatarChanged: function onAvatarChanged(newAvatar) {
+      this.equipment.avatar = this.avatar = newAvatar;
+      this.check();
+    },
+    check: function check(ev) {
+      var btnSave = '#btnSave_' + this.id;
+      var btnReset = '#btnReset_' + this.id;
+
+      if (!this.dirty()) {
+        $(btnSave).removeClass('enabled').addClass('disabled');
+        $(btnSave).addClass('color-disabled');
+        $(btnReset).removeClass('enabled').addClass('disabled');
+        $(btnReset).addClass('color-disabled');
+      } else {
+        $(btnSave).removeClass('disabled').addClass('enabled');
+        $(btnSave).removeClass('color-disabled');
+        $(btnReset).removeClass('disabled').addClass('enabled');
+        $(btnReset).removeClass('color-disabled');
+      }
+
+      this.ratioShowHide();
     },
     ratioShowHide: function ratioShowHide() {
       if (this.isVoltageTransformer()) {
@@ -2834,38 +2841,22 @@ __webpack_require__.r(__webpack_exports__);
         this.equipment.ratio = 0;
       }
     },
-    isClean: function isClean() {
-      return !this._dirty;
-    },
     dirty: function dirty(ev) {
-      var elemId = '#btnSave_' + this.id;
-      console.log('Button: ', elemId);
-
-      if (this.compare(this._oldEquipment, this.equipment)) {
-        this._dirty = false;
-        $(elemId).removeClass('enabled').addClass('disabled');
-        $(elemId).addClass('color-disabled');
-      } else {
-        this._dirty = true;
-        $(elemId).removeClass('disabled').addClass('enabled');
-        $(elemId).removeClass('color-disabled');
-      }
-
-      this.ratioShowHide();
+      return !this.compare(this._oldEquipment, this.equipment);
     },
     clear: function clear() {
       var _this$equipment$avata;
 
       this.copy(this._oldEquipment, this.equipment, true);
-      this.dirty();
+      this.check();
       this.avatar = (_this$equipment$avata = this.equipment.avatar) !== null && _this$equipment$avata !== void 0 ? _this$equipment$avata : '';
     },
     compare: function compare(obj1, obj2) {
-      var _obj1$avatar, _obj2$avatar, _obj1$number, _obj2$number, _obj1$production_date, _obj2$production_date, _obj1$equipment_type, _obj2$equipment_type, _obj1$name, _obj2$name, _obj1$ratio, _obj2$ratio, _obj1$voltage_class, _obj2$voltage_class, _obj1$current_class, _obj2$current_class, _obj1$mark, _obj2$mark, _obj1$model, _obj2$model, _obj1$schema_label, _obj2$schema_label, _obj1$description, _obj2$description;
+      for (var prop in obj2) {
+        if (obj1[prop] === undefined || obj1[prop] != obj2[prop]) return false;
+      }
 
-      var result = ((_obj1$avatar = obj1.avatar) !== null && _obj1$avatar !== void 0 ? _obj1$avatar : '') == ((_obj2$avatar = obj2.avatar) !== null && _obj2$avatar !== void 0 ? _obj2$avatar : '') && ((_obj1$number = obj1.number) !== null && _obj1$number !== void 0 ? _obj1$number : 0) == ((_obj2$number = obj2.number) !== null && _obj2$number !== void 0 ? _obj2$number : 0) && ((_obj1$production_date = obj1.production_date) !== null && _obj1$production_date !== void 0 ? _obj1$production_date : 0) == ((_obj2$production_date = obj2.production_date) !== null && _obj2$production_date !== void 0 ? _obj2$production_date : 0) && ((_obj1$equipment_type = obj1.equipment_type) !== null && _obj1$equipment_type !== void 0 ? _obj1$equipment_type : 0) == ((_obj2$equipment_type = obj2.equipment_type) !== null && _obj2$equipment_type !== void 0 ? _obj2$equipment_type : 0) && ((_obj1$name = obj1.name) !== null && _obj1$name !== void 0 ? _obj1$name : '') == ((_obj2$name = obj2.name) !== null && _obj2$name !== void 0 ? _obj2$name : '') && ((_obj1$ratio = obj1.ratio) !== null && _obj1$ratio !== void 0 ? _obj1$ratio : 0) == ((_obj2$ratio = obj2.ratio) !== null && _obj2$ratio !== void 0 ? _obj2$ratio : 0) && ((_obj1$voltage_class = obj1.voltage_class) !== null && _obj1$voltage_class !== void 0 ? _obj1$voltage_class : 0) == ((_obj2$voltage_class = obj2.voltage_class) !== null && _obj2$voltage_class !== void 0 ? _obj2$voltage_class : 0) && ((_obj1$current_class = obj1.current_class) !== null && _obj1$current_class !== void 0 ? _obj1$current_class : 0) == ((_obj2$current_class = obj2.current_class) !== null && _obj2$current_class !== void 0 ? _obj2$current_class : 0) && ((_obj1$mark = obj1.mark) !== null && _obj1$mark !== void 0 ? _obj1$mark : '') == ((_obj2$mark = obj2.mark) !== null && _obj2$mark !== void 0 ? _obj2$mark : '') && ((_obj1$model = obj1.model) !== null && _obj1$model !== void 0 ? _obj1$model : '') == ((_obj2$model = obj2.model) !== null && _obj2$model !== void 0 ? _obj2$model : '') && ((_obj1$schema_label = obj1.schema_label) !== null && _obj1$schema_label !== void 0 ? _obj1$schema_label : '') == ((_obj2$schema_label = obj2.schema_label) !== null && _obj2$schema_label !== void 0 ? _obj2$schema_label : '') && ((_obj1$description = obj1.description) !== null && _obj1$description !== void 0 ? _obj1$description : '') == ((_obj2$description = obj2.description) !== null && _obj2$description !== void 0 ? _obj2$description : '');
-      console.log(obj1.equipment_type, obj2.equipment_type);
-      return result;
+      return true;
     },
     copy: function copy(obj_from, obj_to) {
       var reset = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
@@ -2884,7 +2875,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      _dirty: false,
       _oldEquipment: {},
       avatar: this.equipment.avatar
     };
@@ -3561,14 +3551,6 @@ __webpack_require__.r(__webpack_exports__);
         self.copy(obj, self.dataObject);
         self.copy(obj, self._oldData);
         self.check();
-        console.log("New id: ", obj.id);
-        console.log("Old id: ", self._oldData.id);
-
-        if (obj.id) {
-          location = '/' + self.dataType + 's/edit/' + obj.id;
-        } else {
-          console.log('Что-то пошло не так!');
-        }
       };
 
       this.$emit('data-changed', this.dataType, this.dataObject, this.token, url, 'post', callback);
@@ -3616,7 +3598,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     compare: function compare(obj1, obj2) {
       for (var prop in obj2) {
-        console.log(prop, obj1[prop], obj2[prop]);
         if (obj1[prop] === undefined || obj1[prop] != obj2[prop]) return false;
       }
 
@@ -21420,7 +21401,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.avatar[data-v-64305eaa] {\n    height: 2.5rem;\n    width: 2.5rem;\n}\n.img-avatar[data-v-64305eaa] {\n    width: auto;\n    height: 2.5rem;\n    -o-object-fit: contain;\n       object-fit: contain;\n    border-radius: 0rem 0.75rem 0.75rem 0.75rem;\n    border: 1px solid #ced4da;\n    overflow: hidden;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.avatar[data-v-64305eaa] {\n    height: 2.5rem;\n    width: 2.5rem;\n}\n.img-avatar[data-v-64305eaa] {\n    width: auto;\n    height: 2.5rem;\n    -o-object-fit: fill;\n       object-fit: fill;\n    border-radius: 0rem 0.75rem 0.75rem 0.75rem;\n    border: 1px solid #ced4da;\n    overflow: hidden;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -52904,6 +52885,7 @@ var render = function () {
                 "model-id": this.id,
                 token: this.token,
                 "model-type": "equipment",
+                "confirm-message": this.captions.avatarConfirmMessage,
                 id: "changeAvatar",
               },
               on: { "value-changed": _vm.onAvatarChanged },
@@ -53511,7 +53493,8 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("input", {
-        staticClass: "form-control col-3 d-inline-block float-right",
+        staticClass:
+          "form-control col-3 disabled d-inline-block float-right color-disabled",
         attrs: {
           id: "btnReset_" + this.id,
           type: "button",

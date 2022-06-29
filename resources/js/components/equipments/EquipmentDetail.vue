@@ -7,6 +7,7 @@
             <div class="form-group row">
                 <div class="col-12 text-center">
                     <avatar-change v-model="avatar" :model-id="this.id" :token="this.token" model-type="equipment"
+                                   :confirm-message="this.captions.avatarConfirmMessage"
                                    id="changeAvatar" @value-changed="onAvatarChanged">
                     </avatar-change>
                 </div>
@@ -109,7 +110,7 @@
                           v-model.trim.lazy="equipment.description"
                           @input="onDataChanged"></textarea>
             </div>
-            <input class="form-control col-3 d-inline-block float-right" v-bind:id="'btnReset_' + this.id" type="button"
+            <input class="form-control col-3 disabled d-inline-block float-right color-disabled" v-bind:id="'btnReset_' + this.id" type="button"
                    @click="onReset"
                    :value="this.captions.btnReset">
             <input class="form-control col-3 disabled d-inline-block float-right color-disabled"
@@ -136,27 +137,19 @@ export default {
     created() {
         this._oldEquipment = this.equipment.constructor();
         this.copy(this.equipment, this._oldEquipment);
-        console.log('Created, this.equipment => ', this.equipment);
-        console.log('Created, this.oldEquipment => ', this._oldEquipment);
-        console.log('Created, this.currentTransformer => ', this.currentTransformer);
-    },
-    mounted() {
-        this.ratioShowHide();
+        this.check();
     },
     methods: {
         onSave(ev) {
-            if (this.isClean()) return;
+            if (!this.dirty()) return;
             let self = this;
             let url = (this.equipment.id ?? 0) ? '/equipments/update/' + this.equipment.id : '/equipments/store';
             let callback = function (result) {
                 self.$alert('Данные успешно сохранены!');
-                if (!self._oldEquipment.id && result.id) {
-                    location = '/equipments/edit/' + result.id;
-                } else {
-                    self.copy(result, self._oldEquipment, true);
-                    self.avatar = self.equipment.avatar = result.avatar;
-                    self.dirty();
-                }
+                let obj = JSON.parse(result);
+                self.copy(obj, self.equipment);
+                self.copy(obj, self._oldEquipment);
+                self.check();
             }
             this.$emit('data-changed', 'equipment', this.equipment, this.token, url, 'post', callback);
         },
@@ -165,15 +158,28 @@ export default {
             let url = '/equipments/reset';
             this.$emit('data-reset', 'equipment', this.equipment.id ?? 0, this.token, url);
         },
-        onAvatarChanged(newAvatar) {
-            console.log('New avatar: ', newAvatar);
-            this.equipment.avatar = this.avatar = newAvatar;
-            console.log('Equipment: ', this.equipment);
-            console.log('Compare: ', this.compare(this._oldEquipment, this.equipment));
-            this.dirty();
-        },
         onDataChanged(ev) {
-            this.dirty(ev);
+            this.check();
+        },
+        onAvatarChanged(newAvatar) {
+            this.equipment.avatar = this.avatar = newAvatar;
+            this.check();
+        },
+        check(ev) {
+            let btnSave = '#btnSave_' + this.id;
+            let btnReset = '#btnReset_' + this.id;
+            if (!this.dirty()) {
+                $(btnSave).removeClass('enabled').addClass('disabled');
+                $(btnSave).addClass('color-disabled');
+                $(btnReset).removeClass('enabled').addClass('disabled');
+                $(btnReset).addClass('color-disabled');
+            } else {
+                $(btnSave).removeClass('disabled').addClass('enabled');
+                $(btnSave).removeClass('color-disabled');
+                $(btnReset).removeClass('disabled').addClass('enabled');
+                $(btnReset).removeClass('color-disabled');
+            }
+            this.ratioShowHide();
         },
         ratioShowHide() {
             if (this.isVoltageTransformer()) {
@@ -188,43 +194,19 @@ export default {
                 this.equipment.ratio = 0;
             }
         },
-        isClean() {
-            return !this._dirty;
-        },
         dirty(ev) {
-            let elemId = '#btnSave_' + this.id;
-            console.log('Button: ', elemId);
-            if (this.compare(this._oldEquipment, this.equipment)) {
-                this._dirty = false;
-                $(elemId).removeClass('enabled').addClass('disabled');
-                $(elemId).addClass('color-disabled');
-            } else {
-                this._dirty = true;
-                $(elemId).removeClass('disabled').addClass('enabled');
-                $(elemId).removeClass('color-disabled');
-            }
-            this.ratioShowHide();
+            return !this.compare(this._oldEquipment, this.equipment);
         },
         clear() {
             this.copy(this._oldEquipment, this.equipment, true);
-            this.dirty();
+            this.check();
             this.avatar = this.equipment.avatar ?? '';
         },
         compare(obj1, obj2) {
-            let result = (obj1.avatar ?? '') == (obj2.avatar ?? '') &&
-                (obj1.number ?? 0) == (obj2.number ?? 0) &&
-                (obj1.production_date ?? 0) == (obj2.production_date ?? 0) &&
-                (obj1.equipment_type ?? 0) == (obj2.equipment_type ?? 0) &&
-                (obj1.name ?? '') == (obj2.name ?? '') &&
-                (obj1.ratio ?? 0) == (obj2.ratio ?? 0) &&
-                (obj1.voltage_class ?? 0) == (obj2.voltage_class ?? 0) &&
-                (obj1.current_class ?? 0) == (obj2.current_class ?? 0) &&
-                (obj1.mark ?? '') == (obj2.mark ?? '') &&
-                (obj1.model ?? '') == (obj2.model ?? '') &&
-                (obj1.schema_label ?? '') == (obj2.schema_label ?? '') &&
-                (obj1.description ?? '') == (obj2.description ?? '');
-            console.log(obj1.equipment_type, obj2.equipment_type);
-            return result;
+            for (let prop in obj2) {
+                if (obj1[prop] === undefined || obj1[prop] != obj2[prop]) return false;
+            }
+            return true;
         },
         copy(obj_from, obj_to, reset = false) {
             for (let property in obj_from) {
@@ -241,7 +223,6 @@ export default {
     },
     data() {
         return {
-            _dirty: false,
             _oldEquipment: {},
             avatar: this.equipment.avatar,
         }

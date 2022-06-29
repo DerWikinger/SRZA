@@ -35,7 +35,7 @@ export default {
 .img-avatar {
     width: auto;
     height: 2.5rem;
-    object-fit: contain;
+    object-fit: fill;
     border-radius: 0rem 0.75rem 0.75rem 0.75rem;
     border: 1px solid #ced4da;
     overflow: hidden;

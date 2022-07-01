@@ -21401,7 +21401,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.avatar[data-v-64305eaa] {\n    height: 2.5rem;\n    width: 2.5rem;\n}\n.img-avatar[data-v-64305eaa] {\n    width: auto;\n    height: 2.5rem;\n    -o-object-fit: fill;\n       object-fit: fill;\n    border-radius: 0rem 0.75rem 0.75rem 0.75rem;\n    border: 1px solid #ced4da;\n    overflow: hidden;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.avatar[data-v-64305eaa] {\n    height: 2.5rem;\n    width: 2.5rem;\n}\n.img-avatar[data-v-64305eaa] {\n    width: 2.5rem;\n    height: 2.5rem;\n    -o-object-fit: fill;\n       object-fit: fill;\n    border-radius: 0rem 0.75rem 0.75rem 0.75rem;\n    border: 1px solid #ced4da;\n    overflow: hidden;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

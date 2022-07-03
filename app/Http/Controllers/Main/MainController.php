@@ -9,11 +9,33 @@ use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use mysql_xdevapi\Exception;
 use phpDocumentor\Reflection\DocBlock\Tags\Property;
 
 class MainController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function index(int $id = 0)
+    {
+        if($id) return $this->show($id);
+        $url = URL::current();
+        $path_array = preg_split('/\//', parse_url($url, PHP_URL_PATH));
+        $model = $path_array[1];
+        $type = $this->getClassName($model);
+        $collection = $type::all();
+
+        return view('main.' . $path_array[1] . '.list')->with([
+            $model => $collection,
+            'back' => '/',
+        ]);
+    }
+
     public function avatarChange(Request $request)
     {
         $model = $request->model;
@@ -141,6 +163,12 @@ class MainController extends Controller
 
     public function getClassName($model)
     {
+        if($model === '') throw new \Exception('Invalid class name');
+        if($model[strlen($model) - 1] === 's') {
+            $model = substr($model, 0, strlen($model) - 1);
+        } else if(substr($model, strlen($model) - 2) === 'es') {
+            $model = substr($model, 0, strlen($model) - 2);
+        }
         $letter = $model[0];
         $letter = strtoupper($letter);
         $model = $letter . substr($model, 1);

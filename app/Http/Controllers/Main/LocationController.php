@@ -10,24 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use mysql_xdevapi\Exception;
 
 class LocationController extends MainController
 {
     protected $location;
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('main.locations.list')->with([
-            'locations' => Location::all(),
-            'back' => '/',
-        ]);
-    }
 
     /**
      * Show the form for creating a new resource.

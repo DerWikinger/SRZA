@@ -12,17 +12,17 @@ class CellController extends MainController
     /**
      * Display a listing of the resource.
      *
-     * @param int $foreign_id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function index(int $foreign_id)
+    public function index(int $id = 0)
     {
-        $unit = Unit::find($foreign_id);
+        $unit = Unit::find($id);
         dump($unit);
         if(!$unit) abort(500);
         return view('main.cells.list')->with([
             'cells' => $unit->cells,
-            'foreign_id' => $foreign_id,
+            'foreign_id' => $id,
             'back' => '/locations/' . $unit->location->id,
         ]);
     }

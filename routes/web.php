@@ -17,19 +17,23 @@ use Pusher\Pusher;
 
 Route::redirect('/', '/home');
 
-//Route::get('/', function () {
-//    return view('welcome');
-//})->middleware('guest');
+//Route::any('{model}/{id2?}/{method?}', function ($url) {
+//    $uri = parse_url(\Illuminate\Support\Facades\URL::current(), PHP_URL_PATH );
+////    foreach (parse_url(\Illuminate\Support\Facades\URL::current(), PHP_URL_PATH ) as $s) {
+////        $uri = $uri . ' : ' . $s;
+////    }
+//   return 'Hello ' . $uri;
+//});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('locations')->name('locations')->middleware('auth')->group(function () {
-    Route::get('/', 'App\Http\Controllers\Main\LocationController@index')->name('.list');
+    Route::get('/{id?}', 'App\Http\Controllers\Main\LocationController@index')->name('.list');
     Route::get('/create', 'App\Http\Controllers\Main\LocationController@create')->name('.create');
-    Route::post('/delete/{id}', 'App\Http\Controllers\Main\LocationController@destroy')->name('.delete');
-    Route::post('/update/{id}', 'App\Http\Controllers\Main\LocationController@update')->name('.update');
-    Route::get('/edit/{id}', 'App\Http\Controllers\Main\LocationController@edit')->name('.edit');
-    Route::get('/{id}', 'App\Http\Controllers\Main\LocationController@show')->name('.show');
+    Route::post('/{id}/delete', 'App\Http\Controllers\Main\LocationController@destroy')->name('.delete');
+    Route::post('/{id}/update', 'App\Http\Controllers\Main\LocationController@update')->name('.update');
+    Route::get('/{id}/edit', 'App\Http\Controllers\Main\LocationController@edit')->name('.edit');
+//    Route::get('/{id}', 'App\Http\Controllers\Main\LocationController@show')->name('.show');
     Route::post('/store', 'App\Http\Controllers\Main\LocationController@store')->name('.store');
     Route::post('/reset', 'App\Http\Controllers\Main\LocationController@reset')->name('.reset');
     Route::post('/avatar-change', 'App\Http\Controllers\Main\LocationController@avatarChange')->name('.avatar-change');

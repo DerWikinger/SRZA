@@ -12,16 +12,16 @@ class UnitController extends MainController
     /**
      * Display a listing of the resource.
      *
-     * @param int $foreign_id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function index(int $foreign_id)
+    public function index(int $id = 0)
     {
-        $location = Location::find($foreign_id);
+        $location = Location::find($id);
         if(!$location) abort(500);
         return view('main.units.list')->with([
             'units' => $location->units,
-            'foreign_id' => $foreign_id,
+            'foreign_id' => $id,
             'back' => '/locations',
         ]);
     }

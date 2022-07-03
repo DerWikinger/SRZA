@@ -18,16 +18,16 @@ class EquipmentController extends MainController
     /**
      * Display a listing of the resource.
      *
-     * @param int $foreign_id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function index(int $foreign_id)
+    public function index(int $id = 0)
     {
-        $cell = Cell::find($foreign_id);
+        $cell = Cell::find($id);
         if(!$cell) abort(500);
         return view('main.equipments.list')->with([
             'equipments' => $cell->equipments,
-            'foreign_id' => $foreign_id,
+            'foreign_id' => $id,
             'back' => '/units/' . $cell->unit->id,
         ]);
     }

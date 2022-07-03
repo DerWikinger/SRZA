@@ -76,7 +76,9 @@ export default {
                     console.log('Saved file: ', filename);
                 },
                 error: function (response) {
-                    console.log('Failure', response);
+                    console.log('Failure', response.statusText);
+                    self.$alert(response.statusText, 'Failure');
+                    $('input[name=avatar_image]')[0].value = '';
                 }
             });
         },

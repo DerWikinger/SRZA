@@ -3165,7 +3165,9 @@ __webpack_require__.r(__webpack_exports__);
           console.log('Saved file: ', filename);
         },
         error: function error(response) {
-          console.log('Failure', response);
+          console.log('Failure', response.statusText);
+          self.$alert(response.statusText, 'Failure');
+          $('input[name=avatar_image]')[0].value = '';
         }
       });
     }

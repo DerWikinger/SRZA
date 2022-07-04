@@ -15,22 +15,22 @@ use Illuminate\View\View;
 
 class EquipmentController extends MainController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function index(int $id = 0)
-    {
-        $cell = Cell::find($id);
-        if(!$cell) abort(500);
-        return view('main.equipments.list')->with([
-            'equipments' => $cell->equipments,
-            'foreign_id' => $id,
-            'back' => '/units/' . $cell->unit->id,
-        ]);
-    }
+//    /**
+//     * Display a listing of the resource.
+//     *
+//     * @param int $id
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function index(int $id = 0)
+//    {
+//        $cell = Cell::find($id);
+//        if(!$cell) abort(500);
+//        return view('main.equipments.list')->with([
+//            'equipments' => $cell->equipments,
+//            'foreign_id' => $id,
+//            'back' => '/units/' . $cell->unit->id,
+//        ]);
+//    }
 
     /**
      * Show the form for creating a new resource.

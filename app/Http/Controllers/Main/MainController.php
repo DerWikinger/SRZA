@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
+use App\Models\Location;
+use App\Models\Site;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\File;
@@ -18,21 +20,47 @@ class MainController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $path_array = preg_split('/\//', parse_url(URL::current(), PHP_URL_PATH));
+        $url = $path_array[1];
+        $type = $this->getClassName($url);
+        $collection = $type::all();
+        $site = Site::all()->where('name', $url)->first();
+
+        return view('main.' . $path_array[1] . '.list')->with([
+            $url => $collection,
+            'back' => '/' . ($site->parent ? $site->parent->name : ''),
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function index(int $id = 0)
+    public function show(int $id)
     {
-        if($id) return $this->show($id);
-        $url = URL::current();
-        $path_array = preg_split('/\//', parse_url($url, PHP_URL_PATH));
-        $model = $path_array[1];
-        $type = $this->getClassName($model);
-        $collection = $type::all();
-
-        return view('main.' . $path_array[1] . '.list')->with([
-            $model => $collection,
-            'back' => '/',
+        $path_array = preg_split('/\//', parse_url(URL::current(), PHP_URL_PATH));
+        $url = $path_array[1];
+        $type = $this->getClassName($url);
+        $model = $type::find($id);
+        if (!$model) abort(500);
+        $site = Site::all()->where('name', $url)->first();
+        $type = ($site->parent ? $this->getClassName($site->parent->name) : '');
+        $parent = null;
+        if($type) {
+            $key = $model[$this->getSingular($site->parent->name) . '_' . 'id'];
+            $parent = $type::find($key);
+        }
+        $captions = $this->getCaptions($model);
+        return view('main.'. $url . '.show')->with([
+            $this->getSingular($url) => $model,
+            'captions' => $captions,
+            'back' => '/' . ($site->parent ? $site->parent->name : $url) . ($parent ? '/' . $parent->id : ''),
         ]);
     }
 
@@ -163,16 +191,22 @@ class MainController extends Controller
 
     public function getClassName($model)
     {
+        $model = $this->getSingular($model);
+        $letter = $model[0];
+        $letter = strtoupper($letter);
+        $model = $letter . substr($model, 1);
+        return 'App\\Models\\' . $model;
+    }
+
+    public function getSingular($model)
+    {
         if($model === '') throw new \Exception('Invalid class name');
         if($model[strlen($model) - 1] === 's') {
             $model = substr($model, 0, strlen($model) - 1);
         } else if(substr($model, strlen($model) - 2) === 'es') {
             $model = substr($model, 0, strlen($model) - 2);
         }
-        $letter = $model[0];
-        $letter = strtoupper($letter);
-        $model = $letter . substr($model, 1);
-        return 'App\\Models\\' . $model;
+        return $model;
     }
 
     public function getCaptions($model)

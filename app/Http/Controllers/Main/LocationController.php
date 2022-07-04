@@ -48,24 +48,6 @@ class LocationController extends MainController
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $location = Location::find($id); // new Location([ 'name' => '' ]);
-        if (!$location) abort(500);
-        $captions = $this->getCaptions($location);
-        return view('main.locations.show')->with([
-            'location' => $location,
-            'captions' => $captions,
-            'back' => '/locations',
-        ]);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param int $id
@@ -114,39 +96,4 @@ class LocationController extends MainController
             return response('Object has been deleted', 200);
         }
     }
-
-//    protected function modelSave($data, $location)
-//    {
-//        if ($data) {
-//            $location->name = $data->name ?? '';
-//            $location->avatar = $data->avatar ?? '';
-//            $location->description = $data->description ?? '';
-//        } else {
-//            abort(500);
-//        }
-//
-//        try {
-//            $srcPath = '';
-//            $arr = [];
-//            preg_match('/[\.].{3,4}$/', $location->avatar ?? '', $arr);
-//            $extenssion = (count($arr) && $arr[0] ? $arr[0] : '');
-//            if ($extenssion == '.tmp') {
-//                if (!$location->id) {
-//                    $srcPath = '/public/images/avatars/location/0';
-//                    if (!$location->save()) abort(501);
-//                } else {
-//                    $srcPath = '/public/images/avatars/location/' . $location->id;
-//                }
-//            }
-//            if ($srcPath) {
-//                if (!($location->avatar = $this->updateAvatar($location->avatar, 'location', $location->id, $srcPath))) {
-//                    abort(502);
-//                }
-//            }
-//            $location->save();
-//            return $location;
-//        } catch (Exception $exception) {
-//            abort(503);
-//        }
-//    }
 }

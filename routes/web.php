@@ -28,12 +28,12 @@ Route::redirect('/', '/home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('locations')->name('locations')->middleware('auth')->group(function () {
-    Route::get('/{id?}', 'App\Http\Controllers\Main\LocationController@index')->name('.list');
+    Route::get('/', 'App\Http\Controllers\Main\LocationController@index')->name('.list');
     Route::get('/create', 'App\Http\Controllers\Main\LocationController@create')->name('.create');
     Route::post('/{id}/delete', 'App\Http\Controllers\Main\LocationController@destroy')->name('.delete');
     Route::post('/{id}/update', 'App\Http\Controllers\Main\LocationController@update')->name('.update');
     Route::get('/{id}/edit', 'App\Http\Controllers\Main\LocationController@edit')->name('.edit');
-//    Route::get('/{id}', 'App\Http\Controllers\Main\LocationController@show')->name('.show');
+    Route::get('/{id}', 'App\Http\Controllers\Main\LocationController@show')->name('.show');
     Route::post('/store', 'App\Http\Controllers\Main\LocationController@store')->name('.store');
     Route::post('/reset', 'App\Http\Controllers\Main\LocationController@reset')->name('.reset');
     Route::post('/avatar-change', 'App\Http\Controllers\Main\LocationController@avatarChange')->name('.avatar-change');

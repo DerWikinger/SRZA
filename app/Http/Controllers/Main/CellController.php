@@ -9,23 +9,23 @@ use Illuminate\Support\Facades\Storage;
 
 class CellController extends MainController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function index(int $id = 0)
-    {
-        $unit = Unit::find($id);
-        dump($unit);
-        if(!$unit) abort(500);
-        return view('main.cells.list')->with([
-            'cells' => $unit->cells,
-            'foreign_id' => $id,
-            'back' => '/locations/' . $unit->location->id,
-        ]);
-    }
+//    /**
+//     * Display a listing of the resource.
+//     *
+//     * @param int $id
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function index(int $id = 0)
+//    {
+//        $unit = Unit::find($id);
+//        dump($unit);
+//        if(!$unit) abort(500);
+//        return view('main.cells.list')->with([
+//            'cells' => $unit->cells,
+//            'foreign_id' => $id,
+//            'back' => '/locations/' . $unit->location->id,
+//        ]);
+//    }
 
     /**
      * Show the form for creating a new resource.
@@ -71,23 +71,23 @@ class CellController extends MainController
         return response($this->modelSave($data, $cell), 200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(int  $id)
-    {
-        $cell = Cell::find($id);
-        if (!$cell) abort(500);
-        $captions = $this->getCaptions($cell);
-        return view('main.cells.show')->with([
-            'cell' => $cell,
-            'captions' => $captions,
-            'back' => '/units/' . $cell->unit->id,
-        ]);
-    }
+//    /**
+//     * Display the specified resource.
+//     *
+//     * @param  int  $id
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function show(int  $id)
+//    {
+//        $cell = Cell::find($id);
+//        if (!$cell) abort(500);
+//        $captions = $this->getCaptions($cell);
+//        return view('main.cells.show')->with([
+//            'cell' => $cell,
+//            'captions' => $captions,
+//            'back' => '/units/' . $cell->unit->id,
+//        ]);
+//    }
 
     /**
      * Show the form for editing the specified resource.

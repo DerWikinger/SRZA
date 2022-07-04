@@ -9,22 +9,22 @@ use Illuminate\Support\Facades\Storage;
 
 class UnitController extends MainController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function index(int $id = 0)
-    {
-        $location = Location::find($id);
-        if(!$location) abort(500);
-        return view('main.units.list')->with([
-            'units' => $location->units,
-            'foreign_id' => $id,
-            'back' => '/locations',
-        ]);
-    }
+//    /**
+//     * Display a listing of the resource.
+//     *
+//     * @param int $id
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function index(int $id = 0)
+//    {
+//        $location = Location::find($id);
+//        if(!$location) abort(500);
+//        return view('main.units.list')->with([
+//            'units' => $location->units,
+//            'foreign_id' => $id,
+//            'back' => '/locations',
+//        ]);
+//    }
 
     /**
      * Show the form for creating a new resource.
@@ -70,23 +70,23 @@ class UnitController extends MainController
         return response($this->modelSave($data, $unit), 200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(int $id)
-    {
-        $unit = Unit::find($id);
-        if (!$unit) abort(500);
-        $captions = $this->getCaptions($unit);
-        return view('main.units.show')->with([
-            'unit' => $unit,
-            'captions' => $captions,
-            'back' => '/locations/' . $unit->location->id,
-        ]);
-    }
+//    /**
+//     * Display the specified resource.
+//     *
+//     * @param int $id
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function show(int $id)
+//    {
+//        $unit = Unit::find($id);
+//        if (!$unit) abort(500);
+//        $captions = $this->getCaptions($unit);
+//        return view('main.units.show')->with([
+//            'unit' => $unit,
+//            'captions' => $captions,
+//            'back' => '/locations/' . $unit->location->id,
+//        ]);
+//    }
 
     /**
      * Show the form for editing the specified resource.

@@ -26,11 +26,11 @@ class MainController extends Controller
     {
         $path_array = preg_split('/\//', parse_url(URL::current(), PHP_URL_PATH));
         $url = $path_array[1];
-        $type = $this->getClassName($url);
+        $type = static::getClassName($url);
         $collection = $type::all();
         $site = Site::all()->where('name', $url)->first();
 
-        return view('main.' . $path_array[1] . '.list')->with([
+        return view('main.' . $url . '.list')->with([
             $url => $collection,
             'back' => '/' . ($site->parent ? $site->parent->name : ''),
         ]);
@@ -46,19 +46,22 @@ class MainController extends Controller
     {
         $path_array = preg_split('/\//', parse_url(URL::current(), PHP_URL_PATH));
         $url = $path_array[1];
-        $type = $this->getClassName($url);
+        $type = static::getClassName($url);
         $model = $type::find($id);
         if (!$model) abort(500);
         $site = Site::all()->where('name', $url)->first();
-        $type = ($site->parent ? $this->getClassName($site->parent->name) : '');
+        $type = ($site->parent ? static::getClassName($site->parent->name) : '');
         $parent = null;
         if($type) {
-            $key = $model[$this->getSingular($site->parent->name) . '_' . 'id'];
+            $key = $model[static::getSingular($site->parent->name) . '_' . 'id'];
             $parent = $type::find($key);
         }
+        $children = $site->child ? $site->child->name : '';
         $captions = $this->getCaptions($model);
-        return view('main.'. $url . '.show')->with([
-            $this->getSingular($url) => $model,
+        return view('main.show')->with([
+            'type' => static::getSingular($url),
+            'model' => $model,
+            'children' => $children,
             'captions' => $captions,
             'back' => '/' . ($site->parent ? $site->parent->name : $url) . ($parent ? '/' . $parent->id : ''),
         ]);
@@ -68,7 +71,7 @@ class MainController extends Controller
     {
         $model = $request->model;
         if (!$model) abort(500,'Model is not found!');
-        $className = $this->getClassName($model);
+        $className = static::getClassName($model);
         if (!$className) abort(500,'Class name is invalid!');
         $obj = null;
         if ($request->id > 0) {
@@ -122,7 +125,7 @@ class MainController extends Controller
     protected function updateAvatar($file, $model, $id, $sourcePath)
     {
         if (!$id) return '';
-        $className = $this->getClassName($model);
+        $className = static::getClassName($model);
         if (!$className) return '';
         $tempFile = $sourcePath . '/' . $file;
 
@@ -167,7 +170,7 @@ class MainController extends Controller
         if (!$model) abort(501);
         $id = $request->id ?? 0;
         if ($id) {
-            $className = $this->getClassName($model);
+            $className = static::getClassName($model);
             if (!$className) abort(502);
             $obj = null;
             try {
@@ -189,16 +192,16 @@ class MainController extends Controller
         }
     }
 
-    public function getClassName($model)
+    public static function getClassName($model)
     {
-        $model = $this->getSingular($model);
+        $model = static::getSingular($model);
         $letter = $model[0];
         $letter = strtoupper($letter);
         $model = $letter . substr($model, 1);
         return 'App\\Models\\' . $model;
     }
 
-    public function getSingular($model)
+    public static function getSingular($model)
     {
         if($model === '') throw new \Exception('Invalid class name');
         if($model[strlen($model) - 1] === 's') {
@@ -267,15 +270,4 @@ class MainController extends Controller
             abort($exception->getMessage(), 500);
         }
     }
-
-//    /**
-//     * Update the specified resource in storage.
-//     *
-//     * @param \Illuminate\Http\Request $request
-//     * @return \Illuminate\Http\Response
-//     */
-//    public function avatarChange(Request $request)
-//    {
-//        return $this->upload($request);
-//    }
 }

@@ -16,8 +16,8 @@ class Site extends Model
         return $this->belongsTo(Site::class, 'parent_id', 'id');
     }
 
-    public function children()
+    public function child()
     {
-        return $this->hasMany(Site::class, 'parent_id', 'id');
+        return $this->hasOne(Site::class, 'parent_id', 'id');
     }
 }

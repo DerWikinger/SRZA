@@ -27,23 +27,6 @@ Route::redirect('/', '/home');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::prefix('locations')->name('locations')->middleware('auth')->group(function () {
-    Route::get('/', 'App\Http\Controllers\Main\LocationController@index')->name('.list');
-    Route::get('/create', 'App\Http\Controllers\Main\LocationController@create')->name('.create');
-    Route::post('/{id}/delete', 'App\Http\Controllers\Main\LocationController@destroy')->name('.delete');
-    Route::post('/{id}/update', 'App\Http\Controllers\Main\LocationController@update')->name('.update');
-    Route::get('/{id}/edit', 'App\Http\Controllers\Main\LocationController@edit')->name('.edit');
-    Route::get('/{id}', 'App\Http\Controllers\Main\LocationController@show')->name('.show');
-    Route::post('/store', 'App\Http\Controllers\Main\LocationController@store')->name('.store');
-    Route::post('/reset', 'App\Http\Controllers\Main\LocationController@reset')->name('.reset');
-    Route::post('/avatar-change', 'App\Http\Controllers\Main\LocationController@avatarChange')->name('.avatar-change');
-    Route::post('/edit/avatar-change', 'App\Http\Controllers\Main\LocationController@avatarChange')->name('.edit.avatar-change');
-
-    Route::prefix('/{location_id}/units')->name('.units')->middleware('auth')->group(function () {
-        Route::get('/','App\Http\Controllers\Main\UnitController@index')->name('.list');
-    });
-});
-
 Route::prefix('dictionaries')->name('dictionaries')->middleware('auth')->group(function () {
     Route::get('/', 'App\Http\Controllers\Dictionaries\DictionaryController@index')->name('.all');
     Route::get('/{id}', 'App\Http\Controllers\Dictionaries\DictionaryController@list')->name('.list');
@@ -56,9 +39,22 @@ Route::prefix('dictionaries')->name('dictionaries')->middleware('auth')->group(f
     });
 });
 
-//Route::prefix('equipment-types')->name('equipment-types')->middleware('auth')->group(function() {
-//    Route::get('/', 'App\Http\Controllers\Dictionaries\EquipmentTypeController@index')->name('.list');
-//});
+Route::prefix('locations')->name('locations')->middleware('auth')->group(function () {
+    Route::get('/', 'App\Http\Controllers\Main\LocationController@index')->name('.list');
+    Route::get('/create', 'App\Http\Controllers\Main\LocationController@create')->name('.create');
+    Route::post('/{id}/delete', 'App\Http\Controllers\Main\LocationController@destroy')->name('.delete');
+    Route::post('/{id}/update', 'App\Http\Controllers\Main\LocationController@update')->name('.update');
+    Route::get('/{id}/edit', 'App\Http\Controllers\Main\LocationController@edit')->name('.edit');
+    Route::get('/{id}', 'App\Http\Controllers\Main\LocationController@show')->name('.show');
+    Route::post('/store', 'App\Http\Controllers\Main\LocationController@store')->name('.store');
+    Route::post('/reset', 'App\Http\Controllers\Main\LocationController@reset')->name('.reset');
+    Route::post('/avatar-change', 'App\Http\Controllers\Main\LocationController@avatarChange')->name('.avatar-change');
+    Route::post('/edit/avatar-change', 'App\Http\Controllers\Main\LocationController@avatarChange')->name('.edit.avatar-change');
+
+//    Route::prefix('/{location_id}/units')->name('.units')->middleware('auth')->group(function () {
+//        Route::get('/','App\Http\Controllers\Main\UnitController@index')->name('.list');
+//    });
+});
 
 Route::prefix('units')->name('units')->middleware('auth')->group(function () {
 //    Route::get('/', 'App\Http\Controllers\Main\UnitController@index')->name('.list');
@@ -71,10 +67,10 @@ Route::prefix('units')->name('units')->middleware('auth')->group(function () {
     Route::post('/reset', 'App\Http\Controllers\Main\UnitController@reset')->name('.reset');
     Route::post('/avatar-change', 'App\Http\Controllers\Main\UnitController@avatarChange')->name('.avatar-change');
     Route::post('/edit/avatar-change', 'App\Http\Controllers\Main\UnitController@avatarChange')->name('.edit.avatar-change');
-
-    Route::prefix('/{uint_id}/cells')->name('.cells')->middleware('auth')->group(function () {
-        Route::get('/','App\Http\Controllers\Main\CellController@index')->name('.list');
-    });
+//
+//    Route::prefix('/{uint_id}/cells')->name('.cells')->middleware('auth')->group(function () {
+//        Route::get('/','App\Http\Controllers\Main\CellController@index')->name('.list');
+//    });
 });
 
 Route::prefix('cells')->name('cells')->middleware('auth')->group(function () {
@@ -89,9 +85,9 @@ Route::prefix('cells')->name('cells')->middleware('auth')->group(function () {
     Route::post('/avatar-change', 'App\Http\Controllers\Main\CellController@avatarChange')->name('.avatar-change');
     Route::post('/edit/avatar-change', 'App\Http\Controllers\Main\CellController@avatarChange')->name('.edit.avatar-change');
 
-    Route::prefix('/{cell_id}/equipments')->name('.equipments')->middleware('auth')->group(function () {
-        Route::get('/','App\Http\Controllers\Main\EquipmentController@index')->name('.list');
-    });
+//    Route::prefix('/{cell_id}/equipments')->name('.equipments')->middleware('auth')->group(function () {
+//        Route::get('/','App\Http\Controllers\Main\EquipmentController@index')->name('.list');
+//    });
 });
 
 Route::prefix('equipments')->name('equipments')->middleware('auth')->group(function () {

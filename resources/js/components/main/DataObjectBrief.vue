@@ -4,7 +4,10 @@
             <avatar class="w-1/6 -mt-2" :model-id="this.dataObject.id + ''" :model-type="this.dataType"
                     :avatar="this.dataObject.avatar"></avatar>
             <div class="w-5/6">
-                <strong>{{ (this.dataObject.number ? this.dataObject.number + ' - ' : '' ) + this.dataObject.name }}</strong>
+                <strong v-if="this.dataType == 'equipment'">
+                    {{ this.dataObject.equipment_type }}&nbsp;:&nbsp;{{ this.dataObject.mark }}&nbsp;&laquo;{{ this.dataObject.schema_label }}&raquo;
+                </strong>
+                <strong v-else>{{ (this.dataObject.number ? this.dataObject.number + ' - ' : '' ) + this.dataObject.name }}</strong>
             </div>
         </div>
     </div>

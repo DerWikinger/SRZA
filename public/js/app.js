@@ -3436,6 +3436,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "DataObjectBrief",
@@ -54001,15 +54004,27 @@ var render = function () {
           }),
           _vm._v(" "),
           _c("div", { staticClass: "w-5/6" }, [
-            _c("strong", [
-              _vm._v(
-                _vm._s(
-                  (this.dataObject.number
-                    ? this.dataObject.number + " - "
-                    : "") + this.dataObject.name
-                )
-              ),
-            ]),
+            this.dataType == "equipment"
+              ? _c("strong", [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(this.dataObject.equipment_type) +
+                      " : " +
+                      _vm._s(this.dataObject.mark) +
+                      " «" +
+                      _vm._s(this.dataObject.schema_label) +
+                      "»\n            "
+                  ),
+                ])
+              : _c("strong", [
+                  _vm._v(
+                    _vm._s(
+                      (this.dataObject.number
+                        ? this.dataObject.number + " - "
+                        : "") + this.dataObject.name
+                    )
+                  ),
+                ]),
           ]),
         ],
         1

@@ -22,13 +22,13 @@
                            delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() ? 1 : 0 }}">
             <template v-slot:list-tittle>
                 <div class="flex">
-                    <caption-block value="{{__('caption.' . $url)}}" route="{{ $back }}"></caption-block>
+                    <caption-block value="{{__('caption.' . $collectionName)}}" route="{{ $back }}"></caption-block>
                 </div>
             </template>
             <template v-slot:list-footer>
                 @if($root)
                     <div class="flex">
-                        <add-button class="" route="{{ route($url . '.create') }}">
+                        <add-button class="" route="{{ route($collectionName . '.create') }}">
                             {{ __('caption.new-' . $type) }}
                         </add-button>
                     </div>
@@ -111,12 +111,11 @@
 
 @endsection
 <script>
-    import LocationsList from "../../../js/components/locations/LocationsList";
     import AddButton from "../../../js/components/global/AddButton";
     import DataObjectsList from "../../../js/components/main/DataObjectsList";
 
     export default {
-        components: {DataObjectsList, AddButton, LocationsList},
+        components: {DataObjectsList, AddButton},
         methods: {}
     }
 </script>

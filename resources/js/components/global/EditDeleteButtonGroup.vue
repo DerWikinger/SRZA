@@ -43,7 +43,7 @@ export default {
         },
         onEdit(key) {
             // console.log("Key: ", key);
-            window.location = this.baseRoute + '/edit/' + key;
+            window.location = this.baseRoute + '/' + key + '/edit' ;
         },
         onDelete(key) {
             let document = this;
@@ -54,7 +54,7 @@ export default {
                     // fd.append('id', this.location.id);
                     fd.append('_token', this.token);
                     $.ajax({
-                        url: self.baseRoute + '/delete/' + key,
+                        url: self.baseRoute + '/' + key + '/delete' ,
                         data: fd,
                         type: 'POST',
                         processData: false,

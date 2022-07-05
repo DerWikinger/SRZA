@@ -61,7 +61,7 @@ export default {
         onSave(ev) {
             if (!this.dirty()) return;
             let self = this;
-            let url = (this.dataObject.id ?? 0) ? '/' + this.dataType + 's/update/' + this.dataObject.id : '/' + this.dataType + 's/store';
+            let url = (this.dataObject.id ?? 0) ? '/' + this.dataType + 's/' + this.dataObject.id + '/update': '/' + this.dataType + 's/store';
             let callback = function (result) {
                 self.$alert('Данные успешно сохранены!');
                 let obj = JSON.parse(result);

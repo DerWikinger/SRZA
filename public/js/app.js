@@ -3303,7 +3303,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     onEdit: function onEdit(key) {
       // console.log("Key: ", key);
-      window.location = this.baseRoute + '/edit/' + key;
+      window.location = this.baseRoute + '/' + key + '/edit';
     },
     onDelete: function onDelete(key) {
       var _this = this;
@@ -3316,7 +3316,7 @@ __webpack_require__.r(__webpack_exports__);
 
           fd.append('_token', _this.token);
           $.ajax({
-            url: self.baseRoute + '/delete/' + key,
+            url: self.baseRoute + '/' + key + '/delete',
             data: fd,
             type: 'POST',
             processData: false,
@@ -3550,7 +3550,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (!this.dirty()) return;
       var self = this;
-      var url = ((_this$dataObject$id = this.dataObject.id) !== null && _this$dataObject$id !== void 0 ? _this$dataObject$id : 0) ? '/' + this.dataType + 's/update/' + this.dataObject.id : '/' + this.dataType + 's/store';
+      var url = ((_this$dataObject$id = this.dataObject.id) !== null && _this$dataObject$id !== void 0 ? _this$dataObject$id : 0) ? '/' + this.dataType + 's/' + this.dataObject.id + '/update' : '/' + this.dataType + 's/store';
 
       var callback = function callback(result) {
         self.$alert('Данные успешно сохранены!');
@@ -3683,8 +3683,8 @@ __webpack_require__.r(__webpack_exports__);
       type: String
     },
     deletePermission: {
-      type: Number,
-      "default": 0
+      type: String,
+      "default": '0'
     }
   }
 });
@@ -54307,7 +54307,7 @@ var render = function () {
                     id: dataObject.id,
                     token: _vm.token,
                     "base-route": "/" + _vm.dataType + "s",
-                    "delete-permission": _vm.deletePermission,
+                    "delete-permission": +_vm.deletePermission,
                   },
                 }),
               ],

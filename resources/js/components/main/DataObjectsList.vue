@@ -8,7 +8,7 @@
                     :id="dataObject.id"
                     :token="token"
                     :base-route="'/' + dataType + 's'"
-                    :delete-permission="deletePermission">
+                    :delete-permission="+deletePermission">
                 </edit-delete-button-group>
             </div>
 
@@ -28,7 +28,7 @@ export default {
         dataObjects: {type: Array},
         dataType: {type: String},
         token: {type: String},
-        deletePermission: {type: Number, default: 0},
+        deletePermission: {type: String, default: '0'},
     },
 }
 </script>

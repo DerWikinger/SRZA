@@ -24,15 +24,14 @@ class MainController extends Controller
      */
     public function index()
     {
-        $path_array = preg_split('/\//', parse_url(URL::current(), PHP_URL_PATH));
-        $url = $path_array[1];
-        $type = static::getClassName($url);
+        $collectionName = $this->getModelCollectionName();
+        $type = static::getClassName($collectionName);
         $collection = $type::all();
-        $site = Site::all()->where('name', $url)->first();
+        $site = Site::all()->where('name', $collectionName)->first();
 
         return view('main.list')->with([
-            'url' => $url,
-            'type' => static::getSingular($url),
+            'collectionName' => $collectionName,
+            'type' => static::getSingular($collectionName),
             'data' => $collection,
             'back' => '/' . ($site->parent ? $site->parent->name : ''),
             'root' => !$site->parent
@@ -47,12 +46,11 @@ class MainController extends Controller
      */
     public function show(int $id)
     {
-        $path_array = preg_split('/\//', parse_url(URL::current(), PHP_URL_PATH));
-        $url = $path_array[1];
-        $type = static::getClassName($url);
+        $collectionName = $this->getModelCollectionName();
+        $type = static::getClassName($collectionName);
         $model = $type::find($id);
         if (!$model) abort(500);
-        $site = Site::all()->where('name', $url)->first();
+        $site = Site::all()->where('name', $collectionName)->first();
         $type = ($site->parent ? static::getClassName($site->parent->name) : '');
         $parent = null;
         if($type) {
@@ -62,12 +60,103 @@ class MainController extends Controller
         $children = $site->child ? $site->child->name : '';
         $captions = $this->getCaptions($model);
         return view('main.show')->with([
-            'type' => static::getSingular($url),
+            'type' => static::getSingular($collectionName),
             'model' => $model,
             'children' => $children,
             'captions' => $captions,
-            'back' => '/' . ($site->parent ? $site->parent->name : $url) . ($parent ? '/' . $parent->id : ''),
+            'back' => '/' . ($site->parent ? $site->parent->name : $collectionName) . ($parent ? '/' . $parent->id : ''),
         ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $collectionName = $this->getModelCollectionName();
+        $type = static::getClassName($collectionName);
+        $model = $type::make(['name' => '', 'avatar' => '', 'description' => '']); // new Location([ 'name' => '' ]);
+        $captions = $this->getCaptions($model);
+        return view('main.create')->with([
+            'type' => static::getSingular($collectionName),
+            'model' => $model,
+            'captions' => $captions,
+            'back' => '/' . $collectionName,
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $collectionName = $this->getModelCollectionName();
+        $type = static::getClassName($collectionName);
+        $model = $type::make();
+        $data = json_decode($request->data);
+
+        return response($this->modelSave($data, $model), 200);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $collectionName = $this->getModelCollectionName();
+        $type = static::getClassName($collectionName);
+        $model = $type::find($id);
+        if (!$model) abort(500);
+        $captions = $this->getCaptions($model);
+        return view('main.create')->with([
+            'type' => static::getSingular($collectionName),
+            'model' => $model,
+            'captions' => $captions,
+            'back' => '/' . $collectionName,
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $collectionName = $this->getModelCollectionName();
+        $type = static::getClassName($collectionName);
+        $model = $type::find($id);
+        $data = json_decode($request->data);
+
+        $result = $this->modelSave($data, $model);
+        return response($result, 200);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $collectionName = $this->getModelCollectionName();
+        $type = static::getClassName($collectionName);
+        if ($type::destroy($id)) {
+            $path = '/public/images/avatars/'. static::getSingular($collectionName) .'/' . $id;
+            Storage::deleteDirectory($path);
+            return response('Object has been deleted', 200);
+        }
     }
 
     public function avatarChange(Request $request)
@@ -193,6 +282,11 @@ class MainController extends Controller
             if ($pattern && !str_contains($f, $pattern)) continue;
             Storage::delete($f);
         }
+    }
+
+    public function getModelCollectionName()
+    {
+        return preg_split('/\//', parse_url(URL::current(), PHP_URL_PATH))[1];
     }
 
     public static function getClassName($model)

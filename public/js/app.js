@@ -3439,6 +3439,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "DataObjectBrief",
@@ -54018,11 +54020,13 @@ var render = function () {
                 ])
               : _c("strong", [
                   _vm._v(
-                    _vm._s(
-                      (this.dataObject.number
-                        ? this.dataObject.number + " - "
-                        : "") + this.dataObject.name
-                    )
+                    "\n                " +
+                      _vm._s(
+                        (this.dataObject.number
+                          ? this.dataObject.number + " - "
+                          : "") + this.dataObject.name
+                      ) +
+                      "\n            "
                   ),
                 ]),
           ]),

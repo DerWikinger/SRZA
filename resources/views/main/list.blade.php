@@ -1,30 +1,38 @@
-@extends('main.locations.locations')
+@extends('main.main')
 
 @section('title', __('caption.app-name'))
 
-@section('location-content')
+@section('main-content')
 
     <div class="container h-100">
-        <data-objects-list :data-objects="{{ collect($locations)->map( function (\App\Models\Location $location) {
+        <data-objects-list :data-objects="{{ collect($data)->map( function ($model) {
                     return [
-                        'id' => $location->id,
-                        'name' => $location->name,
-                        'avatar' => $location->avatar ?? '',
+                        'id' => $model->id,
+                        'name' => $model->name,
+                        'mark' => $model->mark ?? '',
+                        'model' => $model->model ?? '',
+                        'schema_label' => $model->schema_label ?? '',
+                        'equipment_type' => ($model->equipmentType ? $model->equipmentType->name : null),
+                        'number' => $model->number ?? 0,
+                        'avatar' => $model->avatar ?? '',
                         ];
-                } ) }}" token="{{ csrf_token() }}"
-                           data-type="location"
-                           :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() ? 1 : 0 }}">
+                } ) }}"
+                           token="{{ csrf_token() }}"
+                           data-type="{{ $type }}"
+                           delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() ? 1 : 0 }}">
             <template v-slot:list-tittle>
                 <div class="flex">
-                    <caption-block value="{{__('caption.locations')}}" route="{{ $back }}"></caption-block>
+                    <caption-block value="{{__('caption.' . $url)}}" route="{{ $back }}"></caption-block>
                 </div>
             </template>
             <template v-slot:list-footer>
-                <div class="flex">
-                    <add-button class="" route="{{ route('locations.create') }}">
-                        {{ __('caption.new-location') }}
-                    </add-button>
-                </div>
+                @if($root)
+                    <div class="flex">
+                        <add-button class="" route="{{ route($url . '.create') }}">
+                            {{ __('caption.new-' . $type) }}
+                        </add-button>
+                    </div>
+                @endif
             </template>
         </data-objects-list>
 

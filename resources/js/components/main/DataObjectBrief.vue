@@ -7,7 +7,9 @@
                 <strong v-if="this.dataType == 'equipment'">
                     {{ this.dataObject.equipment_type }}&nbsp;:&nbsp;{{ this.dataObject.mark }}&nbsp;&laquo;{{ this.dataObject.schema_label }}&raquo;
                 </strong>
-                <strong v-else>{{ (this.dataObject.number ? this.dataObject.number + ' - ' : '' ) + this.dataObject.name }}</strong>
+                <strong v-else>
+                    {{ (this.dataObject.number ? this.dataObject.number + ' - ' : '' ) + this.dataObject.name }}
+                </strong>
             </div>
         </div>
     </div>

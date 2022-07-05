@@ -30,9 +30,12 @@ class MainController extends Controller
         $collection = $type::all();
         $site = Site::all()->where('name', $url)->first();
 
-        return view('main.' . $url . '.list')->with([
-            $url => $collection,
+        return view('main.list')->with([
+            'url' => $url,
+            'type' => static::getSingular($url),
+            'data' => $collection,
             'back' => '/' . ($site->parent ? $site->parent->name : ''),
+            'root' => !$site->parent
         ]);
     }
 

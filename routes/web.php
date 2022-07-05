@@ -57,7 +57,7 @@ Route::prefix('locations')->name('locations')->middleware('auth')->group(functio
 });
 
 Route::prefix('units')->name('units')->middleware('auth')->group(function () {
-//    Route::get('/', 'App\Http\Controllers\Main\UnitController@index')->name('.list');
+    Route::get('/', 'App\Http\Controllers\Main\UnitController@index')->name('.list');
     Route::get('/create/{location_id}', 'App\Http\Controllers\Main\UnitController@create')->name('.create');
     Route::post('/delete/{unit_id}', 'App\Http\Controllers\Main\UnitController@destroy')->name('.delete');
     Route::post('/update/{unit_id}', 'App\Http\Controllers\Main\UnitController@update')->name('.update');
@@ -74,7 +74,7 @@ Route::prefix('units')->name('units')->middleware('auth')->group(function () {
 });
 
 Route::prefix('cells')->name('cells')->middleware('auth')->group(function () {
-//    Route::get('/', 'App\Http\Controllers\Main\UnitController@index')->name('.list');
+    Route::get('/', 'App\Http\Controllers\Main\UnitController@index')->name('.list');
     Route::get('/create/{unit_id}', 'App\Http\Controllers\Main\CellController@create')->name('.create');
     Route::post('/delete/{cell_id}', 'App\Http\Controllers\Main\CellController@destroy')->name('.delete');
     Route::post('/update/{cell_id}', 'App\Http\Controllers\Main\CellController@update')->name('.update');
@@ -91,7 +91,7 @@ Route::prefix('cells')->name('cells')->middleware('auth')->group(function () {
 });
 
 Route::prefix('equipments')->name('equipments')->middleware('auth')->group(function () {
-//    Route::get('/', 'App\Http\Controllers\Main\UnitController@index')->name('.list');
+    Route::get('/', 'App\Http\Controllers\Main\UnitController@index')->name('.list');
     Route::get('/create/{cell_id}', 'App\Http\Controllers\Main\EquipmentController@create')->name('.create');
     Route::post('/delete/{equipment_id}', 'App\Http\Controllers\Main\EquipmentController@destroy')->name('.delete');
     Route::post('/update/{equipment_id}', 'App\Http\Controllers\Main\EquipmentController@update')->name('.update');

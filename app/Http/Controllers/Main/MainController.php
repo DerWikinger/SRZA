@@ -5,15 +5,21 @@ namespace App\Http\Controllers\Main;
 use App\Http\Controllers\Controller;
 use App\Models\Location;
 use App\Models\Site;
+use App\Models\Unit;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 use mysql_xdevapi\Exception;
 use phpDocumentor\Reflection\DocBlock\Tags\Property;
+use phpDocumentor\Reflection\Types\Object_;
+use function Illuminate\Tests\Integration\Database\toArray;
 
 class MainController extends Controller
 {
@@ -71,19 +77,27 @@ class MainController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param int $foreign_id
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(int $foreign_id = 0)
     {
         $collectionName = $this->getModelCollectionName();
         $type = static::getClassName($collectionName);
-        $model = $type::make(['name' => '', 'avatar' => '', 'description' => '']); // new Location([ 'name' => '' ]);
+        $model = $type::make(['name' => '', 'avatar' => '', 'description' => '']);
+        $site = Site::all()->where('name', $collectionName)->first();
+        if($foreign_id) {
+            $type = ($site->parent ? static::getSingular($site->parent->name) : '');
+            $model[$type . '_id'] = $foreign_id;
+        }
+        $fields = collect(Schema::getColumnListing($collectionName));
         $captions = $this->getCaptions($model);
         return view('main.create')->with([
             'type' => static::getSingular($collectionName),
             'model' => $model,
+            'fields' => collect($fields),
             'captions' => $captions,
-            'back' => '/' . $collectionName,
+            'back' => '/' . ($foreign_id ? $site->parent->name .  '/' . $foreign_id : $collectionName),
         ]);
     }
 
@@ -109,18 +123,26 @@ class MainController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $collectionName = $this->getModelCollectionName();
         $type = static::getClassName($collectionName);
         $model = $type::find($id);
         if (!$model) abort(500);
         $captions = $this->getCaptions($model);
+        $fields = collect(Schema::getColumnListing($collectionName));
+        $site = Site::all()->where('name', $collectionName)->first();
+        $foreign_id = 0;
+        if($site->parent) {
+            $key = static::getSingular($site->parent->name) . '_id';
+            $foreign_id = $model[$key];
+        }
         return view('main.create')->with([
             'type' => static::getSingular($collectionName),
             'model' => $model,
+            'fields' => collect($fields),
             'captions' => $captions,
-            'back' => '/' . $collectionName,
+            'back' => '/' . ($foreign_id ? $site->parent->name .  '/' . $foreign_id : $collectionName),
         ]);
     }
 
@@ -131,7 +153,7 @@ class MainController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         $collectionName = $this->getModelCollectionName();
         $type = static::getClassName($collectionName);
@@ -148,7 +170,7 @@ class MainController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $collectionName = $this->getModelCollectionName();
         $type = static::getClassName($collectionName);

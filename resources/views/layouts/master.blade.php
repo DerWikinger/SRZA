@@ -27,7 +27,7 @@
 <body>
     <div id="app" class="relative">
         @include('layouts.header')
-        <section class="pt-4 h-4/6 overscroll-auto overflow-auto">
+        <section class="pt-4 min-h-4/6 overscroll-auto overflow-auto">
             @yield('content')
         </section>
         @include('layouts.footer')

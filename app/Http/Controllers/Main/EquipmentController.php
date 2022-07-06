@@ -38,7 +38,7 @@ class EquipmentController extends MainController
      * @param int $foreign_id
      * @return \Illuminate\Http\Response
      */
-    public function create(int $foreign_id)
+    public function create(int $foreign_id = 0)
     {
         $equipment = Equipment::make(
             [

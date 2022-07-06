@@ -19,7 +19,7 @@
                 } ) }}"
                            token="{{ csrf_token() }}"
                            data-type="{{ $type }}"
-                           delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() ? 1 : 0 }}">
+                           :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() ? 1 : 0 }}">
             <template v-slot:list-tittle>
                 <div class="flex">
                     <caption-block value="{{__('caption.' . $collectionName)}}" route="{{ $back }}"></caption-block>
@@ -110,12 +110,3 @@
     </div>
 
 @endsection
-<script>
-    import AddButton from "../../../js/components/global/AddButton";
-    import DataObjectsList from "../../../js/components/main/DataObjectsList";
-
-    export default {
-        components: {DataObjectsList, AddButton},
-        methods: {}
-    }
-</script>

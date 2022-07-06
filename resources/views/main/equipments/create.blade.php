@@ -1,12 +1,11 @@
-@extends('main.equipments.equipments')
+@extends('main.main')
 
 @section('title', __('caption.app-name'))
 
-@section('equipment-content')
+@section('main-content')
 
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12">
+        <div class="flex-column justify-content-center">
                 @if( $equipment->id )
                     <caption-block value="{{__('caption.edit-equipment')}}" route="{{ $back }}"></caption-block>
                 @else

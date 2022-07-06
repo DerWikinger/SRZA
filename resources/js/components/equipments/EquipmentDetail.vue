@@ -1,122 +1,112 @@
 <template>
-    <div class="card form-group">
-        <!--        <div class="card-header">-->
-        <!--            <slot name="header"></slot>-->
-        <!--        </div>-->
-        <div class="card-body">
-            <div class="form-group row">
-                <div class="col-12 text-center">
-                    <avatar-change v-model="avatar" :model-id="this.id" :token="this.token" model-type="equipment"
-                                   :confirm-message="this.captions.avatarConfirmMessage"
-                                   id="changeAvatar" @value-changed="onAvatarChanged">
-                    </avatar-change>
-                </div>
-            </div>
-            <div class="input-group form-group">
-                <label class="col-form-label col-3" for="id">{{ this.captions.id + ':' }}</label>
-                <input class="form-control disabled" id="id" name="id" type="text" v-model="this.id" disabled>
-            </div>
-            <div class="input-group form-group">
-                <label class="col-form-label col-3" for="equipment_type">{{
-                        this.captions.equipment_type + ':'
-                    }}</label>
-                <select class="form-control " type="text" id="equipment_type" name="equipment_type"
-                        v-model="equipment.equipment_type"
-                        @change="onDataChanged">
-                    <option class="" v-for="(equipmentType, key) in this.orderedEquipmentTypes" :value="equipmentType.id">
-                        {{ equipmentType.name }}
-                    </option>
-                </select>
-            </div>
-            <div class="input-group form-group">
-                <label class="col-form-label col-3" for="mark">{{ this.captions.mark + ':' }}</label>
-                <input class="form-control " type="text" id="mark" name="mark" v-model.trim="equipment.mark"
-                       @input="onDataChanged">
-            </div>
-            <div class="input-group form-group">
-                <label class="col-form-label col-3" for="model">{{ this.captions.model + ':' }}</label>
-                <input class="form-control " type="text" id="model" name="model" v-model.trim="equipment.model"
-                       @input="onDataChanged">
-            </div>
-            <div class="input-group form-group">
-                <label class="col-form-label col-3" for="schema_label">{{ this.captions.schema_label + ':' }}</label>
-                <input class="form-control " type="text" id="schema_label" name="schema_label"
-                       v-model.trim.lazy="equipment.schema_label"
-                       @input="onDataChanged">
-            </div>
-            <div class="input-group form-group">
-                <label class="col-form-label col-3" for="voltage_class">{{
-                    this.captions.voltage_class + ':'
-                    }}</label>
-                <select class="form-control " type="text" id="voltage_class" name="voltage_class"
-                        v-model="equipment.voltage_class"
-                        @change="onDataChanged">
-                    <option class="" v-for="(voltageClass, key) in this.orderedVoltageClass" :value="voltageClass.id">
-                        {{ voltageClass.name }}
-                    </option>
-                </select>
-            </div>
-            <div class="input-group form-group">
-                <label class="col-form-label col-3" for="current_class">{{
-                        this.captions.current_class + ':'
-                    }}</label>
-                <select class="form-control " type="text" id="current_class" name="current_class"
-                        v-model="equipment.current_class"
-                        @change="onDataChanged">
-                    <option class="" v-for="(currentClass, key) in this.orderedCurrentClass" :value="currentClass.id">
-                        {{ currentClass.name }}
-                    </option>
-                </select>
-            </div>
-            <div class="input-group form-group" id="VT">
-                <label class="col-form-label col-3" for="ratioV">{{ this.captions.ratio + ':' }}</label>
-                <select class="form-control " type="text" id="ratioV" name="ratioV" v-model="equipment.ratio"
-                        @change="onDataChanged">
-                    <option class="" v-for="(voltageRatio, key) in this.orderedVoltageTransformer"
-                            :value="voltageRatio.id">{{ voltageRatio.name }}
-                    </option>
-                </select>
-            </div>
-            <div class="input-group form-group" id="CT">
-                <label class="col-form-label col-3" for="ratioC">{{ this.captions.ratio + ':' }}</label>
-                <select class="form-control " type="text" id="ratioC" name="ratioC" v-model="equipment.ratio"
-                        @change="onDataChanged">
-                    <option class="" v-for="(currentRatio, key) in this.orderedCurrentTransformer"
-                            :value="currentRatio.id">{{ currentRatio.name }}
-                    </option>
-                </select>
-            </div>
-            <div class="input-group form-group">
-                <label class="col-form-label col-3" for="name">{{ this.captions.name + ':' }}</label>
-                <input class="form-control " type="text" id="name" name="name" v-model.trim="equipment.name"
-                       @input="onDataChanged">
-            </div>
-            <div class="input-group form-group">
-                <label class="col-form-label col-3" for="number">{{ this.captions.number + ':' }}</label>
-                <input class="form-control " type="text" id="number" name="number" v-model="equipment.number"
-                       @input="onDataChanged">
-            </div>
-            <div class="input-group form-group">
-                <label class="col-form-label col-3" for="production_date">{{
-                        this.captions.production_date + ':'
-                    }}</label>
-                <input class="form-control " type="number" id="production_date" name="production_date"
-                       v-model.number="equipment.production_date"
-                       @input="onDataChanged">
-            </div>
-            <div class="input-group form-group">
-                <label class="col-form-label col-3" for="description">{{ this.captions.description + ':' }}</label>
-                <textarea class="form-control " type="text" rows="3" id="description" name="description"
-                          v-model.trim.lazy="equipment.description"
-                          @input="onDataChanged"></textarea>
-            </div>
-            <input class="form-control col-3 disabled d-inline-block float-right color-disabled" v-bind:id="'btnReset_' + this.id" type="button"
-                   @click="onReset"
-                   :value="this.captions.btnReset">
-            <input class="form-control col-3 disabled d-inline-block float-right color-disabled"
+    <div class="flex justify-between flex-col text-center">
+        <div class="w-full flex justify-center rounded mt-2 mb-4">
+            <avatar-change v-model="avatar" :model-id="this.id" :token="this.token" model-type="equipment"
+                           :confirm-message="this.captions.avatarConfirmMessage"
+                           id="changeAvatar" @value-changed="onAvatarChanged">
+            </avatar-change>
+        </div>
+        <div class="flex justify-between items-center">
+            <div class="w-25 text-left font-bold">{{ this.captions.id + ':' }}</div>
+            <input class="w-75 disabled:opacity-75 form-input form-text px-2 py-1 rounded " id="id" name="id" type="text"
+                   v-model="this.id" disabled>
+        </div>
+        <div class="flex justify-between items-center mt-1">
+            <div class="w-25 text-left font-bold">{{ this.captions.equipment_type + ':' }}</div>
+            <select class="w-75 form-input form-number px-2 py-1 rounded" type="text" id="equipment_type" name="equipment_type"
+                    v-model="equipment.equipment_type"
+                    @change="onDataChanged">
+                <option class="" v-for="(equipmentType, key) in this.orderedEquipmentTypes" :value="equipmentType.id">
+                    {{ equipmentType.name }}
+                </option>
+            </select>
+        </div>
+        <div class="flex justify-between items-center mt-1">
+            <div class="w-25 text-left font-bold">{{ this.captions.mark + ':' }}</div>
+            <input class="w-75 form-input form-text px-2 py-1 rounded" type="text" id="mark" name="mark" v-model.trim="equipment.mark"
+                   @input="onDataChanged">
+        </div>
+        <div class="flex justify-between items-center mt-1">
+            <div class="w-25 text-left font-bold">{{ this.captions.model + ':' }}</div>
+            <input class="w-75 form-input form-text px-2 py-1 rounded" type="text" id="model" name="model" v-model.trim="equipment.model"
+                   @input="onDataChanged">
+        </div>
+        <div class="flex justify-between items-center mt-1">
+            <div class="w-25 text-left font-bold">{{ this.captions.schema_label + ':' }}</div>
+            <input class="w-75 form-input form-text px-2 py-1 rounded" type="text" id="schema_label" name="schema_label"
+                   v-model.trim.lazy="equipment.schema_label"
+                   @input="onDataChanged">
+        </div>
+        <div class="flex justify-between items-center mt-1">
+            <div class="w-25 text-left font-bold">{{ this.captions.voltage_class + ':' }}</div>
+            <select class="w-75 form-input form-text px-2 py-1 rounded" type="text" id="voltage_class" name="voltage_class"
+                    v-model="equipment.voltage_class"
+                    @change="onDataChanged">
+                <option class="" v-for="(voltageClass, key) in this.orderedVoltageClass" :value="voltageClass.id">
+                    {{ voltageClass.name }}
+                </option>
+            </select>
+        </div>
+        <div class="flex justify-between items-center mt-1">
+            <div class="w-25 text-left font-bold">{{ this.captions.current_class + ':' }}</div>
+            <select class="w-75 form-input form-text px-2 py-1 rounded" type="text" id="current_class" name="current_class"
+                    v-model="equipment.current_class"
+                    @change="onDataChanged">
+                <option class="" v-for="(currentClass, key) in this.orderedCurrentClass" :value="currentClass.id">
+                    {{ currentClass.name }}
+                </option>
+            </select>
+        </div>
+        <div class="flex justify-between items-center mt-1" id="VT">
+            <div class="w-25 text-left font-bold">{{ this.captions.ratio + ':' }}</div>
+            <select class="w-75 form-input form-text px-2 py-1 rounded" type="text" id="ratioV" name="ratioV" v-model="equipment.ratio"
+                    @change="onDataChanged">
+                <option class="" v-for="(voltageRatio, key) in this.orderedVoltageTransformer"
+                        :value="voltageRatio.id">{{ voltageRatio.name }}
+                </option>
+            </select>
+        </div>
+        <div class="flex justify-between items-center mt-1" id="CT">
+            <div class="w-25 text-left font-bold">{{ this.captions.ratio + ':' }}</div>
+            <select class="w-75 form-input form-text px-2 py-1 rounded" type="text" id="ratioC" name="ratioC" v-model="equipment.ratio"
+                    @change="onDataChanged">
+                <option class="" v-for="(currentRatio, key) in this.orderedCurrentTransformer"
+                        :value="currentRatio.id">{{ currentRatio.name }}
+                </option>
+            </select>
+        </div>
+        <div class="flex justify-between items-center mt-1">
+            <div class="w-25 text-left font-bold">{{ this.captions.name + ':' }}</div>
+            <input class="w-75 form-input form-text px-2 py-1 rounded" type="text" id="name" name="name" v-model.trim="equipment.name"
+                   @input="onDataChanged">
+        </div>
+        <div class="flex justify-between items-center mt-1">
+            <div class="w-25 text-left font-bold">{{ this.captions.number + ':' }}</div>
+            <input class="w-75 form-input form-text px-2 py-1 rounded" type="text" id="number" name="number" v-model="equipment.number"
+                   @input="onDataChanged">
+        </div>
+        <div class="flex justify-between items-center mt-1">
+            <div class="w-25 text-left font-bold">{{ this.captions.production_date + ':' }}</div>
+            <input class="w-75 form-input form-text px-2 py-1 rounded" type="number" id="production_date" name="production_date"
+                   v-model.number="equipment.production_date"
+                   @input="onDataChanged">
+        </div>
+        <div class="flex justify-between items-center mt-1">
+            <div class="w-25 text-left font-bold">{{ this.captions.description + ':' }}</div>
+            <textarea class="w-75 form-input form-text px-2 py-1 rounded" type="text" rows="3" id="description" name="description"
+                      v-model.trim.lazy="equipment.description"
+                      @input="onDataChanged"></textarea>
+        </div>
+        <div class="flex justify-end py-1">
+            <input class="form-input w-32 ml-2 rounded disabled color-disabled"
                    v-bind:id="'btnSave_' + this.id"
                    type="button" @click="onSave"
                    :value="this.captions.btnSave">
+            <input class="form-input w-32 ml-2 rounded disabled color-disabled"
+                   v-bind:id="'btnReset_' + this.id"
+                   type="button"
+                   @click="onReset"
+                   :value="this.captions.btnReset">
         </div>
     </div>
 </template>

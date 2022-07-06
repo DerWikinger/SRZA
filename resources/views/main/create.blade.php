@@ -5,7 +5,7 @@
 @section('main-content')
 
     <div class="container">
-        <div class="flex justify-center flex-column">
+        <div class="flex-column justify-center">
             @if( $model->id )
                 <caption-block value="{{__('caption.edit-' . $type)}}" route="{{ $back }}"></caption-block>
             @else

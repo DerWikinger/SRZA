@@ -2688,16 +2688,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "EquipmentDetail",
   props: {
@@ -52575,41 +52565,39 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card form-group" }, [
-    _c("div", { staticClass: "card-body" }, [
-      _c("div", { staticClass: "form-group row" }, [
-        _c(
-          "div",
-          { staticClass: "col-12 text-center" },
-          [
-            _c("avatar-change", {
-              attrs: {
-                "model-id": this.id,
-                token: this.token,
-                "model-type": "equipment",
-                "confirm-message": this.captions.avatarConfirmMessage,
-                id: "changeAvatar",
+  return _c(
+    "div",
+    { staticClass: "flex justify-between flex-col text-center" },
+    [
+      _c(
+        "div",
+        { staticClass: "w-full flex justify-center rounded mt-2 mb-4" },
+        [
+          _c("avatar-change", {
+            attrs: {
+              "model-id": this.id,
+              token: this.token,
+              "model-type": "equipment",
+              "confirm-message": this.captions.avatarConfirmMessage,
+              id: "changeAvatar",
+            },
+            on: { "value-changed": _vm.onAvatarChanged },
+            model: {
+              value: _vm.avatar,
+              callback: function ($$v) {
+                _vm.avatar = $$v
               },
-              on: { "value-changed": _vm.onAvatarChanged },
-              model: {
-                value: _vm.avatar,
-                callback: function ($$v) {
-                  _vm.avatar = $$v
-                },
-                expression: "avatar",
-              },
-            }),
-          ],
-          1
-        ),
-      ]),
+              expression: "avatar",
+            },
+          }),
+        ],
+        1
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "input-group form-group" }, [
-        _c(
-          "label",
-          { staticClass: "col-form-label col-3", attrs: { for: "id" } },
-          [_vm._v(_vm._s(this.captions.id + ":"))]
-        ),
+      _c("div", { staticClass: "flex justify-between items-center" }, [
+        _c("div", { staticClass: "w-25 text-left font-bold" }, [
+          _vm._v(_vm._s(this.captions.id + ":")),
+        ]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -52620,7 +52608,8 @@ var render = function () {
               expression: "this.id",
             },
           ],
-          staticClass: "form-control disabled",
+          staticClass:
+            "w-75 disabled:opacity-75 form-input form-text px-2 py-1 rounded ",
           attrs: { id: "id", name: "id", type: "text", disabled: "" },
           domProps: { value: this.id },
           on: {
@@ -52634,15 +52623,10 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "input-group form-group" }, [
-        _c(
-          "label",
-          {
-            staticClass: "col-form-label col-3",
-            attrs: { for: "equipment_type" },
-          },
-          [_vm._v(_vm._s(this.captions.equipment_type + ":"))]
-        ),
+      _c("div", { staticClass: "flex justify-between items-center mt-1" }, [
+        _c("div", { staticClass: "w-25 text-left font-bold" }, [
+          _vm._v(_vm._s(this.captions.equipment_type + ":")),
+        ]),
         _vm._v(" "),
         _c(
           "select",
@@ -52655,7 +52639,7 @@ var render = function () {
                 expression: "equipment.equipment_type",
               },
             ],
-            staticClass: "form-control ",
+            staticClass: "w-75 form-input form-number px-2 py-1 rounded",
             attrs: {
               type: "text",
               id: "equipment_type",
@@ -52685,9 +52669,9 @@ var render = function () {
           _vm._l(this.orderedEquipmentTypes, function (equipmentType, key) {
             return _c("option", { domProps: { value: equipmentType.id } }, [
               _vm._v(
-                "\n                    " +
+                "\n                " +
                   _vm._s(equipmentType.name) +
-                  "\n                "
+                  "\n            "
               ),
             ])
           }),
@@ -52695,12 +52679,10 @@ var render = function () {
         ),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "input-group form-group" }, [
-        _c(
-          "label",
-          { staticClass: "col-form-label col-3", attrs: { for: "mark" } },
-          [_vm._v(_vm._s(this.captions.mark + ":"))]
-        ),
+      _c("div", { staticClass: "flex justify-between items-center mt-1" }, [
+        _c("div", { staticClass: "w-25 text-left font-bold" }, [
+          _vm._v(_vm._s(this.captions.mark + ":")),
+        ]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -52712,7 +52694,7 @@ var render = function () {
               modifiers: { trim: true },
             },
           ],
-          staticClass: "form-control ",
+          staticClass: "w-75 form-input form-text px-2 py-1 rounded",
           attrs: { type: "text", id: "mark", name: "mark" },
           domProps: { value: _vm.equipment.mark },
           on: {
@@ -52732,12 +52714,10 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "input-group form-group" }, [
-        _c(
-          "label",
-          { staticClass: "col-form-label col-3", attrs: { for: "model" } },
-          [_vm._v(_vm._s(this.captions.model + ":"))]
-        ),
+      _c("div", { staticClass: "flex justify-between items-center mt-1" }, [
+        _c("div", { staticClass: "w-25 text-left font-bold" }, [
+          _vm._v(_vm._s(this.captions.model + ":")),
+        ]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -52749,7 +52729,7 @@ var render = function () {
               modifiers: { trim: true },
             },
           ],
-          staticClass: "form-control ",
+          staticClass: "w-75 form-input form-text px-2 py-1 rounded",
           attrs: { type: "text", id: "model", name: "model" },
           domProps: { value: _vm.equipment.model },
           on: {
@@ -52769,15 +52749,10 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "input-group form-group" }, [
-        _c(
-          "label",
-          {
-            staticClass: "col-form-label col-3",
-            attrs: { for: "schema_label" },
-          },
-          [_vm._v(_vm._s(this.captions.schema_label + ":"))]
-        ),
+      _c("div", { staticClass: "flex justify-between items-center mt-1" }, [
+        _c("div", { staticClass: "w-25 text-left font-bold" }, [
+          _vm._v(_vm._s(this.captions.schema_label + ":")),
+        ]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -52789,7 +52764,7 @@ var render = function () {
               modifiers: { trim: true, lazy: true },
             },
           ],
-          staticClass: "form-control ",
+          staticClass: "w-75 form-input form-text px-2 py-1 rounded",
           attrs: { type: "text", id: "schema_label", name: "schema_label" },
           domProps: { value: _vm.equipment.schema_label },
           on: {
@@ -52808,15 +52783,10 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "input-group form-group" }, [
-        _c(
-          "label",
-          {
-            staticClass: "col-form-label col-3",
-            attrs: { for: "voltage_class" },
-          },
-          [_vm._v(_vm._s(this.captions.voltage_class + ":"))]
-        ),
+      _c("div", { staticClass: "flex justify-between items-center mt-1" }, [
+        _c("div", { staticClass: "w-25 text-left font-bold" }, [
+          _vm._v(_vm._s(this.captions.voltage_class + ":")),
+        ]),
         _vm._v(" "),
         _c(
           "select",
@@ -52829,7 +52799,7 @@ var render = function () {
                 expression: "equipment.voltage_class",
               },
             ],
-            staticClass: "form-control ",
+            staticClass: "w-75 form-input form-text px-2 py-1 rounded",
             attrs: { type: "text", id: "voltage_class", name: "voltage_class" },
             on: {
               change: [
@@ -52855,9 +52825,9 @@ var render = function () {
           _vm._l(this.orderedVoltageClass, function (voltageClass, key) {
             return _c("option", { domProps: { value: voltageClass.id } }, [
               _vm._v(
-                "\n                    " +
+                "\n                " +
                   _vm._s(voltageClass.name) +
-                  "\n                "
+                  "\n            "
               ),
             ])
           }),
@@ -52865,15 +52835,10 @@ var render = function () {
         ),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "input-group form-group" }, [
-        _c(
-          "label",
-          {
-            staticClass: "col-form-label col-3",
-            attrs: { for: "current_class" },
-          },
-          [_vm._v(_vm._s(this.captions.current_class + ":"))]
-        ),
+      _c("div", { staticClass: "flex justify-between items-center mt-1" }, [
+        _c("div", { staticClass: "w-25 text-left font-bold" }, [
+          _vm._v(_vm._s(this.captions.current_class + ":")),
+        ]),
         _vm._v(" "),
         _c(
           "select",
@@ -52886,7 +52851,7 @@ var render = function () {
                 expression: "equipment.current_class",
               },
             ],
-            staticClass: "form-control ",
+            staticClass: "w-75 form-input form-text px-2 py-1 rounded",
             attrs: { type: "text", id: "current_class", name: "current_class" },
             on: {
               change: [
@@ -52912,9 +52877,9 @@ var render = function () {
           _vm._l(this.orderedCurrentClass, function (currentClass, key) {
             return _c("option", { domProps: { value: currentClass.id } }, [
               _vm._v(
-                "\n                    " +
+                "\n                " +
                   _vm._s(currentClass.name) +
-                  "\n                "
+                  "\n            "
               ),
             ])
           }),
@@ -52924,13 +52889,14 @@ var render = function () {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "input-group form-group", attrs: { id: "VT" } },
+        {
+          staticClass: "flex justify-between items-center mt-1",
+          attrs: { id: "VT" },
+        },
         [
-          _c(
-            "label",
-            { staticClass: "col-form-label col-3", attrs: { for: "ratioV" } },
-            [_vm._v(_vm._s(this.captions.ratio + ":"))]
-          ),
+          _c("div", { staticClass: "w-25 text-left font-bold" }, [
+            _vm._v(_vm._s(this.captions.ratio + ":")),
+          ]),
           _vm._v(" "),
           _c(
             "select",
@@ -52943,7 +52909,7 @@ var render = function () {
                   expression: "equipment.ratio",
                 },
               ],
-              staticClass: "form-control ",
+              staticClass: "w-75 form-input form-text px-2 py-1 rounded",
               attrs: { type: "text", id: "ratioV", name: "ratioV" },
               on: {
                 change: [
@@ -52970,7 +52936,7 @@ var render = function () {
               this.orderedVoltageTransformer,
               function (voltageRatio, key) {
                 return _c("option", { domProps: { value: voltageRatio.id } }, [
-                  _vm._v(_vm._s(voltageRatio.name) + "\n                "),
+                  _vm._v(_vm._s(voltageRatio.name) + "\n            "),
                 ])
               }
             ),
@@ -52981,13 +52947,14 @@ var render = function () {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "input-group form-group", attrs: { id: "CT" } },
+        {
+          staticClass: "flex justify-between items-center mt-1",
+          attrs: { id: "CT" },
+        },
         [
-          _c(
-            "label",
-            { staticClass: "col-form-label col-3", attrs: { for: "ratioC" } },
-            [_vm._v(_vm._s(this.captions.ratio + ":"))]
-          ),
+          _c("div", { staticClass: "w-25 text-left font-bold" }, [
+            _vm._v(_vm._s(this.captions.ratio + ":")),
+          ]),
           _vm._v(" "),
           _c(
             "select",
@@ -53000,7 +52967,7 @@ var render = function () {
                   expression: "equipment.ratio",
                 },
               ],
-              staticClass: "form-control ",
+              staticClass: "w-75 form-input form-text px-2 py-1 rounded",
               attrs: { type: "text", id: "ratioC", name: "ratioC" },
               on: {
                 change: [
@@ -53027,7 +52994,7 @@ var render = function () {
               this.orderedCurrentTransformer,
               function (currentRatio, key) {
                 return _c("option", { domProps: { value: currentRatio.id } }, [
-                  _vm._v(_vm._s(currentRatio.name) + "\n                "),
+                  _vm._v(_vm._s(currentRatio.name) + "\n            "),
                 ])
               }
             ),
@@ -53036,12 +53003,10 @@ var render = function () {
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "input-group form-group" }, [
-        _c(
-          "label",
-          { staticClass: "col-form-label col-3", attrs: { for: "name" } },
-          [_vm._v(_vm._s(this.captions.name + ":"))]
-        ),
+      _c("div", { staticClass: "flex justify-between items-center mt-1" }, [
+        _c("div", { staticClass: "w-25 text-left font-bold" }, [
+          _vm._v(_vm._s(this.captions.name + ":")),
+        ]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -53053,7 +53018,7 @@ var render = function () {
               modifiers: { trim: true },
             },
           ],
-          staticClass: "form-control ",
+          staticClass: "w-75 form-input form-text px-2 py-1 rounded",
           attrs: { type: "text", id: "name", name: "name" },
           domProps: { value: _vm.equipment.name },
           on: {
@@ -53073,12 +53038,10 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "input-group form-group" }, [
-        _c(
-          "label",
-          { staticClass: "col-form-label col-3", attrs: { for: "number" } },
-          [_vm._v(_vm._s(this.captions.number + ":"))]
-        ),
+      _c("div", { staticClass: "flex justify-between items-center mt-1" }, [
+        _c("div", { staticClass: "w-25 text-left font-bold" }, [
+          _vm._v(_vm._s(this.captions.number + ":")),
+        ]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -53089,7 +53052,7 @@ var render = function () {
               expression: "equipment.number",
             },
           ],
-          staticClass: "form-control ",
+          staticClass: "w-75 form-input form-text px-2 py-1 rounded",
           attrs: { type: "text", id: "number", name: "number" },
           domProps: { value: _vm.equipment.number },
           on: {
@@ -53106,15 +53069,10 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "input-group form-group" }, [
-        _c(
-          "label",
-          {
-            staticClass: "col-form-label col-3",
-            attrs: { for: "production_date" },
-          },
-          [_vm._v(_vm._s(this.captions.production_date + ":"))]
-        ),
+      _c("div", { staticClass: "flex justify-between items-center mt-1" }, [
+        _c("div", { staticClass: "w-25 text-left font-bold" }, [
+          _vm._v(_vm._s(this.captions.production_date + ":")),
+        ]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -53126,7 +53084,7 @@ var render = function () {
               modifiers: { number: true },
             },
           ],
-          staticClass: "form-control ",
+          staticClass: "w-75 form-input form-text px-2 py-1 rounded",
           attrs: {
             type: "number",
             id: "production_date",
@@ -53154,15 +53112,10 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "input-group form-group" }, [
-        _c(
-          "label",
-          {
-            staticClass: "col-form-label col-3",
-            attrs: { for: "description" },
-          },
-          [_vm._v(_vm._s(this.captions.description + ":"))]
-        ),
+      _c("div", { staticClass: "flex justify-between items-center mt-1" }, [
+        _c("div", { staticClass: "w-25 text-left font-bold" }, [
+          _vm._v(_vm._s(this.captions.description + ":")),
+        ]),
         _vm._v(" "),
         _c("textarea", {
           directives: [
@@ -53174,7 +53127,7 @@ var render = function () {
               modifiers: { trim: true, lazy: true },
             },
           ],
-          staticClass: "form-control ",
+          staticClass: "w-75 form-input form-text px-2 py-1 rounded",
           attrs: {
             type: "text",
             rows: "3",
@@ -53194,29 +53147,29 @@ var render = function () {
         }),
       ]),
       _vm._v(" "),
-      _c("input", {
-        staticClass:
-          "form-control col-3 disabled d-inline-block float-right color-disabled",
-        attrs: {
-          id: "btnReset_" + this.id,
-          type: "button",
-          value: this.captions.btnReset,
-        },
-        on: { click: _vm.onReset },
-      }),
-      _vm._v(" "),
-      _c("input", {
-        staticClass:
-          "form-control col-3 disabled d-inline-block float-right color-disabled",
-        attrs: {
-          id: "btnSave_" + this.id,
-          type: "button",
-          value: this.captions.btnSave,
-        },
-        on: { click: _vm.onSave },
-      }),
-    ]),
-  ])
+      _c("div", { staticClass: "flex justify-end py-1" }, [
+        _c("input", {
+          staticClass: "form-input w-32 ml-2 rounded disabled color-disabled",
+          attrs: {
+            id: "btnSave_" + this.id,
+            type: "button",
+            value: this.captions.btnSave,
+          },
+          on: { click: _vm.onSave },
+        }),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-input w-32 ml-2 rounded disabled color-disabled",
+          attrs: {
+            id: "btnReset_" + this.id,
+            type: "button",
+            value: this.captions.btnReset,
+          },
+          on: { click: _vm.onReset },
+        }),
+      ]),
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -50,11 +50,4 @@
     </div>
 
 @endsection
-<script>
-    import EquipmentDetail from "../../../js/components/equipments/EquipmentDetail";
-
-    export default {
-        components: { EquipmentDetail }
-    }
-</script>
 

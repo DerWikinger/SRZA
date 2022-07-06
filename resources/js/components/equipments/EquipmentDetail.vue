@@ -124,7 +124,7 @@ export default {
         currentClass: {type: Array},
         token: {type: String},
     },
-    created() {
+    mounted() {
         this._oldEquipment = this.equipment.constructor();
         this.copy(this.equipment, this._oldEquipment);
         this.check();

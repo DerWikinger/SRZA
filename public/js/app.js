@@ -2716,7 +2716,7 @@ __webpack_require__.r(__webpack_exports__);
       type: String
     }
   },
-  created: function created() {
+  mounted: function mounted() {
     this._oldEquipment = this.equipment.constructor();
     this.copy(this.equipment, this._oldEquipment);
     this.check();

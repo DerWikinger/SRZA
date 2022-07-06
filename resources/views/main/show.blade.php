@@ -25,7 +25,8 @@
                         'avatar' => $child->avatar ?? '',
                         $type . '_id' => $model->id,
                         ];
-                } ) }}"    token="{{ csrf_token() }}"
+                } )->sortBy( $children == 'equipments' ? ['equipment_type', 'mark' ] : ['number', 'name']) }}"
+                           token="{{ csrf_token() }}"
                            data-type="{{ \App\Http\Controllers\Main\MainController::getSingular($children) }}"
                            :delete-permission="{{ App\Models\User::find(auth()->id())->role == App\Models\Role::admin() ? 1 : 0 }}">
             <template v-slot:list-tittle>

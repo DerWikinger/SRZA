@@ -1,5 +1,5 @@
-<footer class="w-full relative bottom-0 h-auto">
-    <div class="container h-2/5">
+<footer class="w-full relative bottom-0 h-28">
+    <div class="container h-12">
         <div class="flex justify-between mb-2">
             <div class="w-1/2"></div>
             <div class="w-1/2 flex flex-row-reverse">
@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-    <div class="sub-footer w-100 h-3/5">
+    <div class="sub-footer w-100 h-16">
         <div class="flex justify-center h-100 items-center">
             <span class="text-md">
                 &copy;MitrofanovVI

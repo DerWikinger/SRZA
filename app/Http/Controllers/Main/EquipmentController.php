@@ -33,6 +33,18 @@ class EquipmentController extends MainController
 //    }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(int  $id)
+    {
+        $equipment = Equipment::find($id);
+        return $this->getCreateView($equipment);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @param int $foreign_id
@@ -77,18 +89,6 @@ class EquipmentController extends MainController
             ]);
         $equipment->cell_id = $data->cell_id ?? 0;
         return response($this->modelSave($data, $equipment), 200);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(int  $id)
-    {
-        $equipment = Equipment::find($id);
-        return $this->getCreateView($equipment);
     }
 
     /**

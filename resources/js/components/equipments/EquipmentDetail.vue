@@ -133,7 +133,7 @@ export default {
         onSave(ev) {
             if (!this.dirty()) return;
             let self = this;
-            let url = (this.equipment.id ?? 0) ? '/equipments/update/' + this.equipment.id : '/equipments/store';
+            let url = (this.equipment.id ?? 0) ? '/equipments/' + this.equipment.id + '/update' : '/equipments/store';
             let callback = function (result) {
                 self.$alert('Данные успешно сохранены!');
                 let obj = JSON.parse(result);

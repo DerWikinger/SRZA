@@ -2727,7 +2727,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (!this.dirty()) return;
       var self = this;
-      var url = ((_this$equipment$id = this.equipment.id) !== null && _this$equipment$id !== void 0 ? _this$equipment$id : 0) ? '/equipments/update/' + this.equipment.id : '/equipments/store';
+      var url = ((_this$equipment$id = this.equipment.id) !== null && _this$equipment$id !== void 0 ? _this$equipment$id : 0) ? '/equipments/' + this.equipment.id + '/update' : '/equipments/store';
 
       var callback = function callback(result) {
         self.$alert('Данные успешно сохранены!');

@@ -25,9 +25,9 @@
 
 </head>
 <body>
-    <div id="app" class="flex flex-col h-screen justify-between">
+    <div id="app" class="flex flex-col min-h-screen justify-between">
         @include('layouts.header')
-        <section class="pt-4 overscroll-auto overflow-auto h-full">
+        <section class="pt-4 overscroll-auto grow h-full">
             @yield('content')
         </section>
         @include('layouts.footer')

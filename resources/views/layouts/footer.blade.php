@@ -1,4 +1,4 @@
-<footer class="w-full relative bottom-0 h-28">
+<footer class="w-full flex flex-col h-28">
     <div class="container h-12">
         <div class="flex justify-between mb-2">
             <div class="w-1/2"></div>
